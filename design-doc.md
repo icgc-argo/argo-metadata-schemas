@@ -11,3 +11,4 @@ Leveraging open standard, ARGO data dictionary uses JSON Schema (https://json-sc
 
 To better support complex and large amount of permissible values, CV term definitions can be outsourced to a separate diretory: `_cv_terms`. They are linked back to JSON Schema `enum` via a `cv` script call, eg, `enum: [ $cv(specimen_type) ]`. The mechanism also allows us to support context-specific CV terms, for example: `enum: [ $cv(tumour_stage, tumour_staging_system) ]` returns CV terms for tumour stages that are only applicable to the chosen tumour staging system.
 
+One of the modeling design goals is to stay domain and language agnostic, much like Entity-Relationship (ER) model widely adopted in the RDBMS world. Same modeling technique can be applied to different application domains, implementation can use any programming language.

@@ -1,6 +1,6 @@
 ## Example JSON Documents
 
-This folder contains example JSON documents used for testing.
+This folder contains example JSON documents used for testing. Note that TSV files may be used as well if data is more appropriate to be represented in tabular format.
 
 ### JSON file naming convention
 

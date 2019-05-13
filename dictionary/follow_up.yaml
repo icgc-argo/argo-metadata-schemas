@@ -50,7 +50,7 @@ properties:
       - local recurrence and distant metastasis
   method_of_progression_status:  # only required if disease_status_at_followup is relapse or progression
     description: Method(s) used to confirm the patient's progression disease status
-    type: sting
+    type: string
   anatomic_site_progression_or_recurrence:
     enum: [ $cv(anatomic_site) ]
   tumour_staging_system_used_at_time_of_recurrence:

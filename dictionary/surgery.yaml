@@ -1,0 +1,64 @@
+$schema: "http://json-schema.org/draft-07/schema#"
+
+id: "surgery"
+title: Surgery
+type: object
+description: ""
+additionalProperties: false
+
+systemProperties:
+  - id
+
+required:
+  - type
+  - submitter_id
+  - treatment_submitter_id
+  - program
+
+uniqueKeys:
+  - [ id ]
+  - [ program, submitter_id ]  # surgery submitter_id must be unique within a program
+  - [ program, treatment_submitter_id ]  # this ensures one-to-one relationship between treatment and surgery
+
+references:
+  - self: [ program, treatment_submitter_id ]
+    reference:
+      targetEntity: treatment  # surgery has one-to-one relationship with treatment, one treatment can have only one surgery
+      targetProperties: [ program, submitter_id ]
+
+properties:
+  type:
+    enum: [ "surgery" ]
+  id:
+    $ref: _definitions#/core/properties/id
+  program:
+    type: string
+  submitter_id:
+    $ref: _definitions#/core/properties/submitter_id
+  treatment_submitter_id:
+    $ref: _definitions#/core/properties/submitter_id
+  procedure_interval:
+    enum:
+      - "yes"
+      - "no"
+      - "unknown"
+    description: Interval between primary diagnosis and surgery procedure, in days
+  procedure_type:
+    enum:
+      - surgical resection of primary
+      - surgical resection of local recurrence
+      - surgical resection of distant recurrence (metastasis)
+      - lymph node dissection performed at time of resection of primary.
+      - biopsy of primary
+      - biopsy of local recurrence
+      - biopsy of distant recurrence.
+      - other
+  procedure_site:
+    enum: [ $cv(anatomic_site) ]
+    description: Anatomical site of the procedure
+  resection_status:
+    enum:
+      - R0 - no apparent residual disease.
+      - R1 - microscopic residual disease.
+      - R2 - gross residual disease.
+      - For resection procedures, an indication of the extent of residual disease.

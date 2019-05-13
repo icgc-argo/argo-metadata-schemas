@@ -1,0 +1,65 @@
+$schema: "http://json-schema.org/draft-07/schema#"
+
+id: "follow_up"
+title: Follow up
+description: Patient's follow up records
+type: object
+additionalProperties: false
+
+systemProperties:  # properties managed by the system, must not be included in submission
+  - id
+
+required:
+  - type
+  - submitter_id
+  - donor_submitter_id
+  - program
+  - interval_of_followup
+  - disease_status_at_followup
+
+uniqueKeys:
+  - [ id ]
+  - [ program, submitter_id ]
+
+references:
+  - self: [ program, donor_submitter_id ]
+    reference:
+      targetEntity: donor
+      targetProperties: [ program, submitter_id ]
+
+properties:
+  type:
+    enum: [ "diagnosis" ]
+  id:
+    $ref: _definitions#/core/properties/id
+  submitter_id:
+    $ref: _definitions#/core/properties/submitter_id
+  program:
+    type: string
+  donor_submitter_id:
+    $ref: _definitions#/core/properties/submitter_id
+  interval_of_followup:  # shouldn't be interval_of_last_followup? last followup should be at donor level
+    type: integer
+  disease_status_at_followup:  # shouldn't be disease_status_at_last_followup?
+    enum: [ "$cv(disease_status)" ]
+  relapse_type:
+    enum:
+      - local recurrence
+      - distant recurrence/metastasis
+      - progression (liquid tumours)
+      - local recurrence and distant metastasis
+  method_of_progression_status:  # only required if disease_status_at_followup is relapse or progression
+    description: Method(s) used to confirm the patient's progression disease status
+    type: sting
+  anatomic_site_progression_or_recurrence:
+    enum: [ $cv(anatomic_site) ]
+  tumour_staging_system_used_at_time_of_recurrence:
+    enum: [ $cv(tumour_staging_system) ]
+  recurrence_t_category:
+    enum: [ $cv(recurrence_t_category, tumour_staging_system) ]
+  recurrence_n_category:
+    enum: [ $cv(recurrence_n_category, tumour_staging_system) ]
+  recurrence_m_category:
+    enum: [ $cv(recurrence_m_category, tumour_staging_system) ]
+  tumour_stage_at_time_of_recurrence:  # only required if disease_status_at_followup is relapse or progression
+    enum: [ $cv(tumour_stage, tumour_staging_system) ]  # tumour_stage depends on tumour_staging_system

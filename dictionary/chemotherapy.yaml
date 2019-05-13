@@ -1,0 +1,49 @@
+$schema: "http://json-schema.org/draft-07/schema#"
+
+id: "chemotherapy"
+title: Chemotherapy
+type: object
+description: ""
+additionalProperties: false
+
+systemProperties:
+  - id
+
+required:
+  - type
+  - submitter_id
+  - treatment_submitter_id
+  - program
+
+uniqueKeys:
+  - [ id ]
+  - [ program, submitter_id ]
+  - [ program, treatment_submitter_id, chemotherapy_drug_name ]  # for one treatment, a drug can appear one time
+
+references:
+  - self: [ program, treatment_submitter_id ]
+    reference:
+      targetEntity: treatment
+      targetProperties: [ program, submitter_id ]
+
+properties:
+  type:
+    enum: [ "chemotherapy" ]
+  id:
+    $ref: _definitions#/core/properties/id
+  program:
+    type: string
+  submitter_id:  # maybe there is no ID from submitter side, maybe using drug name as submitter id would be better?
+    $ref: _definitions#/core/properties/submitter_id
+    description: "Submitter's chemotherapy ID"
+  treatment_submitter_id:
+    $ref: _definitions#/core/properties/submitter_id
+  chemotherapy_drug_name:
+    enum: [ $cv(chemotherapy_drug_name) ]  # or maybe harmonized drug ID?
+  dosage_units:
+    enum: [ $cv(dosage_units) ]
+  cumulative_drug_dosage:
+    type: integer
+  route_of_administration:
+    enum: [ $cv(route_of_drug_administration) ]
+  

@@ -1,3 +1,3 @@
-# ARGO Data Models
+## ARGO Data Dictionary
 
-Git repository centrally stores and serves ARGO data models defined in descriptive static YAML files.
+This repository maintains ARGO data dictionary.

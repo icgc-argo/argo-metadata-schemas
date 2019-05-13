@@ -1,0 +1,70 @@
+$schema: "http://json-schema.org/draft-07/schema#"
+
+id: "diagnosis"
+title: Diagnosis
+description: Patient's primary diagnosis
+type: object
+additionalProperties: false
+
+systemProperties:  # properties managed by the system, must not be included in submission
+  - id
+
+required:
+  - type
+  - donor_submitter_id
+  - program
+  - age_at_diagnosis
+  - cancer_type_code
+
+uniqueKeys:
+  - [ id ]
+  - [ program, donor_submitter_id ]  # this is how we ensure one-to-one relationship between diagnosis and donor
+
+references:  # "references" is used to defined relationships similar to how RDBMS does
+  - self: [ program, donor_submitter_id ]  # properties form a composite key from the current entity
+    reference:
+      targetEntity: donor  # diagnosis to donor relationship is one-to-one
+      targetProperties: [ program, submitter_id ]  # properties from the related entity form a composite key
+
+properties:
+  type:
+    enum: [ "diagnosis" ]
+  id:
+    $ref: _definitions#/core/properties/id
+  donor_submitter_id:
+    $ref: _definitions#/core/properties/submitter_id
+  program:
+    type: string
+  cancer_type_code:
+    enum: [ "$cv(cancer_type_icd_10_code, program)" ]
+  age_at_diagnosis:
+    type: integer
+    minimum: 1
+    maximum: 90
+    description: "Donor's age at primary diagnosis, in years. Use 90 if greater than 90."
+  disease_status_at_time_of_primary_diagnosis:
+    enum: [ $cv(disease_status) ]
+  method_of_diagnosis:
+    enum: [ "$cv(method_of_diagnosis)" ]
+  number_lymph_nodes:
+    type: [ integer, "null" ]  # use 'null' for liquid tumour
+    minimum: 0  # this prevents negative
+  tumour_staging_system:
+    type: string
+    enum: [ $cv(tumour_staging_system) ]
+  clinical_t_category:
+    type: string
+    enum: [ $cv(clinical_t_category, tumour_staging_system) ]  # clinical_t_category depends on tumour_staging_system
+  clinical_n_category:
+    type: string
+    enum: [ $cv(clinical_n_category, tumour_staging_system) ]  # clinical_n_category depends on tumour_staging_system
+  clinical_m_category:
+    type: string
+    enum: [ $cv(clinical_m_category, tumour_staging_system) ]  # clinical_m_category depends on tumour_staging_system
+  tumour_stage:
+    type: string
+    description: A less detailed overall tumour staging group, typically combines TNM stages.
+    enum: [ $cv(tumour_stage, tumour_staging_system) ]  # tumour_stage depends on tumour_staging_system
+  stage_suffix:
+    type: string
+    enum: [ $cv(stage_suffix, tumour_staging_system) ]  # stage_suffix depends on tumour_staging_system

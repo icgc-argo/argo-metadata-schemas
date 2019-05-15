@@ -70,11 +70,7 @@ properties:
       - other
       - not applicable
   central_pathology_confirmed:
-    enum:
-      - "yes"
-      - "no"
-      - "unknown"
-      - null
+    enum: [ "$cv(yes_no_unknown)" ]
   tumour_grading_system:
     enum: [ "default" ]
   tumour_grade:

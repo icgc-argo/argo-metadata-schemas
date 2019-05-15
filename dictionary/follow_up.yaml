@@ -29,7 +29,7 @@ references:
 
 properties:
   type:
-    enum: [ "diagnosis" ]
+    enum: [ "follow_up" ]
   id:
     $ref: _definitions#/core/properties/id
   submitter_id:

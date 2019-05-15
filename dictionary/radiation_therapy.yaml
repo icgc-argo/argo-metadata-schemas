@@ -52,7 +52,7 @@ properties:
       - Abdomen
       - Pelvis
   radiation_therapy_fractions:
-    enum: [ $cv(route_of_drug_administration) ]
+    type: integer
   radiation_therapy_modality:
     enum:
       - Proton

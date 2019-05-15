@@ -44,10 +44,7 @@ properties:
   tobacco_smoking_intensity:
     type: integer
   alcohol_history:
-    enum:
-      - "yes"
-      - "no"
-      - "Don't know/Not sure"
+    enum: [ "$cv(yes_no_unknown)" ]
   alcohol_history_intensity:
     enum:
       - None

@@ -21,10 +21,10 @@ uniqueKeys:
   - [ program, submitter_id ]  # specimen submitter id must be unique within a program
 
 references:
-  - self: [ program, donor_submitter_id ]
+  - selfKey: [ program, donor_submitter_id ]
     reference:
       targetEntity: donor  # specimen to donor relationship is many-to-one
-      targetProperties: [ program, submitter_id ]
+      targetKey: [ program, submitter_id ]
 
 scriptValidations:  # script based validation, call returns True for valid or False for invalid
   - "$sumNoGreaterThan(1, [percent_tumour_cells, percent_proliferating_cells, percent_inflammatory_tissue, percent_stromal_cells, percent_necrosis])"

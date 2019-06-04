@@ -21,10 +21,10 @@ uniqueKeys:
   - [ program, submitter_id ]
 
 references:
-  - self: [ program, donor_submitter_id ]
+  - selfKey: [ program, donor_submitter_id ]
     reference:
       targetEntity: donor  # treatment to donor relationship is many-to-one
-      targetProperties: [ program, submitter_id ]
+      targetKey: [ program, submitter_id ]
 
 properties:
   type:

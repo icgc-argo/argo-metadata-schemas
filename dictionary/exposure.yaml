@@ -19,10 +19,10 @@ uniqueKeys:
   - [ program, donor_submitter_id, tobacco_smoking_history_indicator, tobacco_smoking_intensity, alcohol_history, alcohol_history_intensity ]
 
 references:
-  - self: [ program, donor_submitter_id ]
+  - selfKey: [ program, donor_submitter_id ]
     reference:
       targetEntity: donor
-      targetProperties: [ program, submitter_id ]
+      targetKey: [ program, submitter_id ]
 
 properties:
   type:

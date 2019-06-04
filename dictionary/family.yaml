@@ -19,10 +19,10 @@ uniqueKeys:
   - [ program, donor_submitter_id, donor_has_relative_with_cancer_history, relationship_type, relationship_type_other, relationship_gender, relationship_age, relationship_disease_icd10, relationship_disease ]
 
 references:
-  - self: [ program, donor_submitter_id ]
+  - selfKey: [ program, donor_submitter_id ]
     reference:
       targetEntity: donor
-      targetProperties: [ program, submitter_id ]
+      targetKey: [ program, submitter_id ]
 
 properties:
   type:

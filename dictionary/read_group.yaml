@@ -1,0 +1,69 @@
+$schema: "http://json-schema.org/draft-07/schema#"
+
+$id: "read_group"
+title: Sequencing read group
+type: object
+description: ""
+additionalProperties: false
+
+systemProperties:
+  - id
+
+required:
+  - type
+  - submitter_id
+  - sample_submitter_id
+  - program
+  - platform_unit
+  - library_name
+  - library_strategy
+
+uniqueKeys:
+  - [ id ]
+  - [ program, submitter_id ]
+
+references:
+  - selfKey: [ program, sample_submitter_id ]
+    reference:
+      targetEntity: sample  # read_group to sample relationship is many-to-one
+      targetKey: [ program, submitter_id ]
+
+properties:
+  type:
+    enum: [ "read_group" ]
+  id:  # system generated globally unique read group ID
+    $ref: _definitions#/core/properties/id
+  program:
+    type: string
+  submitter_id:
+    $ref: _definitions#/core/properties/submitter_id
+    description: "Submitter's read group ID. ID in BAM @RG header"
+  sample_submitter_id:
+    $ref: _definitions#/core/properties/submitter_id
+  sequencing_center:  # CN in BAM @GR header
+    type: string
+  platform:  # PL in BAM @RG header
+    enum: [ 'Illumina', 'SOLiD', 'LS454', 'PacBio', 'Ion Torrent', 'Nanopore', 'Complete Genomics' ]
+  platform_model:  # Illumina HiSeq 2000
+    enum: [ "$cv(platform_model, platform)" ]
+  platform_unit:  # PU in BAM @RG header, for Illumina: {FLOWCELL_BARCODE}.{LANE}.{SAMPLE_BARCODE}
+    type: string
+  is_paired_end:
+    type: boolean
+  read_length_r1:
+    type: integer
+  read_length_r2:
+    type: integer
+  insert_size:
+    type: integer
+  sample_barcode:  # only applicable for multiplex sequencing libraries
+    type: string
+  library_name:
+    type: string
+  library_strategy:
+    enum:
+      - "WGS"
+      - "WXS"
+      - "RNA-Seq"
+      - "Bisulfite-Seq"
+      - "ChIP-Seq"

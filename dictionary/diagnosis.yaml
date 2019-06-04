@@ -21,10 +21,10 @@ uniqueKeys:
   - [ program, donor_submitter_id ]  # this is how we ensure one-to-one relationship between diagnosis and donor
 
 references:  # "references" is used to defined relationships similar to how RDBMS does
-  - self: [ program, donor_submitter_id ]  # properties form a composite key from the current entity
+  - selfKey: [ program, donor_submitter_id ]  # properties form a composite key from the current entity
     reference:
       targetEntity: donor  # diagnosis to donor relationship is one-to-one
-      targetProperties: [ program, submitter_id ]  # properties from the related entity form a composite key
+      targetKey: [ program, submitter_id ]  # properties from the related entity form a composite key
 
 properties:
   type:

@@ -21,10 +21,10 @@ uniqueKeys:
   - [ program, submitter_id ]
 
 references:
-  - self: [ program, specimen_submitter_id ]
+  - selfKey: [ program, specimen_submitter_id ]
     reference:
       targetEntity: specimen  # sample to specimen relationship is many-to-one
-      targetProperties: [ program, submitter_id ]
+      targetKey: [ program, submitter_id ]
 
 properties:
   type:

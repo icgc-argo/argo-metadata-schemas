@@ -21,10 +21,10 @@ uniqueKeys:
   - [ program, treatment_submitter_id, chemotherapy_drug_name ]  # for one treatment, a drug can appear one time
 
 references:
-  - self: [ program, treatment_submitter_id ]
+  - selfKey: [ program, treatment_submitter_id ]
     reference:
       targetEntity: treatment
-      targetProperties: [ program, submitter_id ]
+      targetKey: [ program, submitter_id ]
 
 properties:
   type:

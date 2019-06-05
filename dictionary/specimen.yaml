@@ -43,22 +43,33 @@ properties:
     $ref: _definitions#/core/properties/submitter_id
   normal_or_tumour_designation:
     type: string
-    enum: [ $cv(tumour_or_normal_designation) ]
+    scriptValidations:
+      - "$cv(tumour_or_normal_designation)"
   specimen_type:
-    enum: [ $cv(specimen_type) ]
+    type: string
+    scriptValidations:
+      - "$cv(specimen_type)"
   tumour_histology_type:
-    enum: [ $cv(tumour_histology_type_icd_o_3_code) ]
+    type: string
+    scriptValidations:
+      - "$cv(tumour_histology_type_icd_o_3_code)"
   tumour_histological_type_other:
     type: string
   specimen_anatomic_site:  # from: specimen_anatomic_collection
-    enum: [ $cv(anatomic_site) ]
+    type: string
+    scriptValidations:
+      - "$cv(anatomic_site)"
   tumour_stage_at_specimen_acquisition:
-    enum: [ $cv(tumour_stage) ]
+    type: string
+    scriptValidations:
+      - "$cv(tumour_stage)"
   specimen_acquisition_interval:
     type: integer
     mininum: 0
   specimen_processing:
-    enum: [ $cv(specimen_processing) ]
+    type: string
+    scriptValidations:
+      - "$cv(specimen_processing)"
   specimen_storage:
     enum:
       - frozen, liquid nitrogen
@@ -70,7 +81,9 @@ properties:
       - other
       - not applicable
   central_pathology_confirmed:
-    enum: [ "$cv(yes_no_unknown)" ]
+    type: string
+    scriptValidations:
+      - "$cv(yes_no_unknown)"
   tumour_grading_system:
     enum: [ "default" ]
   tumour_grade:

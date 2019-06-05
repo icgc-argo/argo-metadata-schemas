@@ -30,14 +30,17 @@ properties:
     description: "Submitter's donor ID"
   program:
     type: string
-    enum: [ "$cv(program_short_name)" ]
+    scriptValidations:
+      - "$cv(program_short_name)"
   vital_status:
     enum: [ "deceaded", "alive", "unknown" ]
   gender:
     enum: [ "female", "male", "other" ]
     description: "Donor biological sex"
   ethnicity:
-    enum: [ "$cv(ethnicity)", null ]
+    type: [ "string", "null" ]
+    scriptValidations:
+      - "$cv(ethnicity)"
   cause_of_death:
     enum: [ "died of cancer", "died of other reasons", null ]  # null means not applicable, eg, donor not deceaded yet
   survival_time:
@@ -45,7 +48,11 @@ properties:
     minimum: 0
     description: "How long has the donor survived since primary diagnosis, in days."
   prior_malignancy:
-    enum: [ "yes", "no", "unknown" ]
+    type: string
+    scriptValidations:
+      - "$cv(yes_no_unknown)"
   cancer_type_prior_malignancy:
-    enum: [ "$cv(cancer_type_icd_10_code)", null ]
+    type: [ "string", "null" ]
+    scriptValidations:
+      - "$cv(cancer_type_icd_10_code)"
     description: "ICD-10 diagnostic code for type of cancer in a prior malignancy."

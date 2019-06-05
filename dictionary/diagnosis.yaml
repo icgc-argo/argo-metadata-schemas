@@ -36,35 +36,47 @@ properties:
   program:
     type: string
   cancer_type_code:
-    enum: [ "$cv(cancer_type_icd_10_code, program)" ]
+    type: string
+    scriptValidations:
+      - "$cv(cancer_type_icd_10_code, program)"  # cancer_type_code depends on program
   age_at_diagnosis:
     type: integer
     minimum: 1
     maximum: 90
     description: "Donor's age at primary diagnosis, in years. Use 90 if greater than 90."
   disease_status_at_time_of_primary_diagnosis:
-    enum: [ $cv(disease_status) ]
+    type: string
+    scriptValidations:
+      - "$cv(disease_status)"
   method_of_diagnosis:
-    enum: [ "$cv(method_of_diagnosis)" ]
+    type: string
+    scriptValidations:
+      - "$cv(method_of_diagnosis)"
   number_lymph_nodes:
     type: [ integer, "null" ]  # use 'null' for liquid tumour
     minimum: 0  # this prevents negative
   tumour_staging_system:
     type: string
-    enum: [ $cv(tumour_staging_system) ]
+    scriptValidations:
+      - "$cv(tumour_staging_system)"
   clinical_t_category:
     type: string
-    enum: [ $cv(clinical_t_category, tumour_staging_system) ]  # clinical_t_category depends on tumour_staging_system
+    scriptValidations:
+      - "$cv(clinical_t_category, tumour_staging_system)"  # clinical_t_category depends on tumour_staging_system
   clinical_n_category:
     type: string
-    enum: [ $cv(clinical_n_category, tumour_staging_system) ]  # clinical_n_category depends on tumour_staging_system
+    scriptValidations:
+      - "$cv(clinical_n_category, tumour_staging_system)"  # clinical_n_category depends on tumour_staging_system
   clinical_m_category:
     type: string
-    enum: [ $cv(clinical_m_category, tumour_staging_system) ]  # clinical_m_category depends on tumour_staging_system
+    scriptValidations:
+      - "$cv(clinical_m_category, tumour_staging_system)"  # clinical_m_category depends on tumour_staging_system
   tumour_stage:
     type: string
     description: A less detailed overall tumour staging group, typically combines TNM stages.
-    enum: [ $cv(tumour_stage, tumour_staging_system) ]  # tumour_stage depends on tumour_staging_system
+    scriptValidations:
+      - "$cv(tumour_stage, tumour_staging_system)"  # tumour_stage depends on tumour_staging_system
   stage_suffix:
     type: string
-    enum: [ $cv(stage_suffix, tumour_staging_system) ]  # stage_suffix depends on tumour_staging_system
+    scriptValidations:
+      - "$cv(stage_suffix, tumour_staging_system)"  # stage_suffix depends on tumour_staging_system

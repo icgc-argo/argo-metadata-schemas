@@ -41,7 +41,9 @@ properties:
   interval_of_followup:  # shouldn't be interval_of_last_followup? last followup should be at donor level
     type: integer
   disease_status_at_followup:  # shouldn't be disease_status_at_last_followup?
-    enum: [ "$cv(disease_status)" ]
+    type: string
+    scriptValidations:
+      - "$cv(disease_status)"
   relapse_type:
     enum:
       - local recurrence
@@ -52,14 +54,26 @@ properties:
     description: Method(s) used to confirm the patient's progression disease status
     type: string
   anatomic_site_progression_or_recurrence:
-    enum: [ $cv(anatomic_site) ]
+    type: string
+    scriptValidations:
+      - "$cv(anatomic_site)"
   tumour_staging_system_used_at_time_of_recurrence:
-    enum: [ $cv(tumour_staging_system) ]
+    type: string
+    scriptValidations:
+      - "$cv(tumour_staging_system)"
   recurrence_t_category:
-    enum: [ $cv(recurrence_t_category, tumour_staging_system) ]
+    type: string
+    scriptValidations:
+      - "$cv(recurrence_t_category, tumour_staging_system)"
   recurrence_n_category:
-    enum: [ $cv(recurrence_n_category, tumour_staging_system) ]
+    type: string
+    scriptValidations:
+      - "$cv(recurrence_n_category, tumour_staging_system)"
   recurrence_m_category:
-    enum: [ $cv(recurrence_m_category, tumour_staging_system) ]
+    type: string
+    scriptValidations:
+      - "$cv(recurrence_m_category, tumour_staging_system)"
   tumour_stage_at_time_of_recurrence:  # only required if disease_status_at_followup is relapse or progression
-    enum: [ $cv(tumour_stage, tumour_staging_system) ]  # tumour_stage depends on tumour_staging_system
+    type: string
+    scriptValidations:
+      - "$cv(tumour_stage, tumour_staging_system)"  # tumour_stage depends on tumour_staging_system

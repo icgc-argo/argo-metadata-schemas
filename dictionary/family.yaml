@@ -34,7 +34,9 @@ properties:
   donor_submitter_id:
     $ref: _definitions#/core/properties/submitter_id
   donor_has_relative_with_cancer_history:
-    enum: [ "$cv(yes_no_unknown)" ]
+    type: string
+    scriptValidations:
+      - "$cv(yes_no_unknown)"
   relationship_type:
     enum:
       - sibling
@@ -51,7 +53,9 @@ properties:
   relationship_age:  # shouldn't this be relationship_age_at_diagnosis
     type: integer
   relationship_disease_icd10:
-    enum: [ $cv(disease_icd10_code) ]
+    type: string
+    scriptValidations:
+      - "$cv(disease_icd10_code)"
   relationship_disease:
     type: string
     description: Disease name of the relative

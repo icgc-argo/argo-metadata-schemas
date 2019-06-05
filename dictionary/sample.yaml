@@ -39,5 +39,6 @@ properties:
   specimen_submitter_id:
     $ref: _definitions#/core/properties/submitter_id
   sample_type:
-    enum: [ $cv(sample_type) ]
-  
+    type: string
+    scriptValidations:
+      - "$cv(sample_type)"

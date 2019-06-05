@@ -45,7 +45,9 @@ properties:
   platform:  # PL in BAM @RG header
     enum: [ 'Illumina', 'SOLiD', 'LS454', 'PacBio', 'Ion Torrent', 'Nanopore', 'Complete Genomics' ]
   platform_model:  # Illumina HiSeq 2000
-    enum: [ "$cv(platform_model, platform)" ]
+    type: string
+    scriptValidations:
+      - "$cv(platform_model, platform)"
   platform_unit:  # PU in BAM @RG header, for Illumina: {FLOWCELL_BARCODE}.{LANE}.{SAMPLE_BARCODE}
     type: string
   is_paired_end:

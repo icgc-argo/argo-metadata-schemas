@@ -51,7 +51,9 @@ properties:
       - biopsy of distant recurrence.
       - other
   procedure_site:
-    enum: [ $cv(anatomic_site) ]
+    type: string
+    scriptValidations:
+      - "$cv(anatomic_site)"
     description: Anatomical site of the procedure
   resection_status:
     enum:

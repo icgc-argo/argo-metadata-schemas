@@ -1,6 +1,6 @@
-"$schema": http://json-schema.org/draft-07/schema#
-"$id": http://json-schema.org/draft-07/schema#
-title: Core schema meta-schema
+"$schema": "http://dcc.icgc-argo.org/draft-00/schema#"
+"$id": "http://dcc.icgc-argo.org/draft-00/schema#"
+title: ICGC ARGO schema meta-schema
 definitions:
   schemaArray:
     type: array
@@ -29,6 +29,12 @@ definitions:
       type: string
     uniqueItems: true
     default: []
+  stringArrayNonEmpty:
+    type: array
+    items:
+      type: string
+    uniqueItems: true
+    minItems: 1
 type:
 - object
 - boolean
@@ -48,6 +54,42 @@ properties:
     type: string
   description:
     type: string
+  version:
+    "$ref": "#/definitions/nonNegativeIntegerDefault0"
+  category:
+    enum:
+    - clinical
+    - biospecimen
+    - data_bundle
+  systemProperties:
+    "$ref": "#/definitions/stringArray"
+  uniqueKeys:
+    type: array
+    items:
+      "$ref": "#/definitions/stringArray"
+  scriptValidations:
+    type: array
+    items:
+      type: string
+      pattern: "^\$[_a-zA-Z]+[_a-zA-Z0-9]*\(.+\)$"
+    uniqueItems: true
+    default: []
+  references:
+    type: array
+    items:
+      type: object
+      required: [ selfKey, reference ]
+      properties:
+        selfKey:
+          "$ref": "#/definitions/stringArrayNonEmpty"
+        reference:
+          type: object
+          required: [ targetEntity, targetKey ]
+          properties:
+            targetEntity:
+              type: string
+            targetKey:
+              "$ref": "#/definitions/stringArrayNonEmpty"
   default: true
   readOnly:
     type: boolean

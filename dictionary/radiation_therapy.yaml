@@ -9,24 +9,24 @@ description: ""
 additionalProperties: false
 
 systemProperties:
-  - id
+- id
 
 required:
-  - type
-  - submitter_id
-  - treatment_submitter_id
-  - program
+- type
+- submitter_id
+- treatment_submitter_id
+- program
 
 uniqueKeys:
-  - [ id ]
-  - [ program, submitter_id ]
-  - [ program, treatment_submitter_id ]
+- [ id ]
+- [ program, submitter_id ]
+- [ program, treatment_submitter_id ]
 
 references:
-  - selfKey: [ program, treatment_submitter_id ]
-    reference:
-      targetEntity: treatment
-      targetKey: [ program, submitter_id ]
+- selfKey: [ program, treatment_submitter_id ]
+  reference:
+    targetEntity: treatment
+    targetKey: [ program, submitter_id ]
 
 properties:
   type:
@@ -43,24 +43,24 @@ properties:
   radiation_therapy_dosage_units:
     type: string
     scriptValidations:
-      - "$cv(radiation_therapy_dosage_units)"
+    - "$cv(radiation_therapy_dosage_units)"
   radiation_therapy_dosage:
     type: integer
   anatomical_site_radiation_therapy_administered:
     enum:
-      - Head
-      - Head-Neck
-      - Thorax
-      - Spine
-      - Extermities
-      - Abdomen
-      - Pelvis
+    - Head
+    - Head-Neck
+    - Thorax
+    - Spine
+    - Extermities
+    - Abdomen
+    - Pelvis
   radiation_therapy_fractions:
     type: integer
   radiation_therapy_modality:
     enum:
-      - Proton
-      - Photon
-      - Heavy ions
-      - External-Beam
-      - Brachytherapy
+    - Proton
+    - Photon
+    - Heavy ions
+    - External-Beam
+    - Brachytherapy

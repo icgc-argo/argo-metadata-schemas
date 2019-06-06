@@ -9,24 +9,24 @@ description: ""
 additionalProperties: false
 
 systemProperties:
-  - id
+- id
 
 required:
-  - type
-  - submitter_id
-  - donor_submitter_id
-  - program
-  - treatment_type
+- type
+- submitter_id
+- donor_submitter_id
+- program
+- treatment_type
 
 uniqueKeys:
-  - [ id ]
-  - [ program, submitter_id ]
+- [ id ]
+- [ program, submitter_id ]
 
 references:
-  - selfKey: [ program, donor_submitter_id ]
-    reference:
-      targetEntity: donor  # treatment to donor relationship is many-to-one
-      targetKey: [ program, submitter_id ]
+- selfKey: [ program, donor_submitter_id ]
+  reference:
+    targetEntity: donor  # treatment to donor relationship is many-to-one
+    targetKey: [ program, submitter_id ]
 
 properties:
   type:
@@ -43,7 +43,7 @@ properties:
   treatment_type:
     type: string
     scriptValidations:
-      - $cv(treatment_type)
+    - $cv(treatment_type)
   is_primary_treatment:
     type: [ "boolean", "null" ]  # boolean type, nullable
   treatment_start_interval:
@@ -54,10 +54,10 @@ properties:
     enum: [ adjuvant, curative, palliative ]
   response_to_therapy:
     enum:
-      - complete response
-      - partial response
-      - disease progression
-      - stable disease
-      - unknown
+    - complete response
+    - partial response
+    - disease progression
+    - stable disease
+    - unknown
   adverse_events:
     type: string

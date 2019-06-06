@@ -9,18 +9,18 @@ description: "Cancer patient participated research"
 additionalProperties: false
 
 systemProperties:  # properties to be managed by the system, must not be included in submission
-  - id
+- id
 
 required:
-  - type
-  - submitter_id
-  - program
-  - gender
-  - vital_status
+- type
+- submitter_id
+- program
+- gender
+- vital_status
 
 uniqueKeys:
-  - [ id ]
-  - [ program, submitter_id ]  # donor submitter id must be unique within a program
+- [ id ]
+- [ program, submitter_id ]  # donor submitter id must be unique within a program
 
 properties:
   type:
@@ -42,7 +42,7 @@ properties:
   ethnicity:
     type: [ "string", "null" ]
     scriptValidations:
-      - "$cv(ethnicity)"
+    - "$cv(ethnicity)"
   cause_of_death:
     enum: [ "died of cancer", "died of other reasons", null ]  # null means not applicable, eg, donor not deceaded yet
   survival_time:
@@ -52,9 +52,9 @@ properties:
   prior_malignancy:
     type: string
     scriptValidations:
-      - "$cv(yes_no_unknown)"
+    - "$cv(yes_no_unknown)"
   cancer_type_prior_malignancy:
     type: [ "string", "null" ]
     scriptValidations:
-      - "$cv(cancer_type_icd_10_code)"
+    - "$cv(cancer_type_icd_10_code)"
     description: "ICD-10 diagnostic code for type of cancer in a prior malignancy."

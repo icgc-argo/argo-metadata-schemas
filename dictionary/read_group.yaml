@@ -9,26 +9,26 @@ description: ""
 additionalProperties: false
 
 systemProperties:
-  - id
+- id
 
 required:
-  - type
-  - submitter_id
-  - sample_submitter_id
-  - program
-  - platform_unit
-  - library_name
-  - library_strategy
+- type
+- submitter_id
+- sample_submitter_id
+- program
+- platform_unit
+- library_name
+- library_strategy
 
 uniqueKeys:
-  - [ id ]
-  - [ program, submitter_id ]
+- [ id ]
+- [ program, submitter_id ]
 
 references:
-  - selfKey: [ program, sample_submitter_id ]
-    reference:
-      targetEntity: sample  # read_group to sample relationship is many-to-one
-      targetKey: [ program, submitter_id ]
+- selfKey: [ program, sample_submitter_id ]
+  reference:
+    targetEntity: sample  # read_group to sample relationship is many-to-one
+    targetKey: [ program, submitter_id ]
 
 properties:
   type:
@@ -49,7 +49,7 @@ properties:
   platform_model:  # Illumina HiSeq 2000
     type: string
     scriptValidations:
-      - "$cv(platform_model, platform)"
+    - "$cv(platform_model, platform)"
   platform_unit:  # PU in BAM @RG header, for Illumina: {FLOWCELL_BARCODE}.{LANE}.{SAMPLE_BARCODE}
     type: string
   is_paired_end:
@@ -66,8 +66,8 @@ properties:
     type: string
   library_strategy:
     enum:
-      - "WGS"
-      - "WXS"
-      - "RNA-Seq"
-      - "Bisulfite-Seq"
-      - "ChIP-Seq"
+    - "WGS"
+    - "WXS"
+    - "RNA-Seq"
+    - "Bisulfite-Seq"
+    - "ChIP-Seq"

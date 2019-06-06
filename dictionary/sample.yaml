@@ -9,24 +9,24 @@ description: ""
 additionalProperties: false
 
 systemProperties:
-  - id
+- id
 
 required:
-  - type
-  - submitter_id
-  - specimen_submitter_id
-  - program
-  - sample_type
+- type
+- submitter_id
+- specimen_submitter_id
+- program
+- sample_type
 
 uniqueKeys:
-  - [ id ]
-  - [ program, submitter_id ]
+- [ id ]
+- [ program, submitter_id ]
 
 references:
-  - selfKey: [ program, specimen_submitter_id ]
-    reference:
-      targetEntity: specimen  # sample to specimen relationship is many-to-one
-      targetKey: [ program, submitter_id ]
+- selfKey: [ program, specimen_submitter_id ]
+  reference:
+    targetEntity: specimen  # sample to specimen relationship is many-to-one
+    targetKey: [ program, submitter_id ]
 
 properties:
   type:
@@ -43,4 +43,4 @@ properties:
   sample_type:
     type: string
     scriptValidations:
-      - "$cv(sample_type)"
+    - "$cv(sample_type)"

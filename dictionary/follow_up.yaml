@@ -9,25 +9,25 @@ type: object
 additionalProperties: false
 
 systemProperties:  # properties managed by the system, must not be included in submission
-  - id
+- id
 
 required:
-  - type
-  - submitter_id
-  - donor_submitter_id
-  - program
-  - interval_of_followup
-  - disease_status_at_followup
+- type
+- submitter_id
+- donor_submitter_id
+- program
+- interval_of_followup
+- disease_status_at_followup
 
 uniqueKeys:
-  - [ id ]
-  - [ program, submitter_id ]
+- [ id ]
+- [ program, submitter_id ]
 
 references:
-  - selfKey: [ program, donor_submitter_id ]
-    reference:
-      targetEntity: donor
-      targetKey: [ program, submitter_id ]
+- selfKey: [ program, donor_submitter_id ]
+  reference:
+    targetEntity: donor
+    targetKey: [ program, submitter_id ]
 
 properties:
   type:
@@ -45,37 +45,37 @@ properties:
   disease_status_at_followup:  # shouldn't be disease_status_at_last_followup?
     type: string
     scriptValidations:
-      - "$cv(disease_status)"
+    - "$cv(disease_status)"
   relapse_type:
     enum:
-      - local recurrence
-      - distant recurrence/metastasis
-      - progression (liquid tumours)
-      - local recurrence and distant metastasis
+    - local recurrence
+    - distant recurrence/metastasis
+    - progression (liquid tumours)
+    - local recurrence and distant metastasis
   method_of_progression_status:  # only required if disease_status_at_followup is relapse or progression
     description: Method(s) used to confirm the patient's progression disease status
     type: string
   anatomic_site_progression_or_recurrence:
     type: string
     scriptValidations:
-      - "$cv(anatomic_site)"
+    - "$cv(anatomic_site)"
   tumour_staging_system_used_at_time_of_recurrence:
     type: string
     scriptValidations:
-      - "$cv(tumour_staging_system)"
+    - "$cv(tumour_staging_system)"
   recurrence_t_category:
     type: string
     scriptValidations:
-      - "$cv(recurrence_t_category, tumour_staging_system)"
+    - "$cv(recurrence_t_category, tumour_staging_system)"
   recurrence_n_category:
     type: string
     scriptValidations:
-      - "$cv(recurrence_n_category, tumour_staging_system)"
+    - "$cv(recurrence_n_category, tumour_staging_system)"
   recurrence_m_category:
     type: string
     scriptValidations:
-      - "$cv(recurrence_m_category, tumour_staging_system)"
+    - "$cv(recurrence_m_category, tumour_staging_system)"
   tumour_stage_at_time_of_recurrence:  # only required if disease_status_at_followup is relapse or progression
     type: string
     scriptValidations:
-      - "$cv(tumour_stage, tumour_staging_system)"  # tumour_stage depends on tumour_staging_system
+    - "$cv(tumour_stage, tumour_staging_system)"  # tumour_stage depends on tumour_staging_system

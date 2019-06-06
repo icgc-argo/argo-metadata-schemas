@@ -9,22 +9,22 @@ description: ""
 additionalProperties: false
 
 systemProperties:
-  - id
+- id
 
 required:
-  - type
-  - donor_submitter_id
-  - program
+- type
+- donor_submitter_id
+- program
 
 uniqueKeys:
-  - [ id ]
-  - [ program, donor_submitter_id, donor_has_relative_with_cancer_history, relationship_type, relationship_type_other, relationship_gender, relationship_age, relationship_disease_icd10, relationship_disease ]
+- [ id ]
+- [ program, donor_submitter_id, donor_has_relative_with_cancer_history, relationship_type, relationship_type_other, relationship_gender, relationship_age, relationship_disease_icd10, relationship_disease ]
 
 references:
-  - selfKey: [ program, donor_submitter_id ]
-    reference:
-      targetEntity: donor
-      targetKey: [ program, submitter_id ]
+- selfKey: [ program, donor_submitter_id ]
+  reference:
+    targetEntity: donor
+    targetKey: [ program, submitter_id ]
 
 properties:
   type:
@@ -41,13 +41,13 @@ properties:
       - "$cv(yes_no_unknown)"
   relationship_type:
     enum:
-      - sibling
-      - parent
-      - grandparent
-      - uncle/aunt
-      - cousin
-      - other
-      - unknown
+    - sibling
+    - parent
+    - grandparent
+    - uncle/aunt
+    - cousin
+    - other
+    - unknown
   relationship_type_other:
     type: string
   relationship_gender:
@@ -57,7 +57,7 @@ properties:
   relationship_disease_icd10:
     type: string
     scriptValidations:
-      - "$cv(disease_icd10_code)"
+    - "$cv(disease_icd10_code)"
   relationship_disease:
     type: string
     description: Disease name of the relative

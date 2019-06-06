@@ -9,22 +9,22 @@ description: ""
 additionalProperties: false
 
 systemProperties:
-  - id
+- id
 
 required:
-  - type
-  - donor_submitter_id
-  - program
+- type
+- donor_submitter_id
+- program
 
 uniqueKeys:
-  - [ id ]
-  - [ program, donor_submitter_id, tobacco_smoking_history_indicator, tobacco_smoking_intensity, alcohol_history, alcohol_history_intensity ]
+- [ id ]
+- [ program, donor_submitter_id, tobacco_smoking_history_indicator, tobacco_smoking_intensity, alcohol_history, alcohol_history_intensity ]
 
 references:
-  - selfKey: [ program, donor_submitter_id ]
-    reference:
-      targetEntity: donor
-      targetKey: [ program, submitter_id ]
+- selfKey: [ program, donor_submitter_id ]
+  reference:
+    targetEntity: donor
+    targetKey: [ program, submitter_id ]
 
 properties:
   type:
@@ -37,23 +37,23 @@ properties:
     $ref: _definitions#/common/properties/submitter_id
   tobacco_smoking_history_indicator:
     enum:
-      - Lifelong non-smoker (<100 cigarettes smoked in lifetime)
-      - Current smoker (includes daily smokers non-daily/occasional smokers)
-      - Current reformed smoker for > 15 years
-      - Current reformed smoker for <= 15 years
-      - Current reformed smoker, duration not specified
-      - Smoking history not documented
+    - Lifelong non-smoker (<100 cigarettes smoked in lifetime)
+    - Current smoker (includes daily smokers non-daily/occasional smokers)
+    - Current reformed smoker for > 15 years
+    - Current reformed smoker for <= 15 years
+    - Current reformed smoker, duration not specified
+    - Smoking history not documented
   tobacco_smoking_intensity:
     type: integer
   alcohol_history:
     type: string
     scriptValidations:
-      - "$cv(yes_no_unknown)"
+    - "$cv(yes_no_unknown)"
   alcohol_history_intensity:
     enum:
-      - None
-      - Social Drinker (> once a month, < once a week)
-      - Weekly Drinker (>=1x a week)
-      - Daily Drinker
-      - Occassional Drinker (< once a month)
-      - Not Documented
+    - None
+    - Social Drinker (> once a month, < once a week)
+    - Weekly Drinker (>=1x a week)
+    - Daily Drinker
+    - Occassional Drinker (< once a month)
+    - Not Documented

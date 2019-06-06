@@ -43,14 +43,14 @@ properties:
   chemotherapy_drug_name:
     type: string
     scriptValidations:
-      - "$cv(chemotherapy_drug_name)"  # or maybe harmonized drug ID?
+    - "$cv(chemotherapy_drug_name)"  # or maybe harmonized drug ID?
   dosage_units:
     type: string
     scriptValidations:
-      - "$cv(dosage_units)"
+    - "$cv(dosage_units)"
   cumulative_drug_dosage:
     type: integer
   route_of_administration:
     type: string
     scriptValidations:
-    - "$cv(route_of_drug_administration)"
+  - "$cv(route_of_drug_administration)"

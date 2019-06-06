@@ -9,24 +9,24 @@ description: ""
 additionalProperties: false
 
 systemProperties:
-  - id
+- id
 
 required:
-  - type
-  - submitter_id
-  - treatment_submitter_id
-  - program
+- type
+- submitter_id
+- treatment_submitter_id
+- program
 
 uniqueKeys:
-  - [ id ]
-  - [ program, submitter_id ]
-  - [ program, treatment_submitter_id ]
+- [ id ]
+- [ program, submitter_id ]
+- [ program, treatment_submitter_id ]
 
 references:
-  - selfKey: [ program, treatment_submitter_id ]
-    reference:
-      targetEntity: treatment
-      targetKey: [ program, submitter_id ]
+- selfKey: [ program, treatment_submitter_id ]
+  reference:
+    targetEntity: treatment
+    targetKey: [ program, submitter_id ]
 
 properties:
   type:

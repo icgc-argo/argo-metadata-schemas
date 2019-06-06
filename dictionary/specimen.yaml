@@ -8,28 +8,28 @@ type: object
 additionalProperties: false
 
 systemProperties:
-  - id
+- id
 
 required:
-  - type
-  - submitter_id
-  - donor_submitter_id
-  - program
-  - normal_or_tumour_designation
-  - specimen_type
+- type
+- submitter_id
+- donor_submitter_id
+- program
+- normal_or_tumour_designation
+- specimen_type
 
 uniqueKeys:
-  - [ id ]
-  - [ program, submitter_id ]  # specimen submitter id must be unique within a program
+- [ id ]
+- [ program, submitter_id ]  # specimen submitter id must be unique within a program
 
 references:
-  - selfKey: [ program, donor_submitter_id ]
-    reference:
-      targetEntity: donor  # specimen to donor relationship is many-to-one
-      targetKey: [ program, submitter_id ]
+- selfKey: [ program, donor_submitter_id ]
+  reference:
+    targetEntity: donor  # specimen to donor relationship is many-to-one
+    targetKey: [ program, submitter_id ]
 
 scriptValidations:  # script based validation, call returns True for valid or False for invalid
-  - "$sumNoGreaterThan(1, [percent_tumour_cells, percent_proliferating_cells, percent_inflammatory_tissue, percent_stromal_cells, percent_necrosis])"
+- "$sumNoGreaterThan(1, [percent_tumour_cells, percent_proliferating_cells, percent_inflammatory_tissue, percent_stromal_cells, percent_necrosis])"
 
 properties:
   type:
@@ -46,46 +46,46 @@ properties:
   normal_or_tumour_designation:
     type: string
     scriptValidations:
-      - "$cv(tumour_or_normal_designation)"
+    - "$cv(tumour_or_normal_designation)"
   specimen_type:
     type: string
     scriptValidations:
-      - "$cv(specimen_type)"
+    - "$cv(specimen_type)"
   tumour_histology_type:
     type: string
     scriptValidations:
-      - "$cv(tumour_histology_type_icd_o_3_code)"
+    - "$cv(tumour_histology_type_icd_o_3_code)"
   tumour_histological_type_other:
     type: string
   specimen_anatomic_site:  # from: specimen_anatomic_collection
     type: string
     scriptValidations:
-      - "$cv(anatomic_site)"
+    - "$cv(anatomic_site)"
   tumour_stage_at_specimen_acquisition:
     type: string
     scriptValidations:
-      - "$cv(tumour_stage)"
+    - "$cv(tumour_stage)"
   specimen_acquisition_interval:
     type: integer
     minimum: 0
   specimen_processing:
     type: string
     scriptValidations:
-      - "$cv(specimen_processing)"
+    - "$cv(specimen_processing)"
   specimen_storage:
     enum:
-      - frozen, liquid nitrogen
-      - frozen, -70 freezer
-      - frozen, vapor phase
-      - RNA later frozen
-      - paraffin block
-      - cut slide
-      - other
-      - not applicable
+    - frozen, liquid nitrogen
+    - frozen, -70 freezer
+    - frozen, vapor phase
+    - RNA later frozen
+    - paraffin block
+    - cut slide
+    - other
+    - not applicable
   central_pathology_confirmed:
     type: string
     scriptValidations:
-      - "$cv(yes_no_unknown)"
+    - "$cv(yes_no_unknown)"
   tumour_grading_system:
     enum: [ "default" ]
   tumour_grade:

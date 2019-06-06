@@ -1,7 +1,7 @@
 $schema: "http://dcc.icgc-argo.org/draft-00/schema#"
 
 $id: "fastq_submission"
-title: Submitted FASTQ file(s) for one read group
+title: FASTQ Submission Bundle
 version: 0
 category: data_bundle
 type: object

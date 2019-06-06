@@ -1,7 +1,7 @@
 $schema: "http://dcc.icgc-argo.org/draft-00/schema#"
 
 $id: "bam_submission"
-title: Submitted BAM file
+title: BAM Submission Bundle
 version: 0
 category: data_bundle
 type: object

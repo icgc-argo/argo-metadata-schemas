@@ -28,6 +28,10 @@ common:
       - "published"  # User or admin published the bundle (only possible after all files uploaded)
       - "suppressed"  # User or admin suppressed the bundle (no file in the bundle can be downloaded). Admin can re-publish a suppressed bundle
       - "depreciated"  # This is like 'mark deleted', bundle is depreciated but still accessible, files can not be downloaded (could have been purged from the server)
+    program_short_name:
+      enum:  # this lists all ARGO program's short names, dummy examples here for now
+      - OICR-PACA
+      - OICR-PRCA
 
 submitted_file:
   type: object

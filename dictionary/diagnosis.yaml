@@ -30,13 +30,13 @@ references:  # "references" is used to defined relationships similar to how RDBM
 
 properties:
   type:
-    enum: [ "diagnosis" ]
+    const: "diagnosis"
   id:
     $ref: _definitions#/common/properties/id
   donor_submitter_id:
     $ref: _definitions#/common/properties/submitter_id
   program:
-    type: string
+    $ref: _definitions#/common/properties/program_short_name
   cancer_type_code:
     type: string
     scriptValidations:

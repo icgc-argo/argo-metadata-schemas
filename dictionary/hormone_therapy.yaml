@@ -30,11 +30,11 @@ references:
 
 properties:
   type:
-    enum: [ "hormone_therapy" ]
+    const: "hormone_therapy"
   id:
     $ref: _definitions#/common/properties/id
   program:
-    type: string
+    $ref: _definitions#/common/properties/program_short_name
   submitter_id:  # maybe should use hormone drug name as submitter id?
     $ref: _definitions#/common/properties/submitter_id
     description: "Submitter's hormone therapy ID"

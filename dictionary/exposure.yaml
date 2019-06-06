@@ -28,11 +28,11 @@ references:
 
 properties:
   type:
-    enum: [ "exposure" ]
+    const: "exposure"
   id:
     $ref: _definitions#/common/properties/id
   program:
-    type: string
+    $ref: _definitions#/common/properties/program_short_name
   donor_submitter_id:
     $ref: _definitions#/common/properties/submitter_id
   tobacco_smoking_history_indicator:

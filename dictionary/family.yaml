@@ -28,11 +28,11 @@ references:
 
 properties:
   type:
-    enum: [ "family" ]
+    const: "family"
   id:
     $ref: _definitions#/common/properties/id
   program:
-    type: string
+    $ref: _definitions#/common/properties/program_short_name
   donor_submitter_id:
     $ref: _definitions#/common/properties/submitter_id
   donor_has_relative_with_cancer_history:

@@ -28,13 +28,13 @@ references:
 
 properties:
   type:
-    enum: [ "bam_submission" ]
+    const: "bam_submission"
   status:
     $ref: _definitions#/common/properties/bundle_status
   id:
     $ref: _definitions#/common/properties/id
   program:
-    type: string
+    $ref: _definitions#/common/properties/program_short_name
   read_group_submitter_id:
     type: array
     minItems: 1

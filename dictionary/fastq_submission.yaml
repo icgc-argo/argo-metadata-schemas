@@ -34,13 +34,13 @@ scriptValidations:  # script based validation, call returns 'true' for valid or 
 
 properties:
   type:
-    enum: [ "fastq_submission" ]
+    const: "fastq_submission"
   status:
     $ref: _definitions#/common/properties/bundle_status
   id:
     $ref: _definitions#/common/properties/id
   program:
-    type: string
+    $ref: _definitions#/common/properties/program_short_name
   read_group_submitter_id:
     type: string
   files:  # fastq files

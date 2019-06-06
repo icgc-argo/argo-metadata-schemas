@@ -32,11 +32,11 @@ references:
 
 properties:
   type:
-    enum: [ "read_group" ]
+    const: "read_group"
   id:  # system generated globally unique read group ID
     $ref: _definitions#/common/properties/id
   program:
-    type: string
+    $ref: _definitions#/common/properties/program_short_name
   submitter_id:
     $ref: _definitions#/common/properties/submitter_id
     description: "Submitter's read group ID. ID in BAM @RG header"

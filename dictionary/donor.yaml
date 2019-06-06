@@ -24,16 +24,14 @@ uniqueKeys:
 
 properties:
   type:
-    enum: [ "donor" ]
+    const: "donor"
   id:
     $ref: _definitions#/common/properties/id
   submitter_id:
     $ref: _definitions#/common/properties/submitter_id
     description: "Submitter's donor ID"
   program:
-    type: string
-    scriptValidations:
-      - "$cv(program_short_name)"
+    $ref: _definitions#/common/properties/program_short_name
   vital_status:
     enum: [ "deceaded", "alive", "unknown" ]
   gender:

@@ -33,11 +33,11 @@ scriptValidations:  # script based validation, call returns True for valid or Fa
 
 properties:
   type:
-    enum: [ "specimen" ]
+    const: "specimen"
   id:
     $ref: _definitions#/common/properties/id
   program:
-    type: string
+    $ref: _definitions#/common/properties/program_short_name
   submitter_id:
     $ref: _definitions#/common/properties/submitter_id
     description: "Submitter's specimen ID"

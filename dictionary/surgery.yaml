@@ -30,11 +30,11 @@ references:
 
 properties:
   type:
-    enum: [ "surgery" ]
+    const: "surgery"
   id:
     $ref: _definitions#/common/properties/id
   program:
-    type: string
+    $ref: _definitions#/common/properties/program_short_name
   submitter_id:
     $ref: _definitions#/common/properties/submitter_id
   treatment_submitter_id:

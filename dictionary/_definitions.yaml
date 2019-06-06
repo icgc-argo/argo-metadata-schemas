@@ -2,16 +2,12 @@ $schema: "http://json-schema.org/draft-07/schema#"
 
 $id: _definitions
 
-core:
+common:
   type: object
   properties:
     id:
       type: string
       pattern: "^[A-Z]{2}[0-9]+$"
-    name:
-      type: string
-    description:
-      type: string
     submitter_id:
       type: string
       pattern: "^[a-zA-Z]{1}[a-zA-Z0-9_-]+[a-zA-Z0-9]{1}$"
@@ -21,3 +17,54 @@ core:
     date_time:
       type: string
       format: date-time
+    uuid:
+      type: string
+      pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    bundle_status:
+      enum:
+      - "registered"  # Entity's metadata submitted, validated and stored on the server
+      - "uploaded"  # All files in the bundle uploaded and stored on the server
+      - "upload_failed"  # One or more files in the bundle failed uploading
+      - "published"  # User or admin published the bundle (only possible after all files uploaded)
+      - "suppressed"  # User or admin suppressed the bundle (no file in the bundle can be downloaded). Admin can re-publish a suppressed bundle
+      - "depreciated"  # This is like 'mark deleted', bundle is depreciated but still accessible, files can not be downloaded (could have been purged from the server)
+
+submitted_file:
+  type: object
+  required: [ name, local_path, size, checksum, checksum_type ]
+  properties:
+    id:
+      $ref: "#/common/properties/uuid"
+    bundle_id:
+      $ref: "#/common/properties/uuid"
+    name:  # if omitted, name will be original file name from local_path
+      type: string
+    local_path:  # full path includes path and file name
+      type: string
+    size:
+      type: integer
+      minimum: 0
+    checksum:
+      type: string
+    checksum_type:
+      enum: [ md5, sha256, sha512 ]
+    format:
+      enum: [ BAM, BAI, CRAM, CRAI, FASTQ, VCF, TBI, IDX, TGZ ]
+    extension:
+      enum:
+      - ".bam"
+      - ".bam.bai"
+      - ".cram"
+      - ".cram.crai"
+      - ".fastq.gz"
+      - ".fq.gz"
+      - ".vcf.gz"
+      - ".vcf.gz.tbi"
+      - ".tgz"
+    data_type:
+      enum:
+      - "Sequencing Reads"
+      - "SSM"
+      - "CNSM"
+      - "StSM"
+      - "SGV"

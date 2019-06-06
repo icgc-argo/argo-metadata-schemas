@@ -1,43 +1,45 @@
-$schema: "http://json-schema.org/draft-07/schema#"
+$schema: "http://dcc.icgc-argo.org/draft-00/schema#"
 
 $id: "chemotherapy"
 title: Chemotherapy
+version: 0
+category: clinical
 type: object
 description: ""
 additionalProperties: false
 
 systemProperties:
-  - id
+- id
 
 required:
-  - type
-  - submitter_id
-  - treatment_submitter_id
-  - program
+- type
+- submitter_id
+- treatment_submitter_id
+- program
 
 uniqueKeys:
-  - [ id ]
-  - [ program, submitter_id ]
-  - [ program, treatment_submitter_id, chemotherapy_drug_name ]  # for one treatment, a drug can appear one time
+- [ id ]
+- [ program, submitter_id ]
+- [ program, treatment_submitter_id, chemotherapy_drug_name ]  # for one treatment, a drug can appear one time
 
 references:
-  - selfKey: [ program, treatment_submitter_id ]
-    reference:
-      targetEntity: treatment
-      targetKey: [ program, submitter_id ]
+- selfKey: [ program, treatment_submitter_id ]
+  reference:
+    targetEntity: treatment
+    targetKey: [ program, submitter_id ]
 
 properties:
   type:
     enum: [ "chemotherapy" ]
   id:
-    $ref: _definitions#/core/properties/id
+    $ref: _definitions#/common/properties/id
   program:
     type: string
   submitter_id:  # maybe there is no ID from submitter side, maybe using drug name as submitter id would be better?
-    $ref: _definitions#/core/properties/submitter_id
+    $ref: _definitions#/common/properties/submitter_id
     description: "Submitter's chemotherapy ID"
   treatment_submitter_id:
-    $ref: _definitions#/core/properties/submitter_id
+    $ref: _definitions#/common/properties/submitter_id
   chemotherapy_drug_name:
     type: string
     scriptValidations:
@@ -51,4 +53,4 @@ properties:
   route_of_administration:
     type: string
     scriptValidations:
-      - "$cv(route_of_drug_administration)"
+    - "$cv(route_of_drug_administration)"

@@ -1,8 +1,10 @@
-$schema: "http://json-schema.org/draft-07/schema#"
+$schema: "http://dcc.icgc-argo.org/draft-00/schema#"
 
 $id: "family"
 title: Family
 type: object
+version: 0
+category: clinical
 description: ""
 additionalProperties: false
 
@@ -28,11 +30,11 @@ properties:
   type:
     enum: [ "family" ]
   id:
-    $ref: _definitions#/core/properties/id
+    $ref: _definitions#/common/properties/id
   program:
     type: string
   donor_submitter_id:
-    $ref: _definitions#/core/properties/submitter_id
+    $ref: _definitions#/common/properties/submitter_id
   donor_has_relative_with_cancer_history:
     type: string
     scriptValidations:

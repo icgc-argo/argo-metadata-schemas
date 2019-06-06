@@ -1,8 +1,10 @@
-$schema: "http://json-schema.org/draft-07/schema#"
+$schema: "http://dcc.icgc-argo.org/draft-00/schema#"
 
 $id: "hormone_therapy"
 title: Hormone therapy
 type: object
+version: 0
+category: clinical
 description: ""
 additionalProperties: false
 
@@ -30,13 +32,13 @@ properties:
   type:
     enum: [ "hormone_therapy" ]
   id:
-    $ref: _definitions#/core/properties/id
+    $ref: _definitions#/common/properties/id
   program:
     type: string
   submitter_id:  # maybe should use hormone drug name as submitter id?
-    $ref: _definitions#/core/properties/submitter_id
+    $ref: _definitions#/common/properties/submitter_id
     description: "Submitter's hormone therapy ID"
   treatment_submitter_id:
-    $ref: _definitions#/core/properties/submitter_id
+    $ref: _definitions#/common/properties/submitter_id
   hormone_therapy_drug_name:
     type: string

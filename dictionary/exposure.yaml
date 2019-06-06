@@ -1,7 +1,9 @@
-$schema: "http://json-schema.org/draft-07/schema#"
+$schema: "http://dcc.icgc-argo.org/draft-00/schema#"
 
 $id: "exposure"
 title: Exposure
+version: 0
+category: clinical
 type: object
 description: ""
 additionalProperties: false
@@ -28,11 +30,11 @@ properties:
   type:
     enum: [ "exposure" ]
   id:
-    $ref: _definitions#/core/properties/id
+    $ref: _definitions#/common/properties/id
   program:
     type: string
   donor_submitter_id:
-    $ref: _definitions#/core/properties/submitter_id
+    $ref: _definitions#/common/properties/submitter_id
   tobacco_smoking_history_indicator:
     enum:
       - Lifelong non-smoker (<100 cigarettes smoked in lifetime)

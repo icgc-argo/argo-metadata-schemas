@@ -1,7 +1,9 @@
-$schema: "http://json-schema.org/draft-07/schema#"
+$schema: "http://dcc.icgc-argo.org/draft-00/schema#"
 
 $id: "specimen"
 title: Specimen
+version: 0
+category: biospecimen
 type: object
 additionalProperties: false
 
@@ -33,14 +35,14 @@ properties:
   type:
     enum: [ "specimen" ]
   id:
-    $ref: _definitions#/core/properties/id
+    $ref: _definitions#/common/properties/id
   program:
     type: string
   submitter_id:
-    $ref: _definitions#/core/properties/submitter_id
+    $ref: _definitions#/common/properties/submitter_id
     description: "Submitter's specimen ID"
   donor_submitter_id:
-    $ref: _definitions#/core/properties/submitter_id
+    $ref: _definitions#/common/properties/submitter_id
   normal_or_tumour_designation:
     type: string
     scriptValidations:
@@ -65,7 +67,7 @@ properties:
       - "$cv(tumour_stage)"
   specimen_acquisition_interval:
     type: integer
-    mininum: 0
+    minimum: 0
   specimen_processing:
     type: string
     scriptValidations:
@@ -90,21 +92,21 @@ properties:
     enum: [ Gx, G1, G2, G3, G4 ]
   percent_tumour_cells:
     type: number
-    miminum: 0
+    minimum: 0
     maximum: 1
   percent_proliferating_cells:
     type: number
-    miminum: 0
+    minimum: 0
     maximum: 1
   percent_inflammatory_tissue:
     type: number
-    miminum: 0
+    minimum: 0
     maximum: 1
   percent_stromal_cells:
     type: number
-    miminum: 0
+    minimum: 0
     maximum: 1
   percent_necrosis:
     type: number
-    miminum: 0
+    minimum: 0
     maximum: 1

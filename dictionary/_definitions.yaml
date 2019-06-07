@@ -10,7 +10,7 @@ common:
       pattern: "^[A-Z]{2}[0-9]+$"
     submitter_id:
       type: string
-      pattern: "^[a-zA-Z]{1}[a-zA-Z0-9_-]+[a-zA-Z0-9]{1}$"
+      pattern: "^[a-zA-Z]{1}[a-zA-Z0-9_-]*[a-zA-Z0-9]{1}$"
     date:
       type: string
       format: date
@@ -53,7 +53,7 @@ submitted_file:
     checksum_type:
       enum: [ md5, sha256, sha512 ]
     format:
-      enum: [ BAM, BAI, CRAM, CRAI, FASTQ, VCF, TBI, IDX, TGZ ]
+      enum: [ TXT, PDF, BAM, BAI, CRAM, CRAI, FA, FASTA, FASTQ, VCF, TBI, IDX, TGZ ]
     extension:
       enum:
       - ".bam"
@@ -65,9 +65,21 @@ submitted_file:
       - ".vcf.gz"
       - ".vcf.gz.tbi"
       - ".tgz"
+      - ".fa.gz"
+      - ".fasta.gz"
+      - ".txt.gz"
+      - ".tsv.gz"
+      - ".csv.gz"
+      - ".pdf.gz"
     data_type:
       enum:
       - "Sequencing Reads"
+      - "Unaligned Sequencing Reads"
+      - "Alinged Sequencing Reads"
+      - "Alinged Sequencing Reads Index"
+      - "Read Group QC Metrics"
+      - "Alignment QC Plot"
+      - "Alignment QC Metrics"
       - "SSM"
       - "CNSM"
       - "StSM"

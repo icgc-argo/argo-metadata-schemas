@@ -57,10 +57,7 @@ properties:
   version:
     "$ref": "#/definitions/nonNegativeIntegerDefault0"
   category:
-    enum:
-    - clinical
-    - biospecimen
-    - data_bundle
+    type: string
   systemProperties:
     "$ref": "#/definitions/stringArray"
   uniqueKeys:

@@ -1,0 +1,54 @@
+$schema: "http://dcc.icgc-argo.org/draft-00/schema#"
+
+$id: "lane_bam_submission"
+title: Lane level unaligned BAM submission bundle
+version: 0
+category: data_bundle
+type: object
+description: ""
+additionalProperties: false
+
+systemProperties: [ id, status ]
+
+required:
+- type
+- program
+- read_group_submitter_id
+- files
+
+uniqueKeys:
+- [ id ]
+- [ program, read_group_submitter_id ]  # this will make sure same read group will not appear more than once across all lane bam submissions
+
+references:
+- selfKey: [ program, read_group_submitter_id ]
+  reference:
+    targetEntity: read_group  # Lane level (aka read group level) BAM submission bundle to read_group relationship is one-to-one
+    targetKey: [ program, submitter_id ]
+
+properties:
+  type:
+    const: "lane_bam_submission"
+  status:
+    $ref: _definitions#/common/properties/bundle_status
+  id:
+    $ref: _definitions#/common/properties/id
+  program:
+    $ref: _definitions#/common/properties/program_short_name
+  read_group_submitter_id:  
+    type: string
+  files:
+    type: object
+    properties:
+      bam_file:
+        type: object
+        systemProperties: [ id, bundle_id, format, extension, date_type ]
+        allOf:
+        - $ref: _definitions#/submitted_file
+        - properties:
+            format:
+              const: "BAM"
+            extension:
+              const: ".bam"
+            date_type:
+              const: "Unaligned Sequencing Reads"

@@ -75,8 +75,8 @@ submitted_file:
       enum:
       - "Sequencing Reads"
       - "Unaligned Sequencing Reads"
-      - "Alinged Sequencing Reads"
-      - "Alinged Sequencing Reads Index"
+      - "Aligned Sequencing Reads"
+      - "Aligned Sequencing Reads Index"
       - "Read Group QC Metrics"
       - "Alignment QC Plot"
       - "Alignment QC Metrics"

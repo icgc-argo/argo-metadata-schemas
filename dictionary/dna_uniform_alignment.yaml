@@ -152,7 +152,7 @@ properties:
             extension:
               enum: [ ".cram", ".bam" ]
             date_type:
-              const: "Alinged Sequencing Reads"
+              const: "Aligned Sequencing Reads"
       aligned_seq_index:
         type: object
         systemProperties: [ id, bundle_id, format, extension, date_type ]
@@ -164,7 +164,7 @@ properties:
             extension:
               enum: [ ".cram.crai", ".bam.bai" ]
             date_type:
-              const: "Alinged Sequencing Reads Index"
+              const: "Aligned Sequencing Reads Index"
       quality_distribution:
         type: object
         systemProperties: [ id, bundle_id, format, extension, date_type ]

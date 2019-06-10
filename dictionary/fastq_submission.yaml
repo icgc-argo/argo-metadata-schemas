@@ -29,8 +29,8 @@ references:
     targetKey: [ program, submitter_id ]
 
 scriptValidations:  # script based validation, call returns 'true' for valid or 'false' for invalid
-# psuedo code here to illustrate the idea
-- "$rg_fq_count_validation(count=len(files.fastq_file), is_pared_end=read_group.is_paired_end){if (is_paired_end and count == 2) {return true}; if (!is_paired_end and count == 1) {return true}; return false }"
+# pseudo code here to illustrate the idea
+- "$rg_fq_count_validation(count=$len(files.fastq_file), is_pared_end=read_group.is_paired_end){if (is_paired_end and count == 2) {return true}; if (!is_paired_end and count == 1) {return true}; return false }"
 
 properties:
   type:

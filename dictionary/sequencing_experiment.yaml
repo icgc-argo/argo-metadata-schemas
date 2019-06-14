@@ -112,16 +112,17 @@ properties:
         id:  # system generated globally unique read group ID
           $ref: _definitions#/common/properties/id
         program:
-          $ref: _definitions#/common/properties/program_short_name
-          source: $parent.program  # $parent being the containing entity, 'source: $parent' thing needs a bit more thinking
+          # this reuses the program definition in the containing parent, may also signal that it gets the same value
+          $ref: "#/properties/program"
         submitter_id:
           type: string
           description: "Submitter's read group ID. ID in BAM @RG header"
-        experiment_submitter_id:  # this field can be inferred from 'sequencing_experiment'
-          type: string
-        sample_submitter_id:  # this field can be inferred from what's in 'sequencing_experiment'
-          type: string
-          source: $parent.sample_submitter_id  # 'source: $parent' thing needs a bit more thinking
+        experiment_submitter_id:
+          # this field gets value from containing parent
+          $ref: "#/properties/submitter_id"
+        sample_submitter_id:
+          # this field gets value from containing parent
+          $ref: "#/properties/sample_submitter_id"
         platform_unit:  # PU in BAM @RG header, for Illumina: {FLOWCELL_BARCODE}.{LANE}.{SAMPLE_BARCODE}
           type: string
         is_paired_end:

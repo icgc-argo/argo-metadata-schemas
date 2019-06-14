@@ -1,0 +1,138 @@
+$schema: "http://dcc.icgc-argo.org/draft-00/schema#"
+
+$id: "sequencing_experiment"
+title: Sequencing experiment
+version: 0
+category: experiment
+type: object
+description: ""
+additionalProperties: false
+
+systemProperties:
+- id
+- status
+
+required:
+- type
+- program
+- submitter_id
+- sample_submitter_id
+- sequencing_center
+- platform
+- platform_model
+- library_strategy
+- read_group_count
+- read_groups
+
+primaryKey:
+  surrogateKey: [ id ]
+  naturalKey: [ program, submitter_id ]
+
+uniqueKeys: []
+
+references:
+- selfKey: [ program, sample_submitter_id ]
+  reference:
+    targetEntity: sample
+    targetKey: [ program, submitter_id ]
+
+properties:
+  type:
+    const: "sequencing_experiment"
+  status:
+    $ref: _definitions#/common/properties/bundle_status
+  id:
+    $ref: _definitions#/common/properties/id
+  program:
+    $ref: _definitions#/common/properties/program_short_name
+  submitter_id:  # submitter's sequencing experiment ID
+    $ref: _definitions#/common/properties/submitter_id
+  sample_submitter_id:  # sample used in a sequencing experiment
+    $ref: _definitions#/common/properties/submitter_id
+  sequencing_center:  # CN in BAM @GR header
+    type: string
+  platform:  # PL in BAM @RG header
+    enum: [ 'Illumina', 'SOLiD', 'LS454', 'PacBio', 'Ion Torrent', 'Nanopore', 'Complete Genomics' ]
+  platform_model:  # Illumina HiSeq 2000
+    type: string
+    scriptValidations:
+    - "$cv(platform_model, platform)"
+  library_strategy:
+    enum:
+    - "WGS"
+    - "WXS"
+    - "RNA-Seq"
+    - "Bisulfite-Seq"
+    - "ChIP-Seq"
+  read_group_count:
+    type: integer
+    minimum: 1
+    scriptValidations:  # pseudo code to verify read_group_count is correctly match number of read groups
+    - "$intEqual(int1=read_group_count, int2=$len(read_groups)){if(int1==int2){return true} return false}"
+  read_groups:  # read groups produced by this sequencing experiment
+    type: array
+    items:
+      minItems: 1
+
+      $id: "read_group"  # read_group is a nested entity under sequencing experiment
+      type: object
+      category: biospecimen
+      description: ""
+      additionalProperties: false
+      systemProperties:
+      - id
+      - program  # inherits this from containing parent
+      - sample_submitter_id  # inherits this from containing parent
+      required:
+      - submitter_id
+      - platform_unit
+      - is_paired_end
+      - read_length_r1
+      - read_length_r2
+      - insert_size
+      - library_name
+
+      primaryKey:
+        surrogateKey: [ id ]
+        naturalKey: [ program, submitter_id ]
+
+      references:
+      - selfKey: [ program, experiment_submitter_id ]
+        reference:
+          targetEntity: sequencing_experiment  # reference to containing parent
+          targetKey: [ program, submitter_id ]
+      - selfKey: [ program, sample_submitter_id ]  # inherits this relationship from containing parent
+        reference:
+          targetEntity: sample
+          targetKey: [ program, submitter_id ]
+
+      properties:
+        type:
+          const: "read_group"
+        id:  # system generated globally unique read group ID
+          $ref: _definitions#/common/properties/id
+        program:
+          $ref: _definitions#/common/properties/program_short_name
+          source: $parent.program  # $parent being the containing entity, 'source: $parent' thing needs a bit more thinking
+        submitter_id:
+          type: string
+          description: "Submitter's read group ID. ID in BAM @RG header"
+        experiment_submitter_id:  # this field can be inferred from 'sequencing_experiment'
+          type: string
+        sample_submitter_id:  # this field can be inferred from what's in 'sequencing_experiment'
+          type: string
+          source: $parent.sample_submitter_id  # 'source: $parent' thing needs a bit more thinking
+        platform_unit:  # PU in BAM @RG header, for Illumina: {FLOWCELL_BARCODE}.{LANE}.{SAMPLE_BARCODE}
+          type: string
+        is_paired_end:
+          type: boolean
+        read_length_r1:
+          type: integer
+        read_length_r2:
+          type: integer
+        insert_size:
+          type: [ integer, "null" ]  # 'null' for non paired end sequencing
+        sample_barcode:  # only applicable for multiplex sequencing libraries
+          type: [ string, "null" ]
+        library_name:
+          type: string

@@ -19,9 +19,11 @@ required:
 - interval_of_followup
 - disease_status_at_followup
 
-uniqueKeys:
-- [ id ]
-- [ program, submitter_id ]
+primaryKey:
+  surrogateKey: [ id ]
+  naturalKey: [ program, submitter_id ]
+
+uniqueKeys: []
 
 references:
 - selfKey: [ program, donor_submitter_id ]

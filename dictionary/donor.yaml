@@ -18,15 +18,19 @@ required:
 - gender
 - vital_status
 
-uniqueKeys:
-- [ id ]
-- [ program, submitter_id ]  # donor submitter id must be unique within a program
+primaryKey:
+  surrogateKey: [ id ]
+  naturalKey: [ program, submitter_id ]  # donor submitter id must be unique within a program
+
+uniqueKeys: []  # don't need to repeat primaryKey here
 
 properties:
   type:
     const: "donor"
   id:
-    $ref: _definitions#/common/properties/id
+    allOf:
+    - $ref: _definitions#/common/properties/id
+    - pattern: "^DN"  # id must start with "DN", in addition to pattern defined at _definitions#/common/properties/id
   submitter_id:
     $ref: _definitions#/common/properties/submitter_id
     description: "Submitter's donor ID"

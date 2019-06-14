@@ -17,10 +17,11 @@ required:
 - treatment_submitter_id
 - program
 
+primaryKey:
+  surrogateKey: [ id ]
+
 uniqueKeys:
-- [ id ]
-- [ program, submitter_id ]
-- [ program, treatment_submitter_id ]
+- [ program, treatment_submitter_id, hormone_therapy_drug_name ]  # for one treatment, a drug can appear one time
 
 references:
 - selfKey: [ program, treatment_submitter_id ]
@@ -35,9 +36,6 @@ properties:
     $ref: _definitions#/common/properties/id
   program:
     $ref: _definitions#/common/properties/program_short_name
-  submitter_id:  # maybe should use hormone drug name as submitter id?
-    $ref: _definitions#/common/properties/submitter_id
-    description: "Submitter's hormone therapy ID"
   treatment_submitter_id:
     $ref: _definitions#/common/properties/submitter_id
   hormone_therapy_drug_name:

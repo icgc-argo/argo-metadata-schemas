@@ -16,9 +16,11 @@ required:
 - donor_submitter_id
 - program
 
-uniqueKeys:
-- [ id ]
-- [ program, donor_submitter_id, tobacco_smoking_history_indicator, tobacco_smoking_intensity, alcohol_history, alcohol_history_intensity ]
+primaryKey:
+  surrogateKey: [ id ]
+  naturalKey: [ program, donor_submitter_id ]  # one donor can have only one exposure record (one-to-one)
+
+uniqueKeys: []
 
 references:
 - selfKey: [ program, donor_submitter_id ]

@@ -18,9 +18,11 @@ required:
 - program
 - treatment_type
 
-uniqueKeys:
-- [ id ]
-- [ program, submitter_id ]
+primaryKey:
+  surrogateKey: [ id ]
+  naturalKey: [ program, submitter_id ]  # treatment submitter_id must be unique within a program
+
+uniqueKeys: []
 
 references:
 - selfKey: [ program, donor_submitter_id ]

@@ -20,9 +20,11 @@ required:
 - library_name
 - library_strategy
 
-uniqueKeys:
-- [ id ]
-- [ program, submitter_id ]
+primaryKey:
+  surrogateKey: [ id ]
+  naturalKey: [ program, submitter_id ]
+
+uniqueKeys: []
 
 references:
 - selfKey: [ program, sample_submitter_id ]

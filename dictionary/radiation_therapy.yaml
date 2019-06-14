@@ -17,10 +17,11 @@ required:
 - treatment_submitter_id
 - program
 
+primaryKey:
+  surrogateKey: [ id ]
+
 uniqueKeys:
-- [ id ]
-- [ program, submitter_id ]
-- [ program, treatment_submitter_id ]
+- [ program, treatment_submitter_id ]  # this makes it one treatmeant can have only one radiation therapy
 
 references:
 - selfKey: [ program, treatment_submitter_id ]
@@ -35,9 +36,6 @@ properties:
     $ref: _definitions#/common/properties/id
   program:
     $ref: _definitions#/common/properties/program_short_name
-  submitter_id:
-    $ref: _definitions#/common/properties/submitter_id
-    description: "Submitter's radiation therapy ID"
   treatment_submitter_id:
     $ref: _definitions#/common/properties/submitter_id
   radiation_therapy_dosage_units:

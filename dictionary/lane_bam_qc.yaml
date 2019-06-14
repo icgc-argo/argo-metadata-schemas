@@ -16,23 +16,25 @@ required:
 - read_group_submitter_id
 - lane_bam_submission_id
 
+primaryKey:
+  surrogateKey: [ id ]
+
 uniqueKeys:
-- [ id ]
-- [ program, lane_bam_submission_id ]
+- [ lane_bam_submission_id ]  # one lane bam can have only one lane_bam_qc record
 
 references:
-- selfKey: [ program, lane_bam_submission_id ]
+- selfKey: [ lane_bam_submission_id ]
   reference:
     targetEntity: lane_bam_submission  # lane_bam_qc to lane_bam_submission relationship is one-to-one
-    targetKey: [ program, id ]
+    targetKey: [ id ]
 
 properties:
   type:
     const: "lane_bam_qc"
+  id:
+    $ref: _definitions#/common/properties/uuid
   status:
     $ref: _definitions#/common/properties/bundle_status
-  id:
-    $ref: _definitions#/common/properties/id
   program:
     $ref: _definitions#/common/properties/program_short_name
   lane_bam_submission_id:  # one lane_bam_submission per lane_bam_qc
@@ -86,6 +88,10 @@ properties:
     properties:
       lane_bam:
         type: object
+        references:
+        - selfKey: [ bundle_id, object_id ]
+          targetEntity: data_object
+          targetKey: [ bundle_id, id ]
         properties:
           object_uri:  # if file is local, object_id will be 'null'
             type: string  # pattern: song://<repository>/<bundle_id>/<object_id>
@@ -100,10 +106,11 @@ properties:
   files:
     properties:
       metrics_file:
+        $id: data_object
         type: object
         systemProperties: [ id, bundle_id, format, extension, date_type ]
         allOf:
-        - $ref: _definitions#/submitted_file
+        - $ref: _definitions#/data_object
         - properties:
             format:
               const: "TXT"

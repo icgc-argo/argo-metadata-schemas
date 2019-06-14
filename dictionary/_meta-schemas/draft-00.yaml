@@ -60,6 +60,14 @@ properties:
     type: string
   systemProperties:
     "$ref": "#/definitions/stringArray"
+  primaryKey:  # design much follows RDBMS model, particular guideline on PK: http://www.agiledata.org/essays/keys.html
+    type: object
+    required: [ surrogateKey ]
+    properties:
+      surrogateKey:  # system generated
+        "$ref": "#/definitions/stringArrayNonEmpty"
+      naturalKey:  # aka business key
+        "$ref": "#/definitions/stringArrayNonEmpty"
   uniqueKeys:
     type: array
     items:
@@ -68,7 +76,7 @@ properties:
     type: array
     items:
       type: string
-      pattern: "^\$[_a-zA-Z]+[_a-zA-Z0-9]*\(.+\)(\{.+\})*$"
+      pattern: "^\$[_a-zA-Z]+[_a-zA-Z0-9]*\(.+\)(\{.+\})?$"
     uniqueItems: true
     default: []
   references:

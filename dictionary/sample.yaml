@@ -18,9 +18,11 @@ required:
 - program
 - sample_type
 
-uniqueKeys:
-- [ id ]
-- [ program, submitter_id ]
+primaryKey:
+  surrogateKey: [ id ]
+  naturalKey: [ program, submitter_id ]
+
+uniqueKeys: []  # don't need to repeat primary keys here
 
 references:
 - selfKey: [ program, specimen_submitter_id ]

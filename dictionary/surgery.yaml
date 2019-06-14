@@ -17,9 +17,10 @@ required:
 - treatment_submitter_id
 - program
 
+primaryKey:
+  surrogateKey: [ id ]
+
 uniqueKeys:
-- [ id ]
-- [ program, submitter_id ]  # surgery submitter_id must be unique within a program
 - [ program, treatment_submitter_id ]  # this ensures one-to-one relationship between treatment and surgery
 
 references:
@@ -35,8 +36,6 @@ properties:
     $ref: _definitions#/common/properties/id
   program:
     $ref: _definitions#/common/properties/program_short_name
-  submitter_id:
-    $ref: _definitions#/common/properties/submitter_id
   treatment_submitter_id:
     $ref: _definitions#/common/properties/submitter_id
   procedure_interval:

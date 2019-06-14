@@ -18,9 +18,11 @@ required:
 - normal_or_tumour_designation
 - specimen_type
 
-uniqueKeys:
-- [ id ]
-- [ program, submitter_id ]  # specimen submitter id must be unique within a program
+primaryKey:  # design much follows RDBMS model, particular guideline on PK: http://www.agiledata.org/essays/keys.html
+  surrogateKey: [ id ]
+  naturalKey: [ program, submitter_id ]  # specimen submitter id must be unique within a program
+
+uniqueKeys: []
 
 references:
 - selfKey: [ program, donor_submitter_id ]

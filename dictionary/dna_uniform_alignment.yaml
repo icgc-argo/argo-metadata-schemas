@@ -15,15 +15,17 @@ required:
 - program
 - lane_bam_submission_id
 
+primaryKey:
+  surrogateKey: [ id ]
+
 uniqueKeys:
-- [ id ]
-- [ program, lane_bam_submission_id ]
+- [ lane_bam_submission_id ]
 
 references:
-- selfKey: [ program, lane_bam_submission_id ]
+- selfKey: [ lane_bam_submission_id ]
   reference:
     targetEntity: lane_bam_submission
-    targetKey: [ program, id ]
+    targetKey: [ id ]
 
 properties:
   type:
@@ -74,8 +76,6 @@ properties:
           completed_at:
             type: string
             format: date-time
-  qc_metrics:
-    type: object  # more details to be fleshed out
   input_files:  # input files are multiple lane level unaligned bam files
     type: object
     properties:
@@ -84,6 +84,10 @@ properties:
         minItems: 1  # at least one, must match number of read groups
         items:
           type: object
+          references:
+          - selfKey: [ bundle_id, object_id ]
+            targetEntity: data_object
+            targetKey: [ bundle_id, id ]
           properties:
             object_uri:  # if file is local, object_id will be 'null'
               type: string  # pattern: song://<repository>/<bundle_id>/<object_id>
@@ -143,9 +147,10 @@ properties:
     properties:
       aligned_seq:
         type: object
+        $id: data_object
         systemProperties: [ id, bundle_id, format, extension, date_type ]
         allOf:
-        - $ref: _definitions#/submitted_file
+        - $ref: _definitions#/data_object
         - properties:
             format:
               enum: [ "CRAM", "BAM" ]
@@ -155,9 +160,10 @@ properties:
               const: "Aligned Sequencing Reads"
       aligned_seq_index:
         type: object
+        $id: data_object
         systemProperties: [ id, bundle_id, format, extension, date_type ]
         allOf:
-        - $ref: _definitions#/submitted_file
+        - $ref: _definitions#/data_object
         - properties:
             format:
               enum: [ "CRAI", "BAI" ]
@@ -167,9 +173,10 @@ properties:
               const: "Aligned Sequencing Reads Index"
       quality_distribution:
         type: object
+        $id: data_object
         systemProperties: [ id, bundle_id, format, extension, date_type ]
         allOf:
-        - $ref: _definitions#/submitted_file
+        - $ref: _definitions#/data_object
         - properties:
             format:
               enum: [ "PDF" ]
@@ -179,9 +186,10 @@ properties:
               const: "Alignment QC Plot"
       bait_bias_detail_metrics:
         type: object
+        $id: data_object
         systemProperties: [ id, bundle_id, format, extension, date_type ]
         allOf:
-        - $ref: _definitions#/submitted_file
+        - $ref: _definitions#/data_object
         - properties:
             format:
               const: "TXT"
@@ -191,9 +199,10 @@ properties:
               const: "Alignment QC Metrics"
       quality_by_cycle:
         type: object
+        $id: data_object
         systemProperties: [ id, bundle_id, format, extension, date_type ]
         allOf:
-        - $ref: _definitions#/submitted_file
+        - $ref: _definitions#/data_object
         - properties:
             format:
               const: "TXT"
@@ -203,9 +212,10 @@ properties:
               const: "Alignment QC Metrics"
       base_distribution_by_cycle_metrics:
         type: object
+        $id: data_object
         systemProperties: [ id, bundle_id, format, extension, date_type ]
         allOf:
-        - $ref: _definitions#/submitted_file
+        - $ref: _definitions#/data_object
         - properties:
             format:
               const: "TXT"
@@ -215,9 +225,10 @@ properties:
               const: "Alignment QC Metrics"
       pre_adapter_summary_metrics:
         type: object
+        $id: data_object
         systemProperties: [ id, bundle_id, format, extension, date_type ]
         allOf:
-        - $ref: _definitions#/submitted_file
+        - $ref: _definitions#/data_object
         - properties:
             format:
               const: "TXT"
@@ -227,9 +238,10 @@ properties:
               const: "Alignment QC Metrics"
       quality_by_cycle_metrics:
         type: object
+        $id: data_object
         systemProperties: [ id, bundle_id, format, extension, date_type ]
         allOf:
-        - $ref: _definitions#/submitted_file
+        - $ref: _definitions#/data_object
         - properties:
             format:
               const: "TXT"
@@ -239,9 +251,10 @@ properties:
               const: "Alignment QC Metrics"
       insert_size_histogram:
         type: object
+        $id: data_object
         systemProperties: [ id, bundle_id, format, extension, date_type ]
         allOf:
-        - $ref: _definitions#/submitted_file
+        - $ref: _definitions#/data_object
         - properties:
             format:
               enum: [ "PDF" ]
@@ -251,9 +264,10 @@ properties:
               const: "Alignment QC Plot"
       insert_size_metrics:
         type: object
+        $id: data_object
         systemProperties: [ id, bundle_id, format, extension, date_type ]
         allOf:
-        - $ref: _definitions#/submitted_file
+        - $ref: _definitions#/data_object
         - properties:
             format:
               const: "TXT"
@@ -263,9 +277,10 @@ properties:
               const: "Alignment QC Metrics"
       quality_distribution_metrics:
         type: object
+        $id: data_object
         systemProperties: [ id, bundle_id, format, extension, date_type ]
         allOf:
-        - $ref: _definitions#/submitted_file
+        - $ref: _definitions#/data_object
         - properties:
             format:
               const: "TXT"
@@ -275,9 +290,10 @@ properties:
               const: "Alignment QC Metrics"
       alignment_summary_metrics:
         type: object
+        $id: data_object
         systemProperties: [ id, bundle_id, format, extension, date_type ]
         allOf:
-        - $ref: _definitions#/submitted_file
+        - $ref: _definitions#/data_object
         - properties:
             format:
               const: "TXT"
@@ -287,9 +303,10 @@ properties:
               const: "Alignment QC Metrics"
       error_summary_metrics:
         type: object
+        $id: data_object
         systemProperties: [ id, bundle_id, format, extension, date_type ]
         allOf:
-        - $ref: _definitions#/submitted_file
+        - $ref: _definitions#/data_object
         - properties:
             format:
               const: "TXT"
@@ -299,9 +316,10 @@ properties:
               const: "Alignment QC Metrics"
       base_distribution_by_cycle:
         type: object
+        $id: data_object
         systemProperties: [ id, bundle_id, format, extension, date_type ]
         allOf:
-        - $ref: _definitions#/submitted_file
+        - $ref: _definitions#/data_object
         - properties:
             format:
               enum: [ "PDF" ]
@@ -311,9 +329,10 @@ properties:
               const: "Alignment QC Plot"
       pre_adapter_detail_metrics:
         type: object
+        $id: data_object
         systemProperties: [ id, bundle_id, format, extension, date_type ]
         allOf:
-        - $ref: _definitions#/submitted_file
+        - $ref: _definitions#/data_object
         - properties:
             format:
               const: "TXT"
@@ -323,9 +342,10 @@ properties:
               const: "Alignment QC Metrics"
       bait_bias_summary_metrics:
         type: object
+        $id: data_object
         systemProperties: [ id, bundle_id, format, extension, date_type ]
         allOf:
-        - $ref: _definitions#/submitted_file
+        - $ref: _definitions#/data_object
         - properties:
             format:
               const: "TXT"
@@ -335,9 +355,10 @@ properties:
               const: "Alignment QC Metrics"
       quality_yield_metrics:
         type: object
+        $id: data_object
         systemProperties: [ id, bundle_id, format, extension, date_type ]
         allOf:
-        - $ref: _definitions#/submitted_file
+        - $ref: _definitions#/data_object
         - properties:
             format:
               const: "TXT"

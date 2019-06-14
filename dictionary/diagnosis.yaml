@@ -18,9 +18,11 @@ required:
 - age_at_diagnosis
 - cancer_type_code
 
-uniqueKeys:
-- [ id ]
-- [ program, donor_submitter_id ]  # this is how we ensure one-to-one relationship between diagnosis and donor
+primaryKey:
+  surrogateKey: [ id ]
+  naturalKey: [ program, donor_submitter_id ]  # this is how we ensure one-to-one relationship between diagnosis and donor
+
+uniqueKeys: []
 
 references:  # "references" is used to defined relationships similar to how RDBMS does
 - selfKey: [ program, donor_submitter_id ]  # properties form a composite key from the current entity

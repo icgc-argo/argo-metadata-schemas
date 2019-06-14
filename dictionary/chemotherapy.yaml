@@ -17,9 +17,10 @@ required:
 - treatment_submitter_id
 - program
 
+primaryKey:
+  surrogateKey: [ id ]
+
 uniqueKeys:
-- [ id ]
-- [ program, submitter_id ]
 - [ program, treatment_submitter_id, chemotherapy_drug_name ]  # for one treatment, a drug can appear one time
 
 references:
@@ -32,12 +33,9 @@ properties:
   type:
     const: "chemotherapy"
   id:
-    $ref: _definitions#/common/properties/id
+    $ref: _definitions#/common/properties/uuid
   program:
     $ref: _definitions#/common/properties/program_short_name
-  submitter_id:  # maybe there is no ID from submitter side, maybe using drug name as submitter id would be better?
-    $ref: _definitions#/common/properties/submitter_id
-    description: "Submitter's chemotherapy ID"
   treatment_submitter_id:
     $ref: _definitions#/common/properties/submitter_id
   chemotherapy_drug_name:
@@ -53,4 +51,4 @@ properties:
   route_of_administration:
     type: string
     scriptValidations:
-  - "$cv(route_of_drug_administration)"
+    - "$cv(route_of_drug_administration)"

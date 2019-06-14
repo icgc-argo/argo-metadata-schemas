@@ -16,9 +16,11 @@ required:
 - read_group_submitter_id
 - files
 
-uniqueKeys:
-- [ id ]
-- [ program, read_group_submitter_id ]  # this will make sure same read group will not appear more than once across all lane bam submissions
+primaryKey:
+  surrogateKey: [ id ]
+  naturalKey: [ program, read_group_submitter_id ]  # this will make sure same read group will not appear more than once across all lane bam submissions in one program
+
+uniqueKeys: []
 
 references:
 - selfKey: [ program, read_group_submitter_id ]
@@ -41,10 +43,11 @@ properties:
     type: object
     properties:
       bam_file:
+        $id: data_object  # data_object is a nested entity under lane_bam_submission
         type: object
         systemProperties: [ id, bundle_id, format, extension, date_type ]
         allOf:
-        - $ref: _definitions#/submitted_file
+        - $ref: _definitions#/data_object
         - properties:
             format:
               const: "BAM"

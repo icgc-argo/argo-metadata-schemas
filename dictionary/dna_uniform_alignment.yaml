@@ -148,7 +148,7 @@ properties:
       aligned_seq:
         type: object
         $id: data_object
-        systemProperties: [ id, bundle_id, format, extension, date_type ]
+        systemProperties: [ id, bundle_id, bundle_type, format, extension, date_type, program, derived_from ]
         allOf:
         - $ref: _definitions#/data_object
         - properties:
@@ -158,10 +158,25 @@ properties:
               enum: [ ".cram", ".bam" ]
             date_type:
               const: "Aligned Sequencing Reads"
+        - properties:  # properties copied from containing parent
+            program:
+              $ref: "#/properties/program"
+            derived_from:
+              type: object
+              properties:
+                type:
+                  const: "lane_bam_submission"
+                id:
+                  $ref: "#/properties/lane_bam_submission_id"
+            bundle_id:
+              $ref: "#/properties/id"
+            bundle_type:
+              const: "dna_uniform_alignment"
+
       aligned_seq_index:
         type: object
         $id: data_object
-        systemProperties: [ id, bundle_id, format, extension, date_type ]
+        systemProperties: [ id, bundle_id, bundle_type, format, extension, date_type, program, derived_from ]
         allOf:
         - $ref: _definitions#/data_object
         - properties:
@@ -171,10 +186,24 @@ properties:
               enum: [ ".cram.crai", ".bam.bai" ]
             date_type:
               const: "Aligned Sequencing Reads Index"
+        - properties:
+            program:
+              $ref: "#/properties/program"
+            derived_from:
+              type: object
+              properties:
+                type:
+                  const: "lane_bam_submission"
+                id:
+                  $ref: "#/properties/lane_bam_submission_id"
+            bundle_id:
+              $ref: "#/properties/id"
+            bundle_type:
+              const: "dna_uniform_alignment"
       quality_distribution:
         type: object
         $id: data_object
-        systemProperties: [ id, bundle_id, format, extension, date_type ]
+        systemProperties: [ id, bundle_id, bundle_type, format, extension, date_type, program, derived_from ]
         allOf:
         - $ref: _definitions#/data_object
         - properties:
@@ -184,10 +213,24 @@ properties:
               enum: [ ".pdf.gz" ]
             date_type:
               const: "Alignment QC Plot"
+        - properties:
+            program:
+              $ref: "#/properties/program"
+            derived_from:
+              type: object
+              properties:
+                type:
+                  const: "lane_bam_submission"
+                id:
+                  $ref: "#/properties/lane_bam_submission_id"
+            bundle_id:
+              $ref: "#/properties/id"
+            bundle_type:
+              const: "dna_uniform_alignment"
       bait_bias_detail_metrics:
         type: object
         $id: data_object
-        systemProperties: [ id, bundle_id, format, extension, date_type ]
+        systemProperties: [ id, bundle_id, bundle_type, format, extension, date_type, program, derived_from ]
         allOf:
         - $ref: _definitions#/data_object
         - properties:
@@ -197,10 +240,24 @@ properties:
               const: ".txt.gz"
             date_type:
               const: "Alignment QC Metrics"
+        - properties:
+            program:
+              $ref: "#/properties/program"
+            derived_from:
+              type: object
+              properties:
+                type:
+                  const: "lane_bam_submission"
+                id:
+                  $ref: "#/properties/lane_bam_submission_id"
+            bundle_id:
+              $ref: "#/properties/id"
+            bundle_type:
+              const: "dna_uniform_alignment"
       quality_by_cycle:
         type: object
         $id: data_object
-        systemProperties: [ id, bundle_id, format, extension, date_type ]
+        systemProperties: [ id, bundle_id, bundle_type, format, extension, date_type, program, derived_from ]
         allOf:
         - $ref: _definitions#/data_object
         - properties:
@@ -210,10 +267,24 @@ properties:
               const: ".txt.gz"
             date_type:
               const: "Alignment QC Metrics"
+        - properties:
+            program:
+              $ref: "#/properties/program"
+            derived_from:
+              type: object
+              properties:
+                type:
+                  const: "lane_bam_submission"
+                id:
+                  $ref: "#/properties/lane_bam_submission_id"
+            bundle_id:
+              $ref: "#/properties/id"
+            bundle_type:
+              const: "dna_uniform_alignment"
       base_distribution_by_cycle_metrics:
         type: object
         $id: data_object
-        systemProperties: [ id, bundle_id, format, extension, date_type ]
+        systemProperties: [ id, bundle_id, bundle_type, format, extension, date_type, program, derived_from ]
         allOf:
         - $ref: _definitions#/data_object
         - properties:
@@ -223,10 +294,24 @@ properties:
               const: ".txt.gz"
             date_type:
               const: "Alignment QC Metrics"
+        - properties:
+            program:
+              $ref: "#/properties/program"
+            derived_from:
+              type: object
+              properties:
+                type:
+                  const: "lane_bam_submission"
+                id:
+                  $ref: "#/properties/lane_bam_submission_id"
+            bundle_id:
+              $ref: "#/properties/id"
+            bundle_type:
+              const: "dna_uniform_alignment"
       pre_adapter_summary_metrics:
         type: object
         $id: data_object
-        systemProperties: [ id, bundle_id, format, extension, date_type ]
+        systemProperties: [ id, bundle_id, bundle_type, format, extension, date_type, program, derived_from ]
         allOf:
         - $ref: _definitions#/data_object
         - properties:
@@ -236,10 +321,24 @@ properties:
               const: ".txt.gz"
             date_type:
               const: "Alignment QC Metrics"
+        - properties:
+            program:
+              $ref: "#/properties/program"
+            derived_from:
+              type: object
+              properties:
+                type:
+                  const: "lane_bam_submission"
+                id:
+                  $ref: "#/properties/lane_bam_submission_id"
+            bundle_id:
+              $ref: "#/properties/id"
+            bundle_type:
+              const: "dna_uniform_alignment"
       quality_by_cycle_metrics:
         type: object
         $id: data_object
-        systemProperties: [ id, bundle_id, format, extension, date_type ]
+        systemProperties: [ id, bundle_id, bundle_type, format, extension, date_type, program, derived_from ]
         allOf:
         - $ref: _definitions#/data_object
         - properties:
@@ -249,10 +348,24 @@ properties:
               const: ".txt.gz"
             date_type:
               const: "Alignment QC Metrics"
+        - properties:
+            program:
+              $ref: "#/properties/program"
+            derived_from:
+              type: object
+              properties:
+                type:
+                  const: "lane_bam_submission"
+                id:
+                  $ref: "#/properties/lane_bam_submission_id"
+            bundle_id:
+              $ref: "#/properties/id"
+            bundle_type:
+              const: "dna_uniform_alignment"
       insert_size_histogram:
         type: object
         $id: data_object
-        systemProperties: [ id, bundle_id, format, extension, date_type ]
+        systemProperties: [ id, bundle_id, bundle_type, format, extension, date_type, program, derived_from ]
         allOf:
         - $ref: _definitions#/data_object
         - properties:
@@ -262,10 +375,24 @@ properties:
               enum: [ ".pdf.gz" ]
             date_type:
               const: "Alignment QC Plot"
+        - properties:
+            program:
+              $ref: "#/properties/program"
+            derived_from:
+              type: object
+              properties:
+                type:
+                  const: "lane_bam_submission"
+                id:
+                  $ref: "#/properties/lane_bam_submission_id"
+            bundle_id:
+              $ref: "#/properties/id"
+            bundle_type:
+              const: "dna_uniform_alignment"
       insert_size_metrics:
         type: object
         $id: data_object
-        systemProperties: [ id, bundle_id, format, extension, date_type ]
+        systemProperties: [ id, bundle_id, bundle_type, format, extension, date_type, program, derived_from ]
         allOf:
         - $ref: _definitions#/data_object
         - properties:
@@ -275,10 +402,24 @@ properties:
               const: ".txt.gz"
             date_type:
               const: "Alignment QC Metrics"
+        - properties:
+            program:
+              $ref: "#/properties/program"
+            derived_from:
+              type: object
+              properties:
+                type:
+                  const: "lane_bam_submission"
+                id:
+                  $ref: "#/properties/lane_bam_submission_id"
+            bundle_id:
+              $ref: "#/properties/id"
+            bundle_type:
+              const: "dna_uniform_alignment"
       quality_distribution_metrics:
         type: object
         $id: data_object
-        systemProperties: [ id, bundle_id, format, extension, date_type ]
+        systemProperties: [ id, bundle_id, bundle_type, format, extension, date_type, program, derived_from ]
         allOf:
         - $ref: _definitions#/data_object
         - properties:
@@ -288,10 +429,24 @@ properties:
               const: ".txt.gz"
             date_type:
               const: "Alignment QC Metrics"
+        - properties:
+            program:
+              $ref: "#/properties/program"
+            derived_from:
+              type: object
+              properties:
+                type:
+                  const: "lane_bam_submission"
+                id:
+                  $ref: "#/properties/lane_bam_submission_id"
+            bundle_id:
+              $ref: "#/properties/id"
+            bundle_type:
+              const: "dna_uniform_alignment"
       alignment_summary_metrics:
         type: object
         $id: data_object
-        systemProperties: [ id, bundle_id, format, extension, date_type ]
+        systemProperties: [ id, bundle_id, bundle_type, format, extension, date_type, program, derived_from ]
         allOf:
         - $ref: _definitions#/data_object
         - properties:
@@ -301,10 +456,24 @@ properties:
               const: ".txt.gz"
             date_type:
               const: "Alignment QC Metrics"
+        - properties:
+            program:
+              $ref: "#/properties/program"
+            derived_from:
+              type: object
+              properties:
+                type:
+                  const: "lane_bam_submission"
+                id:
+                  $ref: "#/properties/lane_bam_submission_id"
+            bundle_id:
+              $ref: "#/properties/id"
+            bundle_type:
+              const: "dna_uniform_alignment"
       error_summary_metrics:
         type: object
         $id: data_object
-        systemProperties: [ id, bundle_id, format, extension, date_type ]
+        systemProperties: [ id, bundle_id, bundle_type, format, extension, date_type, program, derived_from ]
         allOf:
         - $ref: _definitions#/data_object
         - properties:
@@ -314,10 +483,24 @@ properties:
               const: ".txt.gz"
             date_type:
               const: "Alignment QC Metrics"
+        - properties:
+            program:
+              $ref: "#/properties/program"
+            derived_from:
+              type: object
+              properties:
+                type:
+                  const: "lane_bam_submission"
+                id:
+                  $ref: "#/properties/lane_bam_submission_id"
+            bundle_id:
+              $ref: "#/properties/id"
+            bundle_type:
+              const: "dna_uniform_alignment"
       base_distribution_by_cycle:
         type: object
         $id: data_object
-        systemProperties: [ id, bundle_id, format, extension, date_type ]
+        systemProperties: [ id, bundle_id, bundle_type, format, extension, date_type, program, derived_from ]
         allOf:
         - $ref: _definitions#/data_object
         - properties:
@@ -327,10 +510,24 @@ properties:
               enum: [ ".pdf.gz" ]
             date_type:
               const: "Alignment QC Plot"
+        - properties:
+            program:
+              $ref: "#/properties/program"
+            derived_from:
+              type: object
+              properties:
+                type:
+                  const: "lane_bam_submission"
+                id:
+                  $ref: "#/properties/lane_bam_submission_id"
+            bundle_id:
+              $ref: "#/properties/id"
+            bundle_type:
+              const: "dna_uniform_alignment"
       pre_adapter_detail_metrics:
         type: object
         $id: data_object
-        systemProperties: [ id, bundle_id, format, extension, date_type ]
+        systemProperties: [ id, bundle_id, bundle_type, format, extension, date_type, program, derived_from ]
         allOf:
         - $ref: _definitions#/data_object
         - properties:
@@ -340,10 +537,24 @@ properties:
               const: ".txt.gz"
             date_type:
               const: "Alignment QC Metrics"
+        - properties:
+            program:
+              $ref: "#/properties/program"
+            derived_from:
+              type: object
+              properties:
+                type:
+                  const: "lane_bam_submission"
+                id:
+                  $ref: "#/properties/lane_bam_submission_id"
+            bundle_id:
+              $ref: "#/properties/id"
+            bundle_type:
+              const: "dna_uniform_alignment"
       bait_bias_summary_metrics:
         type: object
         $id: data_object
-        systemProperties: [ id, bundle_id, format, extension, date_type ]
+        systemProperties: [ id, bundle_id, bundle_type, format, extension, date_type, program, derived_from ]
         allOf:
         - $ref: _definitions#/data_object
         - properties:
@@ -353,10 +564,24 @@ properties:
               const: ".txt.gz"
             date_type:
               const: "Alignment QC Metrics"
+        - properties:
+            program:
+              $ref: "#/properties/program"
+            derived_from:
+              type: object
+              properties:
+                type:
+                  const: "lane_bam_submission"
+                id:
+                  $ref: "#/properties/lane_bam_submission_id"
+            bundle_id:
+              $ref: "#/properties/id"
+            bundle_type:
+              const: "dna_uniform_alignment"
       quality_yield_metrics:
         type: object
         $id: data_object
-        systemProperties: [ id, bundle_id, format, extension, date_type ]
+        systemProperties: [ id, bundle_id, bundle_type, format, extension, date_type, program, derived_from ]
         allOf:
         - $ref: _definitions#/data_object
         - properties:
@@ -366,3 +591,17 @@ properties:
               const: ".txt.gz"
             date_type:
               const: "Alignment QC Metrics"
+        - properties:
+            program:
+              $ref: "#/properties/program"
+            derived_from:
+              type: object
+              properties:
+                type:
+                  const: "lane_bam_submission"
+                id:
+                  $ref: "#/properties/lane_bam_submission_id"
+            bundle_id:
+              $ref: "#/properties/id"
+            bundle_type:
+              const: "dna_uniform_alignment"

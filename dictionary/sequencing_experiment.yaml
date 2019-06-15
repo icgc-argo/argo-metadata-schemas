@@ -97,7 +97,7 @@ properties:
         naturalKey: [ program, submitter_id ]
 
       references:
-      - selfKey: [ program, experiment_submitter_id ]
+      - selfKey: [ program, sequencing_experiment_submitter_id ]
         reference:
           targetEntity: sequencing_experiment  # reference to containing parent
           targetKey: [ program, submitter_id ]
@@ -110,14 +110,16 @@ properties:
         type:
           const: "read_group"
         id:  # system generated globally unique read group ID
-          $ref: _definitions#/common/properties/id
+          allOf:
+          - $ref: _definitions#/common/properties/id
+          - pattern: "^RG"  # id must start with "RG", in addition to pattern defined at _definitions#/common/properties/id
         program:
           # this reuses the program definition in the containing parent, may also signal that it gets the same value
           $ref: "#/properties/program"
         submitter_id:
           type: string
           description: "Submitter's read group ID. ID in BAM @RG header"
-        experiment_submitter_id:
+        sequencing_experiment_submitter_id:
           # this field gets value from containing parent
           $ref: "#/properties/submitter_id"
         sample_submitter_id:

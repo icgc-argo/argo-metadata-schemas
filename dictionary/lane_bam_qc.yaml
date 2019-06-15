@@ -108,7 +108,7 @@ properties:
       metrics_file:
         $id: data_object
         type: object
-        systemProperties: [ id, bundle_id, format, extension, date_type ]
+        systemProperties: [ id, bundle_id, bundle_type, format, extension, date_type, program, derived_from ]
         allOf:
         - $ref: _definitions#/data_object
         - properties:
@@ -118,3 +118,17 @@ properties:
               const: ".txt.gz"
             date_type:
               const: "Read Group QC Metrics"
+        - properties:  # properties copied from containing parent
+            program:
+              $ref: "#/properties/program"
+            derived_from:
+              type: object
+              properties:
+                type:
+                  const: "lane_bam_submission"
+                id:
+                  $ref: "#/properties/lane_bam_submission_id"
+            bundle_id:
+              $ref: "#/properties/id"
+            bundle_type:
+              const: "lane_bam_qc"

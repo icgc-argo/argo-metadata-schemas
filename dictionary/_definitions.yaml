@@ -41,8 +41,6 @@ data_object:
   properties:
     id:
       $ref: "#/common/properties/uuid"
-    bundle_id:
-      $ref: "#/common/properties/uuid"
     name:  # if omitted, name will be original file name from local_path
       type: string
     local_path:  # full path includes path and file name

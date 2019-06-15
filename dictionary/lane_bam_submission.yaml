@@ -18,15 +18,15 @@ required:
 
 primaryKey:
   surrogateKey: [ id ]
-  naturalKey: [ program, read_group_submitter_id ]  # this will make sure same read group will not appear more than once across all lane bam submissions in one program
 
-uniqueKeys: []
+uniqueKeys:
+- [ read_group_id ]
 
 references:
-- selfKey: [ program, read_group_submitter_id ]
+- selfKey: [ program, read_group_id ]
   reference:
     targetEntity: read_group  # Lane level (aka read group level) BAM submission bundle to read_group relationship is one-to-one
-    targetKey: [ program, submitter_id ]
+    targetKey: [ program, id ]
 
 properties:
   type:
@@ -37,7 +37,7 @@ properties:
     $ref: _definitions#/common/properties/id
   program:
     $ref: _definitions#/common/properties/program_short_name
-  read_group_submitter_id:  
+  read_group_id:
     type: string
   files:
     type: object
@@ -45,13 +45,27 @@ properties:
       bam_file:
         $id: data_object  # data_object is a nested entity under lane_bam_submission
         type: object
-        systemProperties: [ id, bundle_id, format, extension, date_type ]
+        systemProperties: [ id, bundle_id, bundle_type, format, extension, date_type, program, derived_from ]
         allOf:
         - $ref: _definitions#/data_object
-        - properties:
+        - properties:  # define more specific values
             format:
               const: "BAM"
             extension:
               const: ".bam"
             date_type:
               const: "Unaligned Sequencing Reads"
+        - properties:  # properties copied from containing parent
+            program:
+              $ref: "#/properties/program"
+            derived_from:
+              type: object
+              properties:
+                type:
+                  const: "read_group"
+                id:
+                  $ref: "#/properties/read_group_id"
+            bundle_id:
+              $ref: "#/properties/id"
+            bundle_type:
+              const: "lane_bam_submission"

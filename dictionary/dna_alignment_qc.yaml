@@ -1,7 +1,7 @@
 $schema: "http://dcc.icgc-argo.org/draft-00/schema#"
 
-$id: "dna_uniform_alignment"
-title: Uniform alignment of DNA sequencing reads
+$id: "dna_alignment_qc"
+title: QC metrics of aligned DNA sequencing reads
 version: 0
 category: data_bundle
 type: object
@@ -13,43 +13,40 @@ systemProperties: [ id, status ]
 required:
 - type
 - program
-- lane_bam_submission_id
+- dna_alignment_id
 
 primaryKey:
   surrogateKey: [ id ]
 
 uniqueKeys:
-- [ lane_bam_submission_id ]
+- [ dna_alignment_id ]
 
 references:
-- selfKey: [ lane_bam_submission_id ]
+- selfKey: [ dna_alignment_id ]
   reference:
-    targetEntity: lane_bam_submission
+    targetEntity: dna_alignment
     targetKey: [ id ]
 
 properties:
   type:
-    const: "dna_uniform_alignment"
+    const: "dna_alignment_qc"
   status:
     $ref: _definitions#/common/properties/bundle_status
   id:
     $ref: _definitions#/common/properties/id
   program:
     $ref: _definitions#/common/properties/program_short_name
-  lane_bam_submission_id:
-    type: array
-    minItems: 1
-    items:
-      type: string
+  sample_id:  # to be populated by the system
+    $ref: sample#/properties/id
+  dna_alignment_id:
+    type: string
   analysis:
     type: object
     properties:
       analysis_type:
-        const: 'DNA Alignment'
-      reference_genome:
-        enum: [ GRCh37, GRCh38 ]
+        const: 'QC'
       core_tool:
-        const: 'BWA MEM'
+        const: 'Picard'
       tool:  # Tool refers to what's in GA4GH's Tool Registry Service
         type: object
         properties:
@@ -76,130 +73,55 @@ properties:
           completed_at:
             type: string
             format: date-time
-  input_files:  # input files are multiple lane level unaligned bam files
+  input_files:  # input file is aligned bam/cram (multi-lane)
     type: object
     properties:
-      lane_bams:
-        type: array
-        minItems: 1  # at least one, must match number of read groups
-        items:
-          type: object
-          references:
-          - selfKey: [ bundle_id, object_id ]
-            targetEntity: data_object
-            targetKey: [ bundle_id, id ]
-          properties:
-            object_uri:  # if file is local, object_id will be 'null'
-              type: string  # pattern: song://<repository>/<bundle_id>/<object_id>
-            bundle_id:  # lane_bam_submission
-              type: string
-            object_id:  # lane_bam object ID in the above lane_bam_submission
-              type: string
-            name:  # file name
-              type: string
-            repository:  # repo where the object resides
-              type: string
-      reference_genome:
+      aligned_dna_seq:
+        type: object
+        references:
+        - selfKey: [ bundle_id, object_id ]
+          targetEntity: data_object
+          targetKey: [ bundle_id, id ]
+        properties:
+          object_uri:  # if file is local, object_id will be 'null'
+            type: string  # pattern: song://<repository>/<bundle_id>/<object_id>
+          bundle_id:  # dna_alignment
+            type: string
+          object_id:  # aligned sequencing file object ID in the above dna_alignment
+            type: string
+          name:  # file name
+            type: string
+          secondary_file:  # secondary file(s), following CWL standard
+            enum: [ '.bai', '.crai' ]
+          repository:  # repo where the object resides
+            type: string
+  qc_metrics:
+    type: object  # to flesh out with more metrics to be included
+    properties:
+      insert_size_stats:
         type: object
         properties:
-          reference_gz:
-            type: object
-            properties:
-              object_uri:
-                type: string
-          reference_gz_fai:
-            type: object
-            properties:
-              object_uri:
-                type: string
-          reference_gz_fai:
-            type: object
-            properties:
-              object_uri:
-                type: string
-          reference_gz_bwt:
-            type: object
-            properties:
-              object_uri:
-                type: string
-          reference_gz_ann:
-            type: object
-            properties:
-              object_uri:
-                type: string
-          reference_gz_pac:
-            type: object
-            properties:
-              object_uri:
-                type: string
-          reference_gz_sa:
-            type: object
-            properties:
-              object_uri:
-                type: string
-          reference_gz_amb:
-            type: object
-            properties:
-              object_uri:
-                type: string
+          max_insert_size:
+            type: integer
+          mean_insert_size:
+            type: integer
+          median_absolute_deviation:
+            type: integer
+          median_insert_size:
+            type: integer
+          min_insert_size:
+            type: integer
+          mode_insert_size:
+            type: integer
+          pair_orientation:
+            type: integer
+          read_pairs:
+            type: integer
+          standard_deviation:
+            type: integer
   files:
     type: object
     properties:
-      aligned_seq:
-        type: object
-        $id: data_object
-        systemProperties: [ id, bundle_id, bundle_type, format, extension, date_type, program, derived_from ]
-        allOf:
-        - $ref: _definitions#/data_object
-        - properties:
-            format:
-              enum: [ "CRAM", "BAM" ]
-            extension:
-              enum: [ ".cram", ".bam" ]
-            date_type:
-              const: "Aligned Sequencing Reads"
-        - properties:  # properties copied from containing parent
-            program:
-              $ref: "#/properties/program"
-            derived_from:
-              type: object
-              properties:
-                type:
-                  const: "lane_bam_submission"
-                id:
-                  $ref: "#/properties/lane_bam_submission_id"
-            bundle_id:
-              $ref: "#/properties/id"
-            bundle_type:
-              const: "dna_uniform_alignment"
-
-      aligned_seq_index:
-        type: object
-        $id: data_object
-        systemProperties: [ id, bundle_id, bundle_type, format, extension, date_type, program, derived_from ]
-        allOf:
-        - $ref: _definitions#/data_object
-        - properties:
-            format:
-              enum: [ "CRAI", "BAI" ]
-            extension:
-              enum: [ ".cram.crai", ".bam.bai" ]
-            date_type:
-              const: "Aligned Sequencing Reads Index"
-        - properties:
-            program:
-              $ref: "#/properties/program"
-            derived_from:
-              type: object
-              properties:
-                type:
-                  const: "lane_bam_submission"
-                id:
-                  $ref: "#/properties/lane_bam_submission_id"
-            bundle_id:
-              $ref: "#/properties/id"
-            bundle_type:
-              const: "dna_uniform_alignment"
       quality_distribution:
         type: object
         $id: data_object
@@ -220,13 +142,13 @@ properties:
               type: object
               properties:
                 type:
-                  const: "lane_bam_submission"
+                  const: "dna_alignment"
                 id:
-                  $ref: "#/properties/lane_bam_submission_id"
+                  $ref: "#/properties/dna_alignment_id"
             bundle_id:
               $ref: "#/properties/id"
             bundle_type:
-              const: "dna_uniform_alignment"
+              const: "dna_alignment_qc"
       bait_bias_detail_metrics:
         type: object
         $id: data_object
@@ -247,13 +169,13 @@ properties:
               type: object
               properties:
                 type:
-                  const: "lane_bam_submission"
+                  const: "dna_alignment"
                 id:
-                  $ref: "#/properties/lane_bam_submission_id"
+                  $ref: "#/properties/dna_alignment_id"
             bundle_id:
               $ref: "#/properties/id"
             bundle_type:
-              const: "dna_uniform_alignment"
+              const: "dna_alignment_qc"
       quality_by_cycle:
         type: object
         $id: data_object
@@ -274,13 +196,13 @@ properties:
               type: object
               properties:
                 type:
-                  const: "lane_bam_submission"
+                  const: "dna_alignment"
                 id:
-                  $ref: "#/properties/lane_bam_submission_id"
+                  $ref: "#/properties/dna_alignment_id"
             bundle_id:
               $ref: "#/properties/id"
             bundle_type:
-              const: "dna_uniform_alignment"
+              const: "dna_alignment_qc"
       base_distribution_by_cycle_metrics:
         type: object
         $id: data_object
@@ -301,13 +223,13 @@ properties:
               type: object
               properties:
                 type:
-                  const: "lane_bam_submission"
+                  const: "dna_alignment"
                 id:
-                  $ref: "#/properties/lane_bam_submission_id"
+                  $ref: "#/properties/dna_alignment_id"
             bundle_id:
               $ref: "#/properties/id"
             bundle_type:
-              const: "dna_uniform_alignment"
+              const: "dna_alignment_qc"
       pre_adapter_summary_metrics:
         type: object
         $id: data_object
@@ -328,13 +250,13 @@ properties:
               type: object
               properties:
                 type:
-                  const: "lane_bam_submission"
+                  const: "dna_alignment"
                 id:
-                  $ref: "#/properties/lane_bam_submission_id"
+                  $ref: "#/properties/dna_alignment_id"
             bundle_id:
               $ref: "#/properties/id"
             bundle_type:
-              const: "dna_uniform_alignment"
+              const: "dna_alignment_qc"
       quality_by_cycle_metrics:
         type: object
         $id: data_object
@@ -355,13 +277,13 @@ properties:
               type: object
               properties:
                 type:
-                  const: "lane_bam_submission"
+                  const: "dna_alignment"
                 id:
-                  $ref: "#/properties/lane_bam_submission_id"
+                  $ref: "#/properties/dna_alignment_id"
             bundle_id:
               $ref: "#/properties/id"
             bundle_type:
-              const: "dna_uniform_alignment"
+              const: "dna_alignment_qc"
       insert_size_histogram:
         type: object
         $id: data_object
@@ -382,13 +304,13 @@ properties:
               type: object
               properties:
                 type:
-                  const: "lane_bam_submission"
+                  const: "dna_alignment"
                 id:
-                  $ref: "#/properties/lane_bam_submission_id"
+                  $ref: "#/properties/dna_alignment_id"
             bundle_id:
               $ref: "#/properties/id"
             bundle_type:
-              const: "dna_uniform_alignment"
+              const: "dna_alignment_qc"
       insert_size_metrics:
         type: object
         $id: data_object
@@ -409,13 +331,13 @@ properties:
               type: object
               properties:
                 type:
-                  const: "lane_bam_submission"
+                  const: "dna_alignment"
                 id:
-                  $ref: "#/properties/lane_bam_submission_id"
+                  $ref: "#/properties/dna_alignment_id"
             bundle_id:
               $ref: "#/properties/id"
             bundle_type:
-              const: "dna_uniform_alignment"
+              const: "dna_alignment_qc"
       quality_distribution_metrics:
         type: object
         $id: data_object
@@ -436,13 +358,13 @@ properties:
               type: object
               properties:
                 type:
-                  const: "lane_bam_submission"
+                  const: "dna_alignment"
                 id:
-                  $ref: "#/properties/lane_bam_submission_id"
+                  $ref: "#/properties/dna_alignment_id"
             bundle_id:
               $ref: "#/properties/id"
             bundle_type:
-              const: "dna_uniform_alignment"
+              const: "dna_alignment_qc"
       alignment_summary_metrics:
         type: object
         $id: data_object
@@ -463,13 +385,13 @@ properties:
               type: object
               properties:
                 type:
-                  const: "lane_bam_submission"
+                  const: "dna_alignment"
                 id:
-                  $ref: "#/properties/lane_bam_submission_id"
+                  $ref: "#/properties/dna_alignment_id"
             bundle_id:
               $ref: "#/properties/id"
             bundle_type:
-              const: "dna_uniform_alignment"
+              const: "dna_alignment_qc"
       error_summary_metrics:
         type: object
         $id: data_object
@@ -490,13 +412,13 @@ properties:
               type: object
               properties:
                 type:
-                  const: "lane_bam_submission"
+                  const: "dna_alignment"
                 id:
-                  $ref: "#/properties/lane_bam_submission_id"
+                  $ref: "#/properties/dna_alignment_id"
             bundle_id:
               $ref: "#/properties/id"
             bundle_type:
-              const: "dna_uniform_alignment"
+              const: "dna_alignment_qc"
       base_distribution_by_cycle:
         type: object
         $id: data_object
@@ -517,13 +439,13 @@ properties:
               type: object
               properties:
                 type:
-                  const: "lane_bam_submission"
+                  const: "dna_alignment"
                 id:
-                  $ref: "#/properties/lane_bam_submission_id"
+                  $ref: "#/properties/dna_alignment_id"
             bundle_id:
               $ref: "#/properties/id"
             bundle_type:
-              const: "dna_uniform_alignment"
+              const: "dna_alignment_qc"
       pre_adapter_detail_metrics:
         type: object
         $id: data_object
@@ -544,13 +466,13 @@ properties:
               type: object
               properties:
                 type:
-                  const: "lane_bam_submission"
+                  const: "dna_alignment"
                 id:
-                  $ref: "#/properties/lane_bam_submission_id"
+                  $ref: "#/properties/dna_alignment_id"
             bundle_id:
               $ref: "#/properties/id"
             bundle_type:
-              const: "dna_uniform_alignment"
+              const: "dna_alignment_qc"
       bait_bias_summary_metrics:
         type: object
         $id: data_object
@@ -571,13 +493,13 @@ properties:
               type: object
               properties:
                 type:
-                  const: "lane_bam_submission"
+                  const: "dna_alignment"
                 id:
-                  $ref: "#/properties/lane_bam_submission_id"
+                  $ref: "#/properties/dna_alignment_id"
             bundle_id:
               $ref: "#/properties/id"
             bundle_type:
-              const: "dna_uniform_alignment"
+              const: "dna_alignment_qc"
       quality_yield_metrics:
         type: object
         $id: data_object
@@ -598,10 +520,10 @@ properties:
               type: object
               properties:
                 type:
-                  const: "lane_bam_submission"
+                  const: "dna_alignment"
                 id:
-                  $ref: "#/properties/lane_bam_submission_id"
+                  $ref: "#/properties/dna_alignment_id"
             bundle_id:
               $ref: "#/properties/id"
             bundle_type:
-              const: "dna_uniform_alignment"
+              const: "dna_alignment_qc"

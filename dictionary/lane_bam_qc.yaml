@@ -75,13 +75,17 @@ properties:
   qc_metrics:
     type: object
     properties:
-      PF_BASES:  # pass filter bases
+      pf_bases:
+        description: "pass filter bases"
         type: integer
-      PF_READS:  # pass filter reads
+      pf_reads:
+        description: "pass filter reads"
         type: integer
-      TOTAL_BASES:  # total bases
+      total_bases:
+        description: "total bases"
         type: integer
-      TOTAL_READS:  # total reads
+      total_reads:
+        description: "total reads"
         type: integer
   input_files:  # input file for this QC tool could be locally prepared from preprocessing steps
     type: object

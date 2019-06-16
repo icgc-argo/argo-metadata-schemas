@@ -1,0 +1,203 @@
+$schema: "http://dcc.icgc-argo.org/draft-00/schema#"
+
+$id: "dna_alignment"
+title: Uniform alignment of DNA sequencing reads
+version: 0
+category: data_bundle
+type: object
+description: ""
+additionalProperties: false
+
+systemProperties: [ id, status, sample_id ]
+
+required:
+- type
+- program
+- lane_bam_submission_id
+
+primaryKey:
+  surrogateKey: [ id ]
+
+uniqueKeys:
+- [ lane_bam_submission_id ]
+
+references:
+- selfKey: [ lane_bam_submission_id ]
+  reference:
+    targetEntity: lane_bam_submission
+    targetKey: [ id ]
+
+properties:
+  type:
+    const: "dna_alignment"
+  status:
+    $ref: _definitions#/common/properties/bundle_status
+  id:
+    $ref: _definitions#/common/properties/id
+  program:
+    $ref: _definitions#/common/properties/program_short_name
+  sample_id:  # to be populated by the system
+    $ref: sample#/properties/id
+  lane_bam_submission_id:
+    type: array
+    minItems: 1
+    items:
+      type: string
+  analysis:
+    type: object
+    properties:
+      analysis_type:
+        const: 'DNA Alignment'
+      reference_genome:
+        enum: [ GRCh37, GRCh38 ]
+      core_tool:
+        const: 'BWA MEM'
+      tool:  # Tool refers to what's in GA4GH's Tool Registry Service
+        type: object
+        properties:
+          registry:
+            type: string  # such as Dockstore
+          tool_id:
+            type: string
+          tool_name:
+            type: string
+          version:
+            type: string
+      execution:
+        type: object
+        properties:
+          runner_name:
+            type: string
+          runner_version:
+            type: string
+          job_id:
+            type: string
+          started_at:
+            type: string
+            format: date-time
+          completed_at:
+            type: string
+            format: date-time
+  input_files:  # input files are multiple lane level unaligned bam files
+    type: object
+    properties:
+      lane_bams:
+        type: array
+        minItems: 1  # at least one, must match number of read groups
+        items:
+          type: object
+          references:
+          - selfKey: [ bundle_id, object_id ]
+            targetEntity: data_object
+            targetKey: [ bundle_id, id ]
+          properties:
+            object_uri:  # if file is local, object_id will be 'null'
+              type: string  # pattern: song://<repository>/<bundle_id>/<object_id>
+            bundle_id:  # lane_bam_submission
+              type: string
+            object_id:  # lane_bam object ID in the above lane_bam_submission
+              type: string
+            name:  # file name
+              type: string
+            repository:  # repo where the object resides
+              type: string
+      reference_genome:
+        type: object
+        properties:
+          reference_gz:
+            type: object
+            properties:
+              object_uri:
+                type: string
+          reference_gz_fai:
+            type: object
+            properties:
+              object_uri:
+                type: string
+          reference_gz_fai:
+            type: object
+            properties:
+              object_uri:
+                type: string
+          reference_gz_bwt:
+            type: object
+            properties:
+              object_uri:
+                type: string
+          reference_gz_ann:
+            type: object
+            properties:
+              object_uri:
+                type: string
+          reference_gz_pac:
+            type: object
+            properties:
+              object_uri:
+                type: string
+          reference_gz_sa:
+            type: object
+            properties:
+              object_uri:
+                type: string
+          reference_gz_amb:
+            type: object
+            properties:
+              object_uri:
+                type: string
+  files:
+    type: object
+    properties:
+      aligned_seq:
+        type: object
+        $id: data_object
+        systemProperties: [ id, bundle_id, bundle_type, format, extension, date_type, program, derived_from ]
+        allOf:
+        - $ref: _definitions#/data_object
+        - properties:
+            format:
+              enum: [ "CRAM", "BAM" ]
+            extension:
+              enum: [ ".cram", ".bam" ]
+            date_type:
+              const: "Aligned Sequencing Reads"
+        - properties:  # properties copied from containing parent
+            program:
+              $ref: "#/properties/program"
+            derived_from:
+              type: object
+              properties:
+                type:
+                  const: "lane_bam_submission"
+                id:
+                  $ref: "#/properties/lane_bam_submission_id"
+            bundle_id:
+              $ref: "#/properties/id"
+            bundle_type:
+              const: "dna_alignment"
+      aligned_seq_index:
+        type: object
+        $id: data_object
+        systemProperties: [ id, bundle_id, bundle_type, format, extension, date_type, program, derived_from ]
+        allOf:
+        - $ref: _definitions#/data_object
+        - properties:
+            format:
+              enum: [ "CRAI", "BAI" ]
+            extension:
+              enum: [ ".cram.crai", ".bam.bai" ]
+            date_type:
+              const: "Aligned Sequencing Reads Index"
+        - properties:
+            program:
+              $ref: "#/properties/program"
+            derived_from:
+              type: object
+              properties:
+                type:
+                  const: "lane_bam_submission"
+                id:
+                  $ref: "#/properties/lane_bam_submission_id"
+            bundle_id:
+              $ref: "#/properties/id"
+            bundle_type:
+              const: "dna_alignment"

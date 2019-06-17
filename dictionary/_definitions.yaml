@@ -72,15 +72,22 @@ data_object:
       - ".csv.gz"
       - ".pdf.gz"
     data_type:
-      enum:
-      - "Sequencing Reads"
-      - "Unaligned Sequencing Reads"
-      - "Aligned Sequencing Reads"
-      - "Aligned Sequencing Reads Index"
-      - "Read Group QC Metrics"
-      - "Alignment QC Plot"
-      - "Alignment QC Metrics"
-      - "SSM"
-      - "CNSM"
-      - "StSM"
-      - "SGV"
+      oneOf:  # not necessarily we do this hybrid way, just to show case the possibilities JSON Schema gives us
+      - const: SSM  # acronym, good as facet terms
+        title: "Simple Somatic Mutations"  # short title, good for displaying as tooltip
+      - const: CNSM
+        title: "Copy Number Somatic Mutations"
+      - const: StSM
+        title: "Structural Somatic Mutations"
+      - const: SGV
+        title: "Simple Germline Variations"
+      - const: StGV
+        title: "Structural Germline Variations"
+      - enum:  # data types with no acronym
+        - "Sequencing Reads"
+        - "Unaligned Sequencing Reads"
+        - "Aligned Sequencing Reads"
+        - "Aligned Sequencing Reads Index"
+        - "Read Group QC Metrics"
+        - "Alignment QC Plot"
+        - "Alignment QC Metrics"

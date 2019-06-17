@@ -9,8 +9,13 @@ description: ""
 additionalProperties: false
 
 systemProperties:
-- id
-- status
+  properties:
+    id:
+      allOf:
+      - $ref: _definitions#/common/properties/id
+      - pattern: "^SX"  # id must start with "SX", in addition to pattern defined at _definitions#/common/properties/id
+    sample_id:  # foreign key to sample entity, the relationship is defined in 'references'
+      $ref: sample#/systemProperties/properties/id
 
 required:
 - type
@@ -39,10 +44,6 @@ references:
 properties:
   type:
     const: "sequencing_experiment"
-  status:
-    $ref: _definitions#/common/properties/bundle_status
-  id:
-    $ref: _definitions#/common/properties/id
   program:
     $ref: _definitions#/common/properties/program_short_name
   submitter_id:  # submitter's sequencing experiment ID
@@ -77,13 +78,31 @@ properties:
       $id: "read_group"  # read_group is a nested entity under sequencing experiment
       type: object
       category: biospecimen
-      description: ""
+      description: "Read groups from a sequencing experiement"
       additionalProperties: false
       systemProperties:
-      - id
-      - program  # inherits this from containing parent
-      - sample_submitter_id  # inherits this from containing parent
+        id:  # system generated globally unique read group ID
+          allOf:
+          - $ref: _definitions#/common/properties/id
+          - pattern: "^RG"  # id must start with "RG", in addition to pattern defined at _definitions#/common/properties/id
+        program:
+          # this reuses the program definition in the containing parent, may also signal that it gets the same value
+          $ref: "#/properties/program"
+        sequencing_experiment_submitter_id:
+          # this field gets value from containing parent
+          $ref: "#/properties/submitter_id"
+        sequencing_experiment_id:
+          # this field gets value from containing parent
+          $ref: "#/systemProperties/properties/id"
+        sample_submitter_id:
+          # this field gets value from containing parent
+          $ref: "#/properties/sample_submitter_id"
+        sample_id:
+          # this field gets value from containing parent
+          $ref: "#/systemProperties/properties/sample_id"
+
       required:
+      - type
       - submitter_id
       - platform_unit
       - is_paired_end
@@ -97,34 +116,21 @@ properties:
         naturalKey: [ program, submitter_id ]
 
       references:
-      - selfKey: [ program, sequencing_experiment_submitter_id ]
+      - selfKey: [ sequencing_experiment_id ]
         reference:
           targetEntity: sequencing_experiment  # reference to containing parent
-          targetKey: [ program, submitter_id ]
-      - selfKey: [ program, sample_submitter_id ]  # inherits this relationship from containing parent
+          targetKey: [ id ]
+      - selfKey: [ sample_id ]  # inherits this relationship from containing parent
         reference:
           targetEntity: sample
-          targetKey: [ program, submitter_id ]
+          targetKey: [ id ]
 
       properties:
         type:
           const: "read_group"
-        id:  # system generated globally unique read group ID
-          allOf:
-          - $ref: _definitions#/common/properties/id
-          - pattern: "^RG"  # id must start with "RG", in addition to pattern defined at _definitions#/common/properties/id
-        program:
-          # this reuses the program definition in the containing parent, may also signal that it gets the same value
-          $ref: "#/properties/program"
         submitter_id:
           type: string
           description: "Submitter's read group ID. ID in BAM @RG header"
-        sequencing_experiment_submitter_id:
-          # this field gets value from containing parent
-          $ref: "#/properties/submitter_id"
-        sample_submitter_id:
-          # this field gets value from containing parent
-          $ref: "#/properties/sample_submitter_id"
         platform_unit:  # PU in BAM @RG header, for Illumina: {FLOWCELL_BARCODE}.{LANE}.{SAMPLE_BARCODE}
           type: string
         is_paired_end:

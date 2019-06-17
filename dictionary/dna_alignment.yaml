@@ -8,12 +8,28 @@ type: object
 description: ""
 additionalProperties: false
 
-systemProperties: [ id, status, sample_id ]
+systemProperties:
+  properties:
+    status:
+      $ref: _definitions#/common/properties/bundle_status
+    id:
+      $ref: _definitions#/common/properties/uuid
+    sample_id:  # to be magically populated by the system through traversing back to the 'sample'
+      $ref: sample#/systemProperties/properties/id
+    specimen_id:  # to be magically populated by the system through traversing back to the 'specimen'
+      $ref: specimen#/systemProperties/properties/id
+    specimen_type:  # to be magically populated by the system through traversing back to the 'specimen'
+      $ref: specimen#/properties/specimen_type
+    normal_or_tumour_designation:  # to be magically populated by the system through traversing back to the 'specimen'
+      $ref: specimen#/properties/normal_or_tumour_designation
 
 required:
 - type
 - program
 - lane_bam_submission_id
+- analysis
+- input_files
+- files
 
 primaryKey:
   surrogateKey: [ id ]
@@ -30,19 +46,13 @@ references:
 properties:
   type:
     const: "dna_alignment"
-  status:
-    $ref: _definitions#/common/properties/bundle_status
-  id:
-    $ref: _definitions#/common/properties/id
   program:
     $ref: _definitions#/common/properties/program_short_name
-  sample_id:  # to be populated by the system
-    $ref: sample#/properties/id
-  lane_bam_submission_id:
+  lane_bam_submission_id:  # the input bundles
     type: array
     minItems: 1
     items:
-      type: string
+      $ref: lane_bam_submission#/systemProperties/properties/id
   analysis:
     type: object
     properties:
@@ -88,8 +98,9 @@ properties:
           type: object
           references:
           - selfKey: [ bundle_id, object_id ]
-            targetEntity: data_object
-            targetKey: [ bundle_id, id ]
+            reference:
+              targetEntity: data_object
+              targetKey: [ bundle_id, id ]
           properties:
             object_uri:  # if file is local, object_id will be 'null'
               type: string  # pattern: song://<repository>/<bundle_id>/<object_id>
@@ -148,36 +159,47 @@ properties:
     type: object
     properties:
       aligned_seq:
+        $id: "#data_object/aligned_seq"
         type: object
-        $id: data_object
-        systemProperties: [ id, bundle_id, bundle_type, format, extension, date_type, program, derived_from ]
+        primaryKey:
+          surrogateKey: [ id ]
+        systemProperties:
+          $id: "#data_object/systemProperties"
+          properties:
+            id:  # surrogate key
+              $ref: _definitions#/data_object/properties/id
+            program:  # copied from containing parent
+              $ref: "#/properties/program"
+            derived_from:
+              type: object
+              properties:
+                type:
+                  const: "sample_id"
+                id:  # copied from containing parent
+                  $ref: "#/systemProperties/properties/sample_id"
+            bundle_id:  # copied from containing parent
+              $ref: "#/systemProperties/properties/id"
+            bundle_type:
+              const: "dna_alignment"
+        required: [ name, local_path, size, checksum, checksum_type, format, extension ]  # required fields from submitter
         allOf:
         - $ref: _definitions#/data_object
         - properties:
+            name:
+              pattern: ".+"  # TODO: we want set more specific file naming pattern
             format:
               enum: [ "CRAM", "BAM" ]
             extension:
               enum: [ ".cram", ".bam" ]
             date_type:
               const: "Aligned Sequencing Reads"
-        - properties:  # properties copied from containing parent
-            program:
-              $ref: "#/properties/program"
-            derived_from:
-              type: object
-              properties:
-                type:
-                  const: "lane_bam_submission"
-                id:
-                  $ref: "#/properties/lane_bam_submission_id"
-            bundle_id:
-              $ref: "#/properties/id"
-            bundle_type:
-              const: "dna_alignment"
+              default: "Aligned Sequencing Reads"
       aligned_seq_index:
+        $id: "#data_object/aligned_seq_index"
         type: object
-        $id: data_object
-        systemProperties: [ id, bundle_id, bundle_type, format, extension, date_type, program, derived_from ]
+        systemProperties:
+          $ref: "#data_object/systemProperties"
+        required: [ name, local_path, size, checksum, checksum_type, format, extension ]  # required fields from submitter
         allOf:
         - $ref: _definitions#/data_object
         - properties:
@@ -187,17 +209,4 @@ properties:
               enum: [ ".cram.crai", ".bam.bai" ]
             date_type:
               const: "Aligned Sequencing Reads Index"
-        - properties:
-            program:
-              $ref: "#/properties/program"
-            derived_from:
-              type: object
-              properties:
-                type:
-                  const: "lane_bam_submission"
-                id:
-                  $ref: "#/properties/lane_bam_submission_id"
-            bundle_id:
-              $ref: "#/properties/id"
-            bundle_type:
-              const: "dna_alignment"
+              default: "Aligned Sequencing Reads Index"

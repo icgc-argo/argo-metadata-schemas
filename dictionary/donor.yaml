@@ -9,7 +9,11 @@ description: "Cancer patient participated research"
 additionalProperties: false
 
 systemProperties:  # properties to be managed by the system, must not be included in submission
-- id
+  properties:
+    id:  # primary key, defined in 'primaryKey'
+      allOf:
+      - $ref: _definitions#/common/properties/id
+      - pattern: "^DO"  # id must start with "DO", in addition to pattern defined at _definitions#/common/properties/id
 
 required:
 - type
@@ -27,10 +31,6 @@ uniqueKeys: []  # don't need to repeat primaryKey here
 properties:
   type:
     const: "donor"
-  id:
-    allOf:
-    - $ref: _definitions#/common/properties/id
-    - pattern: "^DN"  # id must start with "DN", in addition to pattern defined at _definitions#/common/properties/id
   submitter_id:
     $ref: _definitions#/common/properties/submitter_id
     description: "Submitter's donor ID"

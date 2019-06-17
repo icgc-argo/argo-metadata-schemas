@@ -8,13 +8,25 @@ type: object
 description: ""
 additionalProperties: false
 
-systemProperties: [ id, status ]
+systemProperties:
+  properties:
+    status:
+      $ref: _definitions#/common/properties/bundle_status
+    id:
+      $ref: _definitions#/common/properties/uuid
+    read_group_id:  # FK points to PK of read_group
+      $ref: lane_bam_submission#/systemProperties/properties/id
+    sample_id:  # to be magically populated by the system through traversing back to the 'sample'
+      $ref: lane_bam_submission#/systemProperties/properties/id
 
 required:
 - type
 - program
-- read_group_submitter_id
 - lane_bam_submission_id
+- analysis
+- qc_metrics
+- input_files
+- files
 
 primaryKey:
   surrogateKey: [ id ]
@@ -31,10 +43,6 @@ references:
 properties:
   type:
     const: "lane_bam_qc"
-  id:
-    $ref: _definitions#/common/properties/uuid
-  status:
-    $ref: _definitions#/common/properties/bundle_status
   program:
     $ref: _definitions#/common/properties/program_short_name
   lane_bam_submission_id:  # one lane_bam_submission per lane_bam_qc
@@ -94,8 +102,9 @@ properties:
         type: object
         references:
         - selfKey: [ bundle_id, object_id ]
-          targetEntity: data_object
-          targetKey: [ bundle_id, id ]
+          reference:
+            targetEntity: data_object
+            targetKey: [ bundle_id, id ]
         properties:
           object_uri:  # if file is local, object_id will be 'null'
             type: string  # pattern: song://<repository>/<bundle_id>/<object_id>
@@ -110,29 +119,34 @@ properties:
   files:
     properties:
       metrics_file:
-        $id: data_object
+        $id: "#data_object/metrics_file"
         type: object
-        systemProperties: [ id, bundle_id, bundle_type, format, extension, date_type, program, derived_from ]
-        allOf:
-        - $ref: _definitions#/data_object
-        - properties:
-            format:
-              const: "TXT"
-            extension:
-              const: ".txt.gz"
-            date_type:
-              const: "Read Group QC Metrics"
-        - properties:  # properties copied from containing parent
-            program:
+        systemProperties:
+          properties:
+            id:  # surrogate key
+              $ref: _definitions#/data_object/properties/id
+            program:  # copied from containing parent
               $ref: "#/properties/program"
             derived_from:
               type: object
               properties:
                 type:
-                  const: "lane_bam_submission"
-                id:
-                  $ref: "#/properties/lane_bam_submission_id"
-            bundle_id:
-              $ref: "#/properties/id"
+                  const: "read_group_id"
+                id:  # copied from containing parent
+                  $ref: "#/systemProperties/properties/read_group_id"
+            bundle_id:  # copied from containing parent
+              $ref: "#/systemProperties/properties/id"
             bundle_type:
               const: "lane_bam_qc"
+        allOf:
+        - $ref: _definitions#/data_object
+        - properties:
+            format:
+              const: "TXT"
+              default: "TXT"
+            extension:
+              const: ".txt.gz"
+              default: ".txt.gz"
+            date_type:
+              const: "Read Group QC Metrics"
+              default: "Read Group QC Metrics"

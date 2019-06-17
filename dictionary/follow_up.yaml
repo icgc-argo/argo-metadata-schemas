@@ -9,7 +9,11 @@ type: object
 additionalProperties: false
 
 systemProperties:  # properties managed by the system, must not be included in submission
-- id
+  properties:
+    id:  # primary key, defined in 'primaryKey'
+      allOf:
+      - $ref: _definitions#/common/properties/id
+      - pattern: ".+"  # TODO: update pattern to more specific, in addition to pattern defined at _definitions#/common/properties/id
 
 required:
 - type
@@ -34,8 +38,6 @@ references:
 properties:
   type:
     const: "follow_up"
-  id:
-    $ref: _definitions#/common/properties/id
   submitter_id:
     $ref: _definitions#/common/properties/submitter_id
   program:

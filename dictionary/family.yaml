@@ -9,7 +9,9 @@ description: ""
 additionalProperties: false
 
 systemProperties:
-- id
+  properties:
+    id:  # primary key, defined in 'primaryKey'
+      $ref: _definitions#/common/properties/uuid
 
 required:
 - type
@@ -32,8 +34,6 @@ references:
 properties:
   type:
     const: "family"
-  id:
-    $ref: _definitions#/common/properties/id
   program:
     $ref: _definitions#/common/properties/program_short_name
   donor_submitter_id:

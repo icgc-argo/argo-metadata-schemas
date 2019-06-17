@@ -59,7 +59,9 @@ properties:
   category:
     type: string
   systemProperties:
-    "$ref": "#/definitions/stringArray"
+    allOf:
+    - "$ref": "#"
+    - type: object
   primaryKey:  # design much follows RDBMS model, particular guideline on PK: http://www.agiledata.org/essays/keys.html
     type: object
     required: [ surrogateKey ]

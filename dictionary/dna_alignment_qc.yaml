@@ -8,12 +8,23 @@ type: object
 description: ""
 additionalProperties: false
 
-systemProperties: [ id, status ]
+systemProperties:
+  properties:
+    status:
+      $ref: _definitions#/common/properties/bundle_status
+    id:
+      $ref: _definitions#/common/properties/uuid
+    sample_id:  # to be magically populated by the system through traversing back to the 'dna_alignment'
+      $ref: dna_alignment#/systemProperties/properties/sample_id
 
 required:
 - type
 - program
 - dna_alignment_id
+- analysis
+- input_files
+- qc_metrics
+- files
 
 primaryKey:
   surrogateKey: [ id ]
@@ -36,8 +47,6 @@ properties:
     $ref: _definitions#/common/properties/id
   program:
     $ref: _definitions#/common/properties/program_short_name
-  sample_id:  # to be populated by the system
-    $ref: sample#/properties/id
   dna_alignment_id:
     type: string
   analysis:
@@ -80,8 +89,9 @@ properties:
         type: object
         references:
         - selfKey: [ bundle_id, object_id ]
-          targetEntity: data_object
-          targetKey: [ bundle_id, id ]
+          reference:
+            targetEntity: data_object
+            targetKey: [ bundle_id, id ]
         properties:
           object_uri:  # if file is local, object_id will be 'null'
             type: string  # pattern: song://<repository>/<bundle_id>/<object_id>
@@ -123,407 +133,80 @@ properties:
     type: object
     properties:
       quality_distribution:
+        $id: "#data_object/pdf"
         type: object
-        $id: data_object
-        systemProperties: [ id, bundle_id, bundle_type, format, extension, date_type, program, derived_from ]
-        allOf:
-        - $ref: _definitions#/data_object
-        - properties:
-            format:
-              enum: [ "PDF" ]
-            extension:
-              enum: [ ".pdf.gz" ]
-            date_type:
-              const: "Alignment QC Plot"
-        - properties:
-            program:
+        systemProperties:
+          $id: "#data_object/systemProperties"
+          properties:
+            id:  # surrogate key
+              $ref: _definitions#/data_object/properties/id
+            program:  # copied from containing parent
               $ref: "#/properties/program"
             derived_from:
               type: object
               properties:
                 type:
-                  const: "dna_alignment"
-                id:
-                  $ref: "#/properties/dna_alignment_id"
-            bundle_id:
-              $ref: "#/properties/id"
+                  const: "sample_id"
+                id:  # copied from containing parent
+                  $ref: "#/systemProperties/properties/sample_id"
+            bundle_id:  # copied from containing parent
+              $ref: "#/systemProperties/properties/id"
             bundle_type:
               const: "dna_alignment_qc"
+        required: [ name, local_path, size, checksum, checksum_type ]  # required fields from submitter
+        allOf:
+        - $ref: _definitions#/data_object
+        - properties:
+            format:
+              const: "PDF"
+              default: "PDF"
+            extension:
+              const: ".pdf.gz"
+              default: ".pdf.gz"
+            date_type:
+              const: "Alignment QC Plot"
+              default: "Alignment QC Plot"
       bait_bias_detail_metrics:
+        $id: "#data_object/txt"
         type: object
-        $id: data_object
-        systemProperties: [ id, bundle_id, bundle_type, format, extension, date_type, program, derived_from ]
+        systemProperties:
+          $ref: "#data_object/systemProperties"
+        required: [ name, local_path, size, checksum, checksum_type ]  # required fields from submitter
         allOf:
         - $ref: _definitions#/data_object
         - properties:
             format:
               const: "TXT"
+              default: "TXT"
             extension:
               const: ".txt.gz"
+              default: ".txt.gz"
             date_type:
               const: "Alignment QC Metrics"
-        - properties:
-            program:
-              $ref: "#/properties/program"
-            derived_from:
-              type: object
-              properties:
-                type:
-                  const: "dna_alignment"
-                id:
-                  $ref: "#/properties/dna_alignment_id"
-            bundle_id:
-              $ref: "#/properties/id"
-            bundle_type:
-              const: "dna_alignment_qc"
+              default: "Alignment QC Metrics"
       quality_by_cycle:
-        type: object
-        $id: data_object
-        systemProperties: [ id, bundle_id, bundle_type, format, extension, date_type, program, derived_from ]
-        allOf:
-        - $ref: _definitions#/data_object
-        - properties:
-            format:
-              const: "TXT"
-            extension:
-              const: ".txt.gz"
-            date_type:
-              const: "Alignment QC Metrics"
-        - properties:
-            program:
-              $ref: "#/properties/program"
-            derived_from:
-              type: object
-              properties:
-                type:
-                  const: "dna_alignment"
-                id:
-                  $ref: "#/properties/dna_alignment_id"
-            bundle_id:
-              $ref: "#/properties/id"
-            bundle_type:
-              const: "dna_alignment_qc"
+        $ref: "#data_object/txt"
       base_distribution_by_cycle_metrics:
-        type: object
-        $id: data_object
-        systemProperties: [ id, bundle_id, bundle_type, format, extension, date_type, program, derived_from ]
-        allOf:
-        - $ref: _definitions#/data_object
-        - properties:
-            format:
-              const: "TXT"
-            extension:
-              const: ".txt.gz"
-            date_type:
-              const: "Alignment QC Metrics"
-        - properties:
-            program:
-              $ref: "#/properties/program"
-            derived_from:
-              type: object
-              properties:
-                type:
-                  const: "dna_alignment"
-                id:
-                  $ref: "#/properties/dna_alignment_id"
-            bundle_id:
-              $ref: "#/properties/id"
-            bundle_type:
-              const: "dna_alignment_qc"
+        $ref: "#data_object/txt"
       pre_adapter_summary_metrics:
-        type: object
-        $id: data_object
-        systemProperties: [ id, bundle_id, bundle_type, format, extension, date_type, program, derived_from ]
-        allOf:
-        - $ref: _definitions#/data_object
-        - properties:
-            format:
-              const: "TXT"
-            extension:
-              const: ".txt.gz"
-            date_type:
-              const: "Alignment QC Metrics"
-        - properties:
-            program:
-              $ref: "#/properties/program"
-            derived_from:
-              type: object
-              properties:
-                type:
-                  const: "dna_alignment"
-                id:
-                  $ref: "#/properties/dna_alignment_id"
-            bundle_id:
-              $ref: "#/properties/id"
-            bundle_type:
-              const: "dna_alignment_qc"
+        $ref: "#data_object/txt"
       quality_by_cycle_metrics:
-        type: object
-        $id: data_object
-        systemProperties: [ id, bundle_id, bundle_type, format, extension, date_type, program, derived_from ]
-        allOf:
-        - $ref: _definitions#/data_object
-        - properties:
-            format:
-              const: "TXT"
-            extension:
-              const: ".txt.gz"
-            date_type:
-              const: "Alignment QC Metrics"
-        - properties:
-            program:
-              $ref: "#/properties/program"
-            derived_from:
-              type: object
-              properties:
-                type:
-                  const: "dna_alignment"
-                id:
-                  $ref: "#/properties/dna_alignment_id"
-            bundle_id:
-              $ref: "#/properties/id"
-            bundle_type:
-              const: "dna_alignment_qc"
+        $ref: "#data_object/txt"
       insert_size_histogram:
-        type: object
-        $id: data_object
-        systemProperties: [ id, bundle_id, bundle_type, format, extension, date_type, program, derived_from ]
-        allOf:
-        - $ref: _definitions#/data_object
-        - properties:
-            format:
-              enum: [ "PDF" ]
-            extension:
-              enum: [ ".pdf.gz" ]
-            date_type:
-              const: "Alignment QC Plot"
-        - properties:
-            program:
-              $ref: "#/properties/program"
-            derived_from:
-              type: object
-              properties:
-                type:
-                  const: "dna_alignment"
-                id:
-                  $ref: "#/properties/dna_alignment_id"
-            bundle_id:
-              $ref: "#/properties/id"
-            bundle_type:
-              const: "dna_alignment_qc"
+        $id: "#data_object/pdf"
       insert_size_metrics:
-        type: object
-        $id: data_object
-        systemProperties: [ id, bundle_id, bundle_type, format, extension, date_type, program, derived_from ]
-        allOf:
-        - $ref: _definitions#/data_object
-        - properties:
-            format:
-              const: "TXT"
-            extension:
-              const: ".txt.gz"
-            date_type:
-              const: "Alignment QC Metrics"
-        - properties:
-            program:
-              $ref: "#/properties/program"
-            derived_from:
-              type: object
-              properties:
-                type:
-                  const: "dna_alignment"
-                id:
-                  $ref: "#/properties/dna_alignment_id"
-            bundle_id:
-              $ref: "#/properties/id"
-            bundle_type:
-              const: "dna_alignment_qc"
+        $ref: "#data_object/txt"
       quality_distribution_metrics:
-        type: object
-        $id: data_object
-        systemProperties: [ id, bundle_id, bundle_type, format, extension, date_type, program, derived_from ]
-        allOf:
-        - $ref: _definitions#/data_object
-        - properties:
-            format:
-              const: "TXT"
-            extension:
-              const: ".txt.gz"
-            date_type:
-              const: "Alignment QC Metrics"
-        - properties:
-            program:
-              $ref: "#/properties/program"
-            derived_from:
-              type: object
-              properties:
-                type:
-                  const: "dna_alignment"
-                id:
-                  $ref: "#/properties/dna_alignment_id"
-            bundle_id:
-              $ref: "#/properties/id"
-            bundle_type:
-              const: "dna_alignment_qc"
+        $ref: "#data_object/txt"
       alignment_summary_metrics:
-        type: object
-        $id: data_object
-        systemProperties: [ id, bundle_id, bundle_type, format, extension, date_type, program, derived_from ]
-        allOf:
-        - $ref: _definitions#/data_object
-        - properties:
-            format:
-              const: "TXT"
-            extension:
-              const: ".txt.gz"
-            date_type:
-              const: "Alignment QC Metrics"
-        - properties:
-            program:
-              $ref: "#/properties/program"
-            derived_from:
-              type: object
-              properties:
-                type:
-                  const: "dna_alignment"
-                id:
-                  $ref: "#/properties/dna_alignment_id"
-            bundle_id:
-              $ref: "#/properties/id"
-            bundle_type:
-              const: "dna_alignment_qc"
+        $ref: "#data_object/txt"
       error_summary_metrics:
-        type: object
-        $id: data_object
-        systemProperties: [ id, bundle_id, bundle_type, format, extension, date_type, program, derived_from ]
-        allOf:
-        - $ref: _definitions#/data_object
-        - properties:
-            format:
-              const: "TXT"
-            extension:
-              const: ".txt.gz"
-            date_type:
-              const: "Alignment QC Metrics"
-        - properties:
-            program:
-              $ref: "#/properties/program"
-            derived_from:
-              type: object
-              properties:
-                type:
-                  const: "dna_alignment"
-                id:
-                  $ref: "#/properties/dna_alignment_id"
-            bundle_id:
-              $ref: "#/properties/id"
-            bundle_type:
-              const: "dna_alignment_qc"
+        $ref: "#data_object/txt"
       base_distribution_by_cycle:
-        type: object
-        $id: data_object
-        systemProperties: [ id, bundle_id, bundle_type, format, extension, date_type, program, derived_from ]
-        allOf:
-        - $ref: _definitions#/data_object
-        - properties:
-            format:
-              enum: [ "PDF" ]
-            extension:
-              enum: [ ".pdf.gz" ]
-            date_type:
-              const: "Alignment QC Plot"
-        - properties:
-            program:
-              $ref: "#/properties/program"
-            derived_from:
-              type: object
-              properties:
-                type:
-                  const: "dna_alignment"
-                id:
-                  $ref: "#/properties/dna_alignment_id"
-            bundle_id:
-              $ref: "#/properties/id"
-            bundle_type:
-              const: "dna_alignment_qc"
+        $ref: "#data_object/txt"
       pre_adapter_detail_metrics:
-        type: object
-        $id: data_object
-        systemProperties: [ id, bundle_id, bundle_type, format, extension, date_type, program, derived_from ]
-        allOf:
-        - $ref: _definitions#/data_object
-        - properties:
-            format:
-              const: "TXT"
-            extension:
-              const: ".txt.gz"
-            date_type:
-              const: "Alignment QC Metrics"
-        - properties:
-            program:
-              $ref: "#/properties/program"
-            derived_from:
-              type: object
-              properties:
-                type:
-                  const: "dna_alignment"
-                id:
-                  $ref: "#/properties/dna_alignment_id"
-            bundle_id:
-              $ref: "#/properties/id"
-            bundle_type:
-              const: "dna_alignment_qc"
+        $ref: "#data_object/txt"
       bait_bias_summary_metrics:
-        type: object
-        $id: data_object
-        systemProperties: [ id, bundle_id, bundle_type, format, extension, date_type, program, derived_from ]
-        allOf:
-        - $ref: _definitions#/data_object
-        - properties:
-            format:
-              const: "TXT"
-            extension:
-              const: ".txt.gz"
-            date_type:
-              const: "Alignment QC Metrics"
-        - properties:
-            program:
-              $ref: "#/properties/program"
-            derived_from:
-              type: object
-              properties:
-                type:
-                  const: "dna_alignment"
-                id:
-                  $ref: "#/properties/dna_alignment_id"
-            bundle_id:
-              $ref: "#/properties/id"
-            bundle_type:
-              const: "dna_alignment_qc"
+        $ref: "#data_object/txt"
       quality_yield_metrics:
-        type: object
-        $id: data_object
-        systemProperties: [ id, bundle_id, bundle_type, format, extension, date_type, program, derived_from ]
-        allOf:
-        - $ref: _definitions#/data_object
-        - properties:
-            format:
-              const: "TXT"
-            extension:
-              const: ".txt.gz"
-            date_type:
-              const: "Alignment QC Metrics"
-        - properties:
-            program:
-              $ref: "#/properties/program"
-            derived_from:
-              type: object
-              properties:
-                type:
-                  const: "dna_alignment"
-                id:
-                  $ref: "#/properties/dna_alignment_id"
-            bundle_id:
-              $ref: "#/properties/id"
-            bundle_type:
-              const: "dna_alignment_qc"
+        $ref: "#data_object/txt"

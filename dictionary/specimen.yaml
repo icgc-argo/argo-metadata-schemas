@@ -7,8 +7,14 @@ category: biospecimen
 type: object
 additionalProperties: false
 
-systemProperties:
-- id
+systemProperties:  # properties will be populated by the system
+  properties:
+    id:  # primary key, defined in 'primaryKey'
+      allOf:
+      - $ref: _definitions#/common/properties/id
+      - pattern: "^SP"  # id must start with "SP", in addition to pattern defined at _definitions#/common/properties/id
+    donor_id:  # foreign key to donor entity, the relationship is defined in 'references'
+      $ref: donor#/systemProperties/properties/id
 
 required:
 - type
@@ -36,8 +42,6 @@ scriptValidations:  # script based validation, call returns True for valid or Fa
 properties:
   type:
     const: "specimen"
-  id:
-    $ref: _definitions#/common/properties/id
   program:
     $ref: _definitions#/common/properties/program_short_name
   submitter_id:
@@ -48,7 +52,7 @@ properties:
   normal_or_tumour_designation:
     type: string
     scriptValidations:
-    - "$cv(tumour_or_normal_designation)"
+    - "$cv(tumour_or_normal_designation, specimen_type)"
   specimen_type:
     type: string
     scriptValidations:

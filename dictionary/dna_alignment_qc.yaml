@@ -146,7 +146,7 @@ properties:
               type: object
               properties:
                 type:
-                  const: "sample_id"
+                  const: "sample"
                 id:  # copied from containing parent
                   $ref: "#/systemProperties/properties/sample_id"
             bundle_id:  # copied from containing parent

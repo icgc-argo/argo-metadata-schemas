@@ -131,7 +131,7 @@ properties:
               type: object
               properties:
                 type:
-                  const: "read_group_id"
+                  const: "read_group"
                 id:  # copied from containing parent
                   $ref: "#/systemProperties/properties/read_group_id"
             bundle_id:  # copied from containing parent

@@ -165,22 +165,25 @@ properties:
           surrogateKey: [ id ]
         systemProperties:
           $id: "#data_object/systemProperties"
-          properties:
-            id:  # surrogate key
-              $ref: _definitions#/data_object/properties/id
-            program:  # copied from containing parent
-              $ref: "#/properties/program"
-            derived_from:
-              type: object
-              properties:
-                type:
-                  const: "sample"
-                id:  # copied from containing parent
-                  $ref: "#/systemProperties/properties/sample_id"
-            bundle_id:  # copied from containing parent
-              $ref: "#/systemProperties/properties/id"
-            bundle_type:
-              const: "dna_alignment"
+          required: [ id, program, repository, derived_from, bundle_id, bundle_type ]
+          allOf:
+          - $ref: _definitions#/repositoryProperties
+          - properties:
+              id:  # surrogate key
+                $ref: _definitions#/data_object/properties/id
+              program:  # copied from containing parent
+                $ref: "#/properties/program"
+              derived_from:
+                type: object
+                properties:
+                  type:
+                    const: "sample"
+                  id:  # copied from containing parent
+                    $ref: "#/systemProperties/properties/sample_id"
+              bundle_id:  # copied from containing parent
+                $ref: "#/systemProperties/properties/id"
+              bundle_type:
+                const: "dna_alignment"
         required: [ name, local_path, size, checksum, checksum_type, format, extension ]  # required fields from submitter
         allOf:
         - $ref: _definitions#/data_object

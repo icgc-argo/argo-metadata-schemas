@@ -122,22 +122,25 @@ properties:
         $id: "#data_object/metrics_file"
         type: object
         systemProperties:
-          properties:
-            id:  # surrogate key
-              $ref: _definitions#/data_object/properties/id
-            program:  # copied from containing parent
-              $ref: "#/properties/program"
-            derived_from:
-              type: object
-              properties:
-                type:
-                  const: "read_group"
-                id:  # copied from containing parent
-                  $ref: "#/systemProperties/properties/read_group_id"
-            bundle_id:  # copied from containing parent
-              $ref: "#/systemProperties/properties/id"
-            bundle_type:
-              const: "lane_bam_qc"
+          required: [ id, program, repository, derived_from, bundle_id, bundle_type ]
+          allOf:
+          - $ref: _definitions#/repositoryProperties
+          - properties:
+              id:  # surrogate key
+                $ref: _definitions#/data_object/properties/id
+              program:  # copied from containing parent
+                $ref: "#/properties/program"
+              derived_from:
+                type: object
+                properties:
+                  type:
+                    const: "read_group"
+                  id:  # copied from containing parent
+                    $ref: "#/systemProperties/properties/read_group_id"
+              bundle_id:  # copied from containing parent
+                $ref: "#/systemProperties/properties/id"
+              bundle_type:
+                const: "lane_bam_qc"
         allOf:
         - $ref: _definitions#/data_object
         - properties:

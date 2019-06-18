@@ -11,7 +11,7 @@ common:
       readOnly: true  # this makes `id` immutable once created
     submitter_id:
       type: string
-      pattern: "^[a-zA-Z]{1}[a-zA-Z0-9_-]*[a-zA-Z0-9]{1}$"
+      pattern: "^[a-zA-Z]{1}[a-zA-Z0-9_-.:']*[a-zA-Z0-9]{1}$"
     date:
       type: string
       format: date
@@ -32,8 +32,13 @@ common:
       - "depreciated"  # This is like 'mark deleted', bundle is depreciated but still accessible, files can not be downloaded (could have been purged from the server)
     program_short_name:
       enum:  # this lists all ARGO program's short names, dummy examples here for now
-      - OICR-PACA
-      - OICR-PRCA
+      - PACA-CA
+      - PRAD-CA
+      - PBCA-DE
+    repository:
+      enum:
+      - Collab
+      - DKFZ
 
 data_object:
   type: object
@@ -91,3 +96,24 @@ data_object:
         - "Read Group QC Metrics"
         - "Alignment QC Plot"
         - "Alignment QC Metrics"
+
+repositoryProperties:  # this should probably be outsourced to somewhere else, but it demonstrates how this could be done in JSON Schema
+  oneOff:
+  - properties:
+      program:
+        allOf:
+        - $ref: "#/common/properties/program_short_name"
+        - enum: [ "PACA-CA", "PRAD-CA" ]
+      respository:
+        allOf:
+        - $ref: "#/common/properties/respository"
+        - enum: [ "Collab" ]
+  - properties:
+      program:
+        allOf:
+        - $ref: "#/common/properties/program_short_name"
+        - enum: [ "PBCA-DE" ]
+      respository:
+        allOf:
+        - $ref: "#/common/properties/respository"
+        - enum: [ "DKFZ" ]

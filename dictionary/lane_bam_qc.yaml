@@ -121,9 +121,14 @@ properties:
       metrics_file:
         $id: "#data_object/metrics_file"
         type: object
+        primaryKey:
+          surrogateKey: [ id ]
+        $ref: _definitions#/submitted_file
+
         systemProperties:
-          required: [ id, program, repository, derived_from, bundle_id, bundle_type ]
+          required: [ id, program, repository, derived_from, bundle_id, bundle_type, format, data_type ]
           allOf:
+          - $ref: _definitions#/data_object
           - $ref: _definitions#/repositoryProperties
           - properties:
               id:  # surrogate key
@@ -141,15 +146,9 @@ properties:
                 $ref: "#/systemProperties/properties/id"
               bundle_type:
                 const: "lane_bam_qc"
-        allOf:
-        - $ref: _definitions#/data_object
-        - properties:
-            format:
-              const: "TXT"
-              default: "TXT"
-            extension:
-              const: ".txt.gz"
-              default: ".txt.gz"
-            date_type:
-              const: "Read Group QC Metrics"
-              default: "Read Group QC Metrics"
+              format:
+                const: "TXT"
+                default: "TXT"
+              date_type:
+                const: "Read Group QC Metrics"
+                default: "Read Group QC Metrics"

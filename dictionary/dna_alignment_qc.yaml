@@ -131,14 +131,16 @@ properties:
       quality_distribution:
         $id: "#data_object/pdf"
         type: object
+        primaryKey:
+          surrogateKey: [ id ]
+        $ref: _definitions#/data_object
+
         systemProperties:
-          $id: "#data_object/systemProperties"
-          required: [ id, program, repository, derived_from, bundle_id, bundle_type ]
+          required: [ id, program, repository, derived_from, bundle_id, bundle_type, format, data_type ]
           allOf:
+          - $ref: _definitions#/data_object
           - $ref: _definitions#/repositoryProperties
           - properties:
-              id:  # surrogate key
-                $ref: _definitions#/data_object/properties/id
               program:  # copied from containing parent
                 $ref: "#/properties/program"
               derived_from:
@@ -152,37 +154,46 @@ properties:
                 $ref: "#/systemProperties/properties/id"
               bundle_type:
                 const: "dna_alignment_qc"
-        required: [ name, local_path, size, checksum, checksum_type ]  # required fields from submitter
-        allOf:
-        - $ref: _definitions#/data_object
-        - properties:
-            format:
-              const: "PDF"
-              default: "PDF"
-            extension:
-              const: ".pdf.gz"
-              default: ".pdf.gz"
-            date_type:
-              const: "Alignment QC Plot"
-              default: "Alignment QC Plot"
+              format:
+                const: "PDF"
+                default: "PDF"
+              date_type:
+                const: "Alignment QC Plot"
+                default: "Alignment QC Plot"
+
       bait_bias_detail_metrics:
         $id: "#data_object/txt"
         type: object
+        primaryKey:
+          surrogateKey: [ id ]
+        $ref: _definitions#/submitted_file
+
         systemProperties:
-          $ref: "#data_object/systemProperties"
-        required: [ name, local_path, size, checksum, checksum_type ]  # required fields from submitter
-        allOf:
-        - $ref: _definitions#/data_object
-        - properties:
-            format:
-              const: "TXT"
-              default: "TXT"
-            extension:
-              const: ".txt.gz"
-              default: ".txt.gz"
-            date_type:
-              const: "Alignment QC Metrics"
-              default: "Alignment QC Metrics"
+          required: [ id, program, repository, derived_from, bundle_id, bundle_type, format, data_type ]
+          allOf:
+          - $ref: _definitions#/data_object
+          - $ref: _definitions#/repositoryProperties
+          - properties:
+              program:  # copied from containing parent
+                $ref: "#/properties/program"
+              derived_from:
+                type: object
+                properties:
+                  type:
+                    const: "sample"
+                  id:  # copied from containing parent
+                    $ref: "#/systemProperties/properties/sample_id"
+              bundle_id:  # copied from containing parent
+                $ref: "#/systemProperties/properties/id"
+              bundle_type:
+                const: "dna_alignment_qc"
+              format:
+                const: "TXT"
+                default: "TXT"
+              date_type:
+                const: "Alignment QC Metrics"
+                default: "Alignment QC Metrics"
+
       quality_by_cycle:
         $ref: "#data_object/txt"
       base_distribution_by_cycle_metrics:

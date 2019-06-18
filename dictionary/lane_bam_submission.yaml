@@ -54,13 +54,14 @@ properties:
         type: object
         primaryKey:
           surrogateKey: [ id ]
+        $ref: _definitions#/submitted_file
+
         systemProperties:
-          required: [ id, program, repository, derived_from, bundle_id, bundle_type ]
+          required: [ id, program, repository, derived_from, bundle_id, bundle_type, format, data_type ]
           allOf:
+          - $ref: _definitions#/data_object
           - $ref: _definitions#/repositoryProperties
           - properties:
-              id:  # surrogate key
-                $ref: _definitions#/data_object/properties/id
               program:  # copied from containing parent
                 $ref: "#/properties/program"
               derived_from:
@@ -74,17 +75,9 @@ properties:
                 $ref: "#/properties/id"
               bundle_type:
                 const: "lane_bam_submission"
-
-        required: [ name, local_path, size, checksum, checksum_type ]  # required fields from submitter
-        allOf:
-        - $ref: _definitions#/data_object
-        - properties:  # define more specific values
-            format:
-              const: "BAM"  # if submitted, it must be "BAM"
-              default: "BAM"  # when not submitted by the client, default value will be used
-            extension:
-              const: ".bam"
-              default: ".bam"
-            date_type:
-              const: "Unaligned Sequencing Reads"
-              default: "Unaligned Sequencing Reads"
+              format:
+                const: "BAM"  # if submitted, it must be "BAM"
+                default: "BAM"  # when not submitted by the client, default value will be used
+              date_type:
+                const: "Unaligned Sequencing Reads"
+                default: "Unaligned Sequencing Reads"

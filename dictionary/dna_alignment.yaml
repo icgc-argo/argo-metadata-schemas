@@ -163,10 +163,12 @@ properties:
         type: object
         primaryKey:
           surrogateKey: [ id ]
+        $ref: _definitions#/submitted_file
+
         systemProperties:
-          $id: "#data_object/systemProperties"
-          required: [ id, program, repository, derived_from, bundle_id, bundle_type ]
+          required: [ id, program, repository, derived_from, bundle_id, bundle_type, format, data_type ]
           allOf:
+          - $ref: _definitions#/data_object
           - $ref: _definitions#/repositoryProperties
           - properties:
               id:  # surrogate key
@@ -184,32 +186,42 @@ properties:
                 $ref: "#/systemProperties/properties/id"
               bundle_type:
                 const: "dna_alignment"
-        required: [ name, local_path, size, checksum, checksum_type, format, extension ]  # required fields from submitter
-        allOf:
-        - $ref: _definitions#/data_object
-        - properties:
-            name:
-              pattern: ".+"  # TODO: we want set more specific file naming pattern
-            format:
-              enum: [ "CRAM", "BAM" ]
-            extension:
-              enum: [ ".cram", ".bam" ]
-            date_type:
-              const: "Aligned Sequencing Reads"
-              default: "Aligned Sequencing Reads"
+              format:
+                enum: [ "CRAM", "BAM" ]
+              date_type:
+                const: "Aligned Sequencing Reads"
+                default: "Aligned Sequencing Reads"
+
       aligned_seq_index:
         $id: "#data_object/aligned_seq_index"
         type: object
+        primaryKey:
+          surrogateKey: [ id ]
+        $ref: _definitions#/data_object
+
         systemProperties:
-          $ref: "#data_object/systemProperties"
-        required: [ name, local_path, size, checksum, checksum_type, format, extension ]  # required fields from submitter
-        allOf:
-        - $ref: _definitions#/data_object
-        - properties:
-            format:
-              enum: [ "CRAI", "BAI" ]
-            extension:
-              enum: [ ".cram.crai", ".bam.bai" ]
-            date_type:
-              const: "Aligned Sequencing Reads Index"
-              default: "Aligned Sequencing Reads Index"
+          required: [ id, program, repository, derived_from, bundle_id, bundle_type, format, data_type ]
+          allOf:
+          - $ref: _definitions#/data_object
+          - $ref: _definitions#/repositoryProperties
+          - properties:
+              id:  # surrogate key
+                $ref: _definitions#/data_object/properties/id
+              program:  # copied from containing parent
+                $ref: "#/properties/program"
+              derived_from:
+                type: object
+                properties:
+                  type:
+                    const: "sample"
+                  id:  # copied from containing parent
+                    $ref: "#/systemProperties/properties/sample_id"
+              bundle_id:  # copied from containing parent
+                $ref: "#/systemProperties/properties/id"
+              bundle_type:
+                const: "dna_alignment"
+              format:
+                enum: [ "CRAI", "BAI" ]
+              date_type:
+                const: "Aligned Sequencing Reads Index"
+                default: "Aligned Sequencing Reads Index"

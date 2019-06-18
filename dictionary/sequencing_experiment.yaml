@@ -65,6 +65,10 @@ properties:
     - "RNA-Seq"
     - "Bisulfite-Seq"
     - "ChIP-Seq"
+  sequencing_date:
+    type: string
+    format: date
+    example: "2019-06-16"
   read_group_count:
     type: integer
     minimum: 1

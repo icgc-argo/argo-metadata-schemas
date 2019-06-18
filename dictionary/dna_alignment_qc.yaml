@@ -35,16 +35,12 @@ uniqueKeys:
 references:
 - selfKey: [ dna_alignment_id ]
   reference:
-    targetEntity: dna_alignment
+    targetEntity: dna_alignment  # dna_alignment_qc to dna_alignment is one-to-one
     targetKey: [ id ]
 
 properties:
   type:
     const: "dna_alignment_qc"
-  status:
-    $ref: _definitions#/common/properties/bundle_status
-  id:
-    $ref: _definitions#/common/properties/id
   program:
     $ref: _definitions#/common/properties/program_short_name
   dna_alignment_id:

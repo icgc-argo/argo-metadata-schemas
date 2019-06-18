@@ -31,7 +31,7 @@ primaryKey:
   surrogateKey: [ id ]
 
 uniqueKeys:
-- [ program, read_group_submitter_id ]
+- [ program, read_group_submitter_id ]  # no read group can have more than one lane bam submission
 
 references:
 - selfKey: [ program, read_group_submitter_id ]

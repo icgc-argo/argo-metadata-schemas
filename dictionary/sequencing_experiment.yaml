@@ -108,8 +108,6 @@ properties:
       - platform_unit
       - is_paired_end
       - read_length_r1
-      - read_length_r2
-      - insert_size
       - library_name
 
       primaryKey:
@@ -138,11 +136,20 @@ properties:
           type: boolean
         read_length_r1:
           type: integer
+          minimum: 20  # shortest read length
         read_length_r2:
           type: integer
+          minimum: 20  # shortest read length
         insert_size:
-          type: [ integer, "null" ]  # 'null' for non paired end sequencing
+          type: integer
+          minimum: 0
         sample_barcode:  # only applicable for multiplex sequencing libraries
           type: [ string, "null" ]
         library_name:
           type: string
+      if:
+        properties:
+          is_paired_end:  # if paired end, requires read_lenght_r2 and insert_size
+            const: true
+      then:
+        required: [ read_length_r2, insert_size ]

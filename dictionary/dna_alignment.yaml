@@ -159,7 +159,11 @@ properties:
         type: object
         primaryKey:
           surrogateKey: [ id ]
-        $ref: _definitions#/submitted_file
+        allOf:
+        - $ref: _definitions#/submitted_file
+        - properties:
+            name:
+              pattern: "\.(bam|cram)$"  # must have .bam or .cram extension
 
         systemProperties:
           required: [ id, program, repository, created_at, updated_at, derived_from, bundle_id, bundle_type, format, data_type ]
@@ -193,7 +197,11 @@ properties:
         type: object
         primaryKey:
           surrogateKey: [ id ]
-        $ref: _definitions#/data_object
+        allOf:
+        - $ref: _definitions#/submitted_file
+        - properties:
+            name:
+              pattern: "\.(bam\.bai|cram\.crai)$"  # must have .bam.bai or .cram.crai extension
 
         systemProperties:
           required: [ id, program, repository, created_at, updated_at, derived_from, bundle_id, bundle_type, format, data_type ]

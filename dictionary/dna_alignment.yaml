@@ -35,12 +35,12 @@ primaryKey:
   surrogateKey: [ id ]
 
 uniqueKeys:
-- [ lane_bam_submission_id ]
+- [ lane_bam_submission_id ]  # no lane_bam_submission can appear more than once
 
 references:
 - selfKey: [ lane_bam_submission_id ]
   reference:
-    targetEntity: lane_bam_submission
+    targetEntity: lane_bam_submission  # dna_alignment to lane_bam_sumbission is one-to-many relationship
     targetKey: [ id ]
 
 properties:
@@ -48,7 +48,7 @@ properties:
     const: "dna_alignment"
   program:
     $ref: _definitions#/common/properties/program_short_name
-  lane_bam_submission_id:  # the input bundles
+  lane_bam_submission_id:  # the input bundles, one or more lane_bam_submission
     type: array
     minItems: 1
     items:
@@ -60,6 +60,7 @@ properties:
         const: 'DNA Alignment'
       reference_genome:
         enum: [ GRCh37, GRCh38 ]
+        default: GRCh38
       core_tool:
         const: 'BWA MEM'
       tool:  # Tool refers to what's in GA4GH's Tool Registry Service
@@ -111,46 +112,66 @@ properties:
       reference_genome:
         type: object
         properties:
+          reference:
+            type: object
+            properties:
+              object_uri:
+                type: string
+                default: "https://object.cancercollaboratory.org:9080/swift/v1/genomics-public-data/reference-genome/GRCh38_hla_decoy_ebv/GRCh38_hla_decoy_ebv.fa"
+          reference_fai:
+            type: object
+            properties:
+              object_uri:
+                type: string
+                default: "https://object.cancercollaboratory.org:9080/swift/v1/genomics-public-data/reference-genome/GRCh38_hla_decoy_ebv/GRCh38_hla_decoy_ebv.fa.fai"
           reference_gz:
             type: object
             properties:
               object_uri:
                 type: string
+                default: "https://object.cancercollaboratory.org:9080/swift/v1/genomics-public-data/reference-genome/GRCh38_hla_decoy_ebv/GRCh38_hla_decoy_ebv.fa.gz"
           reference_gz_fai:
             type: object
             properties:
               object_uri:
                 type: string
-          reference_gz_fai:
+                default: "https://object.cancercollaboratory.org:9080/swift/v1/genomics-public-data/reference-genome/GRCh38_hla_decoy_ebv/GRCh38_hla_decoy_ebv.fa.gz.fai"
+          reference_gz_alt:
             type: object
             properties:
               object_uri:
                 type: string
+                default: "https://object.cancercollaboratory.org:9080/swift/v1/genomics-public-data/reference-genome/GRCh38_hla_decoy_ebv/GRCh38_hla_decoy_ebv.fa.gz.alt"
           reference_gz_bwt:
             type: object
             properties:
               object_uri:
                 type: string
+                default: "https://object.cancercollaboratory.org:9080/swift/v1/genomics-public-data/reference-genome/GRCh38_hla_decoy_ebv/GRCh38_hla_decoy_ebv.fa.gz.bwt"
           reference_gz_ann:
             type: object
             properties:
               object_uri:
                 type: string
+                default: "https://object.cancercollaboratory.org:9080/swift/v1/genomics-public-data/reference-genome/GRCh38_hla_decoy_ebv/GRCh38_hla_decoy_ebv.fa.gz.ann"
           reference_gz_pac:
             type: object
             properties:
               object_uri:
                 type: string
+                default: "https://object.cancercollaboratory.org:9080/swift/v1/genomics-public-data/reference-genome/GRCh38_hla_decoy_ebv/GRCh38_hla_decoy_ebv.fa.gz.pac"
           reference_gz_sa:
             type: object
             properties:
               object_uri:
                 type: string
+                default: "https://object.cancercollaboratory.org:9080/swift/v1/genomics-public-data/reference-genome/GRCh38_hla_decoy_ebv/GRCh38_hla_decoy_ebv.fa.gz.sa"
           reference_gz_amb:
             type: object
             properties:
               object_uri:
                 type: string
+                default: "https://object.cancercollaboratory.org:9080/swift/v1/genomics-public-data/reference-genome/GRCh38_hla_decoy_ebv/GRCh38_hla_decoy_ebv.fa.gz.amb"
   files:
     type: object
     properties:

@@ -100,11 +100,6 @@ properties:
     properties:
       lane_bam:
         type: object
-        references:
-        - selfKey: [ bundle_id, object_id ]
-          reference:
-            targetEntity: data_object
-            targetKey: [ bundle_id, id ]
         properties:
           object_uri:  # if file is local, object_id will be 'null'
             type: string  # pattern: song://<repository>/<bundle_id>/<object_id>

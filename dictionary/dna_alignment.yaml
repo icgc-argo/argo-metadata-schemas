@@ -96,11 +96,6 @@ properties:
         minItems: 1  # at least one, must match number of read groups
         items:
           type: object
-          references:
-          - selfKey: [ bundle_id, object_id ]
-            reference:
-              targetEntity: data_object
-              targetKey: [ bundle_id, id ]
           properties:
             object_uri:  # if file is local, object_id will be 'null'
               type: string  # pattern: song://<repository>/<bundle_id>/<object_id>

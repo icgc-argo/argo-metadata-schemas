@@ -109,11 +109,11 @@ properties:
           object_uri:  # if file is local, object_id will be 'null'
             type: string  # pattern: song://<repository>/<bundle_id>/<object_id>
           bundle_id:  # lane_bam_submission
-            type: string
+            $ref: "#/properties/lane_bam_submission_id"  # get value from
           object_id:  # lane_bam object ID in the above lane_bam_submission
             type: string
           name:  # file name
-            type: string
+            pattern: "\.bam$"  # pattern to find input file from the bundle
           repository:  # repo where the object resides
             type: string
   files:
@@ -126,7 +126,7 @@ properties:
         $ref: _definitions#/submitted_file
 
         systemProperties:
-          required: [ id, program, repository, derived_from, bundle_id, bundle_type, format, data_type ]
+          required: [ id, program, repository, created_at, updated_at, derived_from, bundle_id, bundle_type, format, data_type ]
           allOf:
           - $ref: _definitions#/data_object
           - $ref: _definitions#/repositoryProperties
@@ -150,5 +150,5 @@ properties:
                 const: "TXT"
                 default: "TXT"
               date_type:
-                const: "Read Group QC Metrics"
-                default: "Read Group QC Metrics"
+                const: "RG QC"
+                default: "RG QC"

@@ -92,11 +92,11 @@ properties:
           object_uri:  # if file is local, object_id will be 'null'
             type: string  # pattern: song://<repository>/<bundle_id>/<object_id>
           bundle_id:  # dna_alignment
-            type: string
+            $ref: "#/properties/dna_alignment_id"  # get value from
           object_id:  # aligned sequencing file object ID in the above dna_alignment
             type: string
           name:  # file name
-            type: string
+            pattern: "\.(bam|cram)$"  # find the bam or cram in the bundle as input file
           secondary_file:  # secondary file(s), following CWL standard
             enum: [ '.bai', '.crai' ]
           repository:  # repo where the object resides
@@ -136,7 +136,7 @@ properties:
         $ref: _definitions#/data_object
 
         systemProperties:
-          required: [ id, program, repository, derived_from, bundle_id, bundle_type, format, data_type ]
+          required: [ id, program, repository, created_at, updated_at, derived_from, bundle_id, bundle_type, format, data_type ]
           allOf:
           - $ref: _definitions#/data_object
           - $ref: _definitions#/repositoryProperties
@@ -158,8 +158,8 @@ properties:
                 const: "PDF"
                 default: "PDF"
               date_type:
-                const: "Alignment QC Plot"
-                default: "Alignment QC Plot"
+                const: "Alignment QC"
+                default: "Alignment QC"
 
       bait_bias_detail_metrics:
         $id: "#data_object/txt"
@@ -169,7 +169,7 @@ properties:
         $ref: _definitions#/submitted_file
 
         systemProperties:
-          required: [ id, program, repository, derived_from, bundle_id, bundle_type, format, data_type ]
+          required: [ id, program, repository, created_at, updated_at, derived_from, bundle_id, bundle_type, format, data_type ]
           allOf:
           - $ref: _definitions#/data_object
           - $ref: _definitions#/repositoryProperties
@@ -191,8 +191,8 @@ properties:
                 const: "TXT"
                 default: "TXT"
               date_type:
-                const: "Alignment QC Metrics"
-                default: "Alignment QC Metrics"
+                const: "Alignment QC"
+                default: "Alignment QC"
 
       quality_by_cycle:
         $ref: "#data_object/txt"

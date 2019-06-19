@@ -105,11 +105,12 @@ properties:
             object_uri:  # if file is local, object_id will be 'null'
               type: string  # pattern: song://<repository>/<bundle_id>/<object_id>
             bundle_id:  # lane_bam_submission
-              type: string
+              $ref: "#/properties/lane_bam_submission_id/items"  # get value from there
             object_id:  # lane_bam object ID in the above lane_bam_submission
               type: string
             name:  # file name
               type: string
+              pattern: "\.bam$"  # filename pattern to fine the file in the bundle
             repository:  # repo where the object resides
               type: string
       reference_genome:
@@ -166,7 +167,7 @@ properties:
         $ref: _definitions#/submitted_file
 
         systemProperties:
-          required: [ id, program, repository, derived_from, bundle_id, bundle_type, format, data_type ]
+          required: [ id, program, repository, created_at, updated_at, derived_from, bundle_id, bundle_type, format, data_type ]
           allOf:
           - $ref: _definitions#/data_object
           - $ref: _definitions#/repositoryProperties
@@ -189,8 +190,8 @@ properties:
               format:
                 enum: [ "CRAM", "BAM" ]
               date_type:
-                const: "Aligned Sequencing Reads"
-                default: "Aligned Sequencing Reads"
+                const: "Aligned Reads"
+                default: "Aligned Reads"
 
       aligned_seq_index:
         $id: "#data_object/aligned_seq_index"
@@ -200,7 +201,7 @@ properties:
         $ref: _definitions#/data_object
 
         systemProperties:
-          required: [ id, program, repository, derived_from, bundle_id, bundle_type, format, data_type ]
+          required: [ id, program, repository, created_at, updated_at, derived_from, bundle_id, bundle_type, format, data_type ]
           allOf:
           - $ref: _definitions#/data_object
           - $ref: _definitions#/repositoryProperties
@@ -223,5 +224,5 @@ properties:
               format:
                 enum: [ "CRAI", "BAI" ]
               date_type:
-                const: "Aligned Sequencing Reads Index"
-                default: "Aligned Sequencing Reads Index"
+                const: "Aligned Reads Index"
+                default: "Aligned Reads Index"

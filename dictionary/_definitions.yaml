@@ -15,7 +15,7 @@ common:
       readOnly: true  # this makes `id` immutable once created
     submitter_id:
       type: string
-      pattern: "^[a-zA-Z]{1}[a-zA-Z0-9-_.:']{0,98}[a-zA-Z0-9]{1}$"  # max length 100, we have submitter IDs over 60 in ICGC
+      pattern: "^[a-zA-Z0-9]{1}[a-zA-Z0-9-_.:']{0,98}[a-zA-Z0-9]{1}$"  # max length 100, we have submitter IDs over 60 in ICGC
     date:
       type: string
       format: date
@@ -178,6 +178,8 @@ data_object:
         title: "Aligned Sequencing Reads"
       - const: "Aligned Reads Index"
         title: "Aligned Sequencing Reads Index"
+      - const: "VCF Index"
+        title: "VCF Index"
       - const: "RG QC"
         title: "Read Group QC Metrics"
       - const: "Alignment QC"

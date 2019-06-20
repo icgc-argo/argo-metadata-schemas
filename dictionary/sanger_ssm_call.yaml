@@ -1,0 +1,208 @@
+$schema: "http://dcc.icgc-argo.org/draft-00/schema#"
+
+$id: "sanger_ssm_call"
+title: SSM calling by Sanger Workflow
+version: 0
+category: data_bundle
+type: object
+description: ""
+additionalProperties: false
+
+systemProperties:
+  properties:
+    status:
+      $ref: _definitions#/common/properties/bundle_status
+    id:
+      $ref: _definitions#/common/properties/uuid
+    tumour_sample_id:  # to be magically populated by the system through traversing back from 'tumour_dna_alignment_id' to the 'sample'
+      $ref: sample#/systemProperties/properties/id
+    specimen_id:  # to be magically populated by the system through traversing back to the 'specimen'
+      $ref: specimen#/systemProperties/properties/id
+    specimen_type:  # to be magically populated by the system through traversing back to the 'specimen'
+      $ref: specimen#/properties/specimen_type
+    normal_or_tumour_designation:  # to be magically populated by the system through traversing back to the 'specimen'
+      $ref: specimen#/properties/normal_or_tumour_designation
+
+required:
+- type
+- program
+- tumour_dna_alignment_id
+- normal_dna_alignment_id
+- analysis
+- input_files
+- files
+
+primaryKey:
+  surrogateKey: [ id ]
+
+uniqueKeys:
+- [ tumour_dna_alignment_id ]  # no tumour dna_alignment_id can appear more than once, no duplicate calling
+
+references:
+- selfKey: [ tumour_dna_alignment_id ]
+  reference:
+    targetEntity: dna_alignment  # sanger_ssm_call to tumour dna_alignment is one-to-one relationship
+    targetKey: [ id ]
+- selfKey: [ normal_dna_alignment_id ]
+  reference:
+    targetEntity: dna_alignment  # sanger_ssm_call to normal dna_alignment could be one-to-one or many-to-one relationship, one normal may paired with one or more tumours
+    targetKey: [ id ]
+
+properties:
+  type:
+    const: "sanger_ssm_call"
+  program:
+    $ref: _definitions#/common/properties/program_short_name
+  tumour_dna_alignment_id:  # the input bundle of tumour dna_alignment
+    $ref: dna_alignment#/systemProperties/properties/id
+  normal_dna_alignment_id:  # the input bundle of normal dna_alignment
+    $ref: dna_alignment#/systemProperties/properties/id
+  analysis:
+    type: object
+    properties:
+      analysis_type:
+        const: 'Simple somatic mutation calling'
+      reference_genome:
+        enum: [ GRCh37, GRCh38 ]
+        default: GRCh38
+      core_tool:
+        const: 'CaVEMan'
+      tool:  # Tool refers to what's in GA4GH's Tool Registry Service
+        type: object
+        properties:
+          registry:
+            type: string  # such as Dockstore
+          tool_id:
+            type: string
+          tool_name:
+            type: string
+          version:
+            type: string
+      execution:
+        type: object
+        properties:
+          runner_name:
+            type: string
+          runner_version:
+            type: string
+          job_id:
+            type: string
+          started_at:
+            type: string
+            format: date-time
+          completed_at:
+            type: string
+            format: date-time
+  input_files:  # input files are multiple lane level unaligned bam files
+    type: object
+    properties:
+      tumour_dna_seq:
+        type: object
+        properties:
+          object_uri:  # if file is local, object_id will be 'null'
+            type: string  # pattern: song://<repository>/<bundle_id>/<object_id>
+          bundle_id:  # dna_alignment
+            $ref: "#/properties/tumour_dna_alignment_id"  # get value from there
+          object_id:  # aligned seq object ID in the above dna_alignment
+            type: string
+          name:  # file name
+            pattern: "\.(bam|cram)$"  # find the bam or cram in the bundle as input file
+          secondary_file:  # secondary file(s), following CWL standard
+            enum: [ '.bai', '.crai' ]
+          repository:  # repo where the object resides
+            type: string
+      normal_dna_seq:
+        type: object
+        properties:
+          object_uri:  # if file is local, object_id will be 'null'
+            type: string  # pattern: song://<repository>/<bundle_id>/<object_id>
+          bundle_id:  # dna_alignment
+            $ref: "#/properties/normal_dna_alignment_id"  # get value from there
+          object_id:  # aligned seq object ID in the above dna_alignment
+            type: string
+          name:  # file name
+            pattern: "\.(bam|cram)$"  # find the bam or cram in the bundle as input file
+          secondary_file:  # secondary file(s), following CWL standard
+            enum: [ '.bai', '.crai' ]
+          repository:  # repo where the object resides
+            type: string
+      reference_file:  # other files such as references to be fleshed out
+        type: object
+  files:
+    type: object
+    properties:
+      vcf:
+        $id: "#data_object/vcf"
+        type: object
+        primaryKey:
+          surrogateKey: [ id ]
+        allOf:
+        - $ref: _definitions#/submitted_file
+        - properties:
+            name:
+              pattern: "\.vcf\.gz$"  # must have .bam or .cram extension
+
+        systemProperties:
+          required: [ id, program, repository, created_at, updated_at, derived_from, bundle_id, bundle_type, format, data_type ]
+          allOf:
+          - $ref: _definitions#/data_object
+          - $ref: _definitions#/repositoryProperties
+          - properties:
+              id:  # surrogate key
+                $ref: _definitions#/data_object/properties/id
+              program:  # copied from containing parent
+                $ref: "#/properties/program"
+              derived_from:
+                type: object
+                properties:
+                  type:
+                    const: "sample"
+                  id:  # copied from containing parent
+                    $ref: "#/systemProperties/properties/tumour_sample_id"  # TODO: add link to normal sample
+              bundle_id:  # copied from containing parent
+                $ref: "#/systemProperties/properties/id"
+              bundle_type:
+                const: "ssm_call"
+              format:
+                const: "VCF"
+              date_type:
+                const: "SSM"
+                default: "SSM"
+
+      vcf_index:
+        $id: "#data_object/vcf_index"
+        type: object
+        primaryKey:
+          surrogateKey: [ id ]
+        allOf:
+        - $ref: _definitions#/submitted_file
+        - properties:
+            name:
+              pattern: "\.vcf\.gz\.tbi$"  # must have .vcf.gz.tbi extension
+
+        systemProperties:
+          required: [ id, program, repository, created_at, updated_at, derived_from, bundle_id, bundle_type, format, data_type ]
+          allOf:
+          - $ref: _definitions#/data_object
+          - $ref: _definitions#/repositoryProperties
+          - properties:
+              id:  # surrogate key
+                $ref: _definitions#/data_object/properties/id
+              program:  # copied from containing parent
+                $ref: "#/properties/program"
+              derived_from:
+                type: object
+                properties:
+                  type:
+                    const: "sample"
+                  id:  # copied from containing parent
+                    $ref: "#/systemProperties/properties/tumour_sample_id"  # TODO: add link to normal sample
+              bundle_id:  # copied from containing parent
+                $ref: "#/systemProperties/properties/id"
+              bundle_type:
+                const: "ssm_call"
+              format:
+                const: "TBI"
+              date_type:
+                const: "VCF Index"
+                default: "VCF Index"

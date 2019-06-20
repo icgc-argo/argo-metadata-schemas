@@ -37,7 +37,7 @@ properties:
   program:
     $ref: _definitions#/common/properties/program_short_name
   vital_status:
-    enum: [ "deceaded", "alive", "unknown" ]
+    enum: [ "deceased", "alive", "unknown" ]
   gender:
     enum: [ "female", "male", "other" ]
     description: "Donor biological sex"
@@ -46,7 +46,7 @@ properties:
     scriptValidations:
     - "$cv(ethnicity)"
   cause_of_death:
-    enum: [ "died of cancer", "died of other reasons", null ]  # null means not applicable, eg, donor not deceaded yet
+    enum: [ "died of cancer", "died of other reasons", null ]  # null means not applicable, eg, donor not deceased yet
   survival_time:
     type: integer
     minimum: 0

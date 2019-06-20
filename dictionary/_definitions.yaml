@@ -47,7 +47,7 @@ submitted_file:
   - properties:
       name:  # if omitted, name will be original file name from local_path
         type: string
-        pattern: "^[A-Za-z0-9_-]{1}[A-Za-z0-9_-.]{0,199}"  # max length 200 chars
+        pattern: "^[A-Za-z0-9_-]{1}[A-Za-z0-9-_.]{0,199}"  # max length 200 chars
       local_path:  # fullpath includes path and file name
         type: string
       size:

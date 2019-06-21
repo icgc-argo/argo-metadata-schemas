@@ -15,9 +15,11 @@ systemProperties:
     id:
       $ref: _definitions#/common/properties/uuid
     read_group_id:  # FK points to PK of read_group
-      $ref: lane_bam_submission#/systemProperties/properties/id
-    sample_id:  # to be magically populated by the system through traversing back to the 'sample'
-      $ref: lane_bam_submission#/systemProperties/properties/id
+      $ref: lane_bam_submission#/systemProperties/properties/read_group_id
+    library_strategy:
+      $ref: lane_bam_submission#/systemProperties/properties/library_strategy
+    donor:
+      $ref: lane_bam_submission#/systemProperties/properties/donor
 
 required:
 - type
@@ -134,6 +136,8 @@ properties:
                 $ref: _definitions#/data_object/properties/id
               program:  # copied from containing parent
                 $ref: "#/properties/program"
+              donor:  # copied from containing parent
+                $ref: "#/systemProperties/properties/donor"
               derived_from:
                 type: object
                 properties:

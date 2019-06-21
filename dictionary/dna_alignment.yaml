@@ -14,14 +14,24 @@ systemProperties:
       $ref: _definitions#/common/properties/bundle_status
     id:
       $ref: _definitions#/common/properties/uuid
-    sample_id:  # to be magically populated by the system through traversing back to the 'sample'
-      $ref: sample#/systemProperties/properties/id
-    specimen_id:  # to be magically populated by the system through traversing back to the 'specimen'
-      $ref: specimen#/systemProperties/properties/id
-    specimen_type:  # to be magically populated by the system through traversing back to the 'specimen'
-      $ref: specimen#/properties/specimen_type
-    normal_or_tumour_designation:  # to be magically populated by the system through traversing back to the 'specimen'
-      $ref: specimen#/properties/normal_or_tumour_designation
+    donor:  # donor/biospecimen tree
+      properties:
+        donor_id:
+          $ref: donor#/systemProperties/properties/id
+        specimen:
+          properties:
+            specimen_id:
+              $ref: specimen#/systemProperties/properties/id
+            specimen_type:  # to be magically populated by the system through traversing back to the 'specimen'
+              $ref: specimen#/properties/specimen_type
+            normal_or_tumour_designation:  # to be magically populated by the system through traversing back to the 'specimen'
+              $ref: specimen#/properties/normal_or_tumour_designation
+            sample:
+              properties:
+                sample_id:  # to be magically populated by the system through traversing back to the 'sample'
+                  $ref: sample#/systemProperties/properties/id
+    library_strategy:  # to be magically populated by the system through traversing back to the 'sequencing_experiment'
+      $ref: sequencing_experiment#/properties/library_strategy
 
 required:
 - type
@@ -196,6 +206,8 @@ properties:
                 $ref: _definitions#/data_object/properties/id
               program:  # copied from containing parent
                 $ref: "#/properties/program"
+              donor:  # copied from containing parent
+                $ref: "#/systemProperties/properties/donor"
               derived_from:
                 type: object
                 properties:
@@ -234,6 +246,8 @@ properties:
                 $ref: _definitions#/data_object/properties/id
               program:  # copied from containing parent
                 $ref: "#/properties/program"
+              donor:  # copied from containing parent
+                $ref: "#/systemProperties/properties/donor"
               derived_from:
                 type: object
                 properties:

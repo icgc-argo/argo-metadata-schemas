@@ -14,10 +14,20 @@ systemProperties:
       $ref: _definitions#/common/properties/bundle_status
     id:
       $ref: _definitions#/common/properties/uuid
+    donor:  # donor/biospecimen tree
+      properties:
+        donor_id:
+          $ref: donor#/systemProperties/properties/id
+        specimen:
+          properties:
+            specimen_id:
+              $ref: specimen#/systemProperties/properties/id
+            sample:
+              properties:
+                sample_id:  # to be magically populated by the system through traversing back to the 'sample'
+                  $ref: sample#/systemProperties/properties/id
     read_group_id:  # FK points to PK of read_group
       $ref: read_group#/systemProperties/properties/id
-    sample_id:  # to be magically populated by the system through traversing back to the 'sample'
-      $ref: sample#/systemProperties/properties/id
     library_strategy:  # to be magically populated by the system through traversing back to the 'sequencing_experiment'
       $ref: sequencing_experiment#/properties/library_strategy
 
@@ -68,6 +78,8 @@ properties:
           - properties:
               program:  # copied from containing parent
                 $ref: "#/properties/program"
+              donor:  # copied from containing parent
+                $ref: "#/systemProperties/properties/donor"
               derived_from:
                 type: object
                 properties:

@@ -14,14 +14,28 @@ systemProperties:
       $ref: _definitions#/common/properties/bundle_status
     id:
       $ref: _definitions#/common/properties/uuid
-    tumour_sample_id:  # to be magically populated by the system through traversing back from 'tumour_dna_alignment_id' to the 'sample'
-      $ref: sample#/systemProperties/properties/id
-    specimen_id:  # to be magically populated by the system through traversing back to the 'specimen'
-      $ref: specimen#/systemProperties/properties/id
-    specimen_type:  # to be magically populated by the system through traversing back to the 'specimen'
-      $ref: specimen#/properties/specimen_type
-    normal_or_tumour_designation:  # to be magically populated by the system through traversing back to the 'specimen'
-      $ref: specimen#/properties/normal_or_tumour_designation
+    donor:  # donor/biospecimen tree
+      properties:
+        donor_id:
+          $ref: donor#/systemProperties/properties/id
+        specimen:
+          properties:
+            specimen_id:
+              $ref: specimen#/systemProperties/properties/id
+            specimen_type:  # to be magically populated by the system through traversing back to the 'specimen'
+              $ref: specimen#/properties/specimen_type
+            sample:
+              properties:
+                sample_id:  # to be magically populated by the system through traversing back to the 'sample'
+                  $ref: sample#/systemProperties/properties/id
+        matched_normal:  # identified via noral/dna_alignment_id
+          specimen_id:
+            $ref: specimen#/systemProperties/properties/id
+          sample:
+            sample_id:
+              $ref: sample#/systemProperties/properties/id
+    library_strategy:  # to be magically populated by the system through traversing back to the 'sequencing_experiment'
+      $ref: sequencing_experiment#/properties/library_strategy
 
 required:
 - type
@@ -53,10 +67,14 @@ properties:
     const: "sanger_ssm_call"
   program:
     $ref: _definitions#/common/properties/program_short_name
-  tumour_dna_alignment_id:  # the input bundle of tumour dna_alignment
-    $ref: dna_alignment#/systemProperties/properties/id
-  normal_dna_alignment_id:  # the input bundle of normal dna_alignment
-    $ref: dna_alignment#/systemProperties/properties/id
+  tumour:
+    properties:
+      dna_alignment_id:  # the input bundle of tumour dna_alignment
+        $ref: dna_alignment#/systemProperties/properties/id
+  normal:
+    properties:
+      dna_alignment_id:  # the input bundle of normal dna_alignment
+        $ref: dna_alignment#/systemProperties/properties/id
   analysis:
     type: object
     properties:
@@ -102,7 +120,7 @@ properties:
           object_uri:  # if file is local, object_id will be 'null'
             type: string  # pattern: song://<repository>/<bundle_id>/<object_id>
           bundle_id:  # dna_alignment
-            $ref: "#/properties/tumour_dna_alignment_id"  # get value from there
+            $ref: "#/properties/tumour/properties/dna_alignment_id"  # get value from there
           object_id:  # aligned seq object ID in the above dna_alignment
             type: string
           name:  # file name
@@ -117,7 +135,7 @@ properties:
           object_uri:  # if file is local, object_id will be 'null'
             type: string  # pattern: song://<repository>/<bundle_id>/<object_id>
           bundle_id:  # dna_alignment
-            $ref: "#/properties/normal_dna_alignment_id"  # get value from there
+            $ref: "#/properties/normal/properties/dna_alignment_id"  # get value from there
           object_id:  # aligned seq object ID in the above dna_alignment
             type: string
           name:  # file name
@@ -152,6 +170,8 @@ properties:
                 $ref: _definitions#/data_object/properties/id
               program:  # copied from containing parent
                 $ref: "#/properties/program"
+              donor:  # copied from containing parent
+                $ref: "#/systemProperties/properties/donor"
               derived_from:
                 type: object
                 properties:
@@ -190,6 +210,8 @@ properties:
                 $ref: _definitions#/data_object/properties/id
               program:  # copied from containing parent
                 $ref: "#/properties/program"
+              donor:  # copied from containing parent
+                $ref: "#/systemProperties/properties/donor"
               derived_from:
                 type: object
                 properties:

@@ -14,8 +14,10 @@ systemProperties:
       $ref: _definitions#/common/properties/bundle_status
     id:
       $ref: _definitions#/common/properties/uuid
-    sample_id:  # to be magically populated by the system through traversing back to the 'dna_alignment'
-      $ref: dna_alignment#/systemProperties/properties/sample_id
+    donor:
+      $ref: dna_alignment#/systemProperties/properties/donor
+    library_strategy:
+      $ref: dna_alignment#/systemProperties/properties/library_strategy
 
 required:
 - type
@@ -142,6 +144,8 @@ properties:
           - properties:
               program:  # copied from containing parent
                 $ref: "#/properties/program"
+              donor:  # copied from containing parent
+                $ref: "#/systemProperties/properties/donor"
               derived_from:
                 type: object
                 properties:
@@ -179,6 +183,8 @@ properties:
           - properties:
               program:  # copied from containing parent
                 $ref: "#/properties/program"
+              donor:  # copied from containing parent
+                $ref: "#/systemProperties/properties/donor"
               derived_from:
                 type: object
                 properties:

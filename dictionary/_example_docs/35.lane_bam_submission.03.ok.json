@@ -1,0 +1,16 @@
+{
+    "type": "lane_bam_submission",
+    "program": "PRAD-UK",
+    "inputs": {
+        "read_group_submitter_id": "1117725"
+    },
+    "files": {
+        "bam_file": {
+            "name": "180135_icgc.bam",
+            "local_path": "/my/bam/path/180135_icgc.bam",
+            "size": 202437535,
+            "checksum": "f7c24ea18cb0c40a3d8bdb8756fe2f37",
+            "checksum_type": "md5"
+        }
+    }
+}

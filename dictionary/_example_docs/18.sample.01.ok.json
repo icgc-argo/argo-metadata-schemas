@@ -1,0 +1,16 @@
+[
+  {
+    "type": "sample",
+    "submitter_id": "0027_CRUK_PC_0027_Blood_DNA",
+    "specimen_submitter_id": "0027_CRUK_PC_0027_Blood",
+    "program": "PRAD-UK",
+    "sample_type": "DNA"
+  },
+  {
+    "type": "sample",
+    "submitter_id": "0027_CRUK_PC_0027_T1_DNA",
+    "specimen_submitter_id": "0027_CRUK_PC_0027_T1",
+    "program": "PRAD-UK",
+    "sample_type": "DNA"
+  }
+]

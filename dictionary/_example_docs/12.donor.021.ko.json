@@ -1,0 +1,45 @@
+[
+  {
+    "submitter_id": "A113-23",
+    "program": "PACA-CA",
+    "gender": "male",
+    "vital_status": "alive"
+  },
+  {
+    "type": "donor",
+    "submitter_id": "A113-23",
+    "program": "UNKNOWN-PG",
+    "gender": "male",
+    "vital_status": "alive"
+  },
+  {
+    "type": "donor",
+    "submitter_id": "A113-23",
+    "program": "PACA-CA",
+    "gender": "",
+    "vital_status": "alive"
+  },
+  {
+    "type": "donor",
+    "submitter_id": "A2",
+    "program": "PACA-CA",
+    "gender": "female",
+    "vital_status": "deceased",
+    "survival_time": 600,
+    "cause_of_death": "died of other"
+  },
+  {
+    "type": "donor",
+    "id": "DO1323",
+    "program": "PACA-CA",
+    "vital_status": "alive"
+  },
+  {
+    "type": "donor",
+    "submitter_id": "A113-23",
+    "program": "PACA-CA",
+    "gender": "male",
+    "vital_status": "alive",
+    "unknown_extra_field": "dfa"
+  }
+]

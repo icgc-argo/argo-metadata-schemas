@@ -1,0 +1,59 @@
+{
+    "type": "dna_alignment",
+    "program": "PRAD-UK",
+    "inputs": {
+        "lane_bam_submission_id": [
+            "3abe7053-3234-4faa-a24c-39df11e5569e",
+            "02adbffc-c6f1-49d0-9518-e2d6d0c86f33",
+            "a64548d3-9ed9-4ad4-913e-0b7b94658265"
+        ]
+    },
+    "input_files": {
+        "lane_bams": [
+            {
+                "object_uri": "drs://Collab/3abe7053-3234-4faa-a24c-39df11e5569e/e477463b-ffb4-41a9-862e-55ef2ebfc04a",
+                "bundle_id": "3abe7053-3234-4faa-a24c-39df11e5569e",
+                "object_id": "e477463b-ffb4-41a9-862e-55ef2ebfc04a",
+                "name": "180126_icgc.bam",
+                "repository": "Collab"
+            },
+            {
+                "object_uri": "drs://Collab/02adbffc-c6f1-49d0-9518-e2d6d0c86f33/4032dea0-60ec-4094-8805-16723de70e3f",
+                "bundle_id": "02adbffc-c6f1-49d0-9518-e2d6d0c86f33",
+                "object_id": "4032dea0-60ec-4094-8805-16723de70e3f",
+                "name": "180130_icgc.bam",
+                "repository": "Collab"
+            },
+            {
+                "object_uri": "drs://Collab/a64548d3-9ed9-4ad4-913e-0b7b94658265/ffcd79d6-a7fb-47ba-81d9-f9cd2a63c84f",
+                "bundle_id": "a64548d3-9ed9-4ad4-913e-0b7b94658265",
+                "object_id": "ffcd79d6-a7fb-47ba-81d9-f9cd2a63c84f",
+                "name": "180135_icgc.bam",
+                "repository": "Collab"
+            }
+        ]
+    },
+    "analysis": {
+        "analysis_type": "DNA Alignment",
+        "reference_genome": "GRCh38",
+        "core_tool": "BWA MEM",
+        "tool": {},
+        "execution": {}
+    },
+    "files": {
+        "aligned_seq": {
+            "name": "ccdc18ea765f4ef1809d8e281ad8dcbd.bam",
+            "local_path": "/my/file/path/ccdc18ea765f4ef1809d8e281ad8dcbd.bam",
+            "size": 932434232,
+            "checksum": "6b2b764507a743708ef38a760444887c",
+            "checksum_type": "md5"
+        },
+        "aligned_seq_index": {
+            "name": "ccdc18ea765f4ef1809d8e281ad8dcbd.bam.bai",
+            "local_path": "/my/file/path/ccdc18ea765f4ef1809d8e281ad8dcbd.bam.bai",
+            "size": 589343,
+            "checksum": "05ecf5a05b524190b55b74a1cfb38dc2",
+            "checksum_type": "md5"
+        }
+    }
+}

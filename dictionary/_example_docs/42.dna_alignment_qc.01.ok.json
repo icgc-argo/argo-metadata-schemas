@@ -1,0 +1,50 @@
+{
+    "type": "dna_alignment_qc",
+    "program": "PRAD-UK",
+    "inputs": {
+        "dna_alignment_id": "6bea0dd1-e9f5-4a00-a6f0-32cb98eea370"
+    },
+    "input_files": {
+        "lane_bam": {
+            "object_uri": "drs://Collab/6bea0dd1-e9f5-4a00-a6f0-32cb98eea370/04ab8b82-e758-415a-abd5-ae27e0cfeaac",
+            "bundle_id": "6bea0dd1-e9f5-4a00-a6f0-32cb98eea370",
+            "object_id": "04ab8b82-e758-415a-abd5-ae27e0cfeaac",
+            "name": "ccdc18ea765f4ef1809d8e281ad8dcbd.bam",
+            "repository": "Collab"
+        }
+    },
+    "analysis": {
+        "analysis_type": "QC",
+        "core_tool": "Picard",
+        "tool": {},
+        "execution": {}
+    },
+    "qc_metrics": {
+        "insert_size_stats": {
+            "max_insert_size": 40377839,
+            "mean_insert_size": 186,
+            "median_absolute_deviation": 48,
+            "median_insert_size": 175,
+            "min_insert_size": 80,
+            "mode_insert_size": 126,
+            "read_pairs": 97,
+            "standard_deviation": 84
+        }
+    },
+    "files": {
+        "quality_distribution": {
+            "name": "ccdc18ea765f4ef1809d8e281ad8dcbd.pdf.gz",
+            "local_path": "/my/file/path/ccdc18ea765f4ef1809d8e281ad8dcbd.pdf.gz",
+            "size": 34232,
+            "checksum": "7e438941b6f34d149b443b51b6b0951c",
+            "checksum_type": "md5"
+        },
+        "bait_bias_detail_metrics": {
+            "name": "ccdc18ea765f4ef1809d8e281ad8dcbd.txt.gz",
+            "local_path": "/my/file/path/ccdc18ea765f4ef1809d8e281ad8dcbd.txt.gz",
+            "size": 2322,
+            "checksum": "8c353eb555af4b58ad5f818670a3ed80",
+            "checksum_type": "md5"
+        }
+    }
+}

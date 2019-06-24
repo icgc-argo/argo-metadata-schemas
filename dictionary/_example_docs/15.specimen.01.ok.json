@@ -1,0 +1,18 @@
+[
+  {
+    "type": "specimen",
+    "submitter_id": "0027_CRUK_PC_0027_Blood",
+    "donor_submitter_id": "0027_CRUK_PC_0027",
+    "program": "PRAD-UK",
+    "normal_or_tumour_designation": "normal",
+    "specimen_type": "Normal - blood derived"
+  },
+  {
+    "type": "specimen",
+    "submitter_id": "0027_CRUK_PC_0027_T1",
+    "donor_submitter_id": "0027_CRUK_PC_0027",
+    "program": "PRAD-UK",
+    "normal_or_tumour_designation": "tumour",
+    "specimen_type": "Primary tumour - solid tissue"
+  }
+]

@@ -2,7 +2,7 @@
     "type": "lane_bam_qc",
     "program": "PRAD-UK",
     "inputs": {
-        "lane_bam_submission_id": "f16cca4c-f387-4d46-978c-535bf337610b"
+        "lane_bam_submission_id": "3abe7053-3234-4faa-a24c-39df11e5569e"
     },
     "input_files": {
         "lane_bam": {

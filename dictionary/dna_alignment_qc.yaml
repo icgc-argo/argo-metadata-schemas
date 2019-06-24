@@ -22,7 +22,7 @@ systemProperties:
 required:
 - type
 - program
-- dna_alignment_id
+- inputs
 - analysis
 - input_files
 - qc_metrics
@@ -32,10 +32,10 @@ primaryKey:
   surrogateKey: [ id ]
 
 uniqueKeys:
-- [ dna_alignment_id ]
+- [ inputs/dna_alignment_id ]
 
 references:
-- selfKey: [ dna_alignment_id ]
+- selfKey: [ inputs/dna_alignment_id ]
   reference:
     targetEntity: dna_alignment  # dna_alignment_qc to dna_alignment is one-to-one
     targetKey: [ id ]
@@ -45,8 +45,10 @@ properties:
     const: "dna_alignment_qc"
   program:
     $ref: _definitions#/common/properties/program_short_name
-  dna_alignment_id:
-    type: string
+  inputs:
+    properties:
+      dna_alignment_id:
+        $ref: dna_alignment#/systemProperties/properties/id
   analysis:
     type: object
     properties:
@@ -89,11 +91,11 @@ properties:
           object_uri:  # if file is local, object_id will be 'null'
             type: string  # pattern: song://<repository>/<bundle_id>/<object_id>
           bundle_id:  # dna_alignment
-            $ref: "#/properties/dna_alignment_id"  # get value from
+            $ref: "#/properties/inputs/properties/dna_alignment_id"  # get value from
           object_id:  # aligned sequencing file object ID in the above dna_alignment
             type: string
           name:  # file name
-            pattern: "\.(bam|cram)$"  # find the bam or cram in the bundle as input file
+            pattern: '\.(bam|cram)$'  # find the bam or cram in the bundle as input file
           secondary_file:  # secondary file(s), following CWL standard
             enum: [ '.bai', '.crai' ]
           repository:  # repo where the object resides
@@ -116,14 +118,13 @@ properties:
             type: integer
           mode_insert_size:
             type: integer
-          pair_orientation:
-            type: integer
           read_pairs:
             type: integer
           standard_deviation:
             type: integer
   files:
     type: object
+    additionalProperties: false
     properties:
       quality_distribution:
         $id: "#data_object/pdf"
@@ -134,7 +135,7 @@ properties:
         - $ref: _definitions#/submitted_file
         - properties:
             name:
-              pattern: "\.pdf\.gz$"  # must have .pdf.gz extension
+              pattern: '\.pdf\.gz$'  # must have .pdf.gz extension
 
         systemProperties:
           required: [ id, program, repository, created_at, updated_at, derived_from, bundle_id, bundle_type, format, data_type ]
@@ -173,7 +174,7 @@ properties:
         - $ref: _definitions#/submitted_file
         - properties:
             name:
-              pattern: "\.txt\.gz$"  # must have .txt.gz extension
+              pattern: '\.txt\.gz$'  # must have .txt.gz extension
 
         systemProperties:
           required: [ id, program, repository, created_at, updated_at, derived_from, bundle_id, bundle_type, format, data_type ]

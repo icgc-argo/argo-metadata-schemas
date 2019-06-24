@@ -34,17 +34,17 @@ systemProperties:
 required:
 - type
 - program
-- read_group_submitter_id
+- inputs
 - files
 
 primaryKey:
   surrogateKey: [ id ]
 
 uniqueKeys:
-- [ program, read_group_submitter_id ]  # no read group can have more than one lane bam submission
+- [ program, inputs/read_group_submitter_id ]  # no read group can have more than one lane bam submission
 
 references:
-- selfKey: [ program, read_group_submitter_id ]
+- selfKey: [ program, inputs/read_group_submitter_id ]
   reference:
     targetEntity: read_group  # Lane level (aka read group level) BAM submission bundle to read_group relationship is one-to-one
     targetKey: [ program, submitter_id ]
@@ -54,10 +54,13 @@ properties:
     const: "lane_bam_submission"
   program:
     $ref: _definitions#/common/properties/program_short_name
-  read_group_submitter_id:
-    $ref: read_group#/properties/submitter_id
+  inputs:
+    properties:
+      read_group_submitter_id:
+        $ref: _definitions#/common/properties/submitter_id
   files:
     type: object
+    additionalProperties: false
     properties:
       bam_file:
         $id: "#data_object/bam_file"  # data_object is a nested entity under lane_bam_submission
@@ -68,7 +71,7 @@ properties:
         - $ref: _definitions#/submitted_file
         - properties:
             name:
-              pattern: "\.bam$"  # must have .bam extension
+              pattern: '\.bam$'  # must have .bam extension
 
         systemProperties:
           required: [ id, program, repository, created_at, updated_at, derived_from, bundle_id, bundle_type, format, data_type ]

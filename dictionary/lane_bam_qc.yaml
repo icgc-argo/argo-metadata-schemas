@@ -24,7 +24,7 @@ systemProperties:
 required:
 - type
 - program
-- lane_bam_submission_id
+- inputs
 - analysis
 - qc_metrics
 - input_files
@@ -34,10 +34,10 @@ primaryKey:
   surrogateKey: [ id ]
 
 uniqueKeys:
-- [ lane_bam_submission_id ]  # one lane bam can have only one lane_bam_qc record
+- [ inputs/lane_bam_submission_id ]  # one lane bam can have only one lane_bam_qc record
 
 references:
-- selfKey: [ lane_bam_submission_id ]
+- selfKey: [ inputs/lane_bam_submission_id ]
   reference:
     targetEntity: lane_bam_submission  # lane_bam_qc to lane_bam_submission relationship is one-to-one
     targetKey: [ id ]
@@ -47,8 +47,10 @@ properties:
     const: "lane_bam_qc"
   program:
     $ref: _definitions#/common/properties/program_short_name
-  lane_bam_submission_id:  # one lane_bam_submission per lane_bam_qc
-    type: string
+  inputs:
+    properties:
+      lane_bam_submission_id:  # one lane_bam_submission per lane_bam_qc
+        $ref: lane_bam_submission#/systemProperties/properties/id
   analysis:
     type: object
     properties:
@@ -106,14 +108,16 @@ properties:
           object_uri:  # if file is local, object_id will be 'null'
             type: string  # pattern: song://<repository>/<bundle_id>/<object_id>
           bundle_id:  # lane_bam_submission
-            $ref: "#/properties/lane_bam_submission_id"  # get value from
+            $ref: "#/properties/inputs/properties/lane_bam_submission_id"  # get value from
           object_id:  # lane_bam object ID in the above lane_bam_submission
             type: string
           name:  # file name
-            pattern: "\.bam$"  # pattern to find input file from the bundle
+            pattern: '\.bam$'  # pattern to find input file from the bundle
           repository:  # repo where the object resides
             type: string
   files:
+    type: object
+    additionalProperties: false
     properties:
       metrics_file:
         $id: "#data_object/metrics_file"
@@ -124,7 +128,7 @@ properties:
         - $ref: _definitions#/submitted_file
         - properties:
             name:
-              pattern: "\.txt\.gz$"  # must have .txt.gz extension
+              pattern: '\.txt\.gz$'  # must have .txt.gz extension
 
         systemProperties:
           required: [ id, program, repository, created_at, updated_at, derived_from, bundle_id, bundle_type, format, data_type ]

@@ -36,7 +36,7 @@ systemProperties:
 required:
 - type
 - program
-- lane_bam_submission_id
+- inputs
 - analysis
 - input_files
 - files
@@ -45,10 +45,10 @@ primaryKey:
   surrogateKey: [ id ]
 
 uniqueKeys:
-- [ lane_bam_submission_id ]  # no lane_bam_submission can appear more than once
+- [ inputs/lane_bam_submission_id ]  # no lane_bam_submission can appear more than once
 
 references:
-- selfKey: [ lane_bam_submission_id ]
+- selfKey: [ inputs/lane_bam_submission_id ]
   reference:
     targetEntity: lane_bam_submission  # dna_alignment to lane_bam_sumbission is one-to-many relationship
     targetKey: [ id ]
@@ -58,11 +58,13 @@ properties:
     const: "dna_alignment"
   program:
     $ref: _definitions#/common/properties/program_short_name
-  lane_bam_submission_id:  # the input bundles, one or more lane_bam_submission
-    type: array
-    minItems: 1
-    items:
-      $ref: lane_bam_submission#/systemProperties/properties/id
+  inputs:
+    properties:
+      lane_bam_submission_id:
+        type: array
+        minItems: 1
+        items:  # the input bundles, one or more lane_bam_submission
+          $ref: lane_bam_submission#/systemProperties/properties/id
   analysis:
     type: object
     properties:
@@ -111,12 +113,12 @@ properties:
             object_uri:  # if file is local, object_id will be 'null'
               type: string  # pattern: song://<repository>/<bundle_id>/<object_id>
             bundle_id:  # lane_bam_submission
-              $ref: "#/properties/lane_bam_submission_id/items"  # get value from there
+              $ref: "#/properties/inputs/properties/lane_bam_submission_id/items"  # get value from there
             object_id:  # lane_bam object ID in the above lane_bam_submission
               type: string
             name:  # file name
               type: string
-              pattern: "\.bam$"  # filename pattern to fine the file in the bundle
+              pattern: '\.bam$'  # filename pattern to fine the file in the bundle
             repository:  # repo where the object resides
               type: string
       reference_genome:
@@ -184,6 +186,7 @@ properties:
                 default: "https://object.cancercollaboratory.org:9080/swift/v1/genomics-public-data/reference-genome/GRCh38_hla_decoy_ebv/GRCh38_hla_decoy_ebv.fa.gz.amb"
   files:
     type: object
+    additionalProperties: false
     properties:
       aligned_seq:
         $id: "#data_object/aligned_seq"
@@ -194,7 +197,7 @@ properties:
         - $ref: _definitions#/submitted_file
         - properties:
             name:
-              pattern: "\.(bam|cram)$"  # must have .bam or .cram extension
+              pattern: '\.(bam|cram)$'  # must have .bam or .cram extension
 
         systemProperties:
           required: [ id, program, repository, created_at, updated_at, derived_from, bundle_id, bundle_type, format, data_type ]
@@ -234,7 +237,7 @@ properties:
         - $ref: _definitions#/submitted_file
         - properties:
             name:
-              pattern: "\.(bam\.bai|cram\.crai)$"  # must have .bam.bai or .cram.crai extension
+              pattern: '\.(bam\.bai|cram\.crai)$'  # must have .bam.bai or .cram.crai extension
 
         systemProperties:
           required: [ id, program, repository, created_at, updated_at, derived_from, bundle_id, bundle_type, format, data_type ]

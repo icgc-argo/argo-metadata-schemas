@@ -39,6 +39,7 @@ common:
       - PACA-CA
       - PRAD-CA
       - PBCA-DE
+      - PRAD-UK
 
 submitted_file:
   type: object
@@ -60,92 +61,92 @@ submitted_file:
   - oneOf:
     - properties:
         name:
-          pattern: "\.bam$"
+          pattern: '\.bam$'
         format:
           const: BAM
     - properties:
         name:
-          pattern: "\.bam\.bai$"
+          pattern: '\.bam\.bai$'
         format:
           const: BAI
     - properties:
         name:
-          pattern: "\.cram$"
+          pattern: '\.cram$'
         format:
           const: CRAM
     - properties:
         name:
-          pattern: "\.cram\.crai$"
+          pattern: '\.cram\.crai$'
         format:
           const: CRAI
     - properties:
         name:
-          pattern: "\.fastq\.gz$"
+          pattern: '\.fastq\.gz$'
         format:
           const: FASTQ
     - properties:
         name:
-          pattern: "\.fq\.gz$"
+          pattern: '\.fq\.gz$'
         format:
           const: FASTQ
     - properties:
         name:
-          pattern: "\.vcf\.gz$"
+          pattern: '\.vcf\.gz$'
         format:
           const: VCF
     - properties:
         name:
-          pattern: "\.vcf\.gz\.tbi$"
+          pattern: '\.vcf\.gz\.tbi$'
         format:
           const: TBI
     - properties:
         name:
-          pattern: "\.tgz$"
+          pattern: '\.tgz$'
         format:
           const: TGZ
     - properties:
         name:
-          pattern: "\.fa.gz$"  # created by bgzip
+          pattern: '\.fa.gz$'  # created by bgzip
         format:
           const: FASTA
     - properties:
         name:
-          pattern: "\.fa\.gz\.fai$"
+          pattern: '\.fa\.gz\.fai$'
         format:
           const: FAI
     - properties:
         name:
-          pattern: "\.fasta.gz$"  # created by bgzip
+          pattern: '\.fasta.gz$'  # created by bgzip
         format:
           const: FASTA
     - properties:
         name:
-          pattern: "\.fasta\.gz\.fai$"
+          pattern: '\.fasta\.gz\.fai$'
         format:
           const: FAI
     - properties:
         name:
-          pattern: "\.txt\.gz$"
+          pattern: '\.txt\.gz$'
         format:
           const: TXT
     - properties:
         name:
-          pattern: "\.tsv\.gz$"
+          pattern: '\.tsv\.gz$'
         format:
           const: TSV
     - properties:
         name:
-          pattern: "\.csv\.gz$"
+          pattern: '\.csv\.gz$'
         format:
           const: CSV
     - properties:
         name:
-          pattern: "\.pdf\.gz$"
+          pattern: '\.pdf\.gz$'
         format:
           const: PDF
     - properties:
         name:
-          pattern: "\.png$"
+          pattern: '\.png$'
         format:
           const: PNG
 
@@ -195,7 +196,7 @@ repositoryProperties:  # this should probably be outsourced to somewhere else, b
       program:
         allOf:
         - $ref: "#/common/properties/program_short_name"
-        - enum: [ "PACA-CA", "PRAD-CA" ]
+        - enum: [ "PACA-CA", "PRAD-CA", "PRAD-UK" ]
       respository:
         allOf:
         - $ref: "#/data_object/properties/respository"

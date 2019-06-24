@@ -49,14 +49,14 @@ primaryKey:
   surrogateKey: [ id ]
 
 uniqueKeys:
-- [ tumour_dna_alignment_id ]  # no tumour dna_alignment_id can appear more than once, no duplicate calling
+- [ inputs/tumour/dna_alignment_id ]  # no tumour dna_alignment_id can appear more than once, no duplicate calling
 
 references:
-- selfKey: [ tumour_dna_alignment_id ]
+- selfKey: [ inputs/tumour/dna_alignment_id ]
   reference:
     targetEntity: dna_alignment  # sanger_ssm_call to tumour dna_alignment is one-to-one relationship
     targetKey: [ id ]
-- selfKey: [ normal_dna_alignment_id ]
+- selfKey: [ inputs/normal/dna_alignment_id ]
   reference:
     targetEntity: dna_alignment  # sanger_ssm_call to normal dna_alignment could be one-to-one or many-to-one relationship, one normal may paired with one or more tumours
     targetKey: [ id ]

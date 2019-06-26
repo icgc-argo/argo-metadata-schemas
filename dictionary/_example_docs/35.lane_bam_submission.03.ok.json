@@ -6,6 +6,7 @@
     },
     "files": {
         "bam_file": {
+            "type": "data_object",
             "name": "180135_icgc.bam",
             "local_path": "/my/bam/path/180135_icgc.bam",
             "size": 202437535,

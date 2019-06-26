@@ -161,7 +161,7 @@ properties:
         - $ref: _definitions#/submitted_file
         - properties:
             name:
-              pattern: '\.vcf\.gz$'  # must have .bam or .cram extension
+              pattern: '\.vcf\.gz$'  # must have .vcf.gz extension
 
         systemProperties:
           required: [ id, program, repository, created_at, updated_at, derived_from, bundle_id, bundle_type, format, data_type ]

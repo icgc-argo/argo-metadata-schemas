@@ -34,6 +34,7 @@
     },
     "files": {
         "vcf": {
+            "type": "data_object",
             "name": "ad28c4a894bd4d979a2c67ab984544e6.vcf.gz",
             "local_path": "/my/file/path/ad28c4a894bd4d979a2c67ab984544e6.vcf.gz",
             "size": 932434232,
@@ -41,6 +42,7 @@
             "checksum_type": "md5"
         },
         "vcf_index": {
+            "type": "data_object",
             "name": "1dc46e90af51470997b3be164bca6a79.vcf.gz.tbi",
             "local_path": "/my/file/path/1dc46e90af51470997b3be164bca6a79.vcf.gz.tbi",
             "size": 589343,

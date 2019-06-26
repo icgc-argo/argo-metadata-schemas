@@ -33,6 +33,7 @@
     },
     "files": {
         "quality_distribution": {
+            "type": "data_object",
             "name": "ccdc18ea765f4ef1809d8e281ad8dcbd.pdf.gz",
             "local_path": "/my/file/path/ccdc18ea765f4ef1809d8e281ad8dcbd.pdf.gz",
             "size": 34232,
@@ -40,6 +41,7 @@
             "checksum_type": "md5"
         },
         "bait_bias_detail_metrics": {
+            "type": "data_object",
             "name": "ccdc18ea765f4ef1809d8e281ad8dcbd.txt.gz",
             "local_path": "/my/file/path/ccdc18ea765f4ef1809d8e281ad8dcbd.txt.gz",
             "size": 2322,

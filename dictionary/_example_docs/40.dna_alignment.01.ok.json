@@ -42,6 +42,7 @@
     },
     "files": {
         "aligned_seq": {
+            "type": "data_object",
             "name": "ccdc18ea765f4ef1809d8e281ad8dcbd.bam",
             "local_path": "/my/file/path/ccdc18ea765f4ef1809d8e281ad8dcbd.bam",
             "size": 932434232,
@@ -49,6 +50,7 @@
             "checksum_type": "md5"
         },
         "aligned_seq_index": {
+            "type": "data_object",
             "name": "ccdc18ea765f4ef1809d8e281ad8dcbd.bam.bai",
             "local_path": "/my/file/path/ccdc18ea765f4ef1809d8e281ad8dcbd.bam.bai",
             "size": 589343,

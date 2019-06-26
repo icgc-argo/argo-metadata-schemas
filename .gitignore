@@ -1,2 +1,16 @@
 .vscode
 .python*
+*.py[cod]
+venv*
+.DS_Store
+*~
+.*.sw[po]
+.build
+.ve
+.env
+.cache
+.pytest
+.bootstrap
+.appveyor.token
+*.bak
+*.log

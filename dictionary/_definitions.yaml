@@ -43,9 +43,11 @@ common:
 
 submitted_file:
   type: object
-  required: [ name, local_path, size, checksum, checksum_type ]
+  required: [ type, name, local_path, size, checksum, checksum_type ]
   allOf:
   - properties:
+      type:
+        const: data_object
       name:  # if omitted, name will be original file name from local_path
         type: string
         pattern: "^[A-Za-z0-9_-]{1}[A-Za-z0-9-_.]{0,199}"  # max length 200 chars

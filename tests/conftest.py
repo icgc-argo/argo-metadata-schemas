@@ -4,7 +4,7 @@ import yaml
 from glob import glob
 import pytest
 
-rootDir = os.path.dirname(os.path.abspath(__file__)) + '/../dictionary/'
+rootDir = os.path.dirname(os.path.abspath(__file__)) + '/../schemas/'
 os.chdir(rootDir)
 
 # get config

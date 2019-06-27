@@ -2,24 +2,39 @@ $schema: "http://dcc.icgc-argo.org/draft-00/schema#"
 
 $id: "lane_bam_qc"
 title: Unaligned lane level sequencing reads QC report
-version: 0
-category: data_bundle
 type: object
 description: ""
 additionalProperties: false
 
-systemProperties:
-  properties:
-    status:
-      $ref: _definitions#/common/properties/bundle_status
-    id:
-      $ref: _definitions#/common/properties/uuid
-    read_group_id:  # FK points to PK of read_group
-      $ref: lane_bam_submission#/systemProperties/properties/read_group_id
-    library_strategy:
-      $ref: lane_bam_submission#/systemProperties/properties/library_strategy
-    donor:
-      $ref: lane_bam_submission#/systemProperties/properties/donor
+definitions:
+  relationDef:
+    $ref: '_definitions#/relationDef'
+    const:
+      category: data_bundle
+      version: 0
+      primaryKey:
+      - '#/definitions/systemProperties/properties/id'
+      uniqueKey:
+      - [ '#/properties/inputs/properties/lane_bam_submission_id' ]   # one lane bam can have only one lane_bam_qc record
+      references:
+      - foreignKey:
+        - '#/properties/inputs/properties/lane_bam_submission_id'
+        targetEntity: 'lane_bam_submission'  # lane_bam_qc to lane_bam_submission relationship is one-to-one
+        targetKey:  # relationship by primaryKey
+        - 'lane_bam_submission#/definitions/systemProperties/properties/id'
+
+  systemProperties:
+    properties:
+      status:
+        $ref: _definitions#/common/properties/bundle_status
+      id:
+        $ref: _definitions#/common/properties/uuid
+      read_group_id:  # FK points to PK of read_group
+        $ref: lane_bam_submission#/definitions/systemProperties/properties/read_group_id
+      library_strategy:
+        $ref: lane_bam_submission#/definitions/systemProperties/properties/library_strategy
+      donor:
+        $ref: lane_bam_submission#/definitions/systemProperties/properties/donor
 
 required:
 - type
@@ -30,18 +45,6 @@ required:
 - input_files
 - files
 
-primaryKey:
-  surrogateKey: [ id ]
-
-uniqueKeys:
-- [ inputs/lane_bam_submission_id ]  # one lane bam can have only one lane_bam_qc record
-
-references:
-- selfKey: [ inputs/lane_bam_submission_id ]
-  reference:
-    targetEntity: lane_bam_submission  # lane_bam_qc to lane_bam_submission relationship is one-to-one
-    targetKey: [ id ]
-
 properties:
   type:
     const: "lane_bam_qc"
@@ -50,7 +53,7 @@ properties:
   inputs:
     properties:
       lane_bam_submission_id:  # one lane_bam_submission per lane_bam_qc
-        $ref: lane_bam_submission#/systemProperties/properties/id
+        $ref: lane_bam_submission#/definitions/systemProperties/properties/id
   analysis:
     type: object
     properties:
@@ -122,40 +125,46 @@ properties:
       metrics_file:
         $id: "#data_object/metrics_file"
         type: object
-        primaryKey:
-          surrogateKey: [ id ]
+
+        definitions:
+          relationDef:
+            $ref: '_definitions#/relationDef'
+            const:
+              primaryKey:
+              - '#/properties/files/properties/metrics_file/definitions/systemProperties/properties/id'
+
+          systemProperties:
+            required: [ id, program, repository, created_at, updated_at, derived_from, bundle_id, bundle_type, format, data_type ]
+            allOf:
+            - $ref: _definitions#/data_object
+            - $ref: _definitions#/repositoryProperties
+            - properties:
+                id:  # surrogate key
+                  $ref: _definitions#/data_object/properties/id
+                program:  # copied from containing parent
+                  $ref: "#/properties/program"
+                donor:  # copied from containing parent
+                  $ref: "#/definitions/systemProperties/properties/donor"
+                derived_from:
+                  type: object
+                  properties:
+                    type:
+                      const: "read_group"
+                    id:  # copied from containing parent
+                      $ref: "#/definitions/systemProperties/properties/read_group_id"
+                bundle_id:  # copied from containing parent
+                  $ref: "#/definitions/systemProperties/properties/id"
+                bundle_type:
+                  const: "lane_bam_qc"
+                format:
+                  const: "TXT"
+                  default: "TXT"
+                date_type:
+                  const: "RG QC"
+                  default: "RG QC"
+
         allOf:
         - $ref: _definitions#/submitted_file
         - properties:
             name:
               pattern: '\.txt\.gz$'  # must have .txt.gz extension
-
-        systemProperties:
-          required: [ id, program, repository, created_at, updated_at, derived_from, bundle_id, bundle_type, format, data_type ]
-          allOf:
-          - $ref: _definitions#/data_object
-          - $ref: _definitions#/repositoryProperties
-          - properties:
-              id:  # surrogate key
-                $ref: _definitions#/data_object/properties/id
-              program:  # copied from containing parent
-                $ref: "#/properties/program"
-              donor:  # copied from containing parent
-                $ref: "#/systemProperties/properties/donor"
-              derived_from:
-                type: object
-                properties:
-                  type:
-                    const: "read_group"
-                  id:  # copied from containing parent
-                    $ref: "#/systemProperties/properties/read_group_id"
-              bundle_id:  # copied from containing parent
-                $ref: "#/systemProperties/properties/id"
-              bundle_type:
-                const: "lane_bam_qc"
-              format:
-                const: "TXT"
-                default: "TXT"
-              date_type:
-                const: "RG QC"
-                default: "RG QC"

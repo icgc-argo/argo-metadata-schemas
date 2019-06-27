@@ -2,36 +2,51 @@ $schema: "http://dcc.icgc-argo.org/draft-00/schema#"
 
 $id: "dna_alignment"
 title: Uniform alignment of DNA sequencing reads
-version: 0
-category: data_bundle
 type: object
 description: ""
 additionalProperties: false
 
-systemProperties:
-  properties:
-    status:
-      $ref: _definitions#/common/properties/bundle_status
-    id:
-      $ref: _definitions#/common/properties/uuid
-    donor:  # donor/biospecimen tree
-      properties:
-        donor_id:
-          $ref: donor#/systemProperties/properties/id
-        specimen:
-          properties:
-            specimen_id:
-              $ref: specimen#/systemProperties/properties/id
-            specimen_type:  # to be magically populated by the system through traversing back to the 'specimen'
-              $ref: specimen#/properties/specimen_type
-            normal_or_tumour_designation:  # to be magically populated by the system through traversing back to the 'specimen'
-              $ref: specimen#/properties/normal_or_tumour_designation
-            sample:
-              properties:
-                sample_id:  # to be magically populated by the system through traversing back to the 'sample'
-                  $ref: sample#/systemProperties/properties/id
-    library_strategy:  # to be magically populated by the system through traversing back to the 'sequencing_experiment'
-      $ref: sequencing_experiment#/properties/library_strategy
+definitions:
+  relationDef:
+    $ref: '_definitions#/relationDef'
+    const:
+      category: data_bundle
+      version: 0
+      primaryKey:
+      - '#/definitions/systemProperties/properties/id'
+      uniqueKey:
+      - [ '#/properties/inputs/properties/lane_bam_submission_id' ]   # one lane bam submission can only appear once in dna_alignment
+      references:
+      - foreignKey:
+        - '#/properties/inputs/properties/lane_bam_submission_id'
+        targetEntity: 'lane_bam_submission'  # lane_bam_qc to lane_bam_submission relationship is one-to-one
+        targetKey:  # relationship by primaryKey
+        - 'lane_bam_submission#/definitions/systemProperties/properties/id'
+
+  systemProperties:
+    properties:
+      status:
+        $ref: _definitions#/common/properties/bundle_status
+      id:
+        $ref: _definitions#/common/properties/uuid
+      donor:  # donor/biospecimen tree
+        properties:
+          donor_id:
+            $ref: donor#/definitions/systemProperties/properties/id
+          specimen:
+            properties:
+              specimen_id:
+                $ref: specimen#/definitions/systemProperties/properties/id
+              specimen_type:  # to be magically populated by the system through traversing back to the 'specimen'
+                $ref: specimen#/properties/specimen_type
+              normal_or_tumour_designation:  # to be magically populated by the system through traversing back to the 'specimen'
+                $ref: specimen#/properties/normal_or_tumour_designation
+              sample:
+                properties:
+                  sample_id:  # to be magically populated by the system through traversing back to the 'sample'
+                    $ref: sample#/sdefinitions/ystemProperties/properties/id
+      library_strategy:  # to be magically populated by the system through traversing back to the 'sequencing_experiment'
+        $ref: sequencing_experiment#/properties/library_strategy
 
 required:
 - type
@@ -40,18 +55,6 @@ required:
 - analysis
 - input_files
 - files
-
-primaryKey:
-  surrogateKey: [ id ]
-
-uniqueKeys:
-- [ inputs/lane_bam_submission_id ]  # no lane_bam_submission can appear more than once
-
-references:
-- selfKey: [ inputs/lane_bam_submission_id ]
-  reference:
-    targetEntity: lane_bam_submission  # dna_alignment to lane_bam_sumbission is one-to-many relationship
-    targetKey: [ id ]
 
 properties:
   type:
@@ -64,7 +67,7 @@ properties:
         type: array
         minItems: 1
         items:  # the input bundles, one or more lane_bam_submission
-          $ref: lane_bam_submission#/systemProperties/properties/id
+          $ref: lane_bam_submission#/definitions/systemProperties/properties/id
   analysis:
     type: object
     properties:
@@ -199,34 +202,41 @@ properties:
             name:
               pattern: '\.(bam|cram)$'  # must have .bam or .cram extension
 
-        systemProperties:
-          required: [ id, program, repository, created_at, updated_at, derived_from, bundle_id, bundle_type, format, data_type ]
-          allOf:
-          - $ref: _definitions#/data_object
-          - $ref: _definitions#/repositoryProperties
-          - properties:
-              id:  # surrogate key
-                $ref: _definitions#/data_object/properties/id
-              program:  # copied from containing parent
-                $ref: "#/properties/program"
-              donor:  # copied from containing parent
-                $ref: "#/systemProperties/properties/donor"
-              derived_from:
-                type: object
-                properties:
-                  type:
-                    const: "sample"
-                  id:  # copied from containing parent
-                    $ref: "#/systemProperties/properties/sample_id"
-              bundle_id:  # copied from containing parent
-                $ref: "#/systemProperties/properties/id"
-              bundle_type:
-                const: "dna_alignment"
-              format:
-                enum: [ "CRAM", "BAM" ]
-              date_type:
-                const: "Aligned Reads"
-                default: "Aligned Reads"
+        definitions:
+          relationDef:
+            $ref: '_definitions#/relationDef'
+            const:
+              primaryKey:
+              - '#/properties/files/properties/aligned_seq/definitions/systemProperties/properties/id'
+
+          systemProperties:
+            required: [ id, program, repository, created_at, updated_at, derived_from, bundle_id, bundle_type, format, data_type ]
+            allOf:
+            - $ref: _definitions#/data_object
+            - $ref: _definitions#/repositoryProperties
+            - properties:
+                id:  # surrogate key
+                  $ref: _definitions#/data_object/properties/id
+                program:  # copied from containing parent
+                  $ref: "#/properties/program"
+                donor:  # copied from containing parent
+                  $ref: "#/definitions/systemProperties/properties/donor"
+                derived_from:
+                  type: object
+                  properties:
+                    type:
+                      const: "sample"
+                    id:  # copied from containing parent
+                      $ref: "#/definitions/systemProperties/properties/sample_id"
+                bundle_id:  # copied from containing parent
+                  $ref: "#/definitions/systemProperties/properties/id"
+                bundle_type:
+                  const: "dna_alignment"
+                format:
+                  enum: [ "CRAM", "BAM" ]
+                date_type:
+                  const: "Aligned Reads"
+                  default: "Aligned Reads"
 
       aligned_seq_index:
         $id: "#data_object/aligned_seq_index"
@@ -239,31 +249,38 @@ properties:
             name:
               pattern: '\.(bam\.bai|cram\.crai)$'  # must have .bam.bai or .cram.crai extension
 
-        systemProperties:
-          required: [ id, program, repository, created_at, updated_at, derived_from, bundle_id, bundle_type, format, data_type ]
-          allOf:
-          - $ref: _definitions#/data_object
-          - $ref: _definitions#/repositoryProperties
-          - properties:
-              id:  # surrogate key
-                $ref: _definitions#/data_object/properties/id
-              program:  # copied from containing parent
-                $ref: "#/properties/program"
-              donor:  # copied from containing parent
-                $ref: "#/systemProperties/properties/donor"
-              derived_from:
-                type: object
-                properties:
-                  type:
-                    const: "sample"
-                  id:  # copied from containing parent
-                    $ref: "#/systemProperties/properties/sample_id"
-              bundle_id:  # copied from containing parent
-                $ref: "#/systemProperties/properties/id"
-              bundle_type:
-                const: "dna_alignment"
-              format:
-                enum: [ "CRAI", "BAI" ]
-              date_type:
-                const: "Aligned Reads Index"
-                default: "Aligned Reads Index"
+        definitions:
+          relationDef:
+            $ref: '_definitions#/relationDef'
+            const:
+              primaryKey:
+              - '#/properties/files/properties/aligned_seq_index/definitions/systemProperties/properties/id'
+
+          systemProperties:
+            required: [ id, program, repository, created_at, updated_at, derived_from, bundle_id, bundle_type, format, data_type ]
+            allOf:
+            - $ref: _definitions#/data_object
+            - $ref: _definitions#/repositoryProperties
+            - properties:
+                id:  # surrogate key
+                  $ref: _definitions#/data_object/properties/id
+                program:  # copied from containing parent
+                  $ref: "#/properties/program"
+                donor:  # copied from containing parent
+                  $ref: "#/definitions/systemProperties/properties/donor"
+                derived_from:
+                  type: object
+                  properties:
+                    type:
+                      const: "sample"
+                    id:  # copied from containing parent
+                      $ref: "#/definitions/systemProperties/properties/sample_id"
+                bundle_id:  # copied from containing parent
+                  $ref: "#/definitions/systemProperties/properties/id"
+                bundle_type:
+                  const: "dna_alignment"
+                format:
+                  enum: [ "CRAI", "BAI" ]
+                date_type:
+                  const: "Aligned Reads Index"
+                  default: "Aligned Reads Index"

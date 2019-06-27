@@ -2,52 +2,62 @@ $schema: "http://dcc.icgc-argo.org/draft-00/schema#"
 
 $id: "lane_bam_submission"
 title: Lane level unaligned BAM submission bundle, one read group one lane_bam_submission
-version: 0
-category: data_bundle
 type: object
 description: ""
 additionalProperties: false
 
-systemProperties:
-  properties:
-    status:
-      $ref: _definitions#/common/properties/bundle_status
-    id:
-      $ref: _definitions#/common/properties/uuid
-    donor:  # donor/biospecimen tree
-      properties:
-        donor_id:
-          $ref: donor#/systemProperties/properties/id
-        specimen:
-          properties:
-            specimen_id:
-              $ref: specimen#/systemProperties/properties/id
-            sample:
-              properties:
-                sample_id:  # to be magically populated by the system through traversing back to the 'sample'
-                  $ref: sample#/systemProperties/properties/id
-    read_group_id:  # FK points to PK of read_group
-      $ref: read_group#/systemProperties/properties/id
-    library_strategy:  # to be magically populated by the system through traversing back to the 'sequencing_experiment'
-      $ref: sequencing_experiment#/properties/library_strategy
+definitions:
+  relationDef:
+    $ref: '_definitions#/relationDef'
+    const:
+      category: data_submission
+      version: 0
+      primaryKey:
+      - '#/definitions/systemProperties/properties/id'
+      naturalKey:
+      - '#/properties/program'
+      - '#/properties/inputs/properties/read_group_submitter_id'
+      references:
+      - foreignKey:
+        - '#/properties/program'
+        - '#/properties/inputs/properties/read_group_submitter_id'
+        targetEntity: 'read_group'
+        targetKey:  # relationship by naturalKey
+        - 'read_group#/properties/program'
+        - 'read_group#/properties/submitter_id'
+      - foreignKey:
+        - '#/definitions/systemProperties/properties/read_group_id'
+        targetEntity: 'read_group'
+        targetKey:  # relationship by primaryKey
+        - 'read_group#/definitions/systemProperties/properties/id'
+  systemProperties:
+    properties:
+      status:
+        $ref: _definitions#/common/properties/bundle_status
+      id:
+        $ref: _definitions#/common/properties/uuid
+      donor:  # bioentity tree
+        properties:
+          donor_id:
+            $ref: donor#/definitions/systemProperties/properties/id
+          specimen:
+            properties:
+              specimen_id:
+                $ref: specimen#/definitions/systemProperties/properties/id
+              sample:
+                properties:
+                  sample_id:  # to be magically populated by the system through traversing back to the 'sample'
+                    $ref: sample#/definitions/systemProperties/properties/id
+      read_group_id:  # FK points to PK of read_group
+        $ref: read_group#/definitions/systemProperties/properties/id
+      library_strategy:  # to be magically populated by the system through traversing back to the 'sequencing_experiment'
+        $ref: sequencing_experiment#/properties/library_strategy
 
 required:
 - type
 - program
 - inputs
 - files
-
-primaryKey:
-  surrogateKey: [ id ]
-
-uniqueKeys:
-- [ program, inputs/read_group_submitter_id ]  # no read group can have more than one lane bam submission
-
-references:
-- selfKey: [ program, inputs/read_group_submitter_id ]
-  reference:
-    targetEntity: read_group  # Lane level (aka read group level) BAM submission bundle to read_group relationship is one-to-one
-    targetKey: [ program, submitter_id ]
 
 properties:
   type:
@@ -65,38 +75,43 @@ properties:
       bam_file:
         $id: "#data_object/bam_file"  # data_object is a nested entity under lane_bam_submission
         type: object
-        primaryKey:
-          surrogateKey: [ id ]
+
+        definitions:
+          relationDef:
+            $ref: '_definitions#/relationDef'
+            const:
+              primaryKey:
+              - '#/properties/files/properties/bam_file/definitions/systemProperties/properties/id'
+          systemProperties:
+            required: [ id, program, repository, created_at, updated_at, derived_from, bundle_id, bundle_type, format, data_type ]
+            allOf:
+            - $ref: _definitions#/data_object
+            - $ref: _definitions#/repositoryProperties
+            - properties:
+                program:  # copied from containing parent
+                  $ref: "#/properties/program"
+                donor:  # copied from containing parent
+                  $ref: "#/definitions/systemProperties/properties/donor"
+                derived_from:
+                  type: object
+                  properties:
+                    type:
+                      const: "read_group"
+                    id:  # copied from containing parent
+                      $ref: "#/definitions/systemProperties/properties/read_group_id"
+                bundle_id:  # copied from containing parent
+                  $ref: "#/properties/id"
+                bundle_type:
+                  const: "lane_bam_submission"
+                format:
+                  const: "BAM"  # if submitted, it must be "BAM"
+                  default: "BAM"  # when not submitted by the client, default value will be used
+                date_type:
+                  const: "Unaligned Reads"
+                  default: "Unaligned Reads"
+
         allOf:
         - $ref: _definitions#/submitted_file
         - properties:
             name:
               pattern: '\.bam$'  # must have .bam extension
-
-        systemProperties:
-          required: [ id, program, repository, created_at, updated_at, derived_from, bundle_id, bundle_type, format, data_type ]
-          allOf:
-          - $ref: _definitions#/data_object
-          - $ref: _definitions#/repositoryProperties
-          - properties:
-              program:  # copied from containing parent
-                $ref: "#/properties/program"
-              donor:  # copied from containing parent
-                $ref: "#/systemProperties/properties/donor"
-              derived_from:
-                type: object
-                properties:
-                  type:
-                    const: "read_group"
-                  id:  # copied from containing parent
-                    $ref: "#/systemProperties/properties/read_group_id"
-              bundle_id:  # copied from containing parent
-                $ref: "#/properties/id"
-              bundle_type:
-                const: "lane_bam_submission"
-              format:
-                const: "BAM"  # if submitted, it must be "BAM"
-                default: "BAM"  # when not submitted by the client, default value will be used
-              date_type:
-                const: "Unaligned Reads"
-                default: "Unaligned Reads"

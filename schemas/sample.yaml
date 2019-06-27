@@ -2,20 +2,47 @@ $schema: "http://dcc.icgc-argo.org/draft-00/schema#"
 
 $id: "sample"
 title: Sample
-version: 0
-category: biospecimen
 type: object
 description: ""
 additionalProperties: false
 
-systemProperties:  # properties will be populated by the system
-  properties:
-    id:  # primary key, defined in 'primaryKey'
-      allOf:
-      - $ref: _definitions#/common/properties/id
-      - pattern: "^SA"  # id must start with "SA", in addition to pattern defined at _definitions#/common/properties/id
-    specimen_id:  # foreign key to specimen entity, the relationship is defined in 'references'
-      $ref: specimen#/systemProperties/properties/id
+definitions:
+  relationDef:
+    $ref: '_definitions#/relationDef'
+    const:
+      category: bioentity
+      version: 0
+      primaryKey:
+      - '#/definitions/systemProperties/properties/id'
+      naturalKey:
+      - '#/properties/program'
+      - '#/properties/submitter_id'
+      uniqueKey: null
+      references:
+      - foreignKey:
+        - '#/properties/program'
+        - '#/properties/specimen_submitter_id'
+        targetEntity: 'specimen'
+        targetKey:  # relationship by naturalKey
+        - 'specimen#/properties/program'
+        - 'specimen#/properties/submitter_id'
+      - foreignKey:
+        - '#/definitions/systemProperties/properties/specimen_id'
+        targetEntity: 'specimen'
+        targetKey:  # relationship by primaryKey
+        - 'specimen#/definitions/systemProperties/properties/id'
+  scriptValidations:  # script based validation, call returns True for valid or False for invalid
+    $ref: '_definitions#/scriptValidations'
+    const:
+    - "$sumNoGreaterThan(1, [percent_tumour_cells, percent_proliferating_cells, percent_inflammatory_tissue, percent_stromal_cells, percent_necrosis])"
+  systemProperties:  # properties will be populated by the system
+    properties:
+      id:  # primary key, defined in 'primaryKey'
+        allOf:
+        - $ref: _definitions#/common/properties/id
+        - pattern: "^SA"  # id must start with "SA", in addition to pattern defined at _definitions#/common/properties/id
+      specimen_id:  # foreign key to specimen entity, the relationship is defined in 'references'
+        $ref: 'specimen#/definitions/systemProperties/properties/id'
 
 required:
 - type
@@ -23,18 +50,6 @@ required:
 - specimen_submitter_id
 - program
 - sample_type
-
-primaryKey:
-  surrogateKey: [ id ]
-  naturalKey: [ program, submitter_id ]
-
-uniqueKeys: []  # don't need to repeat primary keys here
-
-references:
-- selfKey: [ program, specimen_submitter_id ]
-  reference:
-    targetEntity: specimen  # sample to specimen relationship is many-to-one
-    targetKey: [ program, submitter_id ]
 
 properties:
   type:

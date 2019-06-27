@@ -2,40 +2,60 @@ $schema: "http://dcc.icgc-argo.org/draft-00/schema#"
 
 $id: "sanger_ssm_call"
 title: SSM calling by Sanger Workflow
-version: 0
-category: data_bundle
 type: object
 description: ""
 additionalProperties: false
 
-systemProperties:
-  properties:
-    status:
-      $ref: _definitions#/common/properties/bundle_status
-    id:
-      $ref: _definitions#/common/properties/uuid
-    donor:  # donor/biospecimen tree
-      properties:
-        donor_id:
-          $ref: donor#/systemProperties/properties/id
-        specimen:
-          properties:
+definitions:
+  relationDef:
+    $ref: '_definitions#/relationDef'
+    const:
+      category: data_bundle
+      version: 0
+      primaryKey:
+      - '#/definitions/systemProperties/properties/id'
+      uniqueKey:
+      - [ '#/properties/inputs/properties/tumour/properties/dna_alignment_id' ]   # one lane bam submission can only appear once in dna_alignment
+      references:
+      - foreignKey:
+        - '#/properties/inputs/properties/tumour/properties/dna_alignment_id'
+        targetEntity: 'dna_alignment'  # sanger_ssm_call to tumour dna_alignment is one-to-one relationship
+        targetKey:  # relationship by primaryKey
+        - 'dna_alignment#/definitions/systemProperties/properties/id'
+      - foreignKey:
+        - '#/properties/inputs/properties/normal/properties/dna_alignment_id'
+        targetEntity: 'dna_alignment'  # sanger_ssm_call to normal dna_alignment could be one-to-one or many-to-one relationship, one normal may paired with one or more tumours
+        targetKey:  # relationship by primaryKey
+        - 'dna_alignment#/definitions/systemProperties/properties/id'
+
+  systemProperties:
+    properties:
+      status:
+        $ref: _definitions#/common/properties/bundle_status
+      id:
+        $ref: _definitions#/common/properties/uuid
+      donor:  # donor/biospecimen tree
+        properties:
+          donor_id:
+            $ref: donor#/definitions/systemProperties/properties/id
+          specimen:
+            properties:
+              specimen_id:
+                $ref: specimen#/definitions/systemProperties/properties/id
+              specimen_type:  # to be magically populated by the system through traversing back to the 'specimen'
+                $ref: specimen#/properties/specimen_type
+              sample:
+                properties:
+                  sample_id:  # to be magically populated by the system through traversing back to the 'sample'
+                    $ref: sample#/definitions/systemProperties/properties/id
+          matched_normal:  # identified via noral/dna_alignment_id
             specimen_id:
-              $ref: specimen#/systemProperties/properties/id
-            specimen_type:  # to be magically populated by the system through traversing back to the 'specimen'
-              $ref: specimen#/properties/specimen_type
+              $ref: specimen#/definitions/systemProperties/properties/id
             sample:
-              properties:
-                sample_id:  # to be magically populated by the system through traversing back to the 'sample'
-                  $ref: sample#/systemProperties/properties/id
-        matched_normal:  # identified via noral/dna_alignment_id
-          specimen_id:
-            $ref: specimen#/systemProperties/properties/id
-          sample:
-            sample_id:
-              $ref: sample#/systemProperties/properties/id
-    library_strategy:  # to be magically populated by the system through traversing back to the 'sequencing_experiment'
-      $ref: sequencing_experiment#/properties/library_strategy
+              sample_id:
+                $ref: sample#/definitions/systemProperties/properties/id
+      library_strategy:  # to be magically populated by the system through traversing back to the 'sequencing_experiment'
+        $ref: sequencing_experiment#/properties/library_strategy
 
 required:
 - type
@@ -44,22 +64,6 @@ required:
 - analysis
 - input_files
 - files
-
-primaryKey:
-  surrogateKey: [ id ]
-
-uniqueKeys:
-- [ inputs/tumour/dna_alignment_id ]  # no tumour dna_alignment_id can appear more than once, no duplicate calling
-
-references:
-- selfKey: [ inputs/tumour/dna_alignment_id ]
-  reference:
-    targetEntity: dna_alignment  # sanger_ssm_call to tumour dna_alignment is one-to-one relationship
-    targetKey: [ id ]
-- selfKey: [ inputs/normal/dna_alignment_id ]
-  reference:
-    targetEntity: dna_alignment  # sanger_ssm_call to normal dna_alignment could be one-to-one or many-to-one relationship, one normal may paired with one or more tumours
-    targetKey: [ id ]
 
 properties:
   type:
@@ -72,11 +76,11 @@ properties:
       tumour:
         properties:
           dna_alignment_id:  # the input bundle of tumour dna_alignment
-            $ref: dna_alignment#/systemProperties/properties/id
+            $ref: dna_alignment#/definitions/systemProperties/properties/id
       normal:
         properties:
           dna_alignment_id:  # the input bundle of normal dna_alignment
-            $ref: dna_alignment#/systemProperties/properties/id
+            $ref: dna_alignment#/definitions/systemProperties/properties/id
   analysis:
     type: object
     properties:
@@ -155,79 +159,91 @@ properties:
       vcf:
         $id: "#data_object/vcf"
         type: object
-        primaryKey:
-          surrogateKey: [ id ]
+
         allOf:
         - $ref: _definitions#/submitted_file
         - properties:
             name:
               pattern: '\.vcf\.gz$'  # must have .vcf.gz extension
 
-        systemProperties:
-          required: [ id, program, repository, created_at, updated_at, derived_from, bundle_id, bundle_type, format, data_type ]
-          allOf:
-          - $ref: _definitions#/data_object
-          - $ref: _definitions#/repositoryProperties
-          - properties:
-              id:  # surrogate key
-                $ref: _definitions#/data_object/properties/id
-              program:  # copied from containing parent
-                $ref: "#/properties/program"
-              donor:  # copied from containing parent
-                $ref: "#/systemProperties/properties/donor"
-              derived_from:
-                type: object
-                properties:
-                  type:
-                    const: "sample"
-                  id:  # copied from containing parent
-                    $ref: "#/systemProperties/properties/tumour_sample_id"  # TODO: add link to normal sample
-              bundle_id:  # copied from containing parent
-                $ref: "#/systemProperties/properties/id"
-              bundle_type:
-                const: "ssm_call"
-              format:
-                const: "VCF"
-              date_type:
-                const: "SSM"
-                default: "SSM"
+        definitions:
+          relationDef:
+            $ref: '_definitions#/relationDef'
+            const:
+              primaryKey:
+              - '#/properties/files/properties/aligned_seq/definitions/systemProperties/properties/id'
+
+          systemProperties:
+            required: [ id, program, repository, created_at, updated_at, derived_from, bundle_id, bundle_type, format, data_type ]
+            allOf:
+            - $ref: _definitions#/data_object
+            - $ref: _definitions#/repositoryProperties
+            - properties:
+                id:  # surrogate key
+                  $ref: _definitions#/data_object/properties/id
+                program:  # copied from containing parent
+                  $ref: "#/properties/program"
+                donor:  # copied from containing parent
+                  $ref: "#/definitions/systemProperties/properties/donor"
+                derived_from:
+                  type: object
+                  properties:
+                    type:
+                      const: "sample"
+                    id:  # copied from containing parent
+                      $ref: "#/definitions/systemProperties/properties/donor/properties/specimen/properties/sample/properties/sample_id"
+                bundle_id:  # copied from containing parent
+                  $ref: "#/definitions/systemProperties/properties/id"
+                bundle_type:
+                  const: "ssm_call"
+                format:
+                  const: "VCF"
+                date_type:
+                  const: "SSM"
+                  default: "SSM"
 
       vcf_index:
         $id: "#data_object/vcf_index"
         type: object
-        primaryKey:
-          surrogateKey: [ id ]
+
         allOf:
         - $ref: _definitions#/submitted_file
         - properties:
             name:
               pattern: '\.vcf\.gz\.tbi$'  # must have .vcf.gz.tbi extension
 
-        systemProperties:
-          required: [ id, program, repository, created_at, updated_at, derived_from, bundle_id, bundle_type, format, data_type ]
-          allOf:
-          - $ref: _definitions#/data_object
-          - $ref: _definitions#/repositoryProperties
-          - properties:
-              id:  # surrogate key
-                $ref: _definitions#/data_object/properties/id
-              program:  # copied from containing parent
-                $ref: "#/properties/program"
-              donor:  # copied from containing parent
-                $ref: "#/systemProperties/properties/donor"
-              derived_from:
-                type: object
-                properties:
-                  type:
-                    const: "sample"
-                  id:  # copied from containing parent
-                    $ref: "#/systemProperties/properties/tumour_sample_id"  # TODO: add link to normal sample
-              bundle_id:  # copied from containing parent
-                $ref: "#/systemProperties/properties/id"
-              bundle_type:
-                const: "ssm_call"
-              format:
-                const: "TBI"
-              date_type:
-                const: "VCF Index"
-                default: "VCF Index"
+        definitions:
+          relationDef:
+            $ref: '_definitions#/relationDef'
+            const:
+              primaryKey:
+              - '#/properties/files/properties/aligned_seq/definitions/systemProperties/properties/id'
+
+          systemProperties:
+            required: [ id, program, repository, created_at, updated_at, derived_from, bundle_id, bundle_type, format, data_type ]
+            allOf:
+            - $ref: _definitions#/data_object
+            - $ref: _definitions#/repositoryProperties
+            - properties:
+                id:  # surrogate key
+                  $ref: _definitions#/data_object/properties/id
+                program:  # copied from containing parent
+                  $ref: "#/properties/program"
+                donor:  # copied from containing parent
+                  $ref: "#/definitions/systemProperties/properties/donor"
+                derived_from:
+                  type: object
+                  properties:
+                    type:
+                      const: "sample"
+                    id:  # copied from containing parent
+                      $ref: "#/definitions/systemProperties/properties/donor/properties/specimen/properties/sample/properties/sample_id"
+                bundle_id:  # copied from containing parent
+                  $ref: "#/definitions/systemProperties/properties/id"
+                bundle_type:
+                  const: "ssm_call"
+                format:
+                  const: "TBI"
+                date_type:
+                  const: "VCF Index"
+                  default: "VCF Index"

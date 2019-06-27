@@ -2,20 +2,43 @@ $schema: "http://dcc.icgc-argo.org/draft-00/schema#"
 
 $id: "sequencing_experiment"
 title: Sequencing experiment
-version: 0
-category: experiment
 type: object
 description: ""
 additionalProperties: false
 
-systemProperties:
-  properties:
-    id:
-      allOf:
-      - $ref: _definitions#/common/properties/id
-      - pattern: "^SX"  # id must start with "SX", in addition to pattern defined at _definitions#/common/properties/id
-    sample_id:  # foreign key to sample entity, the relationship is defined in 'references'
-      $ref: sample#/systemProperties/properties/id
+definitions:
+  relationDef:
+    $ref: '_definitions#/relationDef'
+    const:
+      category: experiment
+      version: 0
+      primaryKey:
+      - '#/definitions/systemProperties/properties/id'
+      naturalKey:
+      - '#/properties/program'
+      - '#/properties/submitter_id'
+      uniqueKey: null
+      references:
+      - foreignKey:
+        - '#/properties/program'
+        - '#/properties/sample_submitter_id'
+        targetEntity: 'sample'
+        targetKey:  # relationship by naturalKey
+        - 'sample#/properties/program'
+        - 'sample#/properties/submitter_id'
+      - foreignKey:
+        - '#/definitions/systemProperties/properties/sample_id'
+        targetEntity: 'sample'
+        targetKey:  # relationship by primaryKey
+        - 'sample#/definitions/systemProperties/properties/id'
+  systemProperties:  # properties will be populated by the system
+    properties:
+      id:  # primary key, defined in 'primaryKey'
+        allOf:
+        - $ref: _definitions#/common/properties/id
+        - pattern: "^SX"  # id must start with "SX", in addition to pattern defined at _definitions#/common/properties/id
+      sample_id:  # foreign key to sample entity, the relationship is defined in 'references'
+        $ref: sample#/systemProperties/properties/id
 
 required:
 - type
@@ -28,18 +51,6 @@ required:
 - library_strategy
 - read_group_count
 - read_groups
-
-primaryKey:
-  surrogateKey: [ id ]
-  naturalKey: [ program, submitter_id ]
-
-uniqueKeys: []
-
-references:
-- selfKey: [ program, sample_submitter_id ]
-  reference:
-    targetEntity: sample
-    targetKey: [ program, submitter_id ]
 
 properties:
   type:
@@ -76,15 +87,32 @@ properties:
     - "$intEqual(int1=read_group_count, int2=$len(read_groups)){if(int1==int2){return true} return false}"
   read_groups:  # read groups produced by this sequencing experiment
     type: array
-    items:
-      minItems: 1
-
-      $id: "read_group"  # read_group is a nested entity under sequencing experiment
-      type: object
-      category: biospecimen
-      description: "Read groups from a sequencing experiement"
-      additionalProperties: false
-      systemProperties:
+    definitions:
+      relationDef:
+        $ref: '_definitions#/relationDef'
+        const:
+          category: bioentity
+          version: 0
+          primaryKey:
+          - '#/properties/read_groups/definitions/systemProperties/properties/id'
+          naturalKey:
+          - '#/properties/program'
+          - '#/properties/submitter_id'
+          uniqueKey: null
+          references:
+          - foreignKey:
+            - '#/properties/program'
+            - '#/properties/sample_submitter_id'
+            targetEntity: 'sample'
+            targetKey:  # relationship by naturalKey
+            - 'sample#/properties/program'
+            - 'sample#/properties/submitter_id'
+          - foreignKey:
+            - '#/definitions/systemProperties/properties/sample_id'
+            targetEntity: 'sample'
+            targetKey:  # relationship by primaryKey
+            - 'sample#/definitions/systemProperties/properties/id'
+      systemProperties:  # properties will be populated by the system
         properties:
           id:  # system generated globally unique read group ID
             allOf:
@@ -98,13 +126,20 @@ properties:
             $ref: "#/properties/submitter_id"
           sequencing_experiment_id:
             # this field gets value from containing parent
-            $ref: "#/systemProperties/properties/id"
+            $ref: "#/definitions/systemProperties/properties/id"
           sample_submitter_id:
             # this field gets value from containing parent
-            $ref: "#/properties/sample_submitter_id"
+            $ref: "#/definitions/properties/sample_submitter_id"
           sample_id:
             # this field gets value from containing parent
-            $ref: "#/systemProperties/properties/sample_id"
+            $ref: "#/definitions/systemProperties/properties/sample_id"
+    items:
+      minItems: 1
+
+      $id: "read_group"  # read_group is a nested entity under sequencing experiment
+      type: object
+      description: "Read groups from a sequencing experiement"
+      additionalProperties: false
 
       required:
       - type
@@ -113,20 +148,6 @@ properties:
       - is_paired_end
       - read_length_r1
       - library_name
-
-      primaryKey:
-        surrogateKey: [ id ]
-        naturalKey: [ program, submitter_id ]
-
-      references:
-      - selfKey: [ sequencing_experiment_id ]
-        reference:
-          targetEntity: sequencing_experiment  # reference to containing parent
-          targetKey: [ id ]
-      - selfKey: [ sample_id ]  # inherits this relationship from containing parent
-        reference:
-          targetEntity: sample
-          targetKey: [ id ]
 
       properties:
         type:

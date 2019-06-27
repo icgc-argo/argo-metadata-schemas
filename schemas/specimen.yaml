@@ -2,19 +2,60 @@ $schema: "http://dcc.icgc-argo.org/draft-00/schema#"
 
 $id: "specimen"
 title: Specimen
-version: 0
-category: biospecimen
 type: object
-additionalProperties: false
 
-systemProperties:  # properties will be populated by the system
-  properties:
-    id:  # primary key, defined in 'primaryKey'
-      allOf:
-      - $ref: _definitions#/common/properties/id
-      - pattern: "^SP"  # id must start with "SP", in addition to pattern defined at _definitions#/common/properties/id
-    donor_id:  # foreign key to donor entity, the relationship is defined in 'references'
-      $ref: donor#/systemProperties/properties/id
+propertyNames:  # this will reject any unknown properties, note that 'additionalProperties: false' does not work with allOf
+  anyOf:
+  - pattern: '.+'
+  - pattern: '^id$'
+  - pattern: '^type$'
+  - pattern: '^submitter_id$'
+  - pattern: '^program$'
+  - pattern: '^vital_status$'
+  - pattern: '^gender$'
+  - pattern: '^ethnicity$'
+  - pattern: '^cause_of_death$'
+  - pattern: '^survival_time$'
+  - pattern: '^prior_malignancy$'
+  - pattern: '^cancer_type_prior_malignancy$'
+
+definitions:
+  relationDef:
+    $ref: '_definitions#/relationDef'
+    const:
+      category: bioentity
+      version: 0
+      primaryKey:
+      - '#/definitions/systemProperties/properties/id'
+      naturalKey:
+      - '#/properties/program'
+      - '#/properties/submitter_id'
+      uniqueKey: null
+      references:
+      - foreignKey:
+        - '#/properties/program'
+        - '#/properties/donor_submitter_id'
+        targetEntity: 'donor'
+        targetKey:  # relationship by naturalKey
+        - 'donor#/properties/program'
+        - 'donor#/properties/submitter_id'
+      - foreignKey:
+        - '#/definitions/systemProperties/properties/donor_id'
+        targetEntity: 'donor'
+        targetKey:  # relationship by primaryKey
+        - 'donor#/definitions/systemProperties/properties/id'
+  scriptValidations:  # script based validation, call returns True for valid or False for invalid
+    $ref: '_definitions#/scriptValidations'
+    const:
+    - "$sumNoGreaterThan(1, [percent_tumour_cells, percent_proliferating_cells, percent_inflammatory_tissue, percent_stromal_cells, percent_necrosis])"
+  systemProperties:  # properties will be populated by the system
+    properties:
+      id:  # primary key, defined in 'primaryKey'
+        allOf:
+        - $ref: _definitions#/common/properties/id
+        - pattern: "^SP"  # id must start with "SP", in addition to pattern defined at _definitions#/common/properties/id
+      donor_id:  # foreign key to donor entity, the relationship is defined in 'references'
+        $ref: donor#/systemProperties/properties/id
 
 required:
 - type
@@ -23,21 +64,6 @@ required:
 - program
 - normal_or_tumour_designation
 - specimen_type
-
-primaryKey:  # design much follows RDBMS model, particular guideline on PK: http://www.agiledata.org/essays/keys.html
-  surrogateKey: [ id ]
-  naturalKey: [ program, submitter_id ]  # specimen submitter id must be unique within a program
-
-uniqueKeys: []
-
-references:
-- selfKey: [ program, donor_submitter_id ]
-  reference:
-    targetEntity: donor  # specimen to donor relationship is many-to-one
-    targetKey: [ program, submitter_id ]
-
-scriptValidations:  # script based validation, call returns True for valid or False for invalid
-- "$sumNoGreaterThan(1, [percent_tumour_cells, percent_proliferating_cells, percent_inflammatory_tissue, percent_stromal_cells, percent_necrosis])"
 
 properties:
   type:

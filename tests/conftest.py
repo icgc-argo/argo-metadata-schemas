@@ -30,13 +30,3 @@ def schemas():
             schemas[id] = yaml.load(f, yaml.SafeLoader)
  
     return schemas
-
-
-@pytest.fixture(scope="session")
-def metaschema():
-
-    with open('_meta-schemas/draft-00.yaml', 'r') as m:
-        metaschema = yaml.load(m, yaml.SafeLoader)
-
-    del metaschema['$schema']
-    return metaschema

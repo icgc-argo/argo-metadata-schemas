@@ -1,4 +1,4 @@
-$schema: "http://dcc.icgc-argo.org/draft-00/schema#"
+$schema: "http://json-schema.org/draft-07/schema#"
 
 $id: "specimen"
 title: Specimen
@@ -6,18 +6,29 @@ type: object
 
 propertyNames:  # this will reject any unknown properties, note that 'additionalProperties: false' does not work with allOf
   anyOf:
-  - pattern: '.+'
   - pattern: '^id$'
+  - pattern: '^donor_id$'
   - pattern: '^type$'
-  - pattern: '^submitter_id$'
   - pattern: '^program$'
-  - pattern: '^vital_status$'
-  - pattern: '^gender$'
-  - pattern: '^ethnicity$'
-  - pattern: '^cause_of_death$'
-  - pattern: '^survival_time$'
-  - pattern: '^prior_malignancy$'
-  - pattern: '^cancer_type_prior_malignancy$'
+  - pattern: '^submitter_id$'
+  - pattern: '^donor_submitter_id$'
+  - pattern: '^normal_or_tumour_designation$'
+  - pattern: '^specimen_type$'
+  - pattern: '^tumour_histology_type$'
+  - pattern: '^tumour_histological_type_other$'
+  - pattern: '^specimen_anatomic_site$'
+  - pattern: '^tumour_stage_at_specimen_acquisition$'
+  - pattern: '^specimen_acquisition_interval$'
+  - pattern: '^specimen_processing$'
+  - pattern: '^specimen_storage$'
+  - pattern: '^central_pathology_confirmed$'
+  - pattern: '^tumour_grading_system$'
+  - pattern: '^tumour_grade$'
+  - pattern: '^percent_tumour_cells$'
+  - pattern: '^percent_proliferating_cells$'
+  - pattern: '^percent_inflammatory_tissue$'
+  - pattern: '^percent_stromal_cells$'
+  - pattern: '^percent_necrosis$'
 
 definitions:
   relationDef:

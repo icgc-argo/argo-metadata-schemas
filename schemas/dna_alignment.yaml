@@ -1,4 +1,4 @@
-$schema: "http://dcc.icgc-argo.org/draft-00/schema#"
+$schema: "http://json-schema.org/draft-07/schema#"
 
 $id: "dna_alignment"
 title: Uniform alignment of DNA sequencing reads

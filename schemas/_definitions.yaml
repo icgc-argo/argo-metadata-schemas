@@ -4,28 +4,26 @@ $id: _definitions
 
 relationDef:  # special definition to support additional features such as relationship, uniqueness
   type: object
+  additionalProperties: false
   properties:
     category:
       type: string
-      enum: [ bioentity, experiment, analysis ]
+      enum: [ bioentity, experiment, data_submission, analysis ]
     version:
       type: integer
       minimum: 0
     primaryKey:
       type: array
-      minItems: 1
       uniqueItems: true
       items:
         type: string
     naturalKey:  # aka business key, which naturally identifies data records uniquely
-      type: [ array, 'null' ]
-      minItems: 1
+      type: array
       uniqueItems: true
       items:
         type: string
     uniqueKey:  # can have 0 or more uniqueKeys, each uniqueKey consists of one or more properties
-      type: [ array, 'null' ]
-      minItems: 1
+      type: array
       items:
         type: array
         minItems: 1
@@ -33,7 +31,7 @@ relationDef:  # special definition to support additional features such as relati
         items:
           type: string
     references:
-      type: [ array, 'null' ]
+      type: array
       items:
         type: object
         required: [ foreignKey, targetEntity, targetKey ]

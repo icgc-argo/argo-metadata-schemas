@@ -17,7 +17,6 @@ definitions:
       naturalKey:
       - '#/properties/program'
       - '#/properties/submitter_id'
-      uniqueKey: null
       references:
       - foreignKey:
         - '#/properties/program'
@@ -87,52 +86,6 @@ properties:
     - "$intEqual(int1=read_group_count, int2=$len(read_groups)){if(int1==int2){return true} return false}"
   read_groups:  # read groups produced by this sequencing experiment
     type: array
-    definitions:
-      relationDef:
-        $ref: '_definitions#/relationDef'
-        const:
-          category: bioentity
-          version: 0
-          primaryKey:
-          - '#/properties/read_groups/definitions/systemProperties/properties/id'
-          naturalKey:
-          - '#/properties/program'
-          - '#/properties/submitter_id'
-          uniqueKey: null
-          references:
-          - foreignKey:
-            - '#/properties/program'
-            - '#/properties/sample_submitter_id'
-            targetEntity: 'sample'
-            targetKey:  # relationship by naturalKey
-            - 'sample#/properties/program'
-            - 'sample#/properties/submitter_id'
-          - foreignKey:
-            - '#/definitions/systemProperties/properties/sample_id'
-            targetEntity: 'sample'
-            targetKey:  # relationship by primaryKey
-            - 'sample#/definitions/systemProperties/properties/id'
-      systemProperties:  # properties will be populated by the system
-        properties:
-          id:  # system generated globally unique read group ID
-            allOf:
-            - $ref: _definitions#/common/properties/id
-            - pattern: "^RG"  # id must start with "RG", in addition to pattern defined at _definitions#/common/properties/id
-          program:
-            # this reuses the program definition in the containing parent, may also signal that it gets the same value
-            $ref: "#/properties/program"
-          sequencing_experiment_submitter_id:
-            # this field gets value from containing parent
-            $ref: "#/properties/submitter_id"
-          sequencing_experiment_id:
-            # this field gets value from containing parent
-            $ref: "#/definitions/systemProperties/properties/id"
-          sample_submitter_id:
-            # this field gets value from containing parent
-            $ref: "#/definitions/properties/sample_submitter_id"
-          sample_id:
-            # this field gets value from containing parent
-            $ref: "#/definitions/systemProperties/properties/sample_id"
     items:
       minItems: 1
 
@@ -140,6 +93,53 @@ properties:
       type: object
       description: "Read groups from a sequencing experiement"
       additionalProperties: false
+
+      definitions:
+        relationDef:
+          $ref: '_definitions#/relationDef'
+          const:
+            category: bioentity
+            version: 0
+            primaryKey:
+            - '#/properties/read_groups/definitions/systemProperties/properties/id'
+            naturalKey:
+            - '#/properties/program'
+            - '#/properties/submitter_id'
+            uniqueKey: null
+            references:
+            - foreignKey:
+              - '#/properties/program'
+              - '#/properties/sample_submitter_id'
+              targetEntity: 'sample'
+              targetKey:  # relationship by naturalKey
+              - 'sample#/properties/program'
+              - 'sample#/properties/submitter_id'
+            - foreignKey:
+              - '#/definitions/systemProperties/properties/sample_id'
+              targetEntity: 'sample'
+              targetKey:  # relationship by primaryKey
+              - 'sample#/definitions/systemProperties/properties/id'
+        systemProperties:  # properties will be populated by the system
+          properties:
+            id:  # system generated globally unique read group ID
+              allOf:
+              - $ref: _definitions#/common/properties/id
+              - pattern: "^RG"  # id must start with "RG", in addition to pattern defined at _definitions#/common/properties/id
+            program:
+              # this reuses the program definition in the containing parent, may also signal that it gets the same value
+              $ref: "#/properties/program"
+            sequencing_experiment_submitter_id:
+              # this field gets value from containing parent
+              $ref: "#/properties/submitter_id"
+            sequencing_experiment_id:
+              # this field gets value from containing parent
+              $ref: "#/definitions/systemProperties/properties/id"
+            sample_submitter_id:
+              # this field gets value from containing parent
+              $ref: "#/definitions/properties/sample_submitter_id"
+            sample_id:
+              # this field gets value from containing parent
+              $ref: "#/definitions/systemProperties/properties/sample_id"
 
       required:
       - type

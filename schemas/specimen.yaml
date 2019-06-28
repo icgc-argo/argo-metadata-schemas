@@ -41,7 +41,6 @@ definitions:
       naturalKey:
       - '#/properties/program'
       - '#/properties/submitter_id'
-      uniqueKey: null
       references:
       - foreignKey:
         - '#/properties/program'
@@ -66,7 +65,7 @@ definitions:
         - $ref: _definitions#/common/properties/id
         - pattern: "^SP"  # id must start with "SP", in addition to pattern defined at _definitions#/common/properties/id
       donor_id:  # foreign key to donor entity, the relationship is defined in 'references'
-        $ref: donor#/systemProperties/properties/id
+        $ref: donor#/definitions/systemProperties/properties/id
 
 required:
 - type

@@ -10,7 +10,7 @@ definitions:
   relationDef:
     $ref: '_definitions#/relationDef'
     const:
-      category: data_bundle
+      category: analysis
       version: 0
       primaryKey:
       - '#/definitions/systemProperties/properties/id'
@@ -194,8 +194,7 @@ properties:
       aligned_seq:
         $id: "#data_object/aligned_seq"
         type: object
-        primaryKey:
-          surrogateKey: [ id ]
+
         allOf:
         - $ref: _definitions#/submitted_file
         - properties:
@@ -241,8 +240,7 @@ properties:
       aligned_seq_index:
         $id: "#data_object/aligned_seq_index"
         type: object
-        primaryKey:
-          surrogateKey: [ id ]
+
         allOf:
         - $ref: _definitions#/submitted_file
         - properties:

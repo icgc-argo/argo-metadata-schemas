@@ -31,8 +31,6 @@ definitions:
       naturalKey:
       - '#/properties/program'
       - '#/properties/submitter_id'
-      uniqueKey: null
-      references: null
   systemProperties:  # properties will be populated by the system
     properties:
       id:  # primary key, defined in 'primaryKey'

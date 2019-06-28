@@ -10,7 +10,7 @@ definitions:
   relationDef:
     $ref: '_definitions#/relationDef'
     const:
-      category: data_bundle
+      category: analysis
       version: 0
       primaryKey:
       - '#/definitions/systemProperties/properties/id'

@@ -17,7 +17,7 @@ definitions:
       naturalKey:
       - '#/properties/program'
       - '#/properties/submitter_id'
-      uniqueKey: null
+      uniqueKey: []
       references:
       - foreignKey:
         - '#/properties/program'

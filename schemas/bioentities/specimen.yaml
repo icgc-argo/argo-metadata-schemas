@@ -16,11 +16,12 @@ propertyNames:  # this will reject any unknown properties, note that 'additional
   - pattern: '^specimen_type$'
 
 definitions:
+  version:
+    $ref: '_definitions#/_/properties/version'
+    const: 0
   relationDef:
-    $ref: '_definitions#/relationDef'
+    $ref: '_definitions#/_/properties/relationDef'
     const:
-      category: bioentity
-      version: 0
       primaryKey:
       - '#/definitions/systemProperties/properties/id'
       naturalKey:
@@ -40,7 +41,7 @@ definitions:
         targetKey:  # relationship by primaryKey
         - 'donor#/definitions/systemProperties/properties/id'
   scriptValidations:  # script based validation, call returns True for valid or False for invalid
-    $ref: '_definitions#/scriptValidations'
+    $ref: '_definitions#/_/properties/scriptValidations'
     const:
     - "$sumNoGreaterThan(1, [percent_tumour_cells, percent_proliferating_cells, percent_inflammatory_tissue, percent_stromal_cells, percent_necrosis])"
   systemProperties:  # properties will be populated by the system
@@ -52,8 +53,8 @@ definitions:
       donor_id:  # foreign key to donor entity, the relationship is defined in 'references'
         $ref: donor#/definitions/systemProperties/properties/id
       schema_version:
-        $ref: '_definitions#/relationDef/properties/version'
-        default: '#/definitions/relationDef/const/version'  # where to pick up the version
+        $ref: '_definitions#/_/properties/version'
+        default: '#/definitions/version/const'  # where to pick up the version
 
 required:
 - type

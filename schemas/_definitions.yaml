@@ -2,62 +2,62 @@ $schema: "http://json-schema.org/draft-07/schema#"
 
 $id: _definitions
 
-relationDef:  # special definition to support additional features such as relationship, uniqueness
-  type: object
-  additionalProperties: false
+_:  # definitions used for defining relationship, record schema version, script-based validations
   properties:
-    category:
-      type: string
-      enum: [ bioentity, experiment, data_submission, analysis ]
     version:
       type: integer
       minimum: 0
-    primaryKey:
-      type: array
-      uniqueItems: true
-      items:
-        type: string
-    naturalKey:  # aka business key, which naturally identifies data records uniquely
-      type: array
-      uniqueItems: true
-      items:
-        type: string
-    uniqueKey:  # can have 0 or more uniqueKeys, each uniqueKey consists of one or more properties
-      type: array
-      items:
-        type: array
-        minItems: 1
-        uniqueItems: true
-        items:
-          type: string
-    references:
-      type: array
-      items:
-        type: object
-        required: [ foreignKey, targetEntity, targetKey ]
-        properties:
-          foreignKey:
-            type: array
-            minItems: 1
-            uniqueItems: true
-            items:
-              type: string
-          targetEntity:
-            type: string
-          targetKey:
-            type: array
-            minItems: 1
-            uniqueItems: true
-            items:
-              type: string
 
-scriptValidations:
-  type: array
-  uniqueItems: true
-  items:
-    type: string
-    pattern: '^\$[_a-zA-Z]+[_a-zA-Z0-9]*\(.+\)(\{.+\})?$'
-  default: []
+    relationDef:  # special definition to support additional features such as relationship, uniqueness
+      type: object
+      additionalProperties: false
+      properties:
+        primaryKey:
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+        naturalKey:  # aka business key, which naturally identifies data records uniquely
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+        uniqueKey:  # can have 0 or more uniqueKeys, each uniqueKey consists of one or more properties
+          type: array
+          items:
+            type: array
+            minItems: 1
+            uniqueItems: true
+            items:
+              type: string
+        references:
+          type: array
+          items:
+            type: object
+            required: [ foreignKey, targetEntity, targetKey ]
+            properties:
+              foreignKey:
+                type: array
+                minItems: 1
+                uniqueItems: true
+                items:
+                  type: string
+              targetEntity:
+                type: string
+              targetKey:
+                type: array
+                minItems: 1
+                uniqueItems: true
+                items:
+                  type: string
+
+    scriptValidations:
+      type: array
+      uniqueItems: true
+      items:
+        type: string
+        pattern: '^\$[_a-zA-Z]+[_a-zA-Z0-9]*\(.+\)(\{.+\})?$'
+      default: []
 
 common:
   type: object

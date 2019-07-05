@@ -15,11 +15,12 @@ propertyNames:  # this will reject any unknown properties, note that 'additional
   - pattern: '^gender$'
 
 definitions:
+  version:
+    $ref: '_definitions#/_/properties/version'
+    const: 0
   relationDef:
-    $ref: '_definitions#/relationDef'
+    $ref: '_definitions#/_/properties/relationDef'
     const:
-      category: bioentity
-      version: 0
       primaryKey:
       - '#/definitions/systemProperties/properties/id'
       naturalKey:

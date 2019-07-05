@@ -7,11 +7,12 @@ description: ""
 additionalProperties: false
 
 definitions:
+  version:
+    $ref: '_definitions#/_/properties/version'
+    const: 0
   relationDef:
-    $ref: '_definitions#/relationDef'
+    $ref: '_definitions#/_/properties/relationDef'
     const:
-      category: analysis
-      version: 0
       primaryKey:
       - '#/definitions/systemProperties/properties/id'
       uniqueKey:

@@ -3,31 +3,24 @@
     "type": "donor",
     "submitter_id": "A1",
     "program": "PACA-CA",
-    "gender": "male",
-    "vital_status": "unknown"
+    "gender": "male"
   },
   {
     "type": "donor",
     "submitter_id": "A2",
     "program": "PACA-CA",
-    "gender": "female",
-    "vital_status": "deceased",
-    "survival_time": 600,
-    "cause_of_death": "died of cancer"
+    "gender": "female"
   },
   {
     "type": "donor",
     "submitter_id": "PSI_1032",
     "program": "PBCA-DE",
-    "gender": "male",
-    "vital_status": "alive"
+    "gender": "male"
   },
   {
     "type": "donor",
     "submitter_id": "PSI_1033",
     "program": "PBCA-DE",
-    "gender": "other",
-    "vital_status": "deceased",
-    "survival_time": 1200
+    "gender": "other"
   }
 ]

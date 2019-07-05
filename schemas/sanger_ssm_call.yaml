@@ -74,10 +74,12 @@ properties:
     required: [ tumour, normal ]
     properties:
       tumour:
+        required: [ dna_alignment_id ]
         properties:
           dna_alignment_id:  # the input bundle of tumour dna_alignment
             $ref: dna_alignment#/definitions/systemProperties/properties/id
       normal:
+        required: [ dna_alignment_id ]
         properties:
           dna_alignment_id:  # the input bundle of normal dna_alignment
             $ref: dna_alignment#/definitions/systemProperties/properties/id
@@ -157,93 +159,7 @@ properties:
     additionalProperties: false
     properties:
       vcf:
-        $id: "#data_object/vcf"
-        type: object
-
-        allOf:
-        - $ref: _definitions#/submitted_file
-        - properties:
-            name:
-              pattern: '\.vcf\.gz$'  # must have .vcf.gz extension
-
-        definitions:
-          relationDef:
-            $ref: '_definitions#/relationDef'
-            const:
-              primaryKey:
-              - '#/properties/files/properties/aligned_seq/definitions/systemProperties/properties/id'
-
-          systemProperties:
-            required: [ id, program, repository, created_at, updated_at, derived_from, bundle_id, bundle_type, format, data_type ]
-            allOf:
-            - $ref: _definitions#/data_object
-            - $ref: _definitions#/repositoryProperties
-            - properties:
-                id:  # surrogate key
-                  $ref: _definitions#/data_object/properties/id
-                program:  # copied from containing parent
-                  $ref: "#/properties/program"
-                donor:  # copied from containing parent
-                  $ref: "#/definitions/systemProperties/properties/donor"
-                derived_from:
-                  type: object
-                  properties:
-                    type:
-                      const: "sample"
-                    id:  # copied from containing parent
-                      $ref: "#/definitions/systemProperties/properties/donor/properties/specimen/properties/sample/properties/sample_id"
-                bundle_id:  # copied from containing parent
-                  $ref: "#/definitions/systemProperties/properties/id"
-                bundle_type:
-                  const: "ssm_call"
-                format:
-                  const: "VCF"
-                date_type:
-                  const: "SSM"
-                  default: "SSM"
+        $ref: "sanger_ssm_call.vcf.data_object"
 
       vcf_index:
-        $id: "#data_object/vcf_index"
-        type: object
-
-        allOf:
-        - $ref: _definitions#/submitted_file
-        - properties:
-            name:
-              pattern: '\.vcf\.gz\.tbi$'  # must have .vcf.gz.tbi extension
-
-        definitions:
-          relationDef:
-            $ref: '_definitions#/relationDef'
-            const:
-              primaryKey:
-              - '#/properties/files/properties/aligned_seq/definitions/systemProperties/properties/id'
-
-          systemProperties:
-            required: [ id, program, repository, created_at, updated_at, derived_from, bundle_id, bundle_type, format, data_type ]
-            allOf:
-            - $ref: _definitions#/data_object
-            - $ref: _definitions#/repositoryProperties
-            - properties:
-                id:  # surrogate key
-                  $ref: _definitions#/data_object/properties/id
-                program:  # copied from containing parent
-                  $ref: "#/properties/program"
-                donor:  # copied from containing parent
-                  $ref: "#/definitions/systemProperties/properties/donor"
-                derived_from:
-                  type: object
-                  properties:
-                    type:
-                      const: "sample"
-                    id:  # copied from containing parent
-                      $ref: "#/definitions/systemProperties/properties/donor/properties/specimen/properties/sample/properties/sample_id"
-                bundle_id:  # copied from containing parent
-                  $ref: "#/definitions/systemProperties/properties/id"
-                bundle_type:
-                  const: "ssm_call"
-                format:
-                  const: "TBI"
-                date_type:
-                  const: "VCF Index"
-                  default: "VCF Index"
+        $ref: "sanger_ssm_call.vcf_index.data_object"

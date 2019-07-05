@@ -1,22 +1,35 @@
 from glob import glob
 import yaml
+import copy
 from jsonschema import Draft7Validator, validate, draft7_format_checker, RefResolver
 
 def test_schema(schemas):
     for s in schemas:
-        Draft7Validator.check_schema(schemas[s])
+        try:
+            Draft7Validator.check_schema(schemas[s])
+        except:
+            assert False, 'Invalid schema definition: "%s"!' % s
+
+        if s == '_definitions': continue  # no need to continue
+
+        assert schemas[s].get('properties') or schemas[s].get('allOf'), \
+            'Schema check on "%s" failed: must define properties' % s
+
+        assert schemas[s].get('definitions', {}).get('systemProperties', {}).get('properties') or \
+            schemas[s].get('definitions', {}).get('systemProperties', {}).get('allOf'), \
+            'Schema check on "%s" failed: must define systemProperties' % s
 
 
 def pytest_generate_tests(metafunc):
     if 'testdoc' in metafunc.fixturenames:
         testdocs = []
 
-        for schema_file in glob('*.yaml'):
+        for schema_file in glob('*.yaml') + glob('*/*.yaml'):
             if schema_file == '_definitions.yaml': continue
 
-            id = schema_file.replace('.yaml', '')
             with open(schema_file, 'r') as f:
                 s = yaml.load(f, yaml.SafeLoader)
+                id = s['$id']
 
             relationDefDoc = s.get('definitions', {}).get('relationDef', {}).get('const')
             testdocs.append([id, relationDefDoc])
@@ -42,28 +55,28 @@ def test_relationDef(testdoc, schemas, resolvers):
     else:
         for reffrag in relationDefDoc['primaryKey']:
             try:
-                resolver.resolve_fragment(schemas[s], reffrag.lstrip("#"))
+                _, frag = reffrag.split('#')
+                resolver.resolve_fragment(schemas[s], frag)
             except:
                 assert False, 'Testing "%s" relationDef failed on primaryKey $ref: "%s"' % (s, reffrag)
 
     for reffrag in relationDefDoc.get('naturalKey', []):
         try:
-            resolver.resolve_fragment(schemas[s], reffrag.lstrip("#"))
+            _, frag = reffrag.split('#')
+            resolver.resolve_fragment(schemas[s], frag)
         except:
             assert False, 'Testing "%s" relationDef failed on naturalKey $ref: "%s"' % (s, reffrag)
 
     for key in relationDefDoc.get('uniqueKey', []):
         for reffrag in key:
             try:
-               resolver.resolve_fragment(schemas[s], reffrag.lstrip("#"))
+                _, frag = reffrag.split('#')
+                resolver.resolve_fragment(schemas[s], frag)
             except:
                 assert False, 'Testing "%s" relationDef failed on uniqueKey $ref: "%s"' % (s, reffrag)
 
 
     for relationship in relationDefDoc.get('references', []):
-        # to be removed when 'read_group' became top level schema
-        if relationship['targetEntity'] == 'read_group': continue
-
         assert relationship['targetEntity'] in schemas, \
             'No schema defined for the targetEntity "%s"' % relationship['targetEntity']
 
@@ -82,6 +95,12 @@ def test_relationDef(testdoc, schemas, resolvers):
         for reffrag in relationship['foreignKey']:
             assert reffrag.startswith('#')
             try:
-                resolver.resolve_fragment(schemas[s], reffrag.lstrip("#"))
+                _, frag = reffrag.split('#')
+                resolver.resolve_fragment(schemas[s], frag)
             except:
                 assert False, 'Testing "%s" references failed on foreignKey $ref: "%s"' % (s, reffrag)
+
+
+def test_systemProperties():
+    # TODO: system property not overlap with submitters
+    pass

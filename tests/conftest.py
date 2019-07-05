@@ -26,11 +26,10 @@ def schemas():
     schemas = {}
 
     # read in all schemas.
-    # TODO: need to explicitly create top level schemas from nested ones, eg, 'read_group'
-    for s in glob('*.yaml'):
-        id = s.replace('.yaml', '')
+    for s in glob('*.yaml') + glob('*/*.yaml'):
         with open(s, 'r') as f:
-            schemas[id] = yaml.load(f, yaml.SafeLoader)
+            schema = yaml.load(f, yaml.SafeLoader)
+            schemas[schema['$id']] = schema
  
     return schemas
 

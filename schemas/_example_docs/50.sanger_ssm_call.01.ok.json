@@ -34,20 +34,32 @@
     },
     "files": {
         "vcf": {
-            "type": "data_object",
+            "type": "sanger_ssm_call.vcf.data_object",
             "name": "ad28c4a894bd4d979a2c67ab984544e6.vcf.gz",
             "local_path": "/my/file/path/ad28c4a894bd4d979a2c67ab984544e6.vcf.gz",
             "size": 932434232,
             "checksum": "ad28c4a894bd4d979a2c67ab984544e6",
-            "checksum_type": "md5"
+            "checksum_type": "md5",
+            "_mocked_system_properties": {
+            },
+            "_final_doc": {
+            }
         },
         "vcf_index": {
-            "type": "data_object",
+            "type": "sanger_ssm_call.vcf_index.data_object",
             "name": "1dc46e90af51470997b3be164bca6a79.vcf.gz.tbi",
             "local_path": "/my/file/path/1dc46e90af51470997b3be164bca6a79.vcf.gz.tbi",
             "size": 589343,
             "checksum": "ad28c4a894bd4d979a2c67ab984544e6",
-            "checksum_type": "md5"
+            "checksum_type": "md5",
+            "_mocked_system_properties": {
+            },
+            "_final_doc": {
+            }
         }
+    },
+    "_mocked_system_properties": {
+    },
+    "_final_doc": {
     }
 }

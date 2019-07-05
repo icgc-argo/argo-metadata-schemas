@@ -1,0 +1,43 @@
+$id: "lane_bam_submission.bam_file.data_object"  # data_object is a nested entity under lane_bam_submission
+type: object
+
+definitions:
+  relationDef:
+    $ref: '_definitions#/relationDef'
+    const:
+      primaryKey:
+      - '#/definitions/systemProperties/allOf/1/properties/id'
+  systemProperties:
+    required: [ id, program, repository, created_at, updated_at, derived_from, bundle_id, bundle_type, format, data_type ]
+    allOf:
+    - $ref: _definitions#/data_object
+    - properties:
+        id:  # surrogate key
+          $ref: '_definitions#/data_object/properties/id'
+        program:  # copied from containing parent
+          $ref: "#/properties/program"
+        donor:  # copied from containing parent
+          $ref: "#/definitions/systemProperties/properties/donor"
+        derived_from:
+          type: object
+          properties:
+            type:
+              const: "read_group"
+            id:  # copied from containing parent
+              $ref: "#/definitions/systemProperties/properties/read_group_id"
+        bundle_id:  # copied from containing parent
+          $ref: "#/properties/id"
+        bundle_type:
+          const: "lane_bam_submission"
+        format:
+          const: "BAM"  # if submitted, it must be "BAM"
+          default: "BAM"  # when not submitted by the client, default value will be used
+        date_type:
+          const: "Unaligned Reads"
+          default: "Unaligned Reads"
+
+allOf:
+- $ref: _definitions#/submitted_file
+- properties:
+    name:
+      pattern: '\.bam$'  # must have .bam extension

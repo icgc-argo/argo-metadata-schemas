@@ -14,21 +14,6 @@ propertyNames:  # this will reject any unknown properties, note that 'additional
   - pattern: '^donor_submitter_id$'
   - pattern: '^normal_or_tumour_designation$'
   - pattern: '^specimen_type$'
-  - pattern: '^tumour_histology_type$'
-  - pattern: '^tumour_histological_type_other$'
-  - pattern: '^specimen_anatomic_site$'
-  - pattern: '^tumour_stage_at_specimen_acquisition$'
-  - pattern: '^specimen_acquisition_interval$'
-  - pattern: '^specimen_processing$'
-  - pattern: '^specimen_storage$'
-  - pattern: '^central_pathology_confirmed$'
-  - pattern: '^tumour_grading_system$'
-  - pattern: '^tumour_grade$'
-  - pattern: '^percent_tumour_cells$'
-  - pattern: '^percent_proliferating_cells$'
-  - pattern: '^percent_inflammatory_tissue$'
-  - pattern: '^percent_stromal_cells$'
-  - pattern: '^percent_necrosis$'
 
 definitions:
   relationDef:
@@ -66,6 +51,9 @@ definitions:
         - pattern: "^SP"  # id must start with "SP", in addition to pattern defined at _definitions#/common/properties/id
       donor_id:  # foreign key to donor entity, the relationship is defined in 'references'
         $ref: donor#/definitions/systemProperties/properties/id
+      schema_version:
+        $ref: '_definitions#/relationDef/properties/version'
+        default: '#/definitions/relationDef/const/version'  # where to pick up the version
 
 required:
 - type
@@ -93,62 +81,3 @@ properties:
     type: string
     scriptValidations:
     - "$cv(specimen_type)"
-  tumour_histology_type:
-    type: string
-    scriptValidations:
-    - "$cv(tumour_histology_type_icd_o_3_code)"
-  tumour_histological_type_other:
-    type: string
-  specimen_anatomic_site:  # from: specimen_anatomic_collection
-    type: string
-    scriptValidations:
-    - "$cv(anatomic_site)"
-  tumour_stage_at_specimen_acquisition:
-    type: string
-    scriptValidations:
-    - "$cv(tumour_stage)"
-  specimen_acquisition_interval:
-    type: integer
-    minimum: 0
-  specimen_processing:
-    type: string
-    scriptValidations:
-    - "$cv(specimen_processing)"
-  specimen_storage:
-    enum:
-    - frozen, liquid nitrogen
-    - frozen, -70 freezer
-    - frozen, vapor phase
-    - RNA later frozen
-    - paraffin block
-    - cut slide
-    - other
-    - not applicable
-  central_pathology_confirmed:
-    type: string
-    scriptValidations:
-    - "$cv(yes_no_unknown)"
-  tumour_grading_system:
-    enum: [ "default" ]
-  tumour_grade:
-    enum: [ Gx, G1, G2, G3, G4 ]
-  percent_tumour_cells:
-    type: number
-    minimum: 0
-    maximum: 1
-  percent_proliferating_cells:
-    type: number
-    minimum: 0
-    maximum: 1
-  percent_inflammatory_tissue:
-    type: number
-    minimum: 0
-    maximum: 1
-  percent_stromal_cells:
-    type: number
-    minimum: 0
-    maximum: 1
-  percent_necrosis:
-    type: number
-    minimum: 0
-    maximum: 1

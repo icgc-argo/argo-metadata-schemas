@@ -20,7 +20,32 @@
             "read_length_r2": 150,
             "insert_size": 298,
             "sample_barcode": null,
-            "library_name": "LP6005185-DNA_E01_lib_25534"
+            "library_name": "LP6005185-DNA_E01_lib_25534",
+            "_mocked_system_properties": {
+                "id": "RG12345",
+                "program": "PRAD-UK",
+                "sequencing_experiment_submitter_id": "PEXP_0001",
+                "sequencing_experiment_id": "174aa4e3-49d6-4cb6-a80a-8466681df19e",
+                "sample_submitter_id": "0027_CRUK_PC_0027_Blood_DNA",
+                "sample_id": "SA567218"
+            },
+            "_final_doc": {
+                "type": "read_group",
+                "id": "RG12345",
+                "submitter_id": "1117561",
+                "platform_unit": "74_8",
+                "is_paired_end": true,
+                "read_length_r1": 150,
+                "read_length_r2": 150,
+                "insert_size": 298,
+                "sample_barcode": null,
+                "library_name": "LP6005185-DNA_E01_lib_25534",
+                "program": "PRAD-UK",
+                "sequencing_experiment_submitter_id": "PEXP_0001",
+                "sequencing_experiment_id": "174aa4e3-49d6-4cb6-a80a-8466681df19e",
+                "sample_submitter_id": "0027_CRUK_PC_0027_Blood_DNA",
+                "sample_id": "SA567218"
+            }
         },
         {
             "type": "read_group",
@@ -31,7 +56,32 @@
             "read_length_r2": 150,
             "insert_size": 298,
             "sample_barcode": null,
-            "library_name": "LP6005185-DNA_E01_lib_25534"
+            "library_name": "LP6005185-DNA_E01_lib_25534",
+            "_mocked_system_properties": {
+                "id": "RG12346",
+                "program": "PRAD-UK",
+                "sequencing_experiment_submitter_id": "PEXP_0001",
+                "sequencing_experiment_id": "174aa4e3-49d6-4cb6-a80a-8466681df19e",
+                "sample_submitter_id": "0027_CRUK_PC_0027_Blood_DNA",
+                "sample_id": "SA567218"
+            },
+            "_final_doc": {
+                "type": "read_group",
+                "id": "RG12346",
+                "submitter_id": "1117724",
+                "platform_unit": "74_6",
+                "is_paired_end": true,
+                "read_length_r1": 150,
+                "read_length_r2": 150,
+                "insert_size": 298,
+                "sample_barcode": null,
+                "library_name": "LP6005185-DNA_E01_lib_25534",
+                "program": "PRAD-UK",
+                "sequencing_experiment_submitter_id": "PEXP_0001",
+                "sequencing_experiment_id": "174aa4e3-49d6-4cb6-a80a-8466681df19e",
+                "sample_submitter_id": "0027_CRUK_PC_0027_Blood_DNA",
+                "sample_id": "SA567218"
+            }
         },
         {
             "type": "read_group",
@@ -42,7 +92,78 @@
             "read_length_r2": 150,
             "insert_size": 298,
             "sample_barcode": null,
-            "library_name": "LP6005185-DNA_E01_lib_25534"
+            "library_name": "LP6005185-DNA_E01_lib_25534",
+            "_mocked_system_properties": {
+                "id": "RG12347",
+                "program": "PRAD-UK",
+                "sequencing_experiment_submitter_id": "PEXP_0001",
+                "sequencing_experiment_id": "174aa4e3-49d6-4cb6-a80a-8466681df19e",
+                "sample_submitter_id": "0027_CRUK_PC_0027_Blood_DNA",
+                "sample_id": "SA567218"
+            },
+            "_final_doc": {
+                "type": "read_group",
+                "id": "RG12347",
+                "submitter_id": "1117725",
+                "platform_unit": "74_7",
+                "is_paired_end": true,
+                "read_length_r1": 150,
+                "read_length_r2": 150,
+                "insert_size": 298,
+                "sample_barcode": null,
+                "library_name": "LP6005185-DNA_E01_lib_25534",
+                "program": "PRAD-UK",
+                "sequencing_experiment_submitter_id": "PEXP_0001",
+                "sequencing_experiment_id": "174aa4e3-49d6-4cb6-a80a-8466681df19e",
+                "sample_submitter_id": "0027_CRUK_PC_0027_Blood_DNA",
+                "sample_id": "SA567218"
+            }
         }
-    ]
+    ],
+    "_mocked_system_properties": {
+        "id": "174aa4e3-49d6-4cb6-a80a-8466681df19e",
+        "sample_id": "SA567218",
+        "read_groups": [
+            {
+                "type": "read_group",
+                "read_group_id": "RG12345"
+            },
+            {
+                "type": "read_group",
+                "read_group_id": "RG12346"
+            },
+            {
+                "type": "read_group",
+                "read_group_id": "RG12347"
+            }
+        ]
+    },
+    "_final_doc": {
+        "type": "sequencing_experiment",
+        "id": "174aa4e3-49d6-4cb6-a80a-8466681df19e",
+        "program": "PRAD-UK",
+        "submitter_id": "PEXP_0001",
+        "sample_submitter_id": "0027_CRUK_PC_0027_Blood_DNA",
+        "sample_id": "SA567218",
+        "sequencing_center": "EXT",
+        "platform": "Illumina",
+        "platform_model": "HiSeq 2000",
+        "library_strategy": "WGS",
+        "sequencing_date": "2014-12-12",
+        "read_group_count": 3,
+        "read_groups": [
+            {
+                "type": "read_group",
+                "read_group_id": "RG12345"
+            },
+            {
+                "type": "read_group",
+                "read_group_id": "RG12346"
+            },
+            {
+                "type": "read_group",
+                "read_group_id": "RG12347"
+            }
+        ]
+    }
 }

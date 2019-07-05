@@ -3,8 +3,14 @@
   "submitter_id": "0027_CRUK_PC_0027",
   "program": "PRAD-UK",
   "gender": "male",
-  "vital_status": "alive",
   "_mocked_system_properties": {
     "id": "DO223959"
+  },
+  "_final_doc": {
+    "id": "DO223959",
+    "type": "donor",
+    "submitter_id": "0027_CRUK_PC_0027",
+    "program": "PRAD-UK",
+    "gender": "male"
   }
 }

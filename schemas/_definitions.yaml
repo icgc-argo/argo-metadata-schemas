@@ -103,8 +103,6 @@ submitted_file:
   required: [ type, name, local_path, size, checksum, checksum_type ]
   allOf:
   - properties:
-      type:
-        const: data_object
       name:  # if omitted, name will be original file name from local_path
         type: string
         pattern: "^[A-Za-z0-9_-]{1}[A-Za-z0-9-_.]{0,199}"  # max length 200 chars
@@ -248,24 +246,3 @@ data_object:
       enum:
       - Collab
       - DKFZ
-
-repositoryProperties:  # this should probably be outsourced to somewhere else, but it demonstrates how this could be done in JSON Schema
-  oneOf:
-  - properties:
-      program:
-        allOf:
-        - $ref: "#/common/properties/program_short_name"
-        - enum: [ "PACA-CA", "PRAD-CA", "PRAD-UK" ]
-      respository:
-        allOf:
-        - $ref: "#/data_object/properties/respository"
-        - enum: [ "Collab" ]
-  - properties:
-      program:
-        allOf:
-        - $ref: "#/common/properties/program_short_name"
-        - enum: [ "PBCA-DE" ]
-      respository:
-        allOf:
-        - $ref: "#/data_object/properties/respository"
-        - enum: [ "DKFZ" ]

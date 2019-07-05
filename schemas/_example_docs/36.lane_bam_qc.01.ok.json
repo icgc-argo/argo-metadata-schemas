@@ -27,7 +27,7 @@
     },
     "files": {
         "metrics_file": {
-            "type": "data_object",
+            "type": "lane_bam_qc.metrics_file.data_object",
             "name": "180126_icgc.bam.quality_yield_metrics.txt.gz",
             "local_path": "/my/file/path/180126_icgc.bam.quality_yield_metrics.txt.gz",
             "size": 4232,

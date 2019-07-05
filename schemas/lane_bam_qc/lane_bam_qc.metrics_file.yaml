@@ -1,0 +1,46 @@
+$id: "lane_bam_qc.metrics_file.data_object"
+type: object
+
+definitions:
+  relationDef:
+    $ref: '_definitions#/relationDef'
+    const:
+      primaryKey:
+      - '#/definitions/systemProperties/allOf/1/properties/id'
+
+  systemProperties:
+    required: [ id, program, repository, created_at, updated_at, derived_from, bundle_id, bundle_type, format, data_type ]
+    allOf:
+    - $ref: _definitions#/data_object
+    - properties:
+        id:  # surrogate key
+          $ref: '_definitions#/data_object/properties/id'
+        program:  # copied from containing parent
+          $ref: "lane_bam_qc#/properties/program"
+        donor:  # copied from containing parent
+          $ref: "lane_bam_qc#/definitions/systemProperties/properties/donor"
+        derived_from:
+          type: object
+          properties:
+            type:
+              const: "read_group"
+            id:  # copied from containing parent
+              $ref: "#/definitions/systemProperties/properties/read_group_id"
+        bundle_id:  # copied from containing parent
+          $ref: "#/definitions/systemProperties/properties/id"
+        bundle_type:
+          const: "lane_bam_qc"
+        format:
+          const: "TXT"
+          default: "TXT"
+        date_type:
+          const: "RG QC"
+          default: "RG QC"
+
+allOf:
+- $ref: '_definitions#/submitted_file'
+- properties:
+    name:
+      pattern: '\.txt\.gz$'  # must have .txt.gz extension
+    type:
+      const: 'lane_bam_qc.metrics_file.data_object'

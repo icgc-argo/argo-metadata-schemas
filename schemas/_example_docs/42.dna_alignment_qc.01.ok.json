@@ -33,20 +33,32 @@
     },
     "files": {
         "quality_distribution": {
-            "type": "data_object",
+            "type": "dna_alignment_qc.quality_distribution.data_object",
             "name": "ccdc18ea765f4ef1809d8e281ad8dcbd.pdf.gz",
             "local_path": "/my/file/path/ccdc18ea765f4ef1809d8e281ad8dcbd.pdf.gz",
             "size": 34232,
             "checksum": "7e438941b6f34d149b443b51b6b0951c",
-            "checksum_type": "md5"
+            "checksum_type": "md5",
+            "_mocked_system_properties": {
+            },
+            "_final_doc": {
+            }
         },
         "bait_bias_detail_metrics": {
-            "type": "data_object",
+            "type": "dna_alignment_qc.bait_bias_detail_metrics.data_object",
             "name": "ccdc18ea765f4ef1809d8e281ad8dcbd.txt.gz",
             "local_path": "/my/file/path/ccdc18ea765f4ef1809d8e281ad8dcbd.txt.gz",
             "size": 2322,
             "checksum": "8c353eb555af4b58ad5f818670a3ed80",
-            "checksum_type": "md5"
+            "checksum_type": "md5",
+            "_mocked_system_properties": {
+            },
+            "_final_doc": {
+            }
         }
+    },
+    "_mocked_system_properties": {
+    },
+    "_final_doc": {
     }
 }

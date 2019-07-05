@@ -2,6 +2,7 @@ import os
 import re
 import json
 import pytest
+import copy
 from glob import glob
 from jsonschema import Draft7Validator, RefResolver, draft7_format_checker
 
@@ -31,9 +32,48 @@ def pytest_generate_tests(metafunc):
         metafunc.parametrize('testdoc', testdocs)
 
 
+def find_nested_entities(data, ignore_type=None, nested_entities=None):
+    if nested_entities is None: nested_entities = []
+
+    if isinstance(data, dict):
+        if 'type' in data and data['type'] != ignore_type:
+            nested_entities.append(copy.deepcopy(data))
+            data.pop('_mocked_system_properties', None)
+            data.pop('_final_doc', None)
+        else:
+            for key, item in data.items():
+                if not isinstance(item, (dict, list, tuple)): continue
+                if key == '_mocked_system_properties' or key == '_final_doc': continue
+
+                find_nested_entities(item, ignore_type=ignore_type, nested_entities=nested_entities)
+    elif isinstance(data, (list, tuple)):
+        for item in data:
+            find_nested_entities(item, ignore_type=ignore_type, nested_entities=nested_entities)
+    else:
+        pass  # do nothing
+
+
 def test_docs(testdoc, schemas, resolvers):
     doc_name, schema_id, ok, json_data = testdoc
+
+    # process nested entities first (if any), look for object with 'type' property
+    nested_entities = []
+    find_nested_entities(json_data, ignore_type=schema_id, nested_entities=nested_entities)
+    #assert False, json.dumps(json_data, indent=2)
+
+    for entity in nested_entities:
+        s = entity['type']
+        mocked_system_doc = entity.pop('_mocked_system_properties', None)
+        final_doc = entity.pop('_final_doc', None)
+        Draft7Validator(schemas[s],
+                        resolver=resolvers[s],
+                        format_checker=draft7_format_checker).validate(entity)
+
+        if final_doc and mocked_system_doc:
+            assert final_doc == {**entity, **mocked_system_doc}
+
     mocked_system_doc = json_data.pop('_mocked_system_properties', None)
+    final_doc = json_data.pop('_final_doc', None)
 
     resolver = resolvers[schema_id]
 
@@ -62,10 +102,6 @@ def test_docs(testdoc, schemas, resolvers):
     else:
         assert False, 'This should never happen, current test doc: "%s"' % doc_name
 
-    if mocked_system_doc:
-        json_data_final = {**json_data, **mocked_system_doc}
-        assert len(json_data_final) == len(json_data) + len(mocked_system_doc), \
-            'System properties: "%s" overlap with submitted properties: "%s"' % \
-            (", ".join(list(mocked_system_doc.keys())), ", ".join(list(json_data.keys())))
 
-        # TODO: add validation test to cover json_data_final
+    if final_doc and mocked_system_doc:
+        assert final_doc == {**json_data, **mocked_system_doc}

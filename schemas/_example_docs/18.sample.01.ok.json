@@ -4,13 +4,39 @@
     "submitter_id": "0027_CRUK_PC_0027_Blood_DNA",
     "specimen_submitter_id": "0027_CRUK_PC_0027_Blood",
     "program": "PRAD-UK",
-    "sample_type": "DNA"
+    "sample_type": "DNA",
+    "_mocked_system_properties": {
+      "id": "SA567218",
+      "specimen_id": "SP131542"
+    },
+    "_final_doc": {
+      "type": "sample",
+      "submitter_id": "0027_CRUK_PC_0027_Blood_DNA",
+      "specimen_submitter_id": "0027_CRUK_PC_0027_Blood",
+      "program": "PRAD-UK",
+      "sample_type": "DNA",
+      "id": "SA567218",
+      "specimen_id": "SP131542"
+    }
   },
   {
     "type": "sample",
     "submitter_id": "0027_CRUK_PC_0027_T1_DNA",
     "specimen_submitter_id": "0027_CRUK_PC_0027_T1",
     "program": "PRAD-UK",
-    "sample_type": "DNA"
+    "sample_type": "DNA",
+    "_mocked_system_properties": {
+      "id": "SA567216",
+      "specimen_id": "SP131541"
+    },
+    "_final_doc": {
+      "type": "sample",
+      "submitter_id": "0027_CRUK_PC_0027_T1_DNA",
+      "specimen_submitter_id": "0027_CRUK_PC_0027_T1",
+      "program": "PRAD-UK",
+      "sample_type": "DNA",
+      "id": "SA567216",
+      "specimen_id": "SP131541"
+    }
   }
 ]

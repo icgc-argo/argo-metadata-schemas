@@ -5,7 +5,21 @@
     "donor_submitter_id": "0027_CRUK_PC_0027",
     "program": "PRAD-UK",
     "normal_or_tumour_designation": "normal",
-    "specimen_type": "Normal - blood derived"
+    "specimen_type": "Normal - blood derived",
+    "_mocked_system_properties": {
+      "id": "SP131542",
+      "donor_id": "DO223959"
+    },
+    "_final_doc": {
+      "type": "specimen",
+      "submitter_id": "0027_CRUK_PC_0027_Blood",
+      "donor_submitter_id": "0027_CRUK_PC_0027",
+      "program": "PRAD-UK",
+      "normal_or_tumour_designation": "normal",
+      "specimen_type": "Normal - blood derived",
+      "id": "SP131542",
+      "donor_id": "DO223959"
+      }
   },
   {
     "type": "specimen",
@@ -13,6 +27,20 @@
     "donor_submitter_id": "0027_CRUK_PC_0027",
     "program": "PRAD-UK",
     "normal_or_tumour_designation": "tumour",
-    "specimen_type": "Primary tumour - solid tissue"
+    "specimen_type": "Primary tumour - solid tissue",
+    "_mocked_system_properties": {
+      "id": "SP131541",
+      "donor_id": "DO223959"
+    },
+    "_final_doc": {
+      "type": "specimen",
+      "submitter_id": "0027_CRUK_PC_0027_T1",
+      "donor_submitter_id": "0027_CRUK_PC_0027",
+      "program": "PRAD-UK",
+      "normal_or_tumour_designation": "tumour",
+      "specimen_type": "Primary tumour - solid tissue",
+      "id": "SP131541",
+      "donor_id": "DO223959"
+    }
   }
 ]

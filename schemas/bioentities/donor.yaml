@@ -12,13 +12,7 @@ propertyNames:  # this will reject any unknown properties, note that 'additional
   - pattern: '^type$'
   - pattern: '^submitter_id$'
   - pattern: '^program$'
-  - pattern: '^vital_status$'
   - pattern: '^gender$'
-  - pattern: '^ethnicity$'
-  - pattern: '^cause_of_death$'
-  - pattern: '^survival_time$'
-  - pattern: '^prior_malignancy$'
-  - pattern: '^cancer_type_prior_malignancy$'
 
 definitions:
   relationDef:
@@ -43,7 +37,6 @@ required:
 - submitter_id
 - program
 - gender
-- vital_status
 
 properties:
   type:
@@ -53,27 +46,6 @@ properties:
     description: "Submitter's donor ID"
   program:
     $ref: _definitions#/common/properties/program_short_name
-  vital_status:
-    enum: [ "deceased", "alive", "unknown" ]
   gender:
     enum: [ "female", "male", "other" ]
     description: "Donor biological sex"
-  ethnicity:
-    type: [ "string", "null" ]
-    scriptValidations:
-    - "$cv(ethnicity)"
-  cause_of_death:
-    enum: [ "died of cancer", "died of other reasons", null ]  # null means not applicable, eg, donor not deceased yet
-  survival_time:
-    type: integer
-    minimum: 0
-    description: "How long has the donor survived since primary diagnosis, in days."
-  prior_malignancy:
-    type: string
-    scriptValidations:
-    - "$cv(yes_no_unknown)"
-  cancer_type_prior_malignancy:
-    type: [ "string", "null" ]
-    scriptValidations:
-    - "$cv(cancer_type_icd_10_code)"
-    description: "ICD-10 diagnostic code for type of cancer in a prior malignancy."

@@ -1,0 +1,43 @@
+$id: "sanger_ssm_call.vcf_index.data_object"
+type: object
+
+allOf:
+- $ref: _definitions#/submitted_file
+- properties:
+    name:
+      pattern: '\.vcf\.gz\.tbi$'  # must have .vcf.gz.tbi extension
+
+definitions:
+  relationDef:
+    $ref: '_definitions#/relationDef'
+    const:
+      primaryKey:
+      - '#/definitions/systemProperties/allOf/1/properties/id'
+
+  systemProperties:
+    required: [ id, program, repository, created_at, updated_at, derived_from, bundle_id, bundle_type, format, data_type ]
+    allOf:
+    - $ref: _definitions#/data_object
+    - properties:
+        id:  # surrogate key
+          $ref: _definitions#/data_object/properties/id
+        program:  # copied from containing parent
+          $ref: "#/properties/program"
+        donor:  # copied from containing parent
+          $ref: "#/definitions/systemProperties/properties/donor"
+        derived_from:
+          type: object
+          properties:
+            type:
+              const: "sample"
+            id:  # copied from containing parent
+              $ref: "#/definitions/systemProperties/properties/donor/properties/specimen/properties/sample/properties/sample_id"
+        bundle_id:  # copied from containing parent
+          $ref: "#/definitions/systemProperties/properties/id"
+        bundle_type:
+          const: "ssm_call"
+        format:
+          const: "TBI"
+        date_type:
+          const: "VCF Index"
+          default: "VCF Index"

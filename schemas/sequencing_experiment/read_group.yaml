@@ -1,0 +1,87 @@
+$id: "read_group"  # read_group is a nested entity under sequencing experiment
+type: object
+description: "Read groups from a sequencing experiement"
+
+definitions:
+  relationDef:
+    $ref: '_definitions#/relationDef'
+    const:
+      category: bioentity
+      version: 0
+      primaryKey:
+      - '#/definitions/systemProperties/properties/id'
+      naturalKey:
+      - '#/definitions/systemProperties/properties/program'
+      - '#/properties/submitter_id'
+      references:  # TODO: add relationship to the containing sequencing_experiment
+      - foreignKey:
+        - '#/definitions/systemProperties/properties/program'
+        - '#/definitions/systemProperties/properties/sample_submitter_id'
+        targetEntity: 'sample'
+        targetKey:  # relationship by naturalKey
+        - 'sample#/properties/program'
+        - 'sample#/properties/submitter_id'
+      - foreignKey:
+        - '#/definitions/systemProperties/properties/sample_id'
+        targetEntity: 'sample'
+        targetKey:  # relationship by primaryKey
+        - 'sample#/definitions/systemProperties/properties/id'
+  systemProperties:  # properties will be populated by the system
+    properties:
+      id:  # system generated globally unique read group ID
+        allOf:
+        - $ref: _definitions#/common/properties/id
+        - pattern: "^RG"  # id must start with "RG", in addition to pattern defined at _definitions#/common/properties/id
+      program:
+        # this reuses the program definition in the containing parent, may also signal that it gets the same value
+        $ref: "sequencing_experiment#/properties/program"
+      sequencing_experiment_submitter_id:
+        # this field gets value from containing parent
+        $ref: "sequencing_experiment#/properties/submitter_id"
+      sequencing_experiment_id:
+        # this field gets value from containing parent
+        $ref: "sequencing_experiment#/definitions/systemProperties/properties/id"
+      sample_submitter_id:
+        # this field gets value from containing parent
+        $ref: "sequencing_experiment#/definitions/properties/sample_submitter_id"
+      sample_id:
+        # this field gets value from containing parent
+        $ref: "sequencing_experiment#/definitions/systemProperties/properties/sample_id"
+
+required:
+- type
+- submitter_id
+- platform_unit
+- is_paired_end
+- read_length_r1
+- library_name
+
+properties:
+  type:
+    const: "read_group"
+  submitter_id:
+    type: string
+    description: "Submitter's read group ID. ID in BAM @RG header"
+  platform_unit:  # PU in BAM @RG header, for Illumina: {FLOWCELL_BARCODE}.{LANE}.{SAMPLE_BARCODE}
+    type: string
+  is_paired_end:
+    type: boolean
+  read_length_r1:
+    type: integer
+    minimum: 20  # shortest read length
+  read_length_r2:
+    type: integer
+    minimum: 20  # shortest read length
+  insert_size:
+    type: integer
+    minimum: 0
+  sample_barcode:  # only applicable for multiplex sequencing libraries
+    type: [ string, "null" ]
+  library_name:
+    type: string
+if:
+  properties:
+    is_paired_end:  # if paired end, requires read_lenght_r2 and insert_size
+      const: true
+then:
+  required: [ read_length_r2, insert_size ]

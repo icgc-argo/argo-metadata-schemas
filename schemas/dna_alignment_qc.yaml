@@ -33,6 +33,9 @@ definitions:
         $ref: dna_alignment#/definitions/systemProperties/properties/donor
       library_strategy:
         $ref: dna_alignment#/definitions/systemProperties/properties/library_strategy
+      schema_version:
+        $ref: '_definitions#/relationDef/properties/version'
+        default: '#/definitions/relationDef/const/version'  # where to pick up the version
 
 required:
 - type
@@ -130,116 +133,7 @@ properties:
     additionalProperties: false
     properties:
       quality_distribution:
-        $id: "#data_object/pdf"
-        type: object
-
-        allOf:
-        - $ref: _definitions#/submitted_file
-        - properties:
-            name:
-              pattern: '\.pdf\.gz$'  # must have .pdf.gz extension
-
-        definitions:
-          relationDef:
-            $ref: '_definitions#/relationDef'
-            const:
-              primaryKey: [ 'id' ]  # shoud use relative json pointer
-
-          systemProperties:
-            required: [ id, program, repository, created_at, updated_at, derived_from, bundle_id, bundle_type, format, data_type ]
-            allOf:
-            - $ref: _definitions#/data_object
-            - $ref: _definitions#/repositoryProperties
-            - properties:
-                program:  # copied from containing parent
-                  $ref: "#/properties/program"
-                donor:  # copied from containing parent
-                  $ref: "#/definitions/systemProperties/properties/donor"
-                derived_from:
-                  type: object
-                  properties:
-                    type:
-                      const: "sample"
-                    id:  # copied from containing parent
-                      $ref: "#/definitions/systemProperties/properties/sample_id"
-                bundle_id:  # copied from containing parent
-                  $ref: "#/definitions/systemProperties/properties/id"
-                bundle_type:
-                  const: "dna_alignment_qc"
-                format:
-                  const: "PDF"
-                  default: "PDF"
-                date_type:
-                  const: "Alignment QC"
-                  default: "Alignment QC"
+        $ref: dna_alignment_qc.quality_distribution.data_object
 
       bait_bias_detail_metrics:
-        $id: "#data_object/txt"
-        type: object
-
-        allOf:
-        - $ref: _definitions#/submitted_file
-        - properties:
-            name:
-              pattern: '\.txt\.gz$'  # must have .txt.gz extension
-
-        definitions:
-          relationDef:
-            $ref: '_definitions#/relationDef'
-            const:
-              primaryKey: [ 'id' ]  # shoud use relative json pointer
-
-          systemProperties:
-            required: [ id, program, repository, created_at, updated_at, derived_from, bundle_id, bundle_type, format, data_type ]
-            allOf:
-            - $ref: _definitions#/data_object
-            - $ref: _definitions#/repositoryProperties
-            - properties:
-                program:  # copied from containing parent
-                  $ref: "#/properties/program"
-                donor:  # copied from containing parent
-                  $ref: "#/definitions/systemProperties/properties/donor"
-                derived_from:
-                  type: object
-                  properties:
-                    type:
-                      const: "sample"
-                    id:  # copied from containing parent
-                      $ref: "#/definitions/systemProperties/properties/sample_id"
-                bundle_id:  # copied from containing parent
-                  $ref: "#/definitions/systemProperties/properties/id"
-                bundle_type:
-                  const: "dna_alignment_qc"
-                format:
-                  const: "TXT"
-                  default: "TXT"
-                date_type:
-                  const: "Alignment QC"
-                  default: "Alignment QC"
-
-      quality_by_cycle:
-        $ref: "#data_object/txt"
-      base_distribution_by_cycle_metrics:
-        $ref: "#data_object/txt"
-      pre_adapter_summary_metrics:
-        $ref: "#data_object/txt"
-      quality_by_cycle_metrics:
-        $ref: "#data_object/txt"
-      insert_size_histogram:
-        $id: "#data_object/pdf"
-      insert_size_metrics:
-        $ref: "#data_object/txt"
-      quality_distribution_metrics:
-        $ref: "#data_object/txt"
-      alignment_summary_metrics:
-        $ref: "#data_object/txt"
-      error_summary_metrics:
-        $ref: "#data_object/txt"
-      base_distribution_by_cycle:
-        $ref: "#data_object/txt"
-      pre_adapter_detail_metrics:
-        $ref: "#data_object/txt"
-      bait_bias_summary_metrics:
-        $ref: "#data_object/txt"
-      quality_yield_metrics:
-        $ref: "#data_object/txt"
+        $ref: dna_alignment_qc.bait_bias_detail_metrics.data_object

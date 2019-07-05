@@ -1,0 +1,73 @@
+$schema: "http://json-schema.org/draft-07/schema#"
+
+$id: "bam_submission"
+title: aligned or unaligned BAM submission bundle, one or more read groups one bam_submission
+type: object
+description: ""
+additionalProperties: false
+
+definitions:
+  version:
+    $ref: '_definitions#/_/properties/version'
+    const: 0
+  relationDef:
+    $ref: '_definitions#/relationDef'
+    const:
+      primaryKey:
+      - '#/definitions/systemProperties/properties/id'
+      uniqueKey:
+      - [ '#/properties/inputs/properties/read_group_submitter_id' ]
+      references:
+      - foreignKey:
+        - '#/definitions/systemProperties/properties/read_group_id'
+        targetEntity: 'read_group'
+        targetKey:  # relationship by primaryKey
+        - 'read_group#/definitions/systemProperties/properties/id'
+  systemProperties:
+    properties:
+      status:
+        $ref: _definitions#/common/properties/bundle_status
+      id:
+        $ref: _definitions#/common/properties/uuid
+      donor:  # bioentity tree
+        properties:
+          donor_id:
+            $ref: donor#/definitions/systemProperties/properties/id
+          specimen:
+            properties:
+              specimen_id:
+                $ref: specimen#/definitions/systemProperties/properties/id
+              sample:
+                properties:
+                  sample_id:  # to be magically populated by the system through traversing back to the 'sample'
+                    $ref: sample#/definitions/systemProperties/properties/id
+      read_group_id:  # FK points to PK of read_group
+        $ref: read_group#/definitions/systemProperties/properties/id
+      library_strategy:  # to be magically populated by the system through traversing back to the 'sequencing_experiment'
+        $ref: sequencing_experiment#/properties/library_strategy
+
+required:
+- type
+- program
+- inputs
+- files
+
+properties:
+  type:
+    const: "bam_submission"
+  program:
+    $ref: _definitions#/common/properties/program_short_name
+  inputs:
+    properties:
+      read_group_submitter_id:
+        type: array
+        minItems: 1
+        items:  # the input one or more read_group
+          $ref: _definitions#/common/properties/submitter_id
+
+  files:
+    type: object
+    additionalProperties: false
+    properties:
+      bam_file:
+        $ref: bam_submission.bam_file.data_object

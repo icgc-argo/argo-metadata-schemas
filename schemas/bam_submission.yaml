@@ -16,7 +16,7 @@ definitions:
       primaryKey:
       - '#/definitions/systemProperties/properties/id'
       uniqueKey:
-      - [ '#/properties/inputs/properties/read_group_submitter_id' ]
+      - [ '#/properties/program', '#/properties/inputs/properties/read_group_submitter_id' ]
       references:
       - foreignKey:
         - '#/definitions/systemProperties/properties/read_group_id'

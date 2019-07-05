@@ -7,11 +7,12 @@ description: ""
 additionalProperties: false
 
 definitions:
+  version:
+    $ref: '_definitions#/_/properties/version'
+    const: 0
   relationDef:
-    $ref: '_definitions#/relationDef'
+    $ref: '_definitions#/_/properties/relationDef'
     const:
-      category: analysis
-      version: 0
       primaryKey:
       - '#/definitions/systemProperties/properties/id'
       uniqueKey:
@@ -34,8 +35,8 @@ definitions:
       library_strategy:
         $ref: dna_alignment#/definitions/systemProperties/properties/library_strategy
       schema_version:
-        $ref: '_definitions#/relationDef/properties/version'
-        default: '#/definitions/relationDef/const/version'  # where to pick up the version
+        $ref: '_definitions#/_/properties/version'
+        default: '#/definitions/version/const'  # where to pick up the version
 
 required:
 - type

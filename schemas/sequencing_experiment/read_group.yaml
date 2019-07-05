@@ -3,11 +3,12 @@ type: object
 description: "Read groups from a sequencing experiement"
 
 definitions:
+  version:
+    $ref: '_definitions#/_/properties/version'
+    const: 0
   relationDef:
-    $ref: '_definitions#/relationDef'
+    $ref: '_definitions#/_/properties/relationDef'
     const:
-      category: bioentity
-      version: 0
       primaryKey:
       - '#/definitions/systemProperties/properties/id'
       naturalKey:

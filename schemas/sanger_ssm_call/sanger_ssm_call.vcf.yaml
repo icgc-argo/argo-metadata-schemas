@@ -35,7 +35,7 @@ definitions:
         bundle_id:  # copied from containing parent
           $ref: "#/definitions/systemProperties/properties/id"
         bundle_type:
-          const: "ssm_call"
+          const: "sanger_ssm_call"
         format:
           const: "VCF"
         date_type:

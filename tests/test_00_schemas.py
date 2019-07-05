@@ -39,7 +39,7 @@ def pytest_generate_tests(metafunc):
 
 def test_relationDef(testdoc, schemas, resolvers):
     s, relationDefDoc = testdoc
-    relationDefSchema = schemas['_definitions']['relationDef']
+    relationDefSchema = schemas['_definitions']['_']['properties']['relationDef']
 
     resolver = resolvers[s]
 

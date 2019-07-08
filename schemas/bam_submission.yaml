@@ -42,7 +42,10 @@ definitions:
                   sample_id:  # to be magically populated by the system through traversing back to the 'sample'
                     $ref: sample#/definitions/systemProperties/properties/id
       read_group_id:  # FK points to PK of read_group
-        $ref: read_group#/definitions/systemProperties/properties/id
+        type: array
+        minItems: 1
+        items:
+          $ref: read_group#/definitions/systemProperties/properties/id
       library_strategy:  # to be magically populated by the system through traversing back to the 'sequencing_experiment'
         $ref: sequencing_experiment#/properties/library_strategy
 

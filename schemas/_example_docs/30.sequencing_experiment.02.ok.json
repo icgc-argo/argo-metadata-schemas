@@ -1,0 +1,125 @@
+{
+    "type": "sequencing_experiment",
+    "program": "OV-AU",
+    "submitter_id": "EGAZ00001018761",
+    "sample_submitter_id": "AOCS-108-1-7",
+    "sequencing_center": "QCMG",
+    "platform": "Illumina",
+    "platform_model": "HiSeq 2500",
+    "library_strategy": "WGS",
+    "sequencing_date": "2014-12-12",
+    "read_group_count": 2,
+    "read_groups":
+    [
+        {
+            "type": "read_group",
+            "submitter_id": "20131019044843341",
+            "platform_unit": "lane_7.nobc",
+            "is_paired_end": true,
+            "read_length_r1": 150,
+            "read_length_r2": 150,
+            "insert_size": 298,
+            "sample_barcode": null,
+            "library_name": "LP6005606-DNA_F01",
+            "_mocked_system_properties": {
+                "id": "RG2345",
+                "program": "OV-AU",
+                "sequencing_experiment_submitter_id": "EGAZ00001018761",
+                "sequencing_experiment_id": "13f795b0-bc7e-42b2-93bd-e8d2875b47d0",
+                "sample_submitter_id": "AOCS-108-1-7",
+                "sample_id": "SA505863"
+            },
+            "_final_doc": {
+                "type": "read_group",
+                "submitter_id": "20131019044843341",
+                "platform_unit": "lane_7.nobc",
+                "is_paired_end": true,
+                "read_length_r1": 150,
+                "read_length_r2": 150,
+                "insert_size": 298,
+                "sample_barcode": null,
+                "library_name": "LP6005606-DNA_F01",
+                "id": "RG2345",
+                "program": "OV-AU",
+                "sequencing_experiment_submitter_id": "EGAZ00001018761",
+                "sequencing_experiment_id": "13f795b0-bc7e-42b2-93bd-e8d2875b47d0",
+                "sample_submitter_id": "AOCS-108-1-7",
+                "sample_id": "SA505863"
+            }
+        },
+        {
+            "type": "read_group",
+            "submitter_id": "20131019042321400",
+            "platform_unit": "lane_8.nobc",
+            "is_paired_end": true,
+            "read_length_r1": 150,
+            "read_length_r2": 150,
+            "insert_size": 298,
+            "sample_barcode": null,
+            "library_name": "LP6005606-DNA_F01",
+            "_mocked_system_properties": {
+                "id": "RG2346",
+                "program": "OV-AU",
+                "sequencing_experiment_submitter_id": "EGAZ00001018761",
+                "sequencing_experiment_id": "13f795b0-bc7e-42b2-93bd-e8d2875b47d0",
+                "sample_submitter_id": "AOCS-108-1-7",
+                "sample_id": "SA505863"
+            },
+            "_final_doc": {
+                "type": "read_group",
+                "submitter_id": "20131019042321400",
+                "platform_unit": "lane_8.nobc",
+                "is_paired_end": true,
+                "read_length_r1": 150,
+                "read_length_r2": 150,
+                "insert_size": 298,
+                "sample_barcode": null,
+                "library_name": "LP6005606-DNA_F01",
+                "id": "RG2346",
+                "program": "OV-AU",
+                "sequencing_experiment_submitter_id": "EGAZ00001018761",
+                "sequencing_experiment_id": "13f795b0-bc7e-42b2-93bd-e8d2875b47d0",
+                "sample_submitter_id": "AOCS-108-1-7",
+                "sample_id": "SA505863"
+            }
+        }
+    ],
+    "_mocked_system_properties": {
+        "id": "13f795b0-bc7e-42b2-93bd-e8d2875b47d0",
+        "sample_id": "SA505863",
+        "read_groups": [
+            {
+                "type": "read_group",
+                "read_group_id": "RG2345"
+            },
+            {
+                "type": "read_group",
+                "read_group_id": "RG2346"
+            }
+        ]
+    },
+    "_final_doc": {
+        "type": "sequencing_experiment",
+        "id": "13f795b0-bc7e-42b2-93bd-e8d2875b47d0",
+        "sample_id": "SA505863",
+        "program": "OV-AU",
+        "submitter_id": "EGAZ00001018761",
+        "sample_submitter_id": "AOCS-108-1-7",
+        "sequencing_center": "QCMG",
+        "platform": "Illumina",
+        "platform_model": "HiSeq 2500",
+        "library_strategy": "WGS",
+        "sequencing_date": "2014-12-12",
+        "read_group_count": 2,
+        "read_groups": [
+            {
+                "type": "read_group",
+                "read_group_id": "RG2345"
+            },
+            {
+                "type": "read_group",
+                "read_group_id": "RG2346"
+            }
+        ]
+    }
+}

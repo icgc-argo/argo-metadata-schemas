@@ -40,10 +40,6 @@ definitions:
         targetEntity: 'donor'
         targetKey:  # relationship by primaryKey
         - 'donor#/definitions/systemProperties/properties/id'
-  scriptValidations:  # script based validation, call returns True for valid or False for invalid
-    $ref: '_definitions#/_/properties/scriptValidations'
-    const:
-    - "$sumNoGreaterThan(1, [percent_tumour_cells, percent_proliferating_cells, percent_inflammatory_tissue, percent_stromal_cells, percent_necrosis])"
   systemProperties:  # properties will be populated by the system
     properties:
       id:  # primary key, defined in 'primaryKey'
@@ -76,9 +72,12 @@ properties:
     $ref: _definitions#/common/properties/submitter_id
   normal_or_tumour_designation:
     type: string
-    scriptValidations:
-    - "$cv(tumour_or_normal_designation, specimen_type)"
+    enum:
+    - Normal
+    - Tumour
   specimen_type:
     type: string
-    scriptValidations:
-    - "$cv(specimen_type)"
+    enum:
+    - Normal - blood derived
+    - Primary tumour - solid tissue
+    - Recurrent tumour - other

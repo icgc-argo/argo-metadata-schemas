@@ -38,5 +38,25 @@
       "id": "SA567216",
       "specimen_id": "SP131541"
     }
+  },
+  {
+    "type": "sample",
+    "submitter_id": "AOCS-108-1-7",
+    "specimen_submitter_id": "AOCS-108-1",
+    "program": "OV-AU",
+    "sample_type": "DNA",
+    "_mocked_system_properties": {
+      "id": "SA505863",
+      "specimen_id": "SP101678"
+    },
+    "_final_doc": {
+      "type": "sample",
+      "submitter_id": "AOCS-108-1-7",
+      "specimen_submitter_id": "AOCS-108-1",
+      "program": "OV-AU",
+      "sample_type": "DNA",
+      "id": "SA505863",
+      "specimen_id": "SP101678"
+    }
   }
 ]

@@ -1,10 +1,32 @@
 [
   {
     "type": "specimen",
+    "submitter_id": "AOCS-108-1",
+    "donor_submitter_id": "AOCS-108",
+    "program": "OV-AU",
+    "normal_or_tumour_designation": "Tumour",
+    "specimen_type": "Primary tumour - solid tissue",
+    "_mocked_system_properties": {
+      "id": "SP101678",
+      "donor_id": "DO46394"
+    },
+    "_final_doc": {
+      "type": "specimen",
+      "submitter_id": "AOCS-108-1",
+      "donor_submitter_id": "AOCS-108",
+      "program": "OV-AU",
+      "normal_or_tumour_designation": "Tumour",
+      "specimen_type": "Primary tumour - solid tissue",
+      "id": "SP101678",
+      "donor_id": "DO46394"
+      }
+  },
+  {
+    "type": "specimen",
     "submitter_id": "0027_CRUK_PC_0027_Blood",
     "donor_submitter_id": "0027_CRUK_PC_0027",
     "program": "PRAD-UK",
-    "normal_or_tumour_designation": "normal",
+    "normal_or_tumour_designation": "Normal",
     "specimen_type": "Normal - blood derived",
     "_mocked_system_properties": {
       "id": "SP131542",
@@ -15,7 +37,7 @@
       "submitter_id": "0027_CRUK_PC_0027_Blood",
       "donor_submitter_id": "0027_CRUK_PC_0027",
       "program": "PRAD-UK",
-      "normal_or_tumour_designation": "normal",
+      "normal_or_tumour_designation": "Normal",
       "specimen_type": "Normal - blood derived",
       "id": "SP131542",
       "donor_id": "DO223959"
@@ -26,7 +48,7 @@
     "submitter_id": "0027_CRUK_PC_0027_T1",
     "donor_submitter_id": "0027_CRUK_PC_0027",
     "program": "PRAD-UK",
-    "normal_or_tumour_designation": "tumour",
+    "normal_or_tumour_designation": "Tumour",
     "specimen_type": "Primary tumour - solid tissue",
     "_mocked_system_properties": {
       "id": "SP131541",
@@ -37,7 +59,7 @@
       "submitter_id": "0027_CRUK_PC_0027_T1",
       "donor_submitter_id": "0027_CRUK_PC_0027",
       "program": "PRAD-UK",
-      "normal_or_tumour_designation": "tumour",
+      "normal_or_tumour_designation": "Tumour",
       "specimen_type": "Primary tumour - solid tissue",
       "id": "SP131541",
       "donor_id": "DO223959"

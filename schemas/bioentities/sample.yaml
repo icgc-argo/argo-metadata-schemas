@@ -32,10 +32,6 @@ definitions:
         targetEntity: 'specimen'
         targetKey:  # relationship by primaryKey
         - 'specimen#/definitions/systemProperties/properties/id'
-  scriptValidations:  # script based validation, call returns True for valid or False for invalid
-    $ref: '_definitions#/_/properties/scriptValidations'
-    const:
-    - "$sumNoGreaterThan(1, [percent_tumour_cells, percent_proliferating_cells, percent_inflammatory_tissue, percent_stromal_cells, percent_necrosis])"
   systemProperties:  # properties will be populated by the system
     properties:
       id:  # primary key, defined in 'primaryKey'
@@ -64,5 +60,6 @@ properties:
     $ref: _definitions#/common/properties/submitter_id
   sample_type:
     type: string
-    scriptValidations:
-    - "$cv(sample_type)"
+    enum:
+    - DNA
+    - RNA

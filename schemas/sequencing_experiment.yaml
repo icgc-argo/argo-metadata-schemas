@@ -67,8 +67,9 @@ properties:
     enum: [ 'Illumina', 'SOLiD', 'LS454', 'PacBio', 'Ion Torrent', 'Nanopore', 'Complete Genomics' ]
   platform_model:  # Illumina HiSeq 2000
     type: string
-    scriptValidations:
-    - "$cv(platform_model, platform)"
+    enum:
+    - HiSeq 2000
+    - HiSeq 2500
   library_strategy:
     enum:
     - "WGS"
@@ -90,10 +91,20 @@ properties:
     items:
       minItems: 1
       definitions:
+        relationDef:
+          $ref: '_definitions#/_/properties/relationDef'
+          const:
+            references:
+            - foreignKey:
+              - '#/properties/read_groups/items/definitions/systemProperties/properties/read_group_id'
+              targetEntity: 'read_group'  # lane_bam_qc to lane_bam_submission relationship is one-to-one
+              targetKey:  # relationship by primaryKey
+              - 'read_group#/definitions/systemProperties/properties/id'
+
         systemProperties:
           properties:
             type:
               const: read_group
-            object_id:
+            read_group_id:
               $ref: read_group#/definitions/systemProperties/properties/id
       $ref: read_group

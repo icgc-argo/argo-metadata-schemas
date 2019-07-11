@@ -124,17 +124,17 @@ properties:
     additionalProperties: false
     properties:
       metrics_file:
-        relationDef:
-          $ref: '_definitions#/_/properties/relationDef'
-          const:
-            references:
-            - foreignKey:
-              - '#/properties/files/properties/metrics_file/definitions/systemProperties/properties/object_id'
-              targetEntity: 'data_object'  # lane_bam_qc to lane_bam_submission relationship is one-to-one
-              targetKey:  # relationship by primaryKey
-              - 'lane_bam_qc.metrics_file.data_object#/definitions/systemProperties/allOf/1/properties/id'
-
         definitions:
+          relationDef:
+            $ref: '_definitions#/_/properties/relationDef'
+            const:
+              references:
+              - foreignKey:
+                - '#/properties/files/properties/metrics_file/definitions/systemProperties/properties/object_id'
+                targetEntity: 'data_object'  # lane_bam_qc to lane_bam_submission relationship is one-to-one
+                targetKey:  # relationship by primaryKey
+                - 'lane_bam_qc.metrics_file.data_object#/definitions/systemProperties/allOf/1/properties/id'
+
           systemProperties:
             properties:
               type:

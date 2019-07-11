@@ -22,5 +22,14 @@
     "submitter_id": "PSI_1033",
     "program": "PBCA-DE",
     "gender": "other"
+  },
+  {
+    "type": "donor",
+    "submitter_id": "AOCS-108",
+    "program": "OV-AU",
+    "gender": "female",
+    "_mocked_system_properties": {
+      "id": "DO46394"
+    }
   }
 ]

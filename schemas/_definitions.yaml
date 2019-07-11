@@ -97,6 +97,7 @@ common:
       - PRAD-CA
       - PBCA-DE
       - PRAD-UK
+      - OV-AU
 
 submitted_file:
   type: object

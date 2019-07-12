@@ -2,34 +2,40 @@
     "type": "dna_alignment",
     "program": "PRAD-UK",
     "inputs": {
-        "lane_bam_submission_id": [
-            "3abe7053-3234-4faa-a24c-39df11e5569e",
-            "02adbffc-c6f1-49d0-9518-e2d6d0c86f33",
-            "a64548d3-9ed9-4ad4-913e-0b7b94658265"
-        ]
-    },
-    "input_files": {
-        "lane_bams": [
+        "reference_genome": {},
+        "lane_seq": [
             {
-                "object_uri": "drs://Collab/3abe7053-3234-4faa-a24c-39df11e5569e/e477463b-ffb4-41a9-862e-55ef2ebfc04a",
-                "bundle_id": "3abe7053-3234-4faa-a24c-39df11e5569e",
-                "object_id": "e477463b-ffb4-41a9-862e-55ef2ebfc04a",
-                "name": "180126_icgc.bam",
-                "repository": "Collab"
+                "lane_seq_submission_id": "c3ec531b-c2c9-4c77-894a-5b80dd18241e",
+                "files": {
+                    "lane_seq": {
+                        "object_uri": "drs://Collab/c3ec531b-c2c9-4c77-894a-5b80dd18241e/0ee0d7f2-e96c-4e8c-be55-91267e74670b",
+                        "object_id": "0ee0d7f2-e96c-4e8c-be55-91267e74670b",
+                        "name": "180126_icgc.bam",
+                        "repository": "Collab"
+                    }
+                }
             },
             {
-                "object_uri": "drs://Collab/02adbffc-c6f1-49d0-9518-e2d6d0c86f33/4032dea0-60ec-4094-8805-16723de70e3f",
-                "bundle_id": "02adbffc-c6f1-49d0-9518-e2d6d0c86f33",
-                "object_id": "4032dea0-60ec-4094-8805-16723de70e3f",
-                "name": "180130_icgc.bam",
-                "repository": "Collab"
+                "lane_seq_submission_id": "02adbffc-c6f1-49d0-9518-e2d6d0c86f33",
+                "files": {
+                    "lane_seq": {
+                        "object_uri": "drs://Collab/c3ec531b-c2c9-4c77-894a-5b80dd18241e/0ee0d7f2-e96c-4e8c-be55-91267e74670b",
+                        "object_id": "0ee0d7f2-e96c-4e8c-be55-91267e74670b",
+                        "name": "180126_icgc.bam",
+                        "repository": "Collab"
+                    }
+                }
             },
             {
-                "object_uri": "drs://Collab/a64548d3-9ed9-4ad4-913e-0b7b94658265/ffcd79d6-a7fb-47ba-81d9-f9cd2a63c84f",
-                "bundle_id": "a64548d3-9ed9-4ad4-913e-0b7b94658265",
-                "object_id": "ffcd79d6-a7fb-47ba-81d9-f9cd2a63c84f",
-                "name": "180135_icgc.bam",
-                "repository": "Collab"
+                "lane_seq_submission_id": "a64548d3-9ed9-4ad4-913e-0b7b94658265",
+                "files": {
+                    "lane_seq": {
+                        "object_uri": "drs://Collab/a64548d3-9ed9-4ad4-913e-0b7b94658265/ffcd79d6-a7fb-47ba-81d9-f9cd2a63c84f",
+                        "object_id": "ffcd79d6-a7fb-47ba-81d9-f9cd2a63c84f",
+                        "name": "180135_icgc.bam",
+                        "repository": "Collab"
+                    }
+                }
             }
         ]
     },

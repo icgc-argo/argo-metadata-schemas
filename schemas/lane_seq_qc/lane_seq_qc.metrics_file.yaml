@@ -1,4 +1,4 @@
-$id: "lane_bam_submission.bam_file.data_object"  # data_object is a nested entity under lane_bam_submission
+$id: "lane_seq_qc.metrics_file.data_object"
 type: object
 
 definitions:
@@ -7,6 +7,7 @@ definitions:
     const:
       primaryKey:
       - '#/definitions/systemProperties/allOf/1/properties/id'
+
   systemProperties:
     required: [ id, program, repository, created_at, updated_at, derived_from, bundle_id, bundle_type, format, data_type ]
     allOf:
@@ -15,9 +16,9 @@ definitions:
         id:  # surrogate key
           $ref: '_definitions#/data_object/properties/id'
         program:  # copied from containing parent
-          $ref: "#/properties/program"
+          $ref: "lane_seq_qc#/properties/program"
         donor:  # copied from containing parent
-          $ref: "#/definitions/systemProperties/properties/donor"
+          $ref: "lane_seq_qc#/definitions/systemProperties/properties/donor"
         derived_from:
           type: object
           properties:
@@ -26,18 +27,20 @@ definitions:
             id:  # copied from containing parent
               $ref: "#/definitions/systemProperties/properties/read_group_id"
         bundle_id:  # copied from containing parent
-          $ref: "#/properties/id"
+          $ref: "#/definitions/systemProperties/properties/id"
         bundle_type:
-          const: "lane_bam_submission"
+          const: "lane_seq_qc"
         format:
-          const: "BAM"  # if submitted, it must be "BAM"
-          default: "BAM"  # when not submitted by the client, default value will be used
+          const: "TXT"
+          default: "TXT"
         date_type:
-          const: "Unaligned Reads"
-          default: "Unaligned Reads"
+          const: "RG QC"
+          default: "RG QC"
 
 allOf:
-- $ref: _definitions#/submitted_file
+- $ref: '_definitions#/submitted_file'
 - properties:
     name:
-      pattern: '\.bam$'  # must have .bam extension
+      pattern: '\.txt\.gz$'  # must have .txt.gz extension
+    type:
+      const: 'lane_seq_qc.metrics_file.data_object'

@@ -1,7 +1,7 @@
 $schema: "http://json-schema.org/draft-07/schema#"
 
-$id: "lane_bam_submission"
-title: Lane level unaligned BAM submission bundle, one read group one lane_bam_submission
+$id: "lane_seq_submission"
+title: Lane level sequence submission bundle, one read group one lane_seq_submission
 type: object
 description: ""
 additionalProperties: false
@@ -62,16 +62,36 @@ required:
 
 properties:
   type:
-    const: "lane_bam_submission"
+    const: "lane_seq_submission"
   program:
     $ref: _definitions#/common/properties/program_short_name
   inputs:
+    additionalProperties: false
+    required: [ read_group_submitter_id, files ]
     properties:
       read_group_submitter_id:
         $ref: _definitions#/common/properties/submitter_id
+      files:
+        additionalProperties: false
+        oneOf:
+        - required: [ bam ]
+        - required: [ fastq ]
+        properties:
+          bam:
+            properties:
+              name:
+                pattern: '\.bam$'  # must have .bam extension
+          fastq:
+            type: array
+            minItems: 1
+            maxItems: 2
+            items:
+              properties:
+                name:
+                  pattern: '\.(fq|fastq)\.gz$'  # must have .fq or .fastq extension
   files:
     type: object
     additionalProperties: false
     properties:
       bam_file:
-        $ref: lane_bam_submission.bam_file.data_object
+        $ref: lane_seq_submission.bam_file.data_object

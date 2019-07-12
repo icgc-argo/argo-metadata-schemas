@@ -2,15 +2,15 @@
     "type": "dna_alignment_qc",
     "program": "PRAD-UK",
     "inputs": {
-        "dna_alignment_id": "6bea0dd1-e9f5-4a00-a6f0-32cb98eea370"
-    },
-    "input_files": {
-        "lane_bam": {
-            "object_uri": "drs://Collab/6bea0dd1-e9f5-4a00-a6f0-32cb98eea370/04ab8b82-e758-415a-abd5-ae27e0cfeaac",
-            "bundle_id": "6bea0dd1-e9f5-4a00-a6f0-32cb98eea370",
-            "object_id": "04ab8b82-e758-415a-abd5-ae27e0cfeaac",
-            "name": "ccdc18ea765f4ef1809d8e281ad8dcbd.bam",
-            "repository": "Collab"
+        "dna_alignment_id": "6bea0dd1-e9f5-4a00-a6f0-32cb98eea370",
+        "files": {
+            "aligned_dna_seq": {
+                "object_uri": "drs://Collab/6bea0dd1-e9f5-4a00-a6f0-32cb98eea370/04ab8b82-e758-415a-abd5-ae27e0cfeaac",
+                "bundle_id": "6bea0dd1-e9f5-4a00-a6f0-32cb98eea370",
+                "object_id": "04ab8b82-e758-415a-abd5-ae27e0cfeaac",
+                "name": "ccdc18ea765f4ef1809d8e281ad8dcbd.bam",
+                "repository": "Collab"
+            }
         }
     },
     "analysis": {

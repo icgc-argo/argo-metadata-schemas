@@ -3,26 +3,28 @@
     "program": "PRAD-UK",
     "inputs": {
         "tumour": {
-            "dna_alignment_id": "3abe7053-3234-4faa-a24c-39df11e5569e"
+            "dna_alignment_id": "3abe7053-3234-4faa-a24c-39df11e5569e",
+            "files": {
+                "aligned_dna_seq": {
+                    "object_uri": "drs://Collab/3abe7053-3234-4faa-a24c-39df11e5569e/e477463b-ffb4-41a9-862e-55ef2ebfc04a",
+                    "bundle_id": "3abe7053-3234-4faa-a24c-39df11e5569e",
+                    "object_id": "e477463b-ffb4-41a9-862e-55ef2ebfc04a",
+                    "name": "180126_icgc.bam",
+                    "repository": "Collab"
+                }
+            }
         },
         "normal": {
-            "dna_alignment_id": "02adbffc-c6f1-49d0-9518-e2d6d0c86f33"
-        }
-    },
-    "input_files": {
-        "tumour_dna_seq": {
-            "object_uri": "drs://Collab/3abe7053-3234-4faa-a24c-39df11e5569e/e477463b-ffb4-41a9-862e-55ef2ebfc04a",
-            "bundle_id": "3abe7053-3234-4faa-a24c-39df11e5569e",
-            "object_id": "e477463b-ffb4-41a9-862e-55ef2ebfc04a",
-            "name": "180126_icgc.bam",
-            "repository": "Collab"
-        },
-        "normal_dna_seq": {
-            "object_uri": "drs://Collab/02adbffc-c6f1-49d0-9518-e2d6d0c86f33/4032dea0-60ec-4094-8805-16723de70e3f",
-            "bundle_id": "02adbffc-c6f1-49d0-9518-e2d6d0c86f33",
-            "object_id": "4032dea0-60ec-4094-8805-16723de70e3f",
-            "name": "180130_icgc.bam",
-            "repository": "Collab"
+            "dna_alignment_id": "02adbffc-c6f1-49d0-9518-e2d6d0c86f33",
+            "files": {
+                "aligned_dna_seq": {
+                    "object_uri": "drs://Collab/02adbffc-c6f1-49d0-9518-e2d6d0c86f33/4032dea0-60ec-4094-8805-16723de70e3f",
+                    "bundle_id": "02adbffc-c6f1-49d0-9518-e2d6d0c86f33",
+                    "object_id": "4032dea0-60ec-4094-8805-16723de70e3f",
+                    "name": "180130_icgc.bam",
+                    "repository": "Collab"
+                }
+            }
         }
     },
     "analysis": {

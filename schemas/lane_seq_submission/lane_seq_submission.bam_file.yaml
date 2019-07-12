@@ -1,4 +1,4 @@
-$id: "lane_bam_qc.metrics_file.data_object"
+$id: "lane_seq_submission.bam_file.data_object"  # data_object is a nested entity under lane_seq_submission
 type: object
 
 definitions:
@@ -7,7 +7,6 @@ definitions:
     const:
       primaryKey:
       - '#/definitions/systemProperties/allOf/1/properties/id'
-
   systemProperties:
     required: [ id, program, repository, created_at, updated_at, derived_from, bundle_id, bundle_type, format, data_type ]
     allOf:
@@ -16,31 +15,29 @@ definitions:
         id:  # surrogate key
           $ref: '_definitions#/data_object/properties/id'
         program:  # copied from containing parent
-          $ref: "lane_bam_qc#/properties/program"
+          $ref: "lane_seq_submission#/properties/program"
         donor:  # copied from containing parent
-          $ref: "lane_bam_qc#/definitions/systemProperties/properties/donor"
+          $ref: "lane_seq_submission#/definitions/systemProperties/properties/donor"
         derived_from:
           type: object
           properties:
             type:
               const: "read_group"
             id:  # copied from containing parent
-              $ref: "#/definitions/systemProperties/properties/read_group_id"
+              $ref: "lane_seq_submission#/definitions/systemProperties/properties/read_group_id"
         bundle_id:  # copied from containing parent
-          $ref: "#/definitions/systemProperties/properties/id"
+          $ref: "lane_seq_submission#/definitions/systemProperties/properties/id"
         bundle_type:
-          const: "lane_bam_qc"
+          const: "lane_seq_submission"
         format:
-          const: "TXT"
-          default: "TXT"
+          const: "BAM"  # if submitted, it must be "BAM"
+          default: "BAM"  # when not submitted by the client, default value will be used
         date_type:
-          const: "RG QC"
-          default: "RG QC"
+          const: "Unaligned Reads"
+          default: "Unaligned Reads"
 
 allOf:
-- $ref: '_definitions#/submitted_file'
+- $ref: _definitions#/submitted_file
 - properties:
     name:
-      pattern: '\.txt\.gz$'  # must have .txt.gz extension
-    type:
-      const: 'lane_bam_qc.metrics_file.data_object'
+      pattern: '\.bam$'  # must have .bam extension

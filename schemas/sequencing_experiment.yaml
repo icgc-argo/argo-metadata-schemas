@@ -97,7 +97,7 @@ properties:
             references:
             - foreignKey:
               - '#/properties/read_groups/items/definitions/systemProperties/properties/read_group_id'
-              targetEntity: 'read_group'  # lane_bam_qc to lane_bam_submission relationship is one-to-one
+              targetEntity: 'read_group'  # sequencing_experiment to read_group relationship is one-to-many
               targetKey:  # relationship by primaryKey
               - 'read_group#/definitions/systemProperties/properties/id'
 

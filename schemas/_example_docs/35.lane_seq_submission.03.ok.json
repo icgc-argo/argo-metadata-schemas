@@ -1,0 +1,136 @@
+{
+    "type": "lane_seq_submission",
+    "program": "PRAD-UK",
+    "inputs": {
+        "read_group_submitter_id": "1117725",
+        "files": {
+            "bam": {
+                "name": "180135_icgc.bam",
+                "local_path": "/my/bam/path/180135_icgc.bam",
+                "size": 202437535,
+                "checksum": "f7c24ea18cb0c40a3d8bdb8756fe2f37",
+                "checksum_type": "md5"
+            }
+        }
+    },
+    "files": {
+        "bam_file": {
+            "type": "lane_seq_submission.bam_file.data_object",
+            "name": "180135_icgc.bam",
+            "local_path": "/my/bam/path/180135_icgc.bam",
+            "size": 202437535,
+            "checksum": "f7c24ea18cb0c40a3d8bdb8756fe2f37",
+            "checksum_type": "md5",
+            "_mocked_system_properties": {
+                "id": "ffcd79d6-a7fb-47ba-81d9-f9cd2a63c84f",
+                "program": "PRAD-UK",
+                "repository": "Collab",
+                "created_at": "2019-07-05T08:15:30",
+                "updated_at": "2019-07-05T08:15:30",
+                "donor": {
+                    "id": "DO223959",
+                    "specimen": {
+                        "id": "SP131542",
+                        "sample": {
+                            "id": "SA567218"
+                        }
+                    }
+                },
+                "derived_from": {
+                    "type": "read_group",
+                    "id": "RG12347"
+                },
+                "bundle_id": "a64548d3-9ed9-4ad4-913e-0b7b94658265",
+                "bundle_type": "lane_seq_submission",
+                "format": "BAM",
+                "data_type": "Unaligned Reads"
+            },
+            "_final_doc": {
+                "type": "lane_seq_submission.bam_file.data_object",
+                "name": "180135_icgc.bam",
+                "local_path": "/my/bam/path/180135_icgc.bam",
+                "size": 202437535,
+                "checksum": "f7c24ea18cb0c40a3d8bdb8756fe2f37",
+                "checksum_type": "md5",
+                "id": "ffcd79d6-a7fb-47ba-81d9-f9cd2a63c84f",
+                "program": "PRAD-UK",
+                "repository": "Collab",
+                "created_at": "2019-07-05T08:15:30",
+                "updated_at": "2019-07-05T08:15:30",
+                "donor": {
+                    "id": "DO223959",
+                    "specimen": {
+                        "id": "SP131542",
+                        "sample": {
+                            "id": "SA567218"
+                        }
+                    }
+                },
+                "derived_from": {
+                    "type": "read_group",
+                    "id": "RG12347"
+                },
+                "bundle_id": "a64548d3-9ed9-4ad4-913e-0b7b94658265",
+                "bundle_type": "lane_seq_submission",
+                "format": "BAM",
+                "data_type": "Unaligned Reads"
+            }
+        }
+    },
+    "_mocked_system_properties": {
+        "status": "registered",
+        "id": "a64548d3-9ed9-4ad4-913e-0b7b94658265",
+        "donor": {
+            "id": "DO223959",
+            "specimen": {
+                "id": "SP131542",
+                "sample": {
+                    "id": "SA567218"
+                }
+            }
+        },
+        "read_group_id": "RG12347",
+        "library_strategy": "WGS",
+        "files": {
+            "bam_file": {
+                "type": "data_object",
+                "object_id": "ffcd79d6-a7fb-47ba-81d9-f9cd2a63c84f"
+            }
+        }
+    },
+    "_final_doc": {
+        "type": "lane_seq_submission",
+        "program": "PRAD-UK",
+        "inputs": {
+            "read_group_submitter_id": "1117725",
+            "files": {
+                "bam": {
+                    "name": "180135_icgc.bam",
+                    "local_path": "/my/bam/path/180135_icgc.bam",
+                    "size": 202437535,
+                    "checksum": "f7c24ea18cb0c40a3d8bdb8756fe2f37",
+                    "checksum_type": "md5"
+                }
+            }
+        },
+        "status": "registered",
+        "id": "a64548d3-9ed9-4ad4-913e-0b7b94658265",
+        "donor": {
+            "id": "DO223959",
+            "specimen": {
+                "id": "SP131542",
+                "sample": {
+                    "id": "SA567218"
+                }
+            }
+        },
+        "read_group_id": "RG12347",
+        "library_strategy": "WGS",
+        "files": {
+            "bam_file": {
+                "type": "data_object",
+                "object_id": "ffcd79d6-a7fb-47ba-81d9-f9cd2a63c84f"
+            }
+        }
+    }
+}

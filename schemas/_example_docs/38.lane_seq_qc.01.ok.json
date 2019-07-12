@@ -1,16 +1,16 @@
 {
-    "type": "lane_bam_qc",
+    "type": "lane_seq_qc",
     "program": "PRAD-UK",
     "inputs": {
-        "lane_bam_submission_id": "3abe7053-3234-4faa-a24c-39df11e5569e"
-    },
-    "input_files": {
-        "lane_bam": {
-            "object_uri": "drs://Collab/3abe7053-3234-4faa-a24c-39df11e5569e/e477463b-ffb4-41a9-862e-55ef2ebfc04a",
-            "bundle_id": "3abe7053-3234-4faa-a24c-39df11e5569e",
-            "object_id": "e477463b-ffb4-41a9-862e-55ef2ebfc04a",
-            "name": "180126_icgc.bam",
-            "repository": "Collab"
+        "lane_seq_submission_id": "3abe7053-3234-4faa-a24c-39df11e5569e",
+        "files": {
+            "lane_seq": {
+                "object_uri": "drs://Collab/3abe7053-3234-4faa-a24c-39df11e5569e/e477463b-ffb4-41a9-862e-55ef2ebfc04a",
+                "bundle_id": "3abe7053-3234-4faa-a24c-39df11e5569e",
+                "object_id": "e477463b-ffb4-41a9-862e-55ef2ebfc04a",
+                "name": "180126_icgc.bam",
+                "repository": "Collab"
+            }
         }
     },
     "analysis": {
@@ -27,7 +27,7 @@
     },
     "files": {
         "metrics_file": {
-            "type": "lane_bam_qc.metrics_file.data_object",
+            "type": "lane_seq_qc.metrics_file.data_object",
             "name": "180126_icgc.bam.quality_yield_metrics.txt.gz",
             "local_path": "/my/file/path/180126_icgc.bam.quality_yield_metrics.txt.gz",
             "size": 4232,

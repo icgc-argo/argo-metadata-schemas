@@ -1,6 +1,6 @@
 $schema: "http://json-schema.org/draft-07/schema#"
 
-$id: "lane_bam_qc"
+$id: "lane_seq_qc"
 title: Unaligned lane level sequencing reads QC report
 type: object
 description: ""
@@ -16,13 +16,13 @@ definitions:
       primaryKey:
       - '#/definitions/systemProperties/properties/id'
       uniqueKey:
-      - [ '#/properties/inputs/properties/lane_bam_submission_id' ]   # one lane bam can have only one lane_bam_qc record
+      - [ '#/properties/inputs/properties/lane_seq_submission_id' ]   # one lane bam can have only one lane_seq_qc record
       references:
       - foreignKey:
-        - '#/properties/inputs/properties/lane_bam_submission_id'
-        targetEntity: 'lane_bam_submission'  # lane_bam_qc to lane_bam_submission relationship is one-to-one
+        - '#/properties/inputs/properties/lane_seq_submission_id'
+        targetEntity: 'lane_seq_submission'  # lane_seq_qc to lane_seq_submission relationship is one-to-one
         targetKey:  # relationship by primaryKey
-        - 'lane_bam_submission#/definitions/systemProperties/properties/id'
+        - 'lane_seq_submission#/definitions/systemProperties/properties/id'
 
   systemProperties:
     properties:
@@ -31,11 +31,11 @@ definitions:
       id:
         $ref: _definitions#/common/properties/uuid
       read_group_id:  # FK points to PK of read_group
-        $ref: lane_bam_submission#/definitions/systemProperties/properties/read_group_id
+        $ref: lane_seq_submission#/definitions/systemProperties/properties/read_group_id
       library_strategy:
-        $ref: lane_bam_submission#/definitions/systemProperties/properties/library_strategy
+        $ref: lane_seq_submission#/definitions/systemProperties/properties/library_strategy
       donor:
-        $ref: lane_bam_submission#/definitions/systemProperties/properties/donor
+        $ref: lane_seq_submission#/definitions/systemProperties/properties/donor
 
 required:
 - type
@@ -43,18 +43,32 @@ required:
 - inputs
 - analysis
 - qc_metrics
-- input_files
 - files
 
 properties:
   type:
-    const: "lane_bam_qc"
+    const: "lane_seq_qc"
   program:
     $ref: _definitions#/common/properties/program_short_name
   inputs:
+    additioinalProperties: false
+    required: [ lane_seq_submission_id, files ]
     properties:
-      lane_bam_submission_id:  # one lane_bam_submission per lane_bam_qc
-        $ref: lane_bam_submission#/definitions/systemProperties/properties/id
+      lane_seq_submission_id:  # one lane_seq_submission per lane_seq_qc
+        $ref: lane_seq_submission#/definitions/systemProperties/properties/id
+      files:
+        lane_seq:  # input file for this QC tool could be locally prepared from preprocessing steps
+          properties:
+            object_uri:  # if file is local, object_id will be 'null'
+              type: string  # pattern: song://<repository>/<bundle_id>/<object_id>
+            bundle_id:  # lane_seq_submission
+              $ref: "#/properties/inputs/properties/lane_seq_submission_id"  # get value from
+            object_id:  # lane_seq object ID in the above lane_seq_submission
+              type: string
+            name:  # file name
+              pattern: '\.bam$'  # pattern to find input file from the bundle
+            repository:  # repo where the object resides
+              type: string
   analysis:
     type: object
     properties:
@@ -103,23 +117,7 @@ properties:
       total_reads:
         description: "total reads"
         type: integer
-  input_files:  # input file for this QC tool could be locally prepared from preprocessing steps
-    type: object
-    properties:
-      lane_bam:
-        type: object
-        properties:
-          object_uri:  # if file is local, object_id will be 'null'
-            type: string  # pattern: song://<repository>/<bundle_id>/<object_id>
-          bundle_id:  # lane_bam_submission
-            $ref: "#/properties/inputs/properties/lane_bam_submission_id"  # get value from
-          object_id:  # lane_bam object ID in the above lane_bam_submission
-            type: string
-          name:  # file name
-            pattern: '\.bam$'  # pattern to find input file from the bundle
-          repository:  # repo where the object resides
-            type: string
-  files:
+  files:  # output files
     type: object
     additionalProperties: false
     properties:
@@ -131,14 +129,14 @@ properties:
               references:
               - foreignKey:
                 - '#/properties/files/properties/metrics_file/definitions/systemProperties/properties/object_id'
-                targetEntity: 'data_object'  # lane_bam_qc to lane_bam_submission relationship is one-to-one
+                targetEntity: 'data_object'  # lane_seq_qc to lane_seq_submission relationship is one-to-one
                 targetKey:  # relationship by primaryKey
-                - 'lane_bam_qc.metrics_file.data_object#/definitions/systemProperties/allOf/1/properties/id'
+                - 'lane_seq_qc.metrics_file.data_object#/definitions/systemProperties/allOf/1/properties/id'
 
           systemProperties:
             properties:
               type:
                 const: data_object
               object_id:
-                $ref: lane_bam_qc.metrics_file.data_object#/definitions/systemProperties/allOf/1/properties/id
-        $ref: lane_bam_qc.metrics_file.data_object
+                $ref: lane_seq_qc.metrics_file.data_object#/definitions/systemProperties/allOf/1/properties/id
+        $ref: lane_seq_qc.metrics_file.data_object

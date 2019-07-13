@@ -73,22 +73,32 @@ properties:
         $ref: _definitions#/common/properties/submitter_id
       files:
         additionalProperties: false
-        oneOf:
+        oneOf:  # allows only bam or fastq submission
         - required: [ bam ]
         - required: [ fastq ]
         properties:
           bam:
-            properties:
-              name:
-                pattern: '\.bam$'  # must have .bam extension
+            propertyNames:
+              enum: [ name, local_path, size, checksum, checksum_type ]
+            required: [ name, local_path, size, checksum, checksum_type ]
+            allOf:
+            - $ref: _definitions#/submitted_file
+            - properties:
+                name:
+                  pattern: '\.bam$'  # must have .bam extension
           fastq:
             type: array
             minItems: 1
             maxItems: 2
             items:
-              properties:
-                name:
-                  pattern: '\.(fq|fastq)\.gz$'  # must have .fq or .fastq extension
+              propertyNames:
+                enum: [ name, local_path, size, checksum, checksum_type ]
+              required: [ name, local_path, size, checksum, checksum_type ]
+              allOf:
+              - $ref: _definitions#/submitted_file
+              - properties:
+                  name:
+                    pattern: '\.(fq|fastq)\.gz$'  # must have .fq or .fastq extension
   files:
     type: object
     additionalProperties: false

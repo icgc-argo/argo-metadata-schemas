@@ -1,6 +1,18 @@
 $id: "lane_seq_submission.bam_file.data_object"  # data_object is a nested entity under lane_seq_submission
 type: object
 
+propertyNames:
+  enum: [ type, name, local_path, size, checksum, checksum_type ]
+required: [ type, name, local_path, size, checksum, checksum_type ]
+
+allOf:
+- $ref: _definitions#/submitted_file
+- properties:
+    type:
+      const: 'lane_seq_submission.bam_file.data_object'
+    name:
+      pattern: '\.bam$'  # must have .bam extension
+
 definitions:
   relationDef:
     $ref: '_definitions#/relationDef'
@@ -35,9 +47,3 @@ definitions:
         date_type:
           const: "Unaligned Reads"
           default: "Unaligned Reads"
-
-allOf:
-- $ref: _definitions#/submitted_file
-- properties:
-    name:
-      pattern: '\.bam$'  # must have .bam extension

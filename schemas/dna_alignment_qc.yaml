@@ -58,8 +58,11 @@ properties:
       dna_alignment_id:
         $ref: dna_alignment#/definitions/systemProperties/properties/id
       files:
+        additionalProperties: false
+        required: [ aligned_dna_seq ]
         properties:
           aligned_dna_seq:   # input file is aligned bam/cram (multi-lane)
+            additionalProperties: false
             properties:
               object_uri:  # if file is local, object_id will be 'null'
                 type: string  # pattern: song://<repository>/<bundle_id>/<object_id>

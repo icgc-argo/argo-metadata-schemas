@@ -62,6 +62,8 @@ properties:
   program:
     $ref: _definitions#/common/properties/program_short_name
   inputs:
+    additioinalProperties: false
+    required: [ lane_seq, reference_genome ]
     properties:
       lane_seq:
         type: array
@@ -73,6 +75,8 @@ properties:
             lane_seq_submission_id:
               $ref: lane_seq_submission#/definitions/systemProperties/properties/id
             files:  # the values should be populated automatically using data object(s)
+              additionalProperties: false
+              required: [ lane_seq ]
               properties:
                 lane_seq:
                   properties:
@@ -86,7 +90,7 @@ properties:
                     repository:  # repo where the object resides
                       type: string
       reference_genome:
-        type: object
+        additionalProperties: false
         properties:
           reference:
             type: object

@@ -1,6 +1,18 @@
 $id: "lane_seq_qc.metrics_file.data_object"
 type: object
 
+propertyNames:
+  enum: [ type, name, local_path, size, checksum, checksum_type ]
+required: [ type, name, local_path, size, checksum, checksum_type ]
+
+allOf:
+- $ref: _definitions#/submitted_file
+- properties:
+    type:
+      const: 'lane_seq_qc.metrics_file.data_object'
+    name:
+      pattern: '\.txt\.gz$'  # must have .txt.gz extension
+
 definitions:
   relationDef:
     $ref: '_definitions#/relationDef'
@@ -36,11 +48,3 @@ definitions:
         date_type:
           const: "RG QC"
           default: "RG QC"
-
-allOf:
-- $ref: '_definitions#/submitted_file'
-- properties:
-    name:
-      pattern: '\.txt\.gz$'  # must have .txt.gz extension
-    type:
-      const: 'lane_seq_qc.metrics_file.data_object'

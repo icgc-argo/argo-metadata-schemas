@@ -101,7 +101,7 @@ common:
 
 submitted_file:
   type: object
-  required: [ type, name, local_path, size, checksum, checksum_type ]
+  required: [ name, local_path, size, checksum, checksum_type ]
   allOf:
   - properties:
       name:  # if omitted, name will be original file name from local_path

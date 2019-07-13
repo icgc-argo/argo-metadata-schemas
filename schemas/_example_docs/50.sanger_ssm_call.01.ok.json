@@ -10,6 +10,7 @@
                     "bundle_id": "3abe7053-3234-4faa-a24c-39df11e5569e",
                     "object_id": "e477463b-ffb4-41a9-862e-55ef2ebfc04a",
                     "name": "180126_icgc.bam",
+                    "secondary_file": ".bai",
                     "repository": "Collab"
                 }
             }
@@ -22,6 +23,7 @@
                     "bundle_id": "02adbffc-c6f1-49d0-9518-e2d6d0c86f33",
                     "object_id": "4032dea0-60ec-4094-8805-16723de70e3f",
                     "name": "180130_icgc.bam",
+                    "secondary_file": ".bai",
                     "repository": "Collab"
                 }
             }
@@ -49,10 +51,10 @@
         },
         "vcf_index": {
             "type": "sanger_ssm_call.vcf_index.data_object",
-            "name": "1dc46e90af51470997b3be164bca6a79.vcf.gz.tbi",
-            "local_path": "/my/file/path/1dc46e90af51470997b3be164bca6a79.vcf.gz.tbi",
+            "name": "ad28c4a894bd4d979a2c67ab984544e6.vcf.gz.tbi",
+            "local_path": "/my/file/path/ad28c4a894bd4d979a2c67ab984544e6.vcf.gz.tbi",
             "size": 589343,
-            "checksum": "ad28c4a894bd4d979a2c67ab984544e6",
+            "checksum": "1dc46e90af51470997b3be164bca6a79",
             "checksum_type": "md5",
             "_mocked_system_properties": {
             },

@@ -75,11 +75,14 @@ properties:
     required: [ tumour, normal ]
     properties:
       tumour:
+        additionalProperties: false
         required: [ dna_alignment_id, files ]
         properties:
           dna_alignment_id:  # the input bundle of tumour dna_alignment
             $ref: dna_alignment#/definitions/systemProperties/properties/id
           files:
+            additionalProperties: false
+            required: [ aligned_dna_seq ]
             properties:
               aligned_dna_seq:
                 type: object
@@ -97,11 +100,14 @@ properties:
                   repository:  # repo where the object resides
                     type: string
       normal:
+        additionalProperties: false
         required: [ dna_alignment_id, files ]
         properties:
           dna_alignment_id:  # the input bundle of normal dna_alignment
             $ref: dna_alignment#/definitions/systemProperties/properties/id
           files:
+            additionalProperties: false
+            required: [ aligned_dna_seq ]
             properties:
               aligned_dna_seq:
                 type: object
@@ -154,41 +160,6 @@ properties:
           completed_at:
             type: string
             format: date-time
-  input_files:  # input files are multiple lane level unaligned bam files
-    type: object
-    properties:
-      tumour_dna_seq:
-        type: object
-        properties:
-          object_uri:  # if file is local, object_id will be 'null'
-            type: string  # pattern: song://<repository>/<bundle_id>/<object_id>
-          bundle_id:  # dna_alignment
-            $ref: "#/properties/inputs/properties/tumour/properties/dna_alignment_id"  # get value from there
-          object_id:  # aligned seq object ID in the above dna_alignment
-            type: string
-          name:  # file name
-            pattern: '\.(bam|cram)$'  # find the bam or cram in the bundle as input file
-          secondary_file:  # secondary file(s), following CWL standard
-            enum: [ '.bai', '.crai' ]
-          repository:  # repo where the object resides
-            type: string
-      normal_dna_seq:
-        type: object
-        properties:
-          object_uri:  # if file is local, object_id will be 'null'
-            type: string  # pattern: song://<repository>/<bundle_id>/<object_id>
-          bundle_id:  # dna_alignment
-            $ref: "#/properties/inputs/properties/normal/properties/dna_alignment_id"  # get value from there
-          object_id:  # aligned seq object ID in the above dna_alignment
-            type: string
-          name:  # file name
-            pattern: '\.(bam|cram)$'  # find the bam or cram in the bundle as input file
-          secondary_file:  # secondary file(s), following CWL standard
-            enum: [ '.bai', '.crai' ]
-          repository:  # repo where the object resides
-            type: string
-      reference_file:  # other files such as references to be fleshed out
-        type: object
   files:
     type: object
     additionalProperties: false

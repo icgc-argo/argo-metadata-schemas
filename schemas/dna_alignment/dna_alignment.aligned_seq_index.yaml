@@ -1,9 +1,15 @@
 $id: "dna_alignment.aligned_seq_index.data_object"
 type: object
 
+propertyNames:
+  enum: [ type, name, local_path, size, checksum, checksum_type ]
+required: [ type, name, local_path, size, checksum, checksum_type ]
+
 allOf:
 - $ref: _definitions#/submitted_file
 - properties:
+    type:
+      const: 'dna_alignment.aligned_seq_index.data_object'
     name:
       pattern: '\.(bam\.bai|cram\.crai)$'  # must have .bam.bai or .cram.crai extension
 

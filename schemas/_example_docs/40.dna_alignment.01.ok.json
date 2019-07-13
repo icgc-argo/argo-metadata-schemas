@@ -19,9 +19,9 @@
                 "lane_seq_submission_id": "02adbffc-c6f1-49d0-9518-e2d6d0c86f33",
                 "files": {
                     "lane_seq": {
-                        "object_uri": "drs://Collab/c3ec531b-c2c9-4c77-894a-5b80dd18241e/0ee0d7f2-e96c-4e8c-be55-91267e74670b",
-                        "object_id": "0ee0d7f2-e96c-4e8c-be55-91267e74670b",
-                        "name": "180126_icgc.bam",
+                        "object_uri": "drs://Collab/02adbffc-c6f1-49d0-9518-e2d6d0c86f33/4032dea0-60ec-4094-8805-16723de70e3f",
+                        "object_id": "4032dea0-60ec-4094-8805-16723de70e3f",
+                        "name": "180130_icgc.bam",
                         "repository": "Collab"
                     }
                 }

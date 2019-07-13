@@ -73,12 +73,11 @@ properties:
               repository:  # repo where the object resides
                 type: string
   analysis:
-    type: object
+    additionalProperties: false
+    required: [ analysis_type, tool, execution ]
     properties:
       analysis_type:
         const: 'QC'
-      core_tool:
-        const: 'Picard'
       tool:  # Tool refers to what's in GA4GH's Tool Registry Service
         type: object
         properties:
@@ -90,6 +89,11 @@ properties:
             type: string
           version:
             type: string
+          contained_apps:
+            type: array
+            items:
+              type: string
+            const: [ 'picad' ]
       execution:
         type: object
         properties:
@@ -125,6 +129,7 @@ properties:
     additionalProperties: false
     properties:
       metrics_file:
+        $ref: lane_seq_qc.metrics_file.data_object
         definitions:
           relationDef:
             $ref: '_definitions#/_/properties/relationDef'
@@ -142,4 +147,3 @@ properties:
                 const: data_object
               object_id:
                 $ref: lane_seq_qc.metrics_file.data_object#/definitions/systemProperties/allOf/1/properties/id
-        $ref: lane_seq_qc.metrics_file.data_object

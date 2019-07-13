@@ -125,15 +125,13 @@ properties:
                   repository:  # repo where the object resides
                     type: string
   analysis:
-    type: object
+    additionalProperties: false
+    required: [ analysis_type, tool, execution ]
     properties:
       analysis_type:
         const: 'Simple somatic mutation calling'
       reference_genome:
-        enum: [ GRCh37, GRCh38 ]
-        default: GRCh38
-      core_tool:
-        const: 'CaVEMan'
+        enum: [ GRCh38 ]
       tool:  # Tool refers to what's in GA4GH's Tool Registry Service
         type: object
         properties:
@@ -145,6 +143,11 @@ properties:
             type: string
           version:
             type: string
+          contained_apps:
+            type: array
+            items:
+              type: string
+            const: [ 'CaVEMan' ]
       execution:
         type: object
         properties:

@@ -32,8 +32,9 @@
     "analysis": {
         "analysis_type": "Simple somatic mutation calling",
         "reference_genome": "GRCh38",
-        "core_tool": "CaVEMan",
-        "tool": {},
+        "tool": {
+            "contained_apps": ["CaVEMan"]
+        },
         "execution": {}
     },
     "files": {

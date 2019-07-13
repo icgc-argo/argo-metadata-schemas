@@ -153,17 +153,15 @@ properties:
                 type: string
                 default: "https://object.cancercollaboratory.org:9080/swift/v1/genomics-public-data/reference-genome/GRCh38_hla_decoy_ebv/GRCh38_hla_decoy_ebv.fa.gz.amb"
   analysis:
-    type: object
+    additionalProperties: false
+    required: [ analysis_type, tool, reference_genome, execution ]
     properties:
       analysis_type:
         const: 'DNA Alignment'
       reference_genome:
-        enum: [ GRCh37, GRCh38 ]
-        default: GRCh38
-      core_tool:
-        const: 'BWA MEM'
+        enum: [ GRCh38 ]
       tool:  # Tool refers to what's in GA4GH's Tool Registry Service
-        type: object
+        additionalProperties: false
         properties:
           registry:
             type: string  # such as Dockstore
@@ -173,8 +171,13 @@ properties:
             type: string
           version:
             type: string
+          contained_apps:
+            type: array
+            items:
+              type: string
+            const: [ 'bwa mem', 'samtools', 'biobambam' ]
       execution:
-        type: object
+        additionalProperties: false
         properties:
           runner_name:
             type: string

@@ -15,7 +15,6 @@
     },
     "analysis": {
         "analysis_type": "QC",
-        "core_tool": "Picard",
         "tool": {},
         "execution": {}
     },

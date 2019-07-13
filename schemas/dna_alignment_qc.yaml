@@ -77,12 +77,11 @@ properties:
               repository:  # repo where the object resides
                 type: string
   analysis:
-    type: object
+    additionalProperties: false
+    required: [ analysis_type, tool, execution ]
     properties:
       analysis_type:
         const: 'QC'
-      core_tool:
-        const: 'Picard'
       tool:  # Tool refers to what's in GA4GH's Tool Registry Service
         type: object
         properties:
@@ -94,6 +93,11 @@ properties:
             type: string
           version:
             type: string
+          contained_apps:
+            type: array
+            items:
+              type: string
+            const: [ 'picard' ]
       execution:
         type: object
         properties:

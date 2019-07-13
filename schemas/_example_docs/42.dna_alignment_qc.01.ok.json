@@ -15,8 +15,9 @@
     },
     "analysis": {
         "analysis_type": "QC",
-        "core_tool": "Picard",
-        "tool": {},
+        "tool": {
+            "contained_apps": ["picard"]
+        },
         "execution": {}
     },
     "qc_metrics": {

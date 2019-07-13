@@ -42,8 +42,9 @@
     "analysis": {
         "analysis_type": "DNA Alignment",
         "reference_genome": "GRCh38",
-        "core_tool": "BWA MEM",
-        "tool": {},
+        "tool": {
+            "contained_apps": ["bwa mem", "samtools", "biobambam"]
+        },
         "execution": {}
     },
     "files": {

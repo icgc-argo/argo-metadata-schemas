@@ -99,6 +99,42 @@ properties:
               - properties:
                   name:
                     pattern: '\.(fq|fastq)\.gz$'  # must have .fq or .fastq extension
+  analysis:
+    additionalProperties: false
+    properties:
+      analysis_type:
+        const: 'Data Submission'
+      tool:  # Tool refers to what's in GA4GH's Tool Registry Service
+        additionalProperties: false
+        properties:
+          registry:
+            type: string  # such as Dockstore
+          tool_id:
+            type: string
+          tool_name:
+            type: string
+          version:
+            type: string
+          contained_apps:
+            type: array
+            items:
+              type: string
+            const: [ picard ]
+      execution:
+        additionalProperties: false
+        properties:
+          runner_name:
+            type: string
+          runner_version:
+            type: string
+          job_id:
+            type: string
+          started_at:
+            type: string
+            format: date-time
+          completed_at:
+            type: string
+            format: date-time
   files:
     type: object
     additionalProperties: false

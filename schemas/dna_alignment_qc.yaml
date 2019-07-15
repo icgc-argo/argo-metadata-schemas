@@ -92,9 +92,9 @@ properties:
         properties:
           registry:
             type: string  # such as Dockstore
-          tool_id:
+          id:  # tool ID
             type: string
-          tool_name:
+          name:  # tool name
             type: string
           version:
             type: string

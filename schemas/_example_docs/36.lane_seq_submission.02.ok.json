@@ -22,6 +22,11 @@
             ]
         }
     },
+    "analysis": {
+        "analysis_type": "Data Submission",
+        "tool": {},
+        "execution": {}
+    },
     "files": {
         "bam_file": {
             "type": "lane_seq_submission.bam_file.data_object",
@@ -130,6 +135,11 @@
                     }
                 ]
             }
+        },
+        "analysis": {
+            "analysis_type": "Data Submission",
+            "tool": {},
+            "execution": {}
         },
         "status": "registered",
         "id": "02adbffc-c6f1-49d0-9518-e2d6d0c86f33",

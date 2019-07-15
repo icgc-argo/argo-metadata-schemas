@@ -15,7 +15,7 @@ definitions:
       primaryKey:
       - '#/definitions/systemProperties/properties/id'
       uniqueKey:
-      - [ '#/properties/inputs/properties/tumour/properties/dna_alignment_id' ]   # one lane bam submission can only appear once in dna_alignment
+      - [ '#/properties/inputs/properties/tumour/properties/dna_alignment_id' ]  # one tumour dna_alignment can only appear once in sanger_ssm_call, this prevents duplicated calling
       references:
       - foreignKey:
         - '#/properties/inputs/properties/tumour/properties/dna_alignment_id'
@@ -151,9 +151,9 @@ properties:
         properties:
           registry:
             type: string  # such as Dockstore
-          tool_id:
+          id:  # tool ID
             type: string
-          tool_name:
+          name:  # tool name
             type: string
           version:
             type: string

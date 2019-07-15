@@ -4,7 +4,6 @@ $id: "sanger_ssm_call"
 title: SSM calling by Sanger Workflow
 type: object
 description: ""
-additionalProperties: false
 
 definitions:
   version:
@@ -30,34 +29,47 @@ definitions:
         - 'dna_alignment#/definitions/systemProperties/properties/id'
 
   systemProperties:
+    propertyNames:
+      enum: [ status, id, donor, library_strategy ]
+    required: [ status, id, donor, library_strategy ]
     properties:
       status:
         $ref: _definitions#/common/properties/bundle_status
       id:
         $ref: _definitions#/common/properties/uuid
       donor:  # donor/biospecimen tree
+        additionalProperties: false
+        required: [ donor_id, specimen, matched_normal ]
         properties:
           donor_id:
             $ref: donor#/definitions/systemProperties/properties/id
           specimen:
+            additionalProperties: false
             properties:
               specimen_id:
                 $ref: specimen#/definitions/systemProperties/properties/id
               specimen_type:  # to be magically populated by the system through traversing back to the 'specimen'
                 $ref: specimen#/properties/specimen_type
               sample:
+                additionalProperties: false
                 properties:
                   sample_id:  # to be magically populated by the system through traversing back to the 'sample'
                     $ref: sample#/definitions/systemProperties/properties/id
           matched_normal:  # identified via noral/dna_alignment_id
-            specimen_id:
-              $ref: specimen#/definitions/systemProperties/properties/id
-            sample:
-              sample_id:
-                $ref: sample#/definitions/systemProperties/properties/id
+            additionalProperties: false
+            properties:
+              specimen_id:
+                $ref: specimen#/definitions/systemProperties/properties/id
+              sample:
+                additionalProperties: false
+                properties:
+                  sample_id:
+                    $ref: sample#/definitions/systemProperties/properties/id
       library_strategy:  # to be magically populated by the system through traversing back to the 'sequencing_experiment'
         $ref: sequencing_experiment#/properties/library_strategy
 
+propertyNames:
+  enum: [ type, program, inputs, analysis, files ]
 required:
 - type
 - program
@@ -85,14 +97,15 @@ properties:
             required: [ aligned_dna_seq ]
             properties:
               aligned_dna_seq:
-                type: object
+                additionalProperties: false
+                required: [ object_uri, bundle_id, object_id, name, secondary_file, repository ]
                 properties:
                   object_uri:  # if file is local, object_id will be 'null'
                     type: string  # pattern: song://<repository>/<bundle_id>/<object_id>
                   bundle_id:  # dna_alignment
                     $ref: "#/properties/inputs/properties/tumour/properties/dna_alignment_id"  # get value from there
                   object_id:  # aligned seq object ID in the above dna_alignment
-                    type: string
+                    $ref: '_definitions#/common/properties/uuid'
                   name:  # file name
                     pattern: '\.(bam|cram)$'  # find the bam or cram in the bundle as input file
                   secondary_file:  # secondary file(s), following CWL standard
@@ -110,7 +123,8 @@ properties:
             required: [ aligned_dna_seq ]
             properties:
               aligned_dna_seq:
-                type: object
+                additionalProperties: false
+                required: [ object_uri, bundle_id, object_id, name, secondary_file, repository ]
                 properties:
                   object_uri:  # if file is local, object_id will be 'null'
                     type: string  # pattern: song://<repository>/<bundle_id>/<object_id>
@@ -169,6 +183,44 @@ properties:
     properties:
       vcf:
         $ref: "sanger_ssm_call.vcf.data_object"
+        definitions:
+          relationDef:
+            $ref: '_definitions#/_/properties/relationDef'
+            const:
+              references:
+              - foreignKey:
+                - '#/properties/files/properties/vcf/definitions/systemProperties/properties/object_id'
+                targetEntity: 'data_object'
+                targetKey:  # relationship by primaryKey
+                - 'sanger_ssm_call.vcf.data_object#/definitions/systemProperties/allOf/1/properties/id'
+
+          systemProperties:
+            additionalProperties: false
+            required: [ type, object_id ]
+            properties:
+              type:
+                const: data_object
+              object_id:
+                $ref: sanger_ssm_call.vcf.data_object#/definitions/systemProperties/allOf/1/properties/id
 
       vcf_index:
         $ref: "sanger_ssm_call.vcf_index.data_object"
+        definitions:
+          relationDef:
+            $ref: '_definitions#/_/properties/relationDef'
+            const:
+              references:
+              - foreignKey:
+                - '#/properties/files/properties/vcf_index/definitions/systemProperties/properties/object_id'
+                targetEntity: 'data_object'
+                targetKey:  # relationship by primaryKey
+                - 'sanger_ssm_call.vcf_index.data_object#/definitions/systemProperties/allOf/1/properties/id'
+
+          systemProperties:
+            additionalProperties: false
+            required: [ type, object_id ]
+            properties:
+              type:
+                const: data_object
+              object_id:
+                $ref: sanger_ssm_call.vcf_index.data_object#/definitions/systemProperties/allOf/1/properties/id

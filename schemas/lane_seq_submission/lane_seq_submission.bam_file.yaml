@@ -22,7 +22,9 @@ definitions:
       primaryKey:
       - '#/definitions/systemProperties/allOf/1/properties/id'
   systemProperties:
-    required: [ id, program, repository, created_at, updated_at, derived_from, bundle_id, bundle_type, format, data_type ]
+    propertyNames:
+      enum: [ id, program, donor, repository, created_at, updated_at, derived_from, bundle_id, bundle_type, format, data_type ]
+    required: [ id, program, donor, repository, created_at, updated_at, derived_from, bundle_id, bundle_type, format, data_type ]
     allOf:
     - $ref: _definitions#/data_object
     - properties:

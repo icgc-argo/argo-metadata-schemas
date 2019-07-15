@@ -4,7 +4,6 @@ $id: "lane_seq_submission"
 title: Lane level sequence submission bundle, one read group one lane_seq_submission
 type: object
 description: ""
-additionalProperties: false
 
 definitions:
   version:
@@ -32,20 +31,26 @@ definitions:
         targetKey:  # relationship by primaryKey
         - 'read_group#/definitions/systemProperties/properties/id'
   systemProperties:
+    propertyNames:
+      enum: [ status, id, donor, read_group_id, library_strategy ]
+    required: [ status, id, donor, read_group_id, library_strategy ]
     properties:
       status:
         $ref: _definitions#/common/properties/bundle_status
       id:
         $ref: _definitions#/common/properties/uuid
       donor:  # bioentity tree
+        additionalProperties: false
         properties:
           donor_id:
             $ref: donor#/definitions/systemProperties/properties/id
           specimen:
+            additionalProperties: false
             properties:
               specimen_id:
                 $ref: specimen#/definitions/systemProperties/properties/id
               sample:
+                additionalProperties: false
                 properties:
                   sample_id:  # to be magically populated by the system through traversing back to the 'sample'
                     $ref: sample#/definitions/systemProperties/properties/id
@@ -53,6 +58,9 @@ definitions:
         $ref: read_group#/definitions/systemProperties/properties/id
       library_strategy:  # to be magically populated by the system through traversing back to the 'sequencing_experiment'
         $ref: sequencing_experiment#/properties/library_strategy
+
+propertyNames:
+  enum: [ type, program, inputs, files ]
 
 required:
 - type
@@ -141,3 +149,23 @@ properties:
     properties:
       bam_file:
         $ref: lane_seq_submission.bam_file.data_object
+        definitions:
+          relationDef:
+            $ref: '_definitions#/_/properties/relationDef'
+            const:
+              references:
+              - foreignKey:
+                - '#/properties/files/properties/bam_file/definitions/systemProperties/properties/object_id'
+                targetEntity: 'data_object'  # lane_seq_qc to lane_seq_submission relationship is one-to-one
+                targetKey:  # relationship by primaryKey
+                - 'lane_seq_submission.bam_file.data_object#/definitions/systemProperties/allOf/1/properties/id'
+
+          systemProperties:
+            propertyNames:
+              enum: [ type, object_id ]
+            required: [ type, object_id ]
+            properties:
+              type:
+                const: data_object
+              object_id:
+                $ref: lane_seq_qc.metrics_file.data_object#/definitions/systemProperties/allOf/1/properties/id

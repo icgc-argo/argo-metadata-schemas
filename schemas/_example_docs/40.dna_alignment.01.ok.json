@@ -9,6 +9,7 @@
                 "files": {
                     "lane_seq": {
                         "object_uri": "drs://Collab/c3ec531b-c2c9-4c77-894a-5b80dd18241e/0ee0d7f2-e96c-4e8c-be55-91267e74670b",
+                        "bundle_id": "c3ec531b-c2c9-4c77-894a-5b80dd18241e",
                         "object_id": "0ee0d7f2-e96c-4e8c-be55-91267e74670b",
                         "name": "180126_icgc.bam",
                         "repository": "Collab"
@@ -20,6 +21,7 @@
                 "files": {
                     "lane_seq": {
                         "object_uri": "drs://Collab/02adbffc-c6f1-49d0-9518-e2d6d0c86f33/4032dea0-60ec-4094-8805-16723de70e3f",
+                        "bundle_id": "a64548d3-9ed9-4ad4-913e-0b7b94658265",
                         "object_id": "4032dea0-60ec-4094-8805-16723de70e3f",
                         "name": "180130_icgc.bam",
                         "repository": "Collab"
@@ -31,6 +33,7 @@
                 "files": {
                     "lane_seq": {
                         "object_uri": "drs://Collab/a64548d3-9ed9-4ad4-913e-0b7b94658265/ffcd79d6-a7fb-47ba-81d9-f9cd2a63c84f",
+                        "bundle_id": "a64548d3-9ed9-4ad4-913e-0b7b94658265",
                         "object_id": "ffcd79d6-a7fb-47ba-81d9-f9cd2a63c84f",
                         "name": "180135_icgc.bam",
                         "repository": "Collab"
@@ -56,8 +59,58 @@
             "checksum": "6b2b764507a743708ef38a760444887c",
             "checksum_type": "md5",
             "_mocked_system_properties": {
+                "id": "c6b8eded-1e5f-4aae-b9b7-f69f83d7e0bf",
+                "program": "PRAD-UK",
+                "repository": "Collab",
+                "created_at": "2019-07-15T08:15:30+00:00",
+                "updated_at": "2019-07-15T08:15:30+00:00",
+                "donor": {
+                    "donor_id": "DO223959",
+                    "specimen": {
+                        "specimen_id": "SP131542",
+                        "sample": {
+                            "sample_id": "SA567218"
+                        }
+                    }
+                },
+                "derived_from": {
+                    "type": "sample",
+                    "id": "SA567218"
+                },
+                "bundle_id": "a37813b3-bb4f-4528-a71f-c38d3b843897",
+                "bundle_type": "dna_alignment",
+                "format": "BAM",
+                "data_type": "Aligned Reads"
             },
             "_final_doc": {
+                "type": "dna_alignment.aligned_seq.data_object",
+                "name": "ccdc18ea765f4ef1809d8e281ad8dcbd.bam",
+                "local_path": "/my/file/path/ccdc18ea765f4ef1809d8e281ad8dcbd.bam",
+                "size": 932434232,
+                "checksum": "6b2b764507a743708ef38a760444887c",
+                "checksum_type": "md5",
+                "id": "c6b8eded-1e5f-4aae-b9b7-f69f83d7e0bf",
+                "program": "PRAD-UK",
+                "repository": "Collab",
+                "created_at": "2019-07-15T08:15:30+00:00",
+                "updated_at": "2019-07-15T08:15:30+00:00",
+                "donor": {
+                    "donor_id": "DO223959",
+                    "specimen": {
+                        "specimen_id": "SP131542",
+                        "sample": {
+                            "sample_id": "SA567218"
+                        }
+                    }
+                },
+                "derived_from": {
+                    "type": "sample",
+                    "id": "SA567218"
+                },
+                "bundle_id": "a37813b3-bb4f-4528-a71f-c38d3b843897",
+                "bundle_type": "dna_alignment",
+                "format": "BAM",
+                "data_type": "Aligned Reads"
             }
         },
         "aligned_seq_index": {
@@ -68,13 +121,158 @@
             "checksum": "05ecf5a05b524190b55b74a1cfb38dc2",
             "checksum_type": "md5",
             "_mocked_system_properties": {
+                "id": "06874a75-63ef-4ac5-a2d5-05183cd66cf7",
+                "program": "PRAD-UK",
+                "repository": "Collab",
+                "created_at": "2019-07-15T08:15:30+00:00",
+                "updated_at": "2019-07-15T08:15:30+00:00",
+                "donor": {
+                    "donor_id": "DO223959",
+                    "specimen": {
+                        "specimen_id": "SP131542",
+                        "sample": {
+                            "sample_id": "SA567218"
+                        }
+                    }
+                },
+                "derived_from": {
+                    "type": "sample",
+                    "id": "SA567218"
+                },
+                "bundle_id": "a37813b3-bb4f-4528-a71f-c38d3b843897",
+                "bundle_type": "dna_alignment",
+                "format": "BAI",
+                "data_type": "Aligned Reads Index"
             },
             "_final_doc": {
+                "type": "dna_alignment.aligned_seq_index.data_object",
+                "name": "ccdc18ea765f4ef1809d8e281ad8dcbd.bam.bai",
+                "local_path": "/my/file/path/ccdc18ea765f4ef1809d8e281ad8dcbd.bam.bai",
+                "size": 589343,
+                "checksum": "05ecf5a05b524190b55b74a1cfb38dc2",
+                "checksum_type": "md5",
+                "id": "06874a75-63ef-4ac5-a2d5-05183cd66cf7",
+                "program": "PRAD-UK",
+                "repository": "Collab",
+                "created_at": "2019-07-15T08:15:30+00:00",
+                "updated_at": "2019-07-15T08:15:30+00:00",
+                "donor": {
+                    "donor_id": "DO223959",
+                    "specimen": {
+                        "specimen_id": "SP131542",
+                        "sample": {
+                            "sample_id": "SA567218"
+                        }
+                    }
+                },
+                "derived_from": {
+                    "type": "sample",
+                    "id": "SA567218"
+                },
+                "bundle_id": "a37813b3-bb4f-4528-a71f-c38d3b843897",
+                "bundle_type": "dna_alignment",
+                "format": "BAI",
+                "data_type": "Aligned Reads Index"
             }
         }
     },
     "_mocked_system_properties": {
+        "status": "registered",
+        "id": "a37813b3-bb4f-4528-a71f-c38d3b843897",
+        "donor": {
+            "donor_id": "DO223959",
+            "specimen": {
+                "specimen_id": "SP131542",
+                "sample": {
+                    "sample_id": "SA567218"
+                }
+            }
+        },
+        "library_strategy": "WGS",
+        "files": {
+            "aligned_seq": {
+                "type": "data_object",
+                "object_id": "c6b8eded-1e5f-4aae-b9b7-f69f83d7e0bf"
+            },
+            "aligned_seq_index": {
+                "type": "data_object",
+                "object_id": "06874a75-63ef-4ac5-a2d5-05183cd66cf7"
+            }
+        }
     },
     "_final_doc": {
+        "type": "dna_alignment",
+        "program": "PRAD-UK",
+        "inputs": {
+            "reference_genome": {},
+            "lane_seq": [
+                {
+                    "lane_seq_submission_id": "c3ec531b-c2c9-4c77-894a-5b80dd18241e",
+                    "files": {
+                        "lane_seq": {
+                            "object_uri": "drs://Collab/c3ec531b-c2c9-4c77-894a-5b80dd18241e/0ee0d7f2-e96c-4e8c-be55-91267e74670b",
+                            "bundle_id": "c3ec531b-c2c9-4c77-894a-5b80dd18241e",
+                            "object_id": "0ee0d7f2-e96c-4e8c-be55-91267e74670b",
+                            "name": "180126_icgc.bam",
+                            "repository": "Collab"
+                        }
+                    }
+                },
+                {
+                    "lane_seq_submission_id": "02adbffc-c6f1-49d0-9518-e2d6d0c86f33",
+                    "files": {
+                        "lane_seq": {
+                            "object_uri": "drs://Collab/02adbffc-c6f1-49d0-9518-e2d6d0c86f33/4032dea0-60ec-4094-8805-16723de70e3f",
+                            "bundle_id": "a64548d3-9ed9-4ad4-913e-0b7b94658265",
+                            "object_id": "4032dea0-60ec-4094-8805-16723de70e3f",
+                            "name": "180130_icgc.bam",
+                            "repository": "Collab"
+                        }
+                    }
+                },
+                {
+                    "lane_seq_submission_id": "a64548d3-9ed9-4ad4-913e-0b7b94658265",
+                    "files": {
+                        "lane_seq": {
+                            "object_uri": "drs://Collab/a64548d3-9ed9-4ad4-913e-0b7b94658265/ffcd79d6-a7fb-47ba-81d9-f9cd2a63c84f",
+                            "bundle_id": "a64548d3-9ed9-4ad4-913e-0b7b94658265",
+                            "object_id": "ffcd79d6-a7fb-47ba-81d9-f9cd2a63c84f",
+                            "name": "180135_icgc.bam",
+                            "repository": "Collab"
+                        }
+                    }
+                }
+            ]
+        },
+        "analysis": {
+            "analysis_type": "DNA Alignment",
+            "reference_genome": "GRCh38",
+            "tool": {
+                "contained_apps": ["bwa mem", "samtools", "biobambam"]
+            },
+            "execution": {}
+        },
+        "status": "registered",
+        "id": "a37813b3-bb4f-4528-a71f-c38d3b843897",
+        "donor": {
+            "donor_id": "DO223959",
+            "specimen": {
+                "specimen_id": "SP131542",
+                "sample": {
+                    "sample_id": "SA567218"
+                }
+            }
+        },
+        "library_strategy": "WGS",
+        "files": {
+            "aligned_seq": {
+                "type": "data_object",
+                "object_id": "c6b8eded-1e5f-4aae-b9b7-f69f83d7e0bf"
+            },
+            "aligned_seq_index": {
+                "type": "data_object",
+                "object_id": "06874a75-63ef-4ac5-a2d5-05183cd66cf7"
+            }
+        }
     }
 }

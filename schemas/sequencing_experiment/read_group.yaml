@@ -30,6 +30,9 @@ definitions:
         targetKey:  # relationship by primaryKey
         - 'sample#/definitions/systemProperties/properties/id'
   systemProperties:  # properties will be populated by the system
+    propertyNames:
+      enum: [ id, program, sequencing_experiment_submitter_id, sequencing_experiment_id, sample_submitter_id, sample_id ]
+    required: [ id, program, sequencing_experiment_submitter_id, sequencing_experiment_id, sample_submitter_id, sample_id ]
     properties:
       id:  # system generated globally unique read group ID
         allOf:
@@ -46,10 +49,14 @@ definitions:
         $ref: "sequencing_experiment#/definitions/systemProperties/properties/id"
       sample_submitter_id:
         # this field gets value from containing parent
-        $ref: "sequencing_experiment#/definitions/properties/sample_submitter_id"
+        $ref: "sequencing_experiment#/properties/sample_submitter_id"
       sample_id:
         # this field gets value from containing parent
         $ref: "sequencing_experiment#/definitions/systemProperties/properties/sample_id"
+
+propertyNames:
+  enum: [ type, submitter_id, platform_unit, is_paired_end, read_length_r1, read_length_r2,
+          insert_size, sample_barcode, library_name ]
 
 required:
 - type

@@ -4,7 +4,6 @@ $id: "sample"
 title: Sample
 type: object
 description: ""
-additionalProperties: false
 
 definitions:
   version:
@@ -33,6 +32,9 @@ definitions:
         targetKey:  # relationship by primaryKey
         - 'specimen#/definitions/systemProperties/properties/id'
   systemProperties:  # properties will be populated by the system
+    propertyNames:
+      enum: [ id, specimen_id ]
+    required: [ id, specimen_id ]
     properties:
       id:  # primary key, defined in 'primaryKey'
         allOf:
@@ -40,6 +42,9 @@ definitions:
         - pattern: "^SA"  # id must start with "SA", in addition to pattern defined at _definitions#/common/properties/id
       specimen_id:  # foreign key to specimen entity, the relationship is defined in 'references'
         $ref: 'specimen#/definitions/systemProperties/properties/id'
+
+propertyNames:  # this will reject any unknown properties, note that 'additionalProperties: false' does not work with allOf
+  enum: [ type, submitter_id, specimen_submitter_id, program, sample_type ]
 
 required:
 - type

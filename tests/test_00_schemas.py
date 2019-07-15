@@ -32,13 +32,14 @@ def pytest_generate_tests(metafunc):
                 id = s['$id']
 
             relationDefDoc = s.get('definitions', {}).get('relationDef', {}).get('const')
-            testdocs.append([id, relationDefDoc])
+            systemProperties = s.get('definitions', {}).get('systemProperties')
+            testdocs.append([id, relationDefDoc, systemProperties])
 
         metafunc.parametrize('testdoc', testdocs)
 
 
 def test_relationDef(testdoc, schemas, resolvers):
-    s, relationDefDoc = testdoc
+    s, relationDefDoc, _ = testdoc
     relationDefSchema = schemas['_definitions']['_']['properties']['relationDef']
 
     resolver = resolvers[s]
@@ -101,6 +102,10 @@ def test_relationDef(testdoc, schemas, resolvers):
                 assert False, 'Testing "%s" references failed on foreignKey $ref: "%s"' % (s, reffrag)
 
 
-def test_systemProperties():
-    # TODO: system property not overlap with submitters
-    pass
+def test_systemProperties(testdoc, schemas, resolvers):
+    s, _, systemProperties = testdoc
+
+    try:
+        Draft7Validator.check_schema(systemProperties)
+    except:
+        assert False, 'Invalid schema definition in systemProperties in: "%s"!' % s

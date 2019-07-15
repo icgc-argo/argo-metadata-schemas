@@ -23,25 +23,20 @@ definitions:
       - '#/definitions/systemProperties/allOf/1/properties/id'
 
   systemProperties:
-    required: [ id, program, repository, created_at, updated_at, derived_from, bundle_id, bundle_type, format, data_type ]
+    propertyNames:
+      enum: [ id, program, donor, repository, created_at, updated_at, bundle_id, bundle_type, format, data_type ]
+    required: [ id, program, donor, repository, created_at, updated_at, bundle_id, bundle_type, format, data_type ]
     allOf:
     - $ref: _definitions#/data_object
     - properties:
         id:  # surrogate key
           $ref: _definitions#/data_object/properties/id
         program:  # copied from containing parent
-          $ref: "#/properties/program"
+          $ref: "sanger_ssm_call#/properties/program"
         donor:  # copied from containing parent
-          $ref: "#/definitions/systemProperties/properties/donor"
-        derived_from:
-          type: object
-          properties:
-            type:
-              const: "sample"
-            id:  # copied from containing parent
-              $ref: "#/definitions/systemProperties/properties/donor/properties/specimen/properties/sample/properties/sample_id"
+          $ref: "sanger_ssm_call#/definitions/systemProperties/properties/donor"
         bundle_id:  # copied from containing parent
-          $ref: "#/definitions/systemProperties/properties/id"
+          $ref: "sanger_ssm_call#/definitions/systemProperties/properties/id"
         bundle_type:
           const: "sanger_ssm_call"
         format:

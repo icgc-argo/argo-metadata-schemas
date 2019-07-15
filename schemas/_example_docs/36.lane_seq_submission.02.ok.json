@@ -34,14 +34,14 @@
                 "id": "4032dea0-60ec-4094-8805-16723de70e3f",
                 "program": "OV-AU",
                 "repository": "Collab",
-                "created_at": "2019-07-05T08:15:30",
-                "updated_at": "2019-07-05T08:15:30",
+                "created_at": "2019-07-05T08:15:30+00:00",
+                "updated_at": "2019-07-05T08:15:30+00:00",
                 "donor": {
-                    "id": "DO223959",
+                    "donor_id": "DO46394",
                     "specimen": {
-                        "id": "SP131542",
+                        "specimen_id": "SP101678",
                         "sample": {
-                            "id": "SA567218"
+                            "sample_id": "SA505863"
                         }
                     }
                 },
@@ -64,14 +64,14 @@
                 "id": "4032dea0-60ec-4094-8805-16723de70e3f",
                 "program": "OV-AU",
                 "repository": "Collab",
-                "created_at": "2019-07-05T08:15:30",
-                "updated_at": "2019-07-05T08:15:30",
+                "created_at": "2019-07-05T08:15:30+00:00",
+                "updated_at": "2019-07-05T08:15:30+00:00",
                 "donor": {
-                    "id": "DO223959",
+                    "donor_id": "DO46394",
                     "specimen": {
-                        "id": "SP131542",
+                        "specimen_id": "SP101678",
                         "sample": {
-                            "id": "SA567218"
+                            "sample_id": "SA505863"
                         }
                     }
                 },
@@ -90,11 +90,11 @@
         "status": "registered",
         "id": "02adbffc-c6f1-49d0-9518-e2d6d0c86f33",
         "donor": {
-            "id": "DO46394",
+            "donor_id": "DO46394",
             "specimen": {
-                "id": "SP101678",
+                "specimen_id": "SP101678",
                 "sample": {
-                    "id": "SA505863"
+                    "sample_id": "SA505863"
                 }
             }
         },
@@ -134,11 +134,11 @@
         "status": "registered",
         "id": "02adbffc-c6f1-49d0-9518-e2d6d0c86f33",
         "donor": {
-            "id": "DO46394",
+            "donor_id": "DO46394",
             "specimen": {
-                "id": "SP101678",
+                "specimen_id": "SP101678",
                 "sample": {
-                    "id": "SA505863"
+                    "sample_id": "SA505863"
                 }
             }
         },

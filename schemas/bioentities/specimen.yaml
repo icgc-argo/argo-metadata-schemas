@@ -4,17 +4,6 @@ $id: "specimen"
 title: Specimen
 type: object
 
-propertyNames:  # this will reject any unknown properties, note that 'additionalProperties: false' does not work with allOf
-  anyOf:
-  - pattern: '^id$'
-  - pattern: '^donor_id$'
-  - pattern: '^type$'
-  - pattern: '^program$'
-  - pattern: '^submitter_id$'
-  - pattern: '^donor_submitter_id$'
-  - pattern: '^normal_or_tumour_designation$'
-  - pattern: '^specimen_type$'
-
 definitions:
   version:
     $ref: '_definitions#/_/properties/version'
@@ -41,6 +30,9 @@ definitions:
         targetKey:  # relationship by primaryKey
         - 'donor#/definitions/systemProperties/properties/id'
   systemProperties:  # properties will be populated by the system
+    propertyNames:
+      enum: [ id, donor_id, schema_version ]
+    required: [ id, donor_id ]
     properties:
       id:  # primary key, defined in 'primaryKey'
         allOf:
@@ -51,6 +43,9 @@ definitions:
       schema_version:
         $ref: '_definitions#/_/properties/version'
         default: '#/definitions/version/const'  # where to pick up the version
+
+propertyNames:  # this will reject any unknown properties, note that 'additionalProperties: false' does not work with allOf
+  enum: [ type, program, submitter_id, donor_submitter_id, normal_or_tumour_designation, specimen_type ]
 
 required:
 - type

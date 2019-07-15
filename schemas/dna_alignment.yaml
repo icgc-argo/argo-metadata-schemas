@@ -4,7 +4,6 @@ $id: "dna_alignment"
 title: Uniform alignment of DNA sequencing reads
 type: object
 description: ""
-additionalProperties: false
 
 definitions:
   version:
@@ -25,16 +24,21 @@ definitions:
         - 'lane_seq_submission#/definitions/systemProperties/properties/id'
 
   systemProperties:
+    propertyNames:
+      enum: [ status, id, donor, library_strategy ]
+    required: [ status, id, donor, library_strategy ]
     properties:
       status:
         $ref: _definitions#/common/properties/bundle_status
       id:
         $ref: _definitions#/common/properties/uuid
       donor:  # donor/biospecimen tree
+        additionalProperties: false
         properties:
           donor_id:
             $ref: donor#/definitions/systemProperties/properties/id
           specimen:
+            additionalProperties: false
             properties:
               specimen_id:
                 $ref: specimen#/definitions/systemProperties/properties/id
@@ -43,11 +47,15 @@ definitions:
               normal_or_tumour_designation:  # to be magically populated by the system through traversing back to the 'specimen'
                 $ref: specimen#/properties/normal_or_tumour_designation
               sample:
+                additionalProperties: false
                 properties:
                   sample_id:  # to be magically populated by the system through traversing back to the 'sample'
                     $ref: sample#/definitions/systemProperties/properties/id
       library_strategy:  # to be magically populated by the system through traversing back to the 'sequencing_experiment'
         $ref: sequencing_experiment#/properties/library_strategy
+
+propertyNames:
+  enum: [ type, program, inputs, analysis, files ]
 
 required:
 - type
@@ -79,9 +87,13 @@ properties:
               required: [ lane_seq ]
               properties:
                 lane_seq:
+                  additionalProperties: false
+                  required: [ object_uri, bundle_id, object_id, name, repository ]
                   properties:
                     object_uri:  # if file is local, object_id will be 'null'
                       type: string  # pattern: song://<repository>/<bundle_id>/<object_id>
+                    bundle_id:  # lane_seq_submission
+                      $ref: "#/properties/inputs/properties/lane_seq/items/properties/lane_seq_submission_id"  # get value from
                     object_id:  # lane_seq object ID in the above lane_seq_submission
                       type: string
                     name:  # file name
@@ -197,6 +209,44 @@ properties:
     properties:
       aligned_seq:
         $ref: dna_alignment.aligned_seq.data_object
+        definitions:
+          relationDef:
+            $ref: '_definitions#/_/properties/relationDef'
+            const:
+              references:
+              - foreignKey:
+                - '#/properties/files/properties/aligned_seq/definitions/systemProperties/properties/object_id'
+                targetEntity: 'data_object'  # dna_alignment to lane_seq_submission relationship is one-to-one
+                targetKey:  # relationship by primaryKey
+                - 'dna_alignment.aligned_seq.data_object#/definitions/systemProperties/allOf/1/properties/id'
+
+          systemProperties:
+            additionalProperties: false
+            required: [ type, object_id ]
+            properties:
+              type:
+                const: data_object
+              object_id:
+                $ref: dna_alignment.aligned_seq.data_object#/definitions/systemProperties/allOf/1/properties/id
 
       aligned_seq_index:
         $ref: dna_alignment.aligned_seq_index.data_object
+        definitions:
+          relationDef:
+            $ref: '_definitions#/_/properties/relationDef'
+            const:
+              references:
+              - foreignKey:
+                - '#/properties/files/properties/aligned_seq_index/definitions/systemProperties/properties/object_id'
+                targetEntity: 'data_object'  # dna_alignment to lane_seq_submission relationship is one-to-one
+                targetKey:  # relationship by primaryKey
+                - 'dna_alignment.aligned_seq_index.data_object#/definitions/systemProperties/allOf/1/properties/id'
+
+          systemProperties:
+            additionalProperties: false
+            required: [ type, object_id ]
+            properties:
+              type:
+                const: data_object
+              object_id:
+                $ref: dna_alignment.aligned_seq_index.data_object#/definitions/systemProperties/allOf/1/properties/id

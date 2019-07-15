@@ -4,7 +4,6 @@ $id: "dna_alignment_qc"
 title: QC metrics of aligned DNA sequencing reads
 type: object
 description: ""
-additionalProperties: false
 
 definitions:
   version:
@@ -25,6 +24,9 @@ definitions:
         - 'dna_alignment#/definitions/systemProperties/properties/id'
 
   systemProperties:
+    propertyNames:
+      enum: [ status, id, donor, library_strategy, schema_version ]
+    required: [ status, id, donor, library_strategy ]
     properties:
       status:
         $ref: _definitions#/common/properties/bundle_status
@@ -38,6 +40,8 @@ definitions:
         $ref: '_definitions#/_/properties/version'
         default: '#/definitions/version/const'  # where to pick up the version
 
+propertyNames:
+  enum: [ type, program, inputs, analysis, qc_metrics, files ]
 required:
 - type
 - program
@@ -63,6 +67,7 @@ properties:
         properties:
           aligned_dna_seq:   # input file is aligned bam/cram (multi-lane)
             additionalProperties: false
+            required: [ object_uri, bundle_id, object_id, name, secondary_file, repository ]
             properties:
               object_uri:  # if file is local, object_id will be 'null'
                 type: string  # pattern: song://<repository>/<bundle_id>/<object_id>
@@ -141,6 +146,44 @@ properties:
     properties:
       quality_distribution:
         $ref: dna_alignment_qc.quality_distribution.data_object
+        definitions:
+          relationDef:
+            $ref: '_definitions#/_/properties/relationDef'
+            const:
+              references:
+              - foreignKey:
+                - '#/properties/files/properties/quality_distribution/definitions/systemProperties/properties/object_id'
+                targetEntity: 'data_object'
+                targetKey:  # relationship by primaryKey
+                - 'dna_alignment_qc.quality_distribution.data_object#/definitions/systemProperties/allOf/1/properties/id'
+
+          systemProperties:
+            additionalProperties: false
+            required: [ type, object_id ]
+            properties:
+              type:
+                const: data_object
+              object_id:
+                $ref: dna_alignment_qc.quality_distribution.data_object#/definitions/systemProperties/allOf/1/properties/id
 
       bait_bias_detail_metrics:
         $ref: dna_alignment_qc.bait_bias_detail_metrics.data_object
+        definitions:
+          relationDef:
+            $ref: '_definitions#/_/properties/relationDef'
+            const:
+              references:
+              - foreignKey:
+                - '#/properties/files/properties/bait_bias_detail_metrics/definitions/systemProperties/properties/object_id'
+                targetEntity: 'data_object'
+                targetKey:  # relationship by primaryKey
+                - 'dna_alignment_qc.bait_bias_detail_metrics.data_object#/definitions/systemProperties/allOf/1/properties/id'
+
+          systemProperties:
+            additionalProperties: false
+            required: [ type, object_id ]
+            properties:
+              type:
+                const: data_object
+              object_id:
+                $ref: dna_alignment_qc.bait_bias_detail_metrics.data_object#/definitions/systemProperties/allOf/1/properties/id

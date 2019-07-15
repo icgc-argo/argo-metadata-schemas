@@ -4,7 +4,6 @@ $id: "sequencing_experiment"
 title: Sequencing experiment
 type: object
 description: ""
-additionalProperties: false
 
 definitions:
   version:
@@ -32,13 +31,19 @@ definitions:
         targetKey:  # relationship by primaryKey
         - 'sample#/definitions/systemProperties/properties/id'
   systemProperties:  # properties will be populated by the system
+    propertyNames:
+      enum: [ id, sample_id ]
+    required: [ id, sample_id ]
     properties:
       id:  # primary key, defined in 'primaryKey'
         allOf:
-        - $ref: _definitions#/common/properties/id
-        - pattern: "^SX"  # id must start with "SX", in addition to pattern defined at _definitions#/common/properties/id
+        - $ref: _definitions#/common/properties/uuid
       sample_id:  # foreign key to sample entity, the relationship is defined in 'references'
-        $ref: sample#/systemProperties/properties/id
+        $ref: sample#/definitions/systemProperties/properties/id
+
+propertyNames:
+  enum: [ type, program, submitter_id, sample_submitter_id, sequencing_center, sequencing_date,
+          platform, platform_model, library_strategy, read_group_count, read_groups ]
 
 required:
 - type
@@ -46,6 +51,7 @@ required:
 - submitter_id
 - sample_submitter_id
 - sequencing_center
+- sequencing_date
 - platform
 - platform_model
 - library_strategy
@@ -90,6 +96,7 @@ properties:
     type: array
     items:
       minItems: 1
+      $ref: read_group
       definitions:
         relationDef:
           $ref: '_definitions#/_/properties/relationDef'
@@ -102,9 +109,11 @@ properties:
               - 'read_group#/definitions/systemProperties/properties/id'
 
         systemProperties:
+          propertyNames:
+            enum: [ type, read_group_id ]
+          required: [ type, read_group_id ]
           properties:
             type:
               const: read_group
             read_group_id:
               $ref: read_group#/definitions/systemProperties/properties/id
-      $ref: read_group

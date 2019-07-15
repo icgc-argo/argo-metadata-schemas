@@ -4,7 +4,6 @@ $id: "lane_seq_qc"
 title: Unaligned lane level sequencing reads QC report
 type: object
 description: ""
-additionalProperties: false
 
 definitions:
   version:
@@ -25,6 +24,9 @@ definitions:
         - 'lane_seq_submission#/definitions/systemProperties/properties/id'
 
   systemProperties:
+    propertyNames:
+      enum: [ status, id, read_group_id, library_strategy, donor ]
+    required: [ status, id, read_group_id, library_strategy, donor ]
     properties:
       status:
         $ref: _definitions#/common/properties/bundle_status
@@ -36,6 +38,9 @@ definitions:
         $ref: lane_seq_submission#/definitions/systemProperties/properties/library_strategy
       donor:
         $ref: lane_seq_submission#/definitions/systemProperties/properties/donor
+
+propertyNames:
+  enum: [ type, program, inputs, analysis, qc_metrics, files ]
 
 required:
 - type
@@ -61,6 +66,8 @@ properties:
         required: [ lane_seq ]
         properties:
           lane_seq:  # input file for this QC tool could be locally prepared from preprocessing steps
+            additioinalProperties: false
+            required: [ object_uri, bundle_id, object_id, name, repository ]
             properties:
               object_uri:  # if file is local, object_id will be 'null'
                 type: string  # pattern: song://<repository>/<bundle_id>/<object_id>
@@ -142,6 +149,8 @@ properties:
                 - 'lane_seq_qc.metrics_file.data_object#/definitions/systemProperties/allOf/1/properties/id'
 
           systemProperties:
+            additionalProperties: false
+            required: [ type, object_id ]
             properties:
               type:
                 const: data_object

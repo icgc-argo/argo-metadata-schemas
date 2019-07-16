@@ -247,3 +247,47 @@ data_object:
       enum:
       - Collab
       - DKFZ
+
+analysis:
+  properties:
+    analysis_type:
+      type: string
+      enum:
+      - 'Data submission'
+      - 'DNA alignment'
+      - 'Data QC'
+      - 'Simple somatic mutation calling'
+    reference_genome:
+      enum: [ GRCh38 ]
+    tool:  # Tool refers to what's in GA4GH's Tool Registry Service
+      toolNames:  # workaround mentioned here: https://json-schema.org/draft-06/json-schema-release-notes.html
+        propertyNames:
+          enum: [ registry, id, name, version, contained_apps ]
+      properties:
+        registry:
+          type: string  # such as Dockstore
+        id:  # tool ID
+          type: string
+        name:  # tool name
+          type: string
+        version:
+          type: string
+        contained_apps:
+          type: array
+          items:
+            type: string
+    execution:
+      additionalProperties: false
+      properties:
+        runner_name:
+          type: string
+        runner_version:
+          type: string
+        job_id:
+          type: string
+        started_at:
+          type: string
+          format: date-time
+        completed_at:
+          type: string
+          format: date-time

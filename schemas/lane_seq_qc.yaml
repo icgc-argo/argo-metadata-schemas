@@ -84,38 +84,22 @@ properties:
     required: [ analysis_type, tool, execution ]
     properties:
       analysis_type:
-        const: 'QC'
+        allOf:
+        - $ref: '_definitions#/analysis/properties/analysis_type'
+        - const: 'Data QC'
       tool:  # Tool refers to what's in GA4GH's Tool Registry Service
-        type: object
-        properties:
-          registry:
-            type: string  # such as Dockstore
-          id:  # tool ID
-            type: string
-          name:  # tool name
-            type: string
-          version:
-            type: string
-          contained_apps:
-            type: array
-            items:
-              type: string
-            const: [ 'picad' ]
+        propertyNames:
+          $ref: '_definitions#/analysis/properties/tool/toolNames/propertyNames'
+        allOf:
+        - $ref: '_definitions#/analysis/properties/tool'
+        - properties:
+            contained_apps:
+              type: array
+              items:
+                type: string
+              const: [ picard ]
       execution:
-        type: object
-        properties:
-          runner_name:
-            type: string
-          runner_version:
-            type: string
-          job_id:
-            type: string
-          started_at:
-            type: string
-            format: date-time
-          completed_at:
-            type: string
-            format: date-time
+        $ref: '_definitions#/analysis/properties/execution'
   qc_metrics:
     type: object
     properties:

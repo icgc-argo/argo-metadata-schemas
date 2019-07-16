@@ -14,7 +14,7 @@
         }
     },
     "analysis": {
-        "analysis_type": "QC",
+        "analysis_type": "Data QC",
         "tool": {},
         "execution": {}
     },
@@ -42,6 +42,8 @@
                     "donor_id": "DO223959",
                     "specimen": {
                         "specimen_id": "SP131542",
+                        "specimen_type": "Normal - blood derived",
+                        "normal_or_tumour_designation": "Normal",
                         "sample": {
                             "sample_id": "SA567218"
                         }
@@ -72,6 +74,8 @@
                     "donor_id": "DO223959",
                     "specimen": {
                         "specimen_id": "SP131542",
+                        "specimen_type": "Normal - blood derived",
+                        "normal_or_tumour_designation": "Normal",
                         "sample": {
                             "sample_id": "SA567218"
                         }
@@ -97,6 +101,8 @@
             "donor_id": "DO223959",
             "specimen": {
                 "specimen_id": "SP131542",
+                "specimen_type": "Normal - blood derived",
+                "normal_or_tumour_designation": "Normal",
                 "sample": {
                     "sample_id": "SA567218"
                 }
@@ -125,7 +131,7 @@
             }
         },
         "analysis": {
-            "analysis_type": "QC",
+            "analysis_type": "Data QC",
             "tool": {},
             "execution": {}
         },
@@ -149,6 +155,8 @@
             "donor_id": "DO223959",
             "specimen": {
                 "specimen_id": "SP131542",
+                "specimen_type": "Normal - blood derived",
+                "normal_or_tumour_designation": "Normal",
                 "sample": {
                     "sample_id": "SA567218"
                 }

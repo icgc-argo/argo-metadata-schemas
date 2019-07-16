@@ -23,9 +23,21 @@
         }
     },
     "analysis": {
-        "analysis_type": "Data Submission",
-        "tool": {},
-        "execution": {}
+        "analysis_type": "Data submission",
+        "tool": {
+            "registry": "Dockstore",
+            "id": "96884e68-44d0-4aba-b8b3-d595edaf104f",
+            "name": "argo-seq-submission",
+            "version": "0.0.1",
+            "contained_apps": ["picard", "samtool"]
+        },
+        "execution": {
+            "runner_name": "cwltool",
+            "runner_version": "0.2.2",
+            "job_id": "f51fec25-e22a-4ebc-87ec-1b5c7624e5b6",
+            "started_at": "2019-07-05T08:15:30+00:00",
+            "completed_at": "2019-07-05T08:15:30+00:00"
+        }
     },
     "files": {
         "bam_file": {
@@ -45,6 +57,8 @@
                     "donor_id": "DO223959",
                     "specimen": {
                         "specimen_id": "SP131542",
+                        "specimen_type": "Normal - blood derived",
+                        "normal_or_tumour_designation": "Normal",
                         "sample": {
                             "sample_id": "SA567218"
                         }
@@ -75,6 +89,8 @@
                     "donor_id": "DO223959",
                     "specimen": {
                         "specimen_id": "SP131542",
+                        "specimen_type": "Normal - blood derived",
+                        "normal_or_tumour_designation": "Normal",
                         "sample": {
                             "sample_id": "SA567218"
                         }
@@ -98,6 +114,8 @@
             "donor_id": "DO223959",
             "specimen": {
                 "specimen_id": "SP131542",
+                "specimen_type": "Normal - blood derived",
+                "normal_or_tumour_designation": "Normal",
                 "sample": {
                     "sample_id": "SA567218"
                 }
@@ -124,22 +142,34 @@
                         "local_path": "/my/bam/path/180126_icgc_1.fq.gz",
                         "size": 132434232,
                         "checksum": "ea12f7c24f37bdb40a3d80ce8756f8cb",
-                        "checksum_type": "md5"    
+                        "checksum_type": "md5"
                     },
                     {
                         "name": "180126_icgc_2.fq.gz",
                         "local_path": "/my/bam/path/180126_icgc_2.fq.gz",
                         "size": 135632243,
                         "checksum": "68b329da9893e34099c7d8ad5cb9c940",
-                        "checksum_type": "md5"    
+                        "checksum_type": "md5"
                     }
                 ]
             }
         },
         "analysis": {
-            "analysis_type": "Data Submission",
-            "tool": {},
-            "execution": {}
+            "analysis_type": "Data submission",
+            "tool": {
+                "registry": "Dockstore",
+                "id": "96884e68-44d0-4aba-b8b3-d595edaf104f",
+                "name": "argo-seq-submission",
+                "version": "0.0.1",
+                "contained_apps": ["picard", "samtool"]
+            },
+            "execution": {
+                "runner_name": "cwltool",
+                "runner_version": "0.2.2",
+                "job_id": "f51fec25-e22a-4ebc-87ec-1b5c7624e5b6",
+                "started_at": "2019-07-05T08:15:30+00:00",
+                "completed_at": "2019-07-05T08:15:30+00:00"
+            }
         },
         "status": "registered",
         "id": "02adbffc-c6f1-49d0-9518-e2d6d0c86f33",
@@ -147,6 +177,8 @@
             "donor_id": "DO223959",
             "specimen": {
                 "specimen_id": "SP131542",
+                "specimen_type": "Normal - blood derived",
+                "normal_or_tumour_designation": "Normal",
                 "sample": {
                     "sample_id": "SA567218"
                 }

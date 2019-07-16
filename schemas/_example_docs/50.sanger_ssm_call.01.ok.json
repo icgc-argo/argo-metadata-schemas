@@ -55,12 +55,14 @@
                     "donor_id": "DO223959",
                     "specimen": {
                         "specimen_id": "SP131541",
+                        "specimen_type": "Primary tumour - solid tissue",
                         "sample": {
                             "sample_id": "SA567216"
                         }
                     },
                     "matched_normal": {
                         "specimen_id": "SP131542",
+                        "specimen_type": "Normal - blood derived",
                         "sample": {
                             "sample_id": "SA567218"
                         }
@@ -87,12 +89,14 @@
                     "donor_id": "DO223959",
                     "specimen": {
                         "specimen_id": "SP131541",
+                        "specimen_type": "Primary tumour - solid tissue",
                         "sample": {
                             "sample_id": "SA567216"
                         }
                     },
                     "matched_normal": {
                         "specimen_id": "SP131542",
+                        "specimen_type": "Normal - blood derived",
                         "sample": {
                             "sample_id": "SA567218"
                         }
@@ -121,12 +125,14 @@
                     "donor_id": "DO223959",
                     "specimen": {
                         "specimen_id": "SP131541",
+                        "specimen_type": "Primary tumour - solid tissue",
                         "sample": {
                             "sample_id": "SA567216"
                         }
                     },
                     "matched_normal": {
                         "specimen_id": "SP131542",
+                        "specimen_type": "Normal - blood derived",
                         "sample": {
                             "sample_id": "SA567218"
                         }
@@ -153,12 +159,14 @@
                     "donor_id": "DO223959",
                     "specimen": {
                         "specimen_id": "SP131541",
+                        "specimen_type": "Primary tumour - solid tissue",
                         "sample": {
                             "sample_id": "SA567216"
                         }
                     },
                     "matched_normal": {
                         "specimen_id": "SP131542",
+                        "specimen_type": "Normal - blood derived",
                         "sample": {
                             "sample_id": "SA567218"
                         }
@@ -178,12 +186,14 @@
             "donor_id": "DO223959",
             "specimen": {
                 "specimen_id": "SP131541",
+                "specimen_type": "Primary tumour - solid tissue",
                 "sample": {
                     "sample_id": "SA567216"
                 }
             },
             "matched_normal": {
                 "specimen_id": "SP131542",
+                "specimen_type": "Normal - blood derived",
                 "sample": {
                     "sample_id": "SA567218"
                 }
@@ -246,12 +256,14 @@
             "donor_id": "DO223959",
             "specimen": {
                 "specimen_id": "SP131541",
+                "specimen_type": "Primary tumour - solid tissue",
                 "sample": {
                     "sample_id": "SA567216"
                 }
             },
             "matched_normal": {
                 "specimen_id": "SP131542",
+                "specimen_type": "Normal - blood derived",
                 "sample": {
                     "sample_id": "SA567218"
                 }

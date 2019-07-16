@@ -23,7 +23,7 @@
         }
     },
     "analysis": {
-        "analysis_type": "Data Submission",
+        "analysis_type": "Data submission",
         "tool": {},
         "execution": {}
     },
@@ -45,6 +45,8 @@
                     "donor_id": "DO46394",
                     "specimen": {
                         "specimen_id": "SP101678",
+                        "specimen_type": "Primary tumour - solid tissue",
+                        "normal_or_tumour_designation": "Tumour",
                         "sample": {
                             "sample_id": "SA505863"
                         }
@@ -75,6 +77,8 @@
                     "donor_id": "DO46394",
                     "specimen": {
                         "specimen_id": "SP101678",
+                        "specimen_type": "Primary tumour - solid tissue",
+                        "normal_or_tumour_designation": "Tumour",
                         "sample": {
                             "sample_id": "SA505863"
                         }
@@ -98,6 +102,8 @@
             "donor_id": "DO46394",
             "specimen": {
                 "specimen_id": "SP101678",
+                "specimen_type": "Primary tumour - solid tissue",
+                "normal_or_tumour_designation": "Tumour",
                 "sample": {
                     "sample_id": "SA505863"
                 }
@@ -137,7 +143,7 @@
             }
         },
         "analysis": {
-            "analysis_type": "Data Submission",
+            "analysis_type": "Data submission",
             "tool": {},
             "execution": {}
         },
@@ -147,6 +153,8 @@
             "donor_id": "DO46394",
             "specimen": {
                 "specimen_id": "SP101678",
+                "specimen_type": "Primary tumour - solid tissue",
+                "normal_or_tumour_designation": "Tumour",
                 "sample": {
                     "sample_id": "SA505863"
                 }

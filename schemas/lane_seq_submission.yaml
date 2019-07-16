@@ -41,16 +41,23 @@ definitions:
         $ref: _definitions#/common/properties/uuid
       donor:  # bioentity tree
         additionalProperties: false
+        required: [ donor_id, specimen ]
         properties:
           donor_id:
             $ref: donor#/definitions/systemProperties/properties/id
           specimen:
             additionalProperties: false
+            required: [ specimen_id, specimen_type, normal_or_tumour_designation, sample ]
             properties:
               specimen_id:
                 $ref: specimen#/definitions/systemProperties/properties/id
+              specimen_type:
+                $ref: specimen#/properties/specimen_type
+              normal_or_tumour_designation:
+                $ref: specimen#/properties/normal_or_tumour_designation
               sample:
                 additionalProperties: false
+                required: [ sample_id ]
                 properties:
                   sample_id:  # to be magically populated by the system through traversing back to the 'sample'
                     $ref: sample#/definitions/systemProperties/properties/id
@@ -111,38 +118,22 @@ properties:
     additionalProperties: false
     properties:
       analysis_type:
-        const: 'Data Submission'
+        allOf:
+        - $ref: '_definitions#/analysis/properties/analysis_type'
+        - const: 'Data submission'
       tool:  # Tool refers to what's in GA4GH's Tool Registry Service
-        additionalProperties: false
-        properties:
-          registry:
-            type: string  # such as Dockstore
-          id:  # tool ID
-            type: string
-          name:  # tool name
-            type: string
-          version:
-            type: string
-          contained_apps:
-            type: array
-            items:
-              type: string
-            const: [ picard ]
+        propertyNames:
+          $ref: '_definitions#/analysis/properties/tool/toolNames/propertyNames'
+        allOf:
+        - $ref: '_definitions#/analysis/properties/tool'
+        - properties:
+            contained_apps:
+              type: array
+              items:
+                type: string
+              const: [ picard, samtool ]
       execution:
-        additionalProperties: false
-        properties:
-          runner_name:
-            type: string
-          runner_version:
-            type: string
-          job_id:
-            type: string
-          started_at:
-            type: string
-            format: date-time
-          completed_at:
-            type: string
-            format: date-time
+        $ref: '_definitions#/analysis/properties/execution'
   files:
     type: object
     additionalProperties: false

@@ -45,6 +45,7 @@ definitions:
             $ref: donor#/definitions/systemProperties/properties/id
           specimen:
             additionalProperties: false
+            required: [ specimen_id, specimen_type, sample ]
             properties:
               specimen_id:
                 $ref: specimen#/definitions/systemProperties/properties/id
@@ -52,16 +53,21 @@ definitions:
                 $ref: specimen#/properties/specimen_type
               sample:
                 additionalProperties: false
+                required: [ sample_id ]
                 properties:
                   sample_id:  # to be magically populated by the system through traversing back to the 'sample'
                     $ref: sample#/definitions/systemProperties/properties/id
           matched_normal:  # identified via noral/dna_alignment_id
             additionalProperties: false
+            required: [ specimen_id, specimen_type, sample ]
             properties:
               specimen_id:
                 $ref: specimen#/definitions/systemProperties/properties/id
+              specimen_type:  # to be magically populated by the system through traversing back to the 'specimen'
+                $ref: specimen#/properties/specimen_type
               sample:
                 additionalProperties: false
+                required: [ sample_id ]
                 properties:
                   sample_id:
                     $ref: sample#/definitions/systemProperties/properties/id
@@ -140,43 +146,27 @@ properties:
                     type: string
   analysis:
     additionalProperties: false
-    required: [ analysis_type, tool, execution ]
+    required: [ analysis_type, tool, reference_genome, execution ]
     properties:
       analysis_type:
-        const: 'Simple somatic mutation calling'
+        allOf:
+        - $ref: '_definitions#/analysis/properties/analysis_type'
+        - const: 'Simple somatic mutation calling'
       reference_genome:
-        enum: [ GRCh38 ]
+        $ref: '_definitions#/analysis/properties/reference_genome'
       tool:  # Tool refers to what's in GA4GH's Tool Registry Service
-        type: object
-        properties:
-          registry:
-            type: string  # such as Dockstore
-          id:  # tool ID
-            type: string
-          name:  # tool name
-            type: string
-          version:
-            type: string
-          contained_apps:
-            type: array
-            items:
-              type: string
-            const: [ 'CaVEMan' ]
+        propertyNames:
+          $ref: '_definitions#/analysis/properties/tool/toolNames/propertyNames'
+        allOf:
+        - $ref: '_definitions#/analysis/properties/tool'
+        - properties:
+            contained_apps:
+              type: array
+              items:
+                type: string
+              const: [ CaVEMan ]
       execution:
-        type: object
-        properties:
-          runner_name:
-            type: string
-          runner_version:
-            type: string
-          job_id:
-            type: string
-          started_at:
-            type: string
-            format: date-time
-          completed_at:
-            type: string
-            format: date-time
+        $ref: '_definitions#/analysis/properties/execution'
   files:
     type: object
     additionalProperties: false

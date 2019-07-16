@@ -24,8 +24,8 @@ definitions:
 
   systemProperties:
     propertyNames:
-      enum: [ id, program, donor, repository, created_at, updated_at, bundle_id, bundle_type, format, data_type ]
-    required: [ id, program, donor, repository, created_at, updated_at, bundle_id, bundle_type, format, data_type ]
+      enum: [ id, program, donor, repository, created_at, updated_at, library_strategy, bundle_id, bundle_type, format, data_type ]
+    required: [ id, program, donor, repository, created_at, updated_at, library_strategy, bundle_id, bundle_type, format, data_type ]
     allOf:
     - $ref: _definitions#/data_object
     - properties:
@@ -35,6 +35,8 @@ definitions:
           $ref: "sanger_ssm_call#/properties/program"
         donor:  # copied from containing parent
           $ref: "sanger_ssm_call#/definitions/systemProperties/properties/donor"
+        library_strategy:  # copied from containing parent
+          $ref: "sanger_ssm_call#/definitions/systemProperties/properties/library_strategy"
         bundle_id:  # copied from containing parent
           $ref: "sanger_ssm_call#/definitions/systemProperties/properties/id"
         bundle_type:

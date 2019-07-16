@@ -68,6 +68,7 @@
                         }
                     }
                 },
+                "library_strategy": "WGS",
                 "bundle_id": "6f289724-e8f7-4865-8bf5-4056d2595aa8",
                 "bundle_type": "sanger_ssm_call",
                 "format": "VCF",
@@ -102,6 +103,7 @@
                         }
                     }
                 },
+                "library_strategy": "WGS",
                 "bundle_id": "6f289724-e8f7-4865-8bf5-4056d2595aa8",
                 "bundle_type": "sanger_ssm_call",
                 "format": "VCF",
@@ -138,6 +140,7 @@
                         }
                     }
                 },
+                "library_strategy": "WGS",
                 "bundle_id": "6f289724-e8f7-4865-8bf5-4056d2595aa8",
                 "bundle_type": "sanger_ssm_call",
                 "format": "TBI",
@@ -172,6 +175,7 @@
                         }
                     }
                 },
+                "library_strategy": "WGS",
                 "bundle_id": "6f289724-e8f7-4865-8bf5-4056d2595aa8",
                 "bundle_type": "sanger_ssm_call",
                 "format": "TBI",

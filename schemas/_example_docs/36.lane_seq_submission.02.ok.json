@@ -56,6 +56,7 @@
                     "type": "read_group",
                     "id": "RG12345"
                 },
+                "library_strategy": "WGS",
                 "bundle_id": "02adbffc-c6f1-49d0-9518-e2d6d0c86f33",
                 "bundle_type": "lane_seq_submission",
                 "format": "BAM",
@@ -88,6 +89,7 @@
                     "type": "read_group",
                     "id": "RG12345"
                 },
+                "library_strategy": "WGS",
                 "bundle_id": "02adbffc-c6f1-49d0-9518-e2d6d0c86f33",
                 "bundle_type": "lane_seq_submission",
                 "format": "BAM",

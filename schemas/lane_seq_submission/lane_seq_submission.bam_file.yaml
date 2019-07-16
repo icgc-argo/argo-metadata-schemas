@@ -23,8 +23,8 @@ definitions:
       - '#/definitions/systemProperties/allOf/1/properties/id'
   systemProperties:
     propertyNames:
-      enum: [ id, program, donor, repository, created_at, updated_at, derived_from, bundle_id, bundle_type, format, data_type ]
-    required: [ id, program, donor, repository, created_at, updated_at, derived_from, bundle_id, bundle_type, format, data_type ]
+      enum: [ id, program, donor, repository, created_at, updated_at, derived_from, library_strategy, bundle_id, bundle_type, format, data_type ]
+    required: [ id, program, donor, repository, created_at, updated_at, derived_from, library_strategy, bundle_id, bundle_type, format, data_type ]
     allOf:
     - $ref: _definitions#/data_object
     - properties:
@@ -41,6 +41,8 @@ definitions:
               const: "read_group"
             id:  # copied from containing parent
               $ref: "lane_seq_submission#/definitions/systemProperties/properties/read_group_id"
+        library_strategy:  # copied from containing parent
+          $ref: "lane_seq_submission#/definitions/systemProperties/properties/library_strategy"
         bundle_id:  # copied from containing parent
           $ref: "lane_seq_submission#/definitions/systemProperties/properties/id"
         bundle_type:

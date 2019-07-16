@@ -79,6 +79,7 @@
                     "type": "sample",
                     "id": "SA567218"
                 },
+                "library_strategy": "WGS",
                 "bundle_id": "a37813b3-bb4f-4528-a71f-c38d3b843897",
                 "bundle_type": "dna_alignment",
                 "format": "BAM",
@@ -111,6 +112,7 @@
                     "type": "sample",
                     "id": "SA567218"
                 },
+                "library_strategy": "WGS",
                 "bundle_id": "a37813b3-bb4f-4528-a71f-c38d3b843897",
                 "bundle_type": "dna_alignment",
                 "format": "BAM",
@@ -145,6 +147,7 @@
                     "type": "sample",
                     "id": "SA567218"
                 },
+                "library_strategy": "WGS",
                 "bundle_id": "a37813b3-bb4f-4528-a71f-c38d3b843897",
                 "bundle_type": "dna_alignment",
                 "format": "BAI",
@@ -177,6 +180,7 @@
                     "type": "sample",
                     "id": "SA567218"
                 },
+                "library_strategy": "WGS",
                 "bundle_id": "a37813b3-bb4f-4528-a71f-c38d3b843897",
                 "bundle_type": "dna_alignment",
                 "format": "BAI",

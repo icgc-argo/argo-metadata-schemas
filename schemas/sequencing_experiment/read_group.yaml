@@ -16,7 +16,10 @@ definitions:
       naturalKey:
       - '#/definitions/systemProperties/properties/program'
       - '#/properties/submitter_id'
-      references:  # TODO: add relationship to the containing sequencing_experiment
+      uniqueKey:
+      - - '#/definitions/systemProperties/properties/program'
+        - '#/properties/platform_unit'  # platform unit has to be unique within a program
+      references:
       - foreignKey:
         - '#/definitions/systemProperties/properties/program'
         - '#/definitions/systemProperties/properties/sample_submitter_id'
@@ -29,6 +32,11 @@ definitions:
         targetEntity: 'sample'
         targetKey:  # relationship by primaryKey
         - 'sample#/definitions/systemProperties/properties/id'
+      - foreignKey:
+        - '#/definitions/systemProperties/properties/sequencing_experiment_id'
+        targetEntity: 'sequencing_experiment'
+        targetKey:  # relationship by primaryKey
+        - 'sequencing_experiment#/definitions/systemProperties/properties/id'
   systemProperties:  # properties will be populated by the system
     propertyNames:
       enum: [ id, program, sequencing_experiment_submitter_id, sequencing_experiment_id, sample_submitter_id, sample_id ]
@@ -64,6 +72,8 @@ required:
 - platform_unit
 - is_paired_end
 - read_length_r1
+- read_length_r2
+- insert_size
 - library_name
 
 properties:
@@ -80,10 +90,10 @@ properties:
     type: integer
     minimum: 20  # shortest read length
   read_length_r2:
-    type: integer
+    type: [ integer, "null" ]
     minimum: 20  # shortest read length
   insert_size:
-    type: integer
+    type: [ integer, "null" ]
     minimum: 0
   sample_barcode:  # only applicable for multiplex sequencing libraries
     type: [ string, "null" ]
@@ -91,7 +101,17 @@ properties:
     type: string
 if:
   properties:
-    is_paired_end:  # if paired end, requires read_lenght_r2 and insert_size
+    is_paired_end:
       const: true
-then:
-  required: [ read_length_r2, insert_size ]
+then:  # if paired end, requires read_lenght_r2 and insert_size to be integer
+  properties:
+    read_length_r2:
+      type: integer
+    insert_size:
+      type: integer
+else:  # if not paired end, read_lenght_r2 and insert_size must be null
+  properties:
+    read_length_r2:
+      const: null
+    insert_size:
+      const: null

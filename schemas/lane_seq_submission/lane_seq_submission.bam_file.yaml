@@ -21,6 +21,13 @@ definitions:
     const:
       primaryKey:
       - '#/definitions/systemProperties/allOf/1/properties/id'
+      references:
+      - foreignKey:
+        - '#/definitions/systemProperties/allOf/1/properties/bundle_id'
+        targetEntity: 'lane_seq_submission'  # data_object to lane_seq_submission relationship is many-to-one
+        targetKey:  # relationship by primaryKey
+        - 'lane_seq_submission#/definitions/systemProperties/properties/id'
+
   systemProperties:
     propertyNames:
       enum: [ id, program, donor, repository, created_at, updated_at, derived_from, library_strategy, bundle_id, bundle_type, format, data_type ]

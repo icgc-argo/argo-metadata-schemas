@@ -29,6 +29,7 @@
     "program": "OV-AU",
     "gender": "female",
     "_mocked_system_properties": {
+      "schema_version": 1,
       "id": "DO46394"
     },
     "_final_doc": {
@@ -36,6 +37,7 @@
       "submitter_id": "AOCS-108",
       "program": "OV-AU",
       "gender": "female",
+      "schema_version": 1,
       "id": "DO46394"
     }
   }

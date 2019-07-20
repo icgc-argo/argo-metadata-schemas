@@ -33,6 +33,7 @@
             "checksum": "d7682fab23504403a8b972cbb68e8ae1",
             "checksum_type": "md5",
             "_mocked_system_properties": {
+                "schema_version": 1,
                 "id": "3cc230e1-79f8-475a-8d8f-71256ed05277",
                 "program": "PRAD-UK",
                 "repository": "Collab",
@@ -60,6 +61,7 @@
                 "data_type": "RG QC"
             },
             "_final_doc": {
+                "schema_version": 1,
                 "type": "lane_seq_qc.metrics_file.data_object",
                 "name": "180126_icgc.bam.quality_yield_metrics.txt.gz",
                 "local_path": "/my/file/path/180126_icgc.bam.quality_yield_metrics.txt.gz",
@@ -95,6 +97,7 @@
         }
     },
     "_mocked_system_properties": {
+        "schema_version": 1,
         "status": "registered",
         "id": "9d112070-0c48-415d-adf8-cdf3c18e8633",
         "read_group_id": "RG12345",
@@ -118,6 +121,7 @@
         }
     },
     "_final_doc": {
+        "schema_version": 1,
         "type": "lane_seq_qc",
         "program": "PRAD-UK",
         "inputs": {

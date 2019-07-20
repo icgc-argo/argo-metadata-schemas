@@ -22,6 +22,7 @@
             "sample_barcode": null,
             "library_name": "LP6005606-DNA_F01",
             "_mocked_system_properties": {
+                "schema_version": 1,
                 "id": "RG2345",
                 "program": "OV-AU",
                 "sequencing_experiment_submitter_id": "EGAZ00001018761",
@@ -30,6 +31,7 @@
                 "sample_id": "SA505863"
             },
             "_final_doc": {
+                "schema_version": 1,
                 "type": "read_group",
                 "submitter_id": "20131019044843341",
                 "platform_unit": "lane_7.nobc",
@@ -58,6 +60,7 @@
             "sample_barcode": null,
             "library_name": "LP6005606-DNA_F01",
             "_mocked_system_properties": {
+                "schema_version": 1,
                 "id": "RG2346",
                 "program": "OV-AU",
                 "sequencing_experiment_submitter_id": "EGAZ00001018761",
@@ -66,6 +69,7 @@
                 "sample_id": "SA505863"
             },
             "_final_doc": {
+                "schema_version": 1,
                 "type": "read_group",
                 "submitter_id": "20131019042321400",
                 "platform_unit": "lane_8.nobc",
@@ -85,6 +89,7 @@
         }
     ],
     "_mocked_system_properties": {
+        "schema_version": 1,
         "id": "13f795b0-bc7e-42b2-93bd-e8d2875b47d0",
         "sample_id": "SA505863",
         "read_groups": [
@@ -99,6 +104,7 @@
         ]
     },
     "_final_doc": {
+        "schema_version": 1,
         "type": "sequencing_experiment",
         "id": "13f795b0-bc7e-42b2-93bd-e8d2875b47d0",
         "sample_id": "SA505863",

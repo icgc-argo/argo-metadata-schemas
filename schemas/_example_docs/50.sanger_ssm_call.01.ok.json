@@ -46,6 +46,7 @@
             "checksum": "ad28c4a894bd4d979a2c67ab984544e6",
             "checksum_type": "md5",
             "_mocked_system_properties": {
+                "schema_version": 1,
                 "id": "715ea0d0-4403-4fc6-a5b8-1464c89123ce",
                 "program": "PRAD-UK",
                 "repository": "Collab",
@@ -75,6 +76,7 @@
                 "data_type": "SSM"
             },
             "_final_doc": {
+                "schema_version": 1,
                 "type": "sanger_ssm_call.vcf.data_object",
                 "name": "ad28c4a894bd4d979a2c67ab984544e6.vcf.gz",
                 "local_path": "/my/file/path/ad28c4a894bd4d979a2c67ab984544e6.vcf.gz",
@@ -118,6 +120,7 @@
             "checksum": "1dc46e90af51470997b3be164bca6a79",
             "checksum_type": "md5",
             "_mocked_system_properties": {
+                "schema_version": 1,
                 "id": "907e879b-e559-420c-a5a1-b0475d33b195",
                 "program": "PRAD-UK",
                 "repository": "Collab",
@@ -147,6 +150,7 @@
                 "data_type": "SSM"
             },
             "_final_doc": {
+                "schema_version": 1,
                 "type": "sanger_ssm_call.vcf_index.data_object",
                 "name": "ad28c4a894bd4d979a2c67ab984544e6.vcf.gz.tbi",
                 "local_path": "/my/file/path/ad28c4a894bd4d979a2c67ab984544e6.vcf.gz.tbi",
@@ -184,6 +188,7 @@
         }
     },
     "_mocked_system_properties": {
+        "schema_version": 1,
         "status": "registered",
         "id": "580ca172-a7f4-429b-91dd-f11ec9e2d133",
         "donor": {
@@ -254,6 +259,7 @@
             },
             "execution": {}
         },
+        "schema_version": 1,
         "status": "registered",
         "id": "580ca172-a7f4-429b-91dd-f11ec9e2d133",
         "donor": {

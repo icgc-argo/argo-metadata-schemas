@@ -34,6 +34,7 @@ _:  # definitions used for defining relationship, record schema version, script-
           type: array
           items:
             type: object
+            additionalProperties: false
             required: [ foreignKey, targetEntity, targetKey ]
             properties:
               foreignKey:
@@ -210,43 +211,65 @@ submitted_file:
 
 data_object:
   type: object
-  properties:
-    id:
-      $ref: "#/common/properties/uuid"
-    created_at:
-      $ref: "#/common/properties/created_at"
-    updated_at:
-      $ref: "#/common/properties/updated_at"
-    data_type:
-      oneOf:
-      - const: SSM  # acronym, good as facet terms
-        title: "Simple Somatic Mutations"  # short title, good for displaying as tooltip
-      - const: CNSM
-        title: "Copy Number Somatic Mutations"
-      - const: StSM
-        title: "Structural Somatic Mutations"
-      - const: SGV
-        title: "Simple Germline Variations"
-      - const: StGV
-        title: "Structural Germline Variations"
-      - const: "Reads"
-        title: "Sequencing Reads"
-      - const: "Unaligned Reads"
-        title: "Unaligned Sequencing Reads"
-      - const: "Aligned Reads"
-        title: "Aligned Sequencing Reads"
-      - const: "Aligned Reads Index"
-        title: "Aligned Sequencing Reads Index"
-      - const: "VCF Index"
-        title: "VCF Index"
-      - const: "RG QC"
-        title: "Read Group QC Metrics"
-      - const: "Alignment QC"
-        title: "Alignment QC Metrics"
-    repository:
-      enum:
-      - Collab
-      - DKFZ
+  allOf:
+  - properties:
+      id:
+        $ref: "#/common/properties/uuid"
+      created_at:
+        $ref: "#/common/properties/created_at"
+      updated_at:
+        $ref: "#/common/properties/updated_at"
+      data_type:
+        oneOf:
+        - const: SSM  # acronym, good as facet terms
+          title: "Simple Somatic Mutations"  # short title, good for displaying as tooltip
+        - const: CNSM
+          title: "Copy Number Somatic Mutations"
+        - const: StSM
+          title: "Structural Somatic Mutations"
+        - const: SGV
+          title: "Simple Germline Variations"
+        - const: StGV
+          title: "Structural Germline Variations"
+        - const: "Reads"
+          title: "Sequencing Reads"
+        - const: "Unaligned Reads"
+          title: "Unaligned Sequencing Reads"
+        - const: "Aligned Reads"
+          title: "Aligned Sequencing Reads"
+        - const: "Aligned Reads Index"
+          title: "Aligned Sequencing Reads Index"
+        - const: "VCF Index"
+          title: "VCF Index"
+        - const: "RG QC"
+          title: "Read Group QC Metrics"
+        - const: "Alignment QC"
+          title: "Alignment QC Metrics"
+      repository:
+        enum:  # list all ARGO RDPC repositories
+        - Collab
+        - DKFZ
+  - oneOf:  # assign each program with one or more repositories
+      - properties:
+          program:
+            const: PACA-CA
+          repository:
+            enum: [ Collab ]
+      - properties:
+          program:
+            const: OV-AU
+          repository:
+            enum: [ Collab ]
+      - properties:
+          program:
+            const: PRAD-UK
+          repository:
+            enum: [ DKFZ, Collab ]
+      - properties:
+          program:
+            const: PBCA-DE
+          repository:
+            enum: [ DKFZ ]
 
 analysis:
   properties:

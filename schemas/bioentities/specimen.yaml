@@ -6,8 +6,9 @@ type: object
 
 definitions:
   version:
-    $ref: '_definitions#/_/properties/version'
-    const: 0
+    allOf:
+    - $ref: '_definitions#/_/properties/version'
+    - const: 1
   relationDef:
     $ref: '_definitions#/_/properties/relationDef'
     const:
@@ -32,8 +33,10 @@ definitions:
   systemProperties:  # properties will be populated by the system
     propertyNames:
       enum: [ id, donor_id, schema_version ]
-    required: [ id, donor_id ]
+    required: [ id, donor_id, schema_version ]
     properties:
+      schema_version:
+        $ref: '#/definitions/version'  # where to pick up the version
       id:  # primary key, defined in 'primaryKey'
         allOf:
         - $ref: _definitions#/common/properties/id

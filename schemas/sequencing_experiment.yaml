@@ -7,8 +7,9 @@ description: ""
 
 definitions:
   version:
-    $ref: '_definitions#/_/properties/version'
-    const: 0
+    allOf:
+    - $ref: '_definitions#/_/properties/version'
+    - const: 1
   relationDef:
     $ref: '_definitions#/_/properties/relationDef'
     const:
@@ -32,9 +33,11 @@ definitions:
         - 'sample#/definitions/systemProperties/properties/id'
   systemProperties:  # properties will be populated by the system
     propertyNames:
-      enum: [ id, sample_id ]
-    required: [ id, sample_id ]
+      enum: [ id, sample_id, schema_version ]
+    required: [ id, sample_id, schema_version ]
     properties:
+      schema_version:
+        $ref: '#/definitions/version'  # where to pick up the version
       id:  # primary key, defined in 'primaryKey'
         allOf:
         - $ref: _definitions#/common/properties/uuid

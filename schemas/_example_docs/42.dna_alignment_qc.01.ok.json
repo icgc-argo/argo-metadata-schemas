@@ -43,6 +43,7 @@
             "checksum": "7e438941b6f34d149b443b51b6b0951c",
             "checksum_type": "md5",
             "_mocked_system_properties": {
+                "schema_version": 1,
                 "id": "196bf7b7-26b7-4c51-8094-86dc5cb653f5",
                 "program": "PRAD-UK",
                 "repository": "Collab",
@@ -66,6 +67,7 @@
                 "data_type": "Alignment QC"
             },
             "_final_doc": {
+                "schema_version": 1,
                 "type": "dna_alignment_qc.quality_distribution.data_object",
                 "name": "ccdc18ea765f4ef1809d8e281ad8dcbd.pdf.gz",
                 "local_path": "/my/file/path/ccdc18ea765f4ef1809d8e281ad8dcbd.pdf.gz",
@@ -103,6 +105,7 @@
             "checksum": "8c353eb555af4b58ad5f818670a3ed80",
             "checksum_type": "md5",
             "_mocked_system_properties": {
+                "schema_version": 1,
                 "id": "b9003466-a41a-4228-8ce1-75989438541f",
                 "program": "PRAD-UK",
                 "repository": "Collab",
@@ -126,6 +129,7 @@
                 "data_type": "Alignment QC"
             },
             "_final_doc": {
+                "schema_version": 1,
                 "type": "dna_alignment_qc.bait_bias_detail_metrics.data_object",
                 "name": "ccdc18ea765f4ef1809d8e281ad8dcbd.txt.gz",
                 "local_path": "/my/file/path/ccdc18ea765f4ef1809d8e281ad8dcbd.txt.gz",
@@ -157,6 +161,7 @@
         }
     },
     "_mocked_system_properties": {
+        "schema_version": 1,
         "status": "registered",
         "id": "580ca172-a7f4-429b-91dd-f11ec9e2d133",
         "donor": {
@@ -218,6 +223,7 @@
                 "standard_deviation": 84
             }
         },
+        "schema_version": 1,
         "status": "registered",
         "id": "580ca172-a7f4-429b-91dd-f11ec9e2d133",
         "donor": {

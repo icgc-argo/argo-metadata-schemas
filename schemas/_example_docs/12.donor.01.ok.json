@@ -4,9 +4,11 @@
   "program": "PRAD-UK",
   "gender": "male",
   "_mocked_system_properties": {
-    "id": "DO223959"
+    "id": "DO223959",
+    "schema_version": 1
   },
   "_final_doc": {
+    "schema_version": 1,
     "id": "DO223959",
     "type": "donor",
     "submitter_id": "0027_CRUK_PC_0027",

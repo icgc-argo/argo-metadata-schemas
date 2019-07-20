@@ -7,8 +7,9 @@ description: "Cancer patient participated in an ARGO research program"
 
 definitions:
   version:
-    $ref: '_definitions#/_/properties/version'
-    const: 0
+    allOf:
+    - $ref: '_definitions#/_/properties/version'
+    - const: 1
   relationDef:
     $ref: '_definitions#/_/properties/relationDef'
     const:
@@ -19,9 +20,11 @@ definitions:
       - '#/properties/submitter_id'
   systemProperties:  # properties will be populated by the system
     propertyNames:
-      enum: [ id ]
-    required: [ id ]
+      enum: [ id, schema_version ]
+    required: [ id, schema_version ]
     properties:
+      schema_version:
+        $ref: '#/definitions/version'  # where to pick up the version
       id:  # primary key, defined in 'primaryKey'
         allOf:
         - $ref: _definitions#/common/properties/id

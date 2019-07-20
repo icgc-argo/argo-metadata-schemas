@@ -6,8 +6,9 @@ description: "Read groups from a sequencing experiement"
 
 definitions:
   version:
-    $ref: '_definitions#/_/properties/version'
-    const: 0
+    allOf:
+    - $ref: '_definitions#/_/properties/version'
+    - const: 1
   relationDef:
     $ref: '_definitions#/_/properties/relationDef'
     const:
@@ -39,9 +40,11 @@ definitions:
         - 'sequencing_experiment#/definitions/systemProperties/properties/id'
   systemProperties:  # properties will be populated by the system
     propertyNames:
-      enum: [ id, program, sequencing_experiment_submitter_id, sequencing_experiment_id, sample_submitter_id, sample_id ]
-    required: [ id, program, sequencing_experiment_submitter_id, sequencing_experiment_id, sample_submitter_id, sample_id ]
+      enum: [ schema_version, id, program, sequencing_experiment_submitter_id, sequencing_experiment_id, sample_submitter_id, sample_id ]
+    required: [ schema_version, id, program, sequencing_experiment_submitter_id, sequencing_experiment_id, sample_submitter_id, sample_id ]
     properties:
+      schema_version:
+        $ref: '#/definitions/version'  # where to pick up the version
       id:  # system generated globally unique read group ID
         allOf:
         - $ref: _definitions#/common/properties/id

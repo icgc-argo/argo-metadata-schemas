@@ -7,8 +7,9 @@ description: ""
 
 definitions:
   version:
-    $ref: '_definitions#/_/properties/version'
-    const: 0
+    allOf:
+    - $ref: '_definitions#/_/properties/version'
+    - const: 1
   relationDef:
     $ref: '_definitions#/_/properties/relationDef'
     const:
@@ -26,7 +27,7 @@ definitions:
   systemProperties:
     propertyNames:
       enum: [ status, id, donor, library_strategy, schema_version ]
-    required: [ status, id, donor, library_strategy ]
+    required: [ status, id, donor, library_strategy, schema_version ]
     properties:
       status:
         $ref: _definitions#/common/properties/bundle_status
@@ -37,8 +38,7 @@ definitions:
       library_strategy:
         $ref: dna_alignment#/definitions/systemProperties/properties/library_strategy
       schema_version:
-        $ref: '_definitions#/_/properties/version'
-        default: '#/definitions/version/const'  # where to pick up the version
+        $ref: '#/definitions/version'  # where to pick up the version
 
 propertyNames:
   enum: [ type, program, inputs, analysis, qc_metrics, files ]

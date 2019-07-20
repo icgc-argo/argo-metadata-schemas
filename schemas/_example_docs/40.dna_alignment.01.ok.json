@@ -59,6 +59,7 @@
             "checksum": "6b2b764507a743708ef38a760444887c",
             "checksum_type": "md5",
             "_mocked_system_properties": {
+                "schema_version": 1,
                 "id": "c6b8eded-1e5f-4aae-b9b7-f69f83d7e0bf",
                 "program": "PRAD-UK",
                 "repository": "Collab",
@@ -86,6 +87,7 @@
                 "data_type": "Aligned Reads"
             },
             "_final_doc": {
+                "schema_version": 1,
                 "type": "dna_alignment.aligned_seq.data_object",
                 "name": "ccdc18ea765f4ef1809d8e281ad8dcbd.bam",
                 "local_path": "/my/file/path/ccdc18ea765f4ef1809d8e281ad8dcbd.bam",
@@ -127,6 +129,7 @@
             "checksum": "05ecf5a05b524190b55b74a1cfb38dc2",
             "checksum_type": "md5",
             "_mocked_system_properties": {
+                "schema_version": 1,
                 "id": "06874a75-63ef-4ac5-a2d5-05183cd66cf7",
                 "program": "PRAD-UK",
                 "repository": "Collab",
@@ -154,6 +157,7 @@
                 "data_type": "Aligned Reads Index"
             },
             "_final_doc": {
+                "schema_version": 1,
                 "type": "dna_alignment.aligned_seq_index.data_object",
                 "name": "ccdc18ea765f4ef1809d8e281ad8dcbd.bam.bai",
                 "local_path": "/my/file/path/ccdc18ea765f4ef1809d8e281ad8dcbd.bam.bai",
@@ -189,6 +193,7 @@
         }
     },
     "_mocked_system_properties": {
+        "schema_version": 1,
         "status": "registered",
         "id": "a37813b3-bb4f-4528-a71f-c38d3b843897",
         "donor": {
@@ -266,6 +271,7 @@
             },
             "execution": {}
         },
+        "schema_version": 1,
         "status": "registered",
         "id": "a37813b3-bb4f-4528-a71f-c38d3b843897",
         "donor": {

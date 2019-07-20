@@ -7,8 +7,9 @@ description: ""
 
 definitions:
   version:
-    $ref: '_definitions#/_/properties/version'
-    const: 0
+    allOf:
+    - $ref: '_definitions#/_/properties/version'
+    - const: 1
   relationDef:
     $ref: '_definitions#/_/properties/relationDef'
     const:
@@ -32,9 +33,11 @@ definitions:
         - 'read_group#/definitions/systemProperties/properties/id'
   systemProperties:
     propertyNames:
-      enum: [ status, id, donor, read_group_id, library_strategy ]
-    required: [ status, id, donor, read_group_id, library_strategy ]
+      enum: [ schema_version, status, id, donor, read_group_id, library_strategy ]
+    required: [ schema_version, status, id, donor, read_group_id, library_strategy ]
     properties:
+      schema_version:
+        $ref: '#/definitions/version'  # where to pick up the version
       status:
         $ref: _definitions#/common/properties/bundle_status
       id:

@@ -48,6 +48,7 @@
             "checksum": "4f36f8cb7bdb40a3ea12f7c2d80ce875",
             "checksum_type": "md5",
             "_mocked_system_properties": {
+                "schema_version": 1,
                 "id": "4032dea0-60ec-4094-8805-16723de70e3f",
                 "program": "OV-AU",
                 "repository": "Collab",
@@ -75,6 +76,7 @@
                 "data_type": "Unaligned Reads"
             },
             "_final_doc": {
+                "schema_version": 1,
                 "type": "lane_seq_submission.bam_file.data_object",
                 "name": "180130_icgc.bam",
                 "local_path": "/my/bam/path/180130_icgc.bam",
@@ -110,6 +112,7 @@
         }
     },
     "_mocked_system_properties": {
+        "schema_version": 1,
         "status": "registered",
         "id": "02adbffc-c6f1-49d0-9518-e2d6d0c86f33",
         "donor": {
@@ -173,6 +176,7 @@
                 "completed_at": "2019-07-05T08:15:30+00:00"
             }
         },
+        "schema_version": 1,
         "status": "registered",
         "id": "02adbffc-c6f1-49d0-9518-e2d6d0c86f33",
         "donor": {

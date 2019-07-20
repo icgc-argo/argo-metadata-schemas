@@ -16,6 +16,10 @@ allOf:
       pattern: '\.vcf\.gz\.tbi$'  # must have .vcf.gz.tbi extension
 
 definitions:
+  version:
+    allOf:
+    - $ref: '_definitions#/_/properties/version'
+    - const: 1
   relationDef:
     $ref: '_definitions#/relationDef'
     const:
@@ -30,13 +34,15 @@ definitions:
 
   systemProperties:
     propertyNames:
-      enum: [ id, program, donor, repository, created_at, updated_at, library_strategy, bundle_id, bundle_type, format, data_type ]
-    required: [ id, program, donor, repository, created_at, updated_at, library_strategy, bundle_id, bundle_type, format, data_type ]
+      enum: [ schema_version, id, program, donor, repository, created_at, updated_at, library_strategy, bundle_id, bundle_type, format, data_type ]
+    required: [ schema_version, id, program, donor, repository, created_at, updated_at, library_strategy, bundle_id, bundle_type, format, data_type ]
     allOf:
     - $ref: _definitions#/data_object
     - properties:
+        schema_version:
+          $ref: '#/definitions/version'  # where to pick up the version
         id:  # surrogate key
-          $ref: _definitions#/data_object/properties/id
+          $ref: _definitions#/data_object/allOf/0/properties/id
         program:  # copied from containing parent
           $ref: "sanger_ssm_call#/properties/program"
         donor:  # copied from containing parent

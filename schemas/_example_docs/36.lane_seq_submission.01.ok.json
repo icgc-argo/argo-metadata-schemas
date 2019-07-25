@@ -29,7 +29,7 @@
             "id": "96884e68-44d0-4aba-b8b3-d595edaf104f",
             "name": "argo-seq-submission",
             "version": "0.0.1",
-            "contained_apps": ["picard", "samtool"]
+            "included_apps": ["picard", "samtool"]
         },
         "execution": {
             "runner_name": "cwltool",
@@ -166,7 +166,7 @@
                 "id": "96884e68-44d0-4aba-b8b3-d595edaf104f",
                 "name": "argo-seq-submission",
                 "version": "0.0.1",
-                "contained_apps": ["picard", "samtool"]
+                "included_apps": ["picard", "samtool"]
             },
             "execution": {
                 "runner_name": "cwltool",

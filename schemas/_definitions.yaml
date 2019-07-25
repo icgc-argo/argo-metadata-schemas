@@ -2,8 +2,17 @@ $schema: "http://json-schema.org/draft-07/schema#"
 
 $id: _definitions
 
-_:  # definitions used for defining relationship, record schema version, script-based validations
+_:  # definitions to extend JSON Schema to support relationship, schema version, script-based validations
   properties:
+    id:
+      const: "argo-metadata-schema"
+    # version number of the schema release
+    release:
+      const: "0.1.0-rc.1"
+    # patten to enforce entity type names, max len 100
+    entity_type_$id_patten:
+      const: "^[a-z]{1}[a-z0-9_.-]{0,98}[a-z0-9]{1}$"
+
     version:
       type: integer
       minimum: 0
@@ -285,7 +294,8 @@ analysis:
     tool:  # Tool refers to what's in GA4GH's Tool Registry Service
       toolNames:  # workaround mentioned here: https://json-schema.org/draft-06/json-schema-release-notes.html
         propertyNames:
-          enum: [ registry, id, name, version, contained_apps ]
+          enum: [ registry, id, name, version, included_apps ]
+      required: [ id, name, version ]
       properties:
         registry:
           type: string  # such as Dockstore
@@ -295,12 +305,13 @@ analysis:
           type: string
         version:
           type: string
-        contained_apps:
+        included_apps:  # sync with GA4GH TRS v2 spec
           type: array
           items:
             type: string
     execution:
       additionalProperties: false
+      required: [ runner_name, runner_version, job_id ]
       properties:
         runner_name:
           type: string

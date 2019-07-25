@@ -46,9 +46,18 @@
         "analysis_type": "DNA alignment",
         "reference_genome": "GRCh38",
         "tool": {
-            "contained_apps": ["bwa mem", "samtools", "biobambam"]
+            "id": "87450266-33b5-45ea-97c6-6e621498b066",
+            "name": "dna_alignment",
+            "version": "0.1.0",
+            "included_apps": ["bwa mem", "samtools", "biobambam"]
         },
-        "execution": {}
+        "execution": {
+            "runner_name": "cwltool",
+            "runner_version": "1.0.20190618201008",
+            "job_id": "1427c458-6954-46ca-a780-a9fe5ccdd62f",
+            "started_at": "2019-07-05T08:15:30+00:00",
+            "completed_at": "2019-07-05T08:15:30+00:00"
+        }
     },
     "files": {
         "aligned_seq": {
@@ -267,9 +276,18 @@
             "analysis_type": "DNA alignment",
             "reference_genome": "GRCh38",
             "tool": {
-                "contained_apps": ["bwa mem", "samtools", "biobambam"]
+                "id": "87450266-33b5-45ea-97c6-6e621498b066",
+                "name": "dna_alignment",
+                "version": "0.1.0",
+                "included_apps": ["bwa mem", "samtools", "biobambam"]
             },
-            "execution": {}
+            "execution": {
+                "runner_name": "cwltool",
+                "runner_version": "1.0.20190618201008",
+                "job_id": "1427c458-6954-46ca-a780-a9fe5ccdd62f",
+                "started_at": "2019-07-05T08:15:30+00:00",
+                "completed_at": "2019-07-05T08:15:30+00:00"
+            }
         },
         "schema_version": 1,
         "status": "registered",

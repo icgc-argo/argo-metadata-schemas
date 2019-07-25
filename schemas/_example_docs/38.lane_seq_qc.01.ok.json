@@ -15,8 +15,19 @@
     },
     "analysis": {
         "analysis_type": "Data QC",
-        "tool": {},
-        "execution": {}
+        "tool": {
+            "id": "81df207e-95c7-4bc9-81b6-67846ec528e6",
+            "name": "lane_seq_qc",
+            "version": "0.1.0",
+            "included_apps": ["picard"]
+        },
+        "execution": {
+            "runner_name": "cwltool",
+            "runner_version": "1.0.20190618201008",
+            "job_id": "7058227a-214f-49e9-9e5b-6f29d1f3223d",
+            "started_at": "2019-07-05T08:15:30+00:00",
+            "completed_at": "2019-07-05T08:15:30+00:00"
+        }
     },
     "qc_metrics": {
         "pf_bases": 744832,
@@ -138,8 +149,19 @@
         },
         "analysis": {
             "analysis_type": "Data QC",
-            "tool": {},
-            "execution": {}
+            "tool": {
+                "id": "81df207e-95c7-4bc9-81b6-67846ec528e6",
+                "name": "lane_seq_qc",
+                "version": "0.1.0",
+                "included_apps": ["picard"]
+            },
+            "execution": {
+                "runner_name": "cwltool",
+                "runner_version": "1.0.20190618201008",
+                "job_id": "7058227a-214f-49e9-9e5b-6f29d1f3223d",
+                "started_at": "2019-07-05T08:15:30+00:00",
+                "completed_at": "2019-07-05T08:15:30+00:00"
+            }
         },
         "qc_metrics": {
             "pf_bases": 744832,

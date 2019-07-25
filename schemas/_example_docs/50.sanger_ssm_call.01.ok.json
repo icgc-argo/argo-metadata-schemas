@@ -33,9 +33,19 @@
         "analysis_type": "Simple somatic mutation calling",
         "reference_genome": "GRCh38",
         "tool": {
-            "contained_apps": ["CaVEMan"]
+            "registry": "Dockstore",
+            "id": "01715899-2689-4ad1-ab97-f058894954b2",
+            "name": "sanger_ssm_call",
+            "version": "0.0.1",
+            "included_apps": ["CaVEMan"]
         },
-        "execution": {}
+        "execution": {
+            "runner_name": "cwltool",
+            "runner_version": "0.2.2",
+            "job_id": "8417959d-69be-4851-afe1-27fc9820e71a",
+            "started_at": "2019-07-05T08:15:30+00:00",
+            "completed_at": "2019-07-05T08:15:30+00:00"
+        }
     },
     "files": {
         "vcf": {
@@ -255,9 +265,19 @@
             "analysis_type": "Simple somatic mutation calling",
             "reference_genome": "GRCh38",
             "tool": {
-                "contained_apps": ["CaVEMan"]
+                "registry": "Dockstore",
+                "id": "01715899-2689-4ad1-ab97-f058894954b2",
+                "name": "sanger_ssm_call",
+                "version": "0.0.1",
+                "included_apps": ["CaVEMan"]
             },
-            "execution": {}
+            "execution": {
+                "runner_name": "cwltool",
+                "runner_version": "0.2.2",
+                "job_id": "8417959d-69be-4851-afe1-27fc9820e71a",
+                "started_at": "2019-07-05T08:15:30+00:00",
+                "completed_at": "2019-07-05T08:15:30+00:00"
+            }
         },
         "schema_version": 1,
         "status": "registered",

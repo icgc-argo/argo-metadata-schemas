@@ -24,8 +24,20 @@
     },
     "analysis": {
         "analysis_type": "Data submission",
-        "tool": {},
-        "execution": {}
+        "tool": {
+            "registry": "Dockstore",
+            "id": "96884e68-44d0-4aba-b8b3-d595edaf104f",
+            "name": "argo-seq-submission",
+            "version": "0.0.1",
+            "included_apps": ["picard", "samtool"]
+        },
+        "execution": {
+            "runner_name": "cwltool",
+            "runner_version": "1.0.20190618201008",
+            "job_id": "a7d3d1b7-355e-46de-96f7-409ed99ab8f3",
+            "started_at": "2019-07-05T08:15:30+00:00",
+            "completed_at": "2019-07-05T08:15:30+00:00"
+        }
     },
     "files": {
         "bam_file": {
@@ -149,8 +161,20 @@
         },
         "analysis": {
             "analysis_type": "Data submission",
-            "tool": {},
-            "execution": {}
+            "tool": {
+                "registry": "Dockstore",
+                "id": "96884e68-44d0-4aba-b8b3-d595edaf104f",
+                "name": "argo-seq-submission",
+                "version": "0.0.1",
+                "included_apps": ["picard", "samtool"]
+            },
+            "execution": {
+                "runner_name": "cwltool",
+                "runner_version": "1.0.20190618201008",
+                "job_id": "a7d3d1b7-355e-46de-96f7-409ed99ab8f3",
+                "started_at": "2019-07-05T08:15:30+00:00",
+                "completed_at": "2019-07-05T08:15:30+00:00"
+            }
         },
         "schema_version": 1,
         "status": "registered",

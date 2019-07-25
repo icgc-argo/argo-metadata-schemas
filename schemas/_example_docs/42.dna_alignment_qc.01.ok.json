@@ -18,9 +18,18 @@
         "analysis_type": "Data QC",
         "reference_genome": "GRCh38",
         "tool": {
-            "contained_apps": ["picard"]
+            "id": "f84a8eb1-1592-4616-8728-ffbd86467ed9",
+            "name": "dna_alignment_qc",
+            "version": "0.1.0",
+            "included_apps": ["picard"]
         },
-        "execution": {}
+        "execution": {
+            "runner_name": "cwltool",
+            "runner_version": "1.0.20190618201008",
+            "job_id": "976bf77b-5040-4214-8978-98ac77c6984d",
+            "started_at": "2019-07-05T08:15:30+00:00",
+            "completed_at": "2019-07-05T08:15:30+00:00"
+        }
     },
     "qc_metrics": {
         "insert_size_stats": {
@@ -207,9 +216,18 @@
             "analysis_type": "Data QC",
             "reference_genome": "GRCh38",
             "tool": {
-                "contained_apps": ["picard"]
+                "id": "f84a8eb1-1592-4616-8728-ffbd86467ed9",
+                "name": "dna_alignment_qc",
+                "version": "0.1.0",
+                "included_apps": ["picard"]
             },
-            "execution": {}
+            "execution": {
+                "runner_name": "cwltool",
+                "runner_version": "1.0.20190618201008",
+                "job_id": "976bf77b-5040-4214-8978-98ac77c6984d",
+                "started_at": "2019-07-05T08:15:30+00:00",
+                "completed_at": "2019-07-05T08:15:30+00:00"
+            }
         },
         "qc_metrics": {
             "insert_size_stats": {

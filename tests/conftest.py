@@ -9,11 +9,16 @@ from jsonschema import RefResolver
 rootDir = os.path.dirname(os.path.abspath(__file__)) + '/../schemas/'
 os.chdir(rootDir)
 
-# get config
-with open('_settings.conf', 'r') as c:
+
+# get schema name and release version
+with open('_definitions.yaml', 'r') as c:
     cfg = yaml.load(c, yaml.SafeLoader)
 
-base_path = '/'.join(('http://dcc.icgc-argo.org', 'schemas', cfg['id'], cfg['version']))
+base_path = '/'.join(('http://dcc.icgc-argo.org',
+                        'schemas',
+                        cfg['_']['properties']['id']['const'],
+                        cfg['_']['properties']['release']['const']
+                    ))
 
 
 @pytest.fixture(scope="session")

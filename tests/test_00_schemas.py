@@ -35,7 +35,7 @@ def pytest_generate_tests(metafunc):
             systemProperties = s.get('definitions', {}).get('systemProperties')
             testdocs.append([id, relationDefDoc, systemProperties])
 
-        metafunc.parametrize('testdoc', testdocs)
+        metafunc.parametrize('testdoc', testdocs, ids=[v[0] for v in testdocs])
 
 
 def test_relationDef(testdoc, schemas, resolvers):

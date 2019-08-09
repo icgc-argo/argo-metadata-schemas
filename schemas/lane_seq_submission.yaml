@@ -162,4 +162,4 @@ properties:
               type:
                 const: data_object
               object_id:
-                $ref: lane_seq_qc.metrics_file.data_object#/definitions/systemProperties/allOf/1/properties/id
+                $ref: lane_seq_submission.bam_file.data_object#/definitions/systemProperties/allOf/1/properties/id

@@ -29,7 +29,7 @@ def pytest_generate_tests(metafunc):
             else:
                 raise(Exception("Testing JSON doc %s name does not match 'd+.(schema_id).d+.(ok)|(ko).json'!" % d))
 
-        metafunc.parametrize('testdoc', testdocs)
+        metafunc.parametrize('testdoc', testdocs, ids=[v[0] for v in testdocs])
 
 
 def find_nested_entities(data, ignore_type=None, nested_entities=None):

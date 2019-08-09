@@ -5,7 +5,7 @@ $id: _definitions
 _:  # definitions to extend JSON Schema to support relationship, schema version, script-based validations
   properties:
     id:
-      const: "argo-metadata-schema"
+      const: "argo-metadata-schemas"
     # version number of the schema release
     release:
       const: "0.1.0-rc.1"

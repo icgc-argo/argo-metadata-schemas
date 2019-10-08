@@ -14,7 +14,7 @@ allOf:
       const: 'somatic_variant_call.vcf.data_object'
     name:
       allOf:
-      - pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\.(wxs|wgs).2\d{7}\.[a-z0-9-]+\.\d+\.\d+\.[0-9\.-]+\.(somatic|germline)\.(snv|cnv|sv|indel|snv-indel)\.vcf\.gz$'
+      - pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\.(wxs|wgs).2\d{7}\.[a-z0-9-]+\.\d+\.\d+\.[0-9\.-]+\.somatic\.(snv|cnv|sv|indel|snv-indel)\.vcf\.gz$'
       - anyOf:
         - pattern: '^[0-9a-f-]{36}\.wxs.2\d{7}\.sanger-wxs\.\d+\.\d+\.[0-9\.-]+\.somatic\.(snv|indel)\.vcf\.gz$'
         - pattern: '^[0-9a-f-]{36}\.wgs.2\d{7}\.sanger-wgs\.\d+\.\d+\.[0-9\.-]+\.somatic\.(snv|indel|cnv|sv)\.vcf\.gz$'

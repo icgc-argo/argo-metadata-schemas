@@ -254,6 +254,8 @@ data_object:
           title: "Read Group QC Metrics"
         - const: "Alignment QC"
           title: "Alignment QC Metrics"
+        - const: "Auxiliary"
+          title: "Auxiliary"
       repository:
         enum:  # list all ARGO RDPC repositories
         - Collab
@@ -289,12 +291,14 @@ analysis:
       - 'DNA alignment'
       - 'Data QC'
       - 'Simple somatic mutation calling'
+      - 'Copy number somatic mutation calling'
+      - 'Structural somatic mutation calling'
     reference_genome:
       enum: [ GRCh38 ]
     tool:  # Tool refers to what's in GA4GH's Tool Registry Service
       toolNames:  # workaround mentioned here: https://json-schema.org/draft-06/json-schema-release-notes.html
         propertyNames:
-          enum: [ registry, id, name, version, included_apps ]
+          enum: [ registry, id, name, short_name, version, included_apps ]
       required: [ id, name, version ]
       properties:
         registry:
@@ -302,6 +306,8 @@ analysis:
         id:  # tool ID
           type: string
         name:  # tool name
+          type: string
+        short_name:
           type: string
         version:
           type: string

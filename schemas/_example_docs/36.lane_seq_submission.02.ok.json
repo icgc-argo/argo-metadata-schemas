@@ -7,14 +7,14 @@
             "fastq": [
                 {
                     "name": "abc_1.fq.gz",
-                    "local_path": "/my/bam/path/abc_1.fq.gz",
+                    "path": "/my/bam/path/abc_1.fq.gz",
                     "size": 132434232,
                     "checksum": "83322c5dd2f5499b8dc0bbb3fd387cb5",
                     "checksum_type": "md5"
                 },
                 {
                     "name": "abc_2.fq.gz",
-                    "local_path": "/my/bam/path/abc_2.fq.gz",
+                    "path": "/my/bam/path/abc_2.fq.gz",
                     "size": 132542268,
                     "checksum": "6e2f507a4c7b4441bf7d7ec9686bbd23",
                     "checksum_type": "md5"
@@ -43,7 +43,7 @@
         "bam_file": {
             "type": "lane_seq_submission.bam_file.data_object",
             "name": "abc.bam",
-            "local_path": "/my/bam/path/abc.bam",
+            "path": "/my/bam/path/abc.bam",
             "size": 93225223,
             "checksum": "4f36f8cb7bdb40a3ea12f7c2d80ce875",
             "checksum_type": "md5",
@@ -79,7 +79,7 @@
                 "schema_version": 1,
                 "type": "lane_seq_submission.bam_file.data_object",
                 "name": "abc.bam",
-                "local_path": "/my/bam/path/abc.bam",
+                "path": "/my/bam/path/abc.bam",
                 "size": 93225223,
                 "checksum": "4f36f8cb7bdb40a3ea12f7c2d80ce875",
                 "checksum_type": "md5",
@@ -144,14 +144,14 @@
                 "fastq": [
                     {
                         "name": "abc_1.fq.gz",
-                        "local_path": "/my/bam/path/abc_1.fq.gz",
+                        "path": "/my/bam/path/abc_1.fq.gz",
                         "size": 132434232,
                         "checksum": "83322c5dd2f5499b8dc0bbb3fd387cb5",
                         "checksum_type": "md5"
                     },
                     {
                         "name": "abc_2.fq.gz",
-                        "local_path": "/my/bam/path/abc_2.fq.gz",
+                        "path": "/my/bam/path/abc_2.fq.gz",
                         "size": 132542268,
                         "checksum": "6e2f507a4c7b4441bf7d7ec9686bbd23",
                         "checksum_type": "md5"

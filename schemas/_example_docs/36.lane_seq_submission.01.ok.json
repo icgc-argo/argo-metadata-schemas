@@ -7,14 +7,14 @@
             "fastq": [
                 {
                     "name": "180126_icgc_1.fq.gz",
-                    "local_path": "/my/bam/path/180126_icgc_1.fq.gz",
+                    "path": "/my/bam/path/180126_icgc_1.fq.gz",
                     "size": 132434232,
                     "checksum": "ea12f7c24f37bdb40a3d80ce8756f8cb",
                     "checksum_type": "md5"    
                 },
                 {
                     "name": "180126_icgc_2.fq.gz",
-                    "local_path": "/my/bam/path/180126_icgc_2.fq.gz",
+                    "path": "/my/bam/path/180126_icgc_2.fq.gz",
                     "size": 135632243,
                     "checksum": "68b329da9893e34099c7d8ad5cb9c940",
                     "checksum_type": "md5"    
@@ -43,7 +43,7 @@
         "bam_file": {
             "type": "lane_seq_submission.bam_file.data_object",
             "name": "180130_icgc.bam",
-            "local_path": "/my/bam/path/180130_icgc.bam",
+            "path": "/my/bam/path/180130_icgc.bam",
             "size": 93225223,
             "checksum": "4f36f8cb7bdb40a3ea12f7c2d80ce875",
             "checksum_type": "md5",
@@ -79,7 +79,7 @@
                 "schema_version": 1,
                 "type": "lane_seq_submission.bam_file.data_object",
                 "name": "180130_icgc.bam",
-                "local_path": "/my/bam/path/180130_icgc.bam",
+                "path": "/my/bam/path/180130_icgc.bam",
                 "size": 93225223,
                 "checksum": "4f36f8cb7bdb40a3ea12f7c2d80ce875",
                 "checksum_type": "md5",
@@ -144,14 +144,14 @@
                 "fastq": [
                     {
                         "name": "180126_icgc_1.fq.gz",
-                        "local_path": "/my/bam/path/180126_icgc_1.fq.gz",
+                        "path": "/my/bam/path/180126_icgc_1.fq.gz",
                         "size": 132434232,
                         "checksum": "ea12f7c24f37bdb40a3d80ce8756f8cb",
                         "checksum_type": "md5"
                     },
                     {
                         "name": "180126_icgc_2.fq.gz",
-                        "local_path": "/my/bam/path/180126_icgc_2.fq.gz",
+                        "path": "/my/bam/path/180126_icgc_2.fq.gz",
                         "size": 135632243,
                         "checksum": "68b329da9893e34099c7d8ad5cb9c940",
                         "checksum_type": "md5"

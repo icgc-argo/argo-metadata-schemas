@@ -39,7 +39,7 @@
         "metrics_file": {
             "type": "lane_seq_qc.metrics_file.data_object",
             "name": "180126_icgc.bam.quality_yield_metrics.txt.gz",
-            "local_path": "/my/file/path/180126_icgc.bam.quality_yield_metrics.txt.gz",
+            "path": "/my/file/path/180126_icgc.bam.quality_yield_metrics.txt.gz",
             "size": 4232,
             "checksum": "d7682fab23504403a8b972cbb68e8ae1",
             "checksum_type": "md5",
@@ -75,7 +75,7 @@
                 "schema_version": 1,
                 "type": "lane_seq_qc.metrics_file.data_object",
                 "name": "180126_icgc.bam.quality_yield_metrics.txt.gz",
-                "local_path": "/my/file/path/180126_icgc.bam.quality_yield_metrics.txt.gz",
+                "path": "/my/file/path/180126_icgc.bam.quality_yield_metrics.txt.gz",
                 "size": 4232,
                 "checksum": "d7682fab23504403a8b972cbb68e8ae1",
                 "checksum_type": "md5",

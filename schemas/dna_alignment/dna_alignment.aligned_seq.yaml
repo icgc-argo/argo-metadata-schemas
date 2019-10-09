@@ -4,8 +4,8 @@ $id: "dna_alignment.aligned_seq.data_object"
 type: object
 
 propertyNames:
-  enum: [ type, name, local_path, size, checksum, checksum_type ]
-required: [ type, name, local_path, size, checksum, checksum_type ]
+  enum: [ type, name, path, size, checksum, checksum_type ]
+required: [ type, name, path, size, checksum, checksum_type ]
 
 allOf:
 - $ref: _definitions#/submitted_file

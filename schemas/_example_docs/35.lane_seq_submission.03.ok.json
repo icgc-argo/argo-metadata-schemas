@@ -6,7 +6,7 @@
         "files": {
             "bam": {
                 "name": "180135_icgc.bam",
-                "local_path": "/my/bam/path/180135_icgc.bam",
+                "path": "/my/bam/path/180135_icgc.bam",
                 "size": 202437535,
                 "checksum": "f7c24ea18cb0c40a3d8bdb8756fe2f37",
                 "checksum_type": "md5"
@@ -17,7 +17,7 @@
         "bam_file": {
             "type": "lane_seq_submission.bam_file.data_object",
             "name": "180135_icgc.bam",
-            "local_path": "/my/bam/path/180135_icgc.bam",
+            "path": "/my/bam/path/180135_icgc.bam",
             "size": 202437535,
             "checksum": "f7c24ea18cb0c40a3d8bdb8756fe2f37",
             "checksum_type": "md5",
@@ -53,7 +53,7 @@
                 "schema_version": 1,
                 "type": "lane_seq_submission.bam_file.data_object",
                 "name": "180135_icgc.bam",
-                "local_path": "/my/bam/path/180135_icgc.bam",
+                "path": "/my/bam/path/180135_icgc.bam",
                 "size": 202437535,
                 "checksum": "f7c24ea18cb0c40a3d8bdb8756fe2f37",
                 "checksum_type": "md5",
@@ -117,7 +117,7 @@
             "files": {
                 "bam": {
                     "name": "180135_icgc.bam",
-                    "local_path": "/my/bam/path/180135_icgc.bam",
+                    "path": "/my/bam/path/180135_icgc.bam",
                     "size": 202437535,
                     "checksum": "f7c24ea18cb0c40a3d8bdb8756fe2f37",
                     "checksum_type": "md5"

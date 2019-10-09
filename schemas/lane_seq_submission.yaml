@@ -97,8 +97,8 @@ properties:
         properties:
           bam:
             propertyNames:
-              enum: [ name, local_path, size, checksum, checksum_type ]
-            required: [ name, local_path, size, checksum, checksum_type ]
+              enum: [ name, path, size, checksum, checksum_type ]
+            required: [ name, path, size, checksum, checksum_type ]
             allOf:
             - $ref: _definitions#/submitted_file
             - properties:
@@ -110,8 +110,8 @@ properties:
             maxItems: 2
             items:
               propertyNames:
-                enum: [ name, local_path, size, checksum, checksum_type ]
-              required: [ name, local_path, size, checksum, checksum_type ]
+                enum: [ name, path, size, checksum, checksum_type ]
+              required: [ name, path, size, checksum, checksum_type ]
               allOf:
               - $ref: _definitions#/submitted_file
               - properties:

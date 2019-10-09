@@ -1,5 +1,5 @@
 {
-    "type": "sanger_ssm_call",
+    "type": "somatic_variant_call",
     "program": "PRAD-UK",
     "inputs": {
         "tumour": {
@@ -30,28 +30,27 @@
         }
     },
     "analysis": {
-        "analysis_type": "Simple somatic mutation calling",
+        "analysis_type": "Copy number somatic mutation calling",
         "reference_genome": "GRCh38",
         "tool": {
             "registry": "Dockstore",
             "id": "01715899-2689-4ad1-ab97-f058894954b2",
-            "name": "sanger_ssm_call",
-            "version": "0.0.1",
-            "included_apps": ["CaVEMan"]
+            "name": "icgc-argo/sanger-wgs-variant-calling",
+            "short_name": "sanger-wgs",
+            "version": "0.1.0",
+            "included_apps": ["ASCAT"]
         },
         "execution": {
             "runner_name": "cwltool",
-            "runner_version": "0.2.2",
-            "job_id": "8417959d-69be-4851-afe1-27fc9820e71a",
-            "started_at": "2019-07-05T08:15:30+00:00",
-            "completed_at": "2019-07-05T08:15:30+00:00"
+            "runner_version": "1.0.20190621234233",
+            "job_id": "8417959d-69be-4851-afe1-27fc9820e71a"
         }
     },
     "files": {
         "vcf": {
-            "type": "sanger_ssm_call.vcf.data_object",
-            "name": "ad28c4a894bd4d979a2c67ab984544e6.vcf.gz",
-            "local_path": "/my/file/path/ad28c4a894bd4d979a2c67ab984544e6.vcf.gz",
+            "type": "somatic_variant_call.vcf.data_object",
+            "name": "9eed06a7-11e5-4847-8ac2-dea89621b8f5.wgs.20190905.sanger-wgs.0.1.0.somatic.cnv.vcf.gz",
+            "local_path": "/my/file/path/9eed06a7-11e5-4847-8ac2-dea89621b8f5.wgs.20190905.sanger-wgs.0.1.0.somatic.cnv.vcf.gz",
             "size": 932434232,
             "checksum": "ad28c4a894bd4d979a2c67ab984544e6",
             "checksum_type": "md5",
@@ -81,15 +80,15 @@
                 },
                 "library_strategy": "WGS",
                 "bundle_id": "6f289724-e8f7-4865-8bf5-4056d2595aa8",
-                "bundle_type": "sanger_ssm_call",
+                "bundle_type": "somatic_variant_call",
                 "format": "VCF",
-                "data_type": "SSM"
+                "data_type": "CNSM"
             },
             "_final_doc": {
                 "schema_version": 1,
-                "type": "sanger_ssm_call.vcf.data_object",
-                "name": "ad28c4a894bd4d979a2c67ab984544e6.vcf.gz",
-                "local_path": "/my/file/path/ad28c4a894bd4d979a2c67ab984544e6.vcf.gz",
+                "type": "somatic_variant_call.vcf.data_object",
+                "name": "9eed06a7-11e5-4847-8ac2-dea89621b8f5.wgs.20190905.sanger-wgs.0.1.0.somatic.cnv.vcf.gz",
+                "local_path": "/my/file/path/9eed06a7-11e5-4847-8ac2-dea89621b8f5.wgs.20190905.sanger-wgs.0.1.0.somatic.cnv.vcf.gz",
                 "size": 932434232,
                 "checksum": "ad28c4a894bd4d979a2c67ab984544e6",
                 "checksum_type": "md5",
@@ -117,15 +116,15 @@
                 },
                 "library_strategy": "WGS",
                 "bundle_id": "6f289724-e8f7-4865-8bf5-4056d2595aa8",
-                "bundle_type": "sanger_ssm_call",
+                "bundle_type": "somatic_variant_call",
                 "format": "VCF",
-                "data_type": "SSM"
+                "data_type": "CNSM"
             }
         },
         "vcf_index": {
-            "type": "sanger_ssm_call.vcf_index.data_object",
-            "name": "ad28c4a894bd4d979a2c67ab984544e6.vcf.gz.tbi",
-            "local_path": "/my/file/path/ad28c4a894bd4d979a2c67ab984544e6.vcf.gz.tbi",
+            "type": "somatic_variant_call.vcf_index.data_object",
+            "name": "9eed06a7-11e5-4847-8ac2-dea89621b8f5.wgs.20190905.sanger-wgs.0.1.0.somatic.cnv.vcf.gz.tbi",
+            "local_path": "/my/file/path/9eed06a7-11e5-4847-8ac2-dea89621b8f5.wgs.20190905.sanger-wgs.0.1.0.somatic.cnv.vcf.gz.tbi",
             "size": 589343,
             "checksum": "1dc46e90af51470997b3be164bca6a79",
             "checksum_type": "md5",
@@ -155,15 +154,15 @@
                 },
                 "library_strategy": "WGS",
                 "bundle_id": "6f289724-e8f7-4865-8bf5-4056d2595aa8",
-                "bundle_type": "sanger_ssm_call",
+                "bundle_type": "somatic_variant_call",
                 "format": "TBI",
-                "data_type": "SSM"
+                "data_type": "CNSM"
             },
             "_final_doc": {
                 "schema_version": 1,
-                "type": "sanger_ssm_call.vcf_index.data_object",
-                "name": "ad28c4a894bd4d979a2c67ab984544e6.vcf.gz.tbi",
-                "local_path": "/my/file/path/ad28c4a894bd4d979a2c67ab984544e6.vcf.gz.tbi",
+                "type": "somatic_variant_call.vcf_index.data_object",
+                "name": "9eed06a7-11e5-4847-8ac2-dea89621b8f5.wgs.20190905.sanger-wgs.0.1.0.somatic.cnv.vcf.gz.tbi",
+                "local_path": "/my/file/path/9eed06a7-11e5-4847-8ac2-dea89621b8f5.wgs.20190905.sanger-wgs.0.1.0.somatic.cnv.vcf.gz.tbi",
                 "size": 589343,
                 "checksum": "1dc46e90af51470997b3be164bca6a79",
                 "checksum_type": "md5",
@@ -191,9 +190,9 @@
                 },
                 "library_strategy": "WGS",
                 "bundle_id": "6f289724-e8f7-4865-8bf5-4056d2595aa8",
-                "bundle_type": "sanger_ssm_call",
+                "bundle_type": "somatic_variant_call",
                 "format": "TBI",
-                "data_type": "SSM"
+                "data_type": "CNSM"
             }
         }
     },
@@ -231,7 +230,7 @@
         }
     },
     "_final_doc": {
-        "type": "sanger_ssm_call",
+        "type": "somatic_variant_call",
         "program": "PRAD-UK",
         "inputs": {
             "tumour": {
@@ -262,21 +261,20 @@
             }
         },
         "analysis": {
-            "analysis_type": "Simple somatic mutation calling",
+            "analysis_type": "Copy number somatic mutation calling",
             "reference_genome": "GRCh38",
             "tool": {
                 "registry": "Dockstore",
                 "id": "01715899-2689-4ad1-ab97-f058894954b2",
-                "name": "sanger_ssm_call",
-                "version": "0.0.1",
-                "included_apps": ["CaVEMan"]
+                "name": "icgc-argo/sanger-wgs-variant-calling",
+                "short_name": "sanger-wgs",
+                "version": "0.1.0",
+                "included_apps": ["ASCAT"]
             },
             "execution": {
                 "runner_name": "cwltool",
-                "runner_version": "0.2.2",
-                "job_id": "8417959d-69be-4851-afe1-27fc9820e71a",
-                "started_at": "2019-07-05T08:15:30+00:00",
-                "completed_at": "2019-07-05T08:15:30+00:00"
+                "runner_version": "1.0.20190621234233",
+                "job_id": "8417959d-69be-4851-afe1-27fc9820e71a"
             }
         },
         "schema_version": 1,

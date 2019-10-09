@@ -1,0 +1,312 @@
+{
+    "type": "somatic_variant_call",
+    "program": "PRAD-UK",
+    "inputs": {
+        "tumour": {
+            "dna_alignment_id": "3abe7053-3234-4faa-a24c-39df11e5569e",
+            "files": {
+                "aligned_dna_seq": {
+                    "object_uri": "drs://Collab/3abe7053-3234-4faa-a24c-39df11e5569e/e477463b-ffb4-41a9-862e-55ef2ebfc04a",
+                    "bundle_id": "3abe7053-3234-4faa-a24c-39df11e5569e",
+                    "object_id": "e477463b-ffb4-41a9-862e-55ef2ebfc04a",
+                    "name": "180126_icgc.bam",
+                    "secondary_file": ".bai",
+                    "repository": "Collab"
+                }
+            }
+        },
+        "normal": {
+            "dna_alignment_id": "02adbffc-c6f1-49d0-9518-e2d6d0c86f33",
+            "files": {
+                "aligned_dna_seq": {
+                    "object_uri": "drs://Collab/02adbffc-c6f1-49d0-9518-e2d6d0c86f33/4032dea0-60ec-4094-8805-16723de70e3f",
+                    "bundle_id": "02adbffc-c6f1-49d0-9518-e2d6d0c86f33",
+                    "object_id": "4032dea0-60ec-4094-8805-16723de70e3f",
+                    "name": "180130_icgc.bam",
+                    "secondary_file": ".bai",
+                    "repository": "Collab"
+                }
+            }
+        }
+    },
+    "analysis": {
+        "analysis_type": "Simple somatic mutation calling",
+        "reference_genome": "GRCh38",
+        "tool": {
+            "registry": "Dockstore",
+            "id": "01715899-2689-4ad1-ab97-f058894954b2",
+            "name": "icgc-argo/sanger-wgs-variant-calling",
+            "short_name": "sanger-wgs",
+            "version": "0.1.0",
+            "included_apps": ["CaVEMan"]
+        },
+        "execution": {
+            "runner_name": "cwltool",
+            "runner_version": "1.0.20190621234233",
+            "job_id": "8417959d-69be-4851-afe1-27fc9820e71a"
+        }
+    },
+    "files": {
+        "vcf": {
+            "type": "somatic_variant_call.vcf.data_object",
+            "name": "9eed06a7-11e5-4847-8ac2-dea89621b8f5.wgs.20190905.sanger-wgs.0.1.0.somatic.snv.vcf.gz",
+            "local_path": "/my/file/path/9eed06a7-11e5-4847-8ac2-dea89621b8f5.wgs.20190905.sanger-wgs.0.1.0.somatic.snv.vcf.gz",
+            "size": 932434232,
+            "checksum": "ad28c4a894bd4d979a2c67ab984544e6",
+            "checksum_type": "md5",
+            "_mocked_system_properties": {
+                "schema_version": 1,
+                "id": "715ea0d0-4403-4fc6-a5b8-1464c89123ce",
+                "program": "PRAD-UK",
+                "repository": "Collab",
+                "created_at": "2019-07-15T08:15:30+00:00",
+                "updated_at": "2019-07-15T08:15:30+00:00",
+                "donor": {
+                    "donor_id": "DO223959",
+                    "specimen": {
+                        "specimen_id": "SP131541",
+                        "specimen_type": "Primary tumour - solid tissue",
+                        "sample": {
+                            "sample_id": "SA567216"
+                        }
+                    },
+                    "matched_normal": {
+                        "specimen_id": "SP131542",
+                        "specimen_type": "Normal - blood derived",
+                        "sample": {
+                            "sample_id": "SA567218"
+                        }
+                    }
+                },
+                "library_strategy": "WGS",
+                "bundle_id": "6f289724-e8f7-4865-8bf5-4056d2595aa8",
+                "bundle_type": "somatic_variant_call",
+                "format": "VCF",
+                "data_type": "SSM"
+            },
+            "_final_doc": {
+                "schema_version": 1,
+                "type": "somatic_variant_call.vcf.data_object",
+                "name": "9eed06a7-11e5-4847-8ac2-dea89621b8f5.wgs.20190905.sanger-wgs.0.1.0.somatic.snv.vcf.gz",
+                "local_path": "/my/file/path/9eed06a7-11e5-4847-8ac2-dea89621b8f5.wgs.20190905.sanger-wgs.0.1.0.somatic.snv.vcf.gz",
+                "size": 932434232,
+                "checksum": "ad28c4a894bd4d979a2c67ab984544e6",
+                "checksum_type": "md5",
+                "id": "715ea0d0-4403-4fc6-a5b8-1464c89123ce",
+                "program": "PRAD-UK",
+                "repository": "Collab",
+                "created_at": "2019-07-15T08:15:30+00:00",
+                "updated_at": "2019-07-15T08:15:30+00:00",
+                "donor": {
+                    "donor_id": "DO223959",
+                    "specimen": {
+                        "specimen_id": "SP131541",
+                        "specimen_type": "Primary tumour - solid tissue",
+                        "sample": {
+                            "sample_id": "SA567216"
+                        }
+                    },
+                    "matched_normal": {
+                        "specimen_id": "SP131542",
+                        "specimen_type": "Normal - blood derived",
+                        "sample": {
+                            "sample_id": "SA567218"
+                        }
+                    }
+                },
+                "library_strategy": "WGS",
+                "bundle_id": "6f289724-e8f7-4865-8bf5-4056d2595aa8",
+                "bundle_type": "somatic_variant_call",
+                "format": "VCF",
+                "data_type": "SSM"
+            }
+        },
+        "vcf_index": {
+            "type": "somatic_variant_call.vcf_index.data_object",
+            "name": "9eed06a7-11e5-4847-8ac2-dea89621b8f5.wgs.20190905.sanger-wgs.0.1.0.somatic.snv.vcf.gz.tbi",
+            "local_path": "/my/file/path/9eed06a7-11e5-4847-8ac2-dea89621b8f5.wgs.20190905.sanger-wgs.0.1.0.somatic.snv.vcf.gz.tbi",
+            "size": 589343,
+            "checksum": "1dc46e90af51470997b3be164bca6a79",
+            "checksum_type": "md5",
+            "_mocked_system_properties": {
+                "schema_version": 1,
+                "id": "907e879b-e559-420c-a5a1-b0475d33b195",
+                "program": "PRAD-UK",
+                "repository": "Collab",
+                "created_at": "2019-07-15T08:15:30+00:00",
+                "updated_at": "2019-07-15T08:15:30+00:00",
+                "donor": {
+                    "donor_id": "DO223959",
+                    "specimen": {
+                        "specimen_id": "SP131541",
+                        "specimen_type": "Primary tumour - solid tissue",
+                        "sample": {
+                            "sample_id": "SA567216"
+                        }
+                    },
+                    "matched_normal": {
+                        "specimen_id": "SP131542",
+                        "specimen_type": "Normal - blood derived",
+                        "sample": {
+                            "sample_id": "SA567218"
+                        }
+                    }
+                },
+                "library_strategy": "WGS",
+                "bundle_id": "6f289724-e8f7-4865-8bf5-4056d2595aa8",
+                "bundle_type": "somatic_variant_call",
+                "format": "TBI",
+                "data_type": "SSM"
+            },
+            "_final_doc": {
+                "schema_version": 1,
+                "type": "somatic_variant_call.vcf_index.data_object",
+                "name": "9eed06a7-11e5-4847-8ac2-dea89621b8f5.wgs.20190905.sanger-wgs.0.1.0.somatic.snv.vcf.gz.tbi",
+                "local_path": "/my/file/path/9eed06a7-11e5-4847-8ac2-dea89621b8f5.wgs.20190905.sanger-wgs.0.1.0.somatic.snv.vcf.gz.tbi",
+                "size": 589343,
+                "checksum": "1dc46e90af51470997b3be164bca6a79",
+                "checksum_type": "md5",
+                "id": "907e879b-e559-420c-a5a1-b0475d33b195",
+                "program": "PRAD-UK",
+                "repository": "Collab",
+                "created_at": "2019-07-15T08:15:30+00:00",
+                "updated_at": "2019-07-15T08:15:30+00:00",
+                "donor": {
+                    "donor_id": "DO223959",
+                    "specimen": {
+                        "specimen_id": "SP131541",
+                        "specimen_type": "Primary tumour - solid tissue",
+                        "sample": {
+                            "sample_id": "SA567216"
+                        }
+                    },
+                    "matched_normal": {
+                        "specimen_id": "SP131542",
+                        "specimen_type": "Normal - blood derived",
+                        "sample": {
+                            "sample_id": "SA567218"
+                        }
+                    }
+                },
+                "library_strategy": "WGS",
+                "bundle_id": "6f289724-e8f7-4865-8bf5-4056d2595aa8",
+                "bundle_type": "somatic_variant_call",
+                "format": "TBI",
+                "data_type": "SSM"
+            }
+        }
+    },
+    "_mocked_system_properties": {
+        "schema_version": 1,
+        "status": "registered",
+        "id": "580ca172-a7f4-429b-91dd-f11ec9e2d133",
+        "donor": {
+            "donor_id": "DO223959",
+            "specimen": {
+                "specimen_id": "SP131541",
+                "specimen_type": "Primary tumour - solid tissue",
+                "sample": {
+                    "sample_id": "SA567216"
+                }
+            },
+            "matched_normal": {
+                "specimen_id": "SP131542",
+                "specimen_type": "Normal - blood derived",
+                "sample": {
+                    "sample_id": "SA567218"
+                }
+            }
+        },
+        "library_strategy": "WGS",
+        "files": {
+            "vcf": {
+                "type": "data_object",
+                "object_id": "715ea0d0-4403-4fc6-a5b8-1464c89123ce"
+            },
+            "vcf_index": {
+                "type": "data_object",
+                "object_id": "907e879b-e559-420c-a5a1-b0475d33b195"
+            }
+        }
+    },
+    "_final_doc": {
+        "type": "somatic_variant_call",
+        "program": "PRAD-UK",
+        "inputs": {
+            "tumour": {
+                "dna_alignment_id": "3abe7053-3234-4faa-a24c-39df11e5569e",
+                "files": {
+                    "aligned_dna_seq": {
+                        "object_uri": "drs://Collab/3abe7053-3234-4faa-a24c-39df11e5569e/e477463b-ffb4-41a9-862e-55ef2ebfc04a",
+                        "bundle_id": "3abe7053-3234-4faa-a24c-39df11e5569e",
+                        "object_id": "e477463b-ffb4-41a9-862e-55ef2ebfc04a",
+                        "name": "180126_icgc.bam",
+                        "secondary_file": ".bai",
+                        "repository": "Collab"
+                    }
+                }
+            },
+            "normal": {
+                "dna_alignment_id": "02adbffc-c6f1-49d0-9518-e2d6d0c86f33",
+                "files": {
+                    "aligned_dna_seq": {
+                        "object_uri": "drs://Collab/02adbffc-c6f1-49d0-9518-e2d6d0c86f33/4032dea0-60ec-4094-8805-16723de70e3f",
+                        "bundle_id": "02adbffc-c6f1-49d0-9518-e2d6d0c86f33",
+                        "object_id": "4032dea0-60ec-4094-8805-16723de70e3f",
+                        "name": "180130_icgc.bam",
+                        "secondary_file": ".bai",
+                        "repository": "Collab"
+                    }
+                }
+            }
+        },
+        "analysis": {
+            "analysis_type": "Simple somatic mutation calling",
+            "reference_genome": "GRCh38",
+            "tool": {
+                "registry": "Dockstore",
+                "id": "01715899-2689-4ad1-ab97-f058894954b2",
+                "name": "icgc-argo/sanger-wgs-variant-calling",
+                "short_name": "sanger-wgs",
+                "version": "0.1.0",
+                "included_apps": ["CaVEMan"]
+            },
+            "execution": {
+                "runner_name": "cwltool",
+                "runner_version": "1.0.20190621234233",
+                "job_id": "8417959d-69be-4851-afe1-27fc9820e71a"
+            }
+        },
+        "schema_version": 1,
+        "status": "registered",
+        "id": "580ca172-a7f4-429b-91dd-f11ec9e2d133",
+        "donor": {
+            "donor_id": "DO223959",
+            "specimen": {
+                "specimen_id": "SP131541",
+                "specimen_type": "Primary tumour - solid tissue",
+                "sample": {
+                    "sample_id": "SA567216"
+                }
+            },
+            "matched_normal": {
+                "specimen_id": "SP131542",
+                "specimen_type": "Normal - blood derived",
+                "sample": {
+                    "sample_id": "SA567218"
+                }
+            }
+        },
+        "library_strategy": "WGS",
+        "files": {
+            "vcf": {
+                "type": "data_object",
+                "object_id": "715ea0d0-4403-4fc6-a5b8-1464c89123ce"
+            },
+            "vcf_index": {
+                "type": "data_object",
+                "object_id": "907e879b-e559-420c-a5a1-b0475d33b195"
+            }
+        }
+    }
+}

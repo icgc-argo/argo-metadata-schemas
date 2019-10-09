@@ -11,7 +11,7 @@ def pytest_generate_tests(metafunc):
     if 'testdoc' in metafunc.fixturenames:
         testdocs = []
         for d in sorted(glob(os.path.join('_example_docs', '*.json'))):
-            m = re.match(r'^_example_docs\/\d+\.(\w+)\.\d+\.(ok|ko)\.\w+$', d)
+            m = re.match(r'^_example_docs\/\d+\.(\w+)\.\d+[a-z0-9-]*\.(ok|ko)\.\w+$', d)
             if m:
                 schema_id, ok = m.groups()
 

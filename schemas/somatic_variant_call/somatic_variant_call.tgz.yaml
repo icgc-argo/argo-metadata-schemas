@@ -1,0 +1,62 @@
+$schema: "http://json-schema.org/draft-07/schema#"
+
+$id: "somatic_variant_call.tgz.data_object"
+type: object
+
+propertyNames:
+  enum: [ type, name, local_path, size, checksum, checksum_type ]
+required: [ type, name, local_path, size, checksum, checksum_type ]
+
+allOf:
+- $ref: _definitions#/submitted_file
+- properties:
+    type:
+      const: 'somatic_variant_call.tgz.data_object'
+    name:
+      allOf:
+      - pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\.(wxs|wgs).2\d{7}\.[a-z0-9-]+\.\d+\.\d+\.[0-9\.-]+\.auxiliary(-[a-z0-9-]+)*\.tgz$'
+      - anyOf:
+        - pattern: '^[0-9a-f-]{36}\.(wxs|wgs).2\d{7}\.broad-mutect2\.\d+\.\d+\.[0-9\.-]+\.auxiliary(-[a-z0-9-]+)*\.tgz$'
+
+definitions:
+  version:
+    allOf:
+    - $ref: '_definitions#/_/properties/version'
+    - const: 1
+  relationDef:
+    $ref: '_definitions#/relationDef'
+    const:
+      primaryKey:
+      - '#/definitions/systemProperties/allOf/1/properties/id'
+      references:
+      - foreignKey:
+        - '#/definitions/systemProperties/allOf/1/properties/bundle_id'
+        targetEntity: 'somatic_variant_call'  # data_object to somatic_variant_call relationship is many-to-one
+        targetKey:  # relationship by primaryKey
+        - 'somatic_variant_call#/definitions/systemProperties/properties/id'
+
+  systemProperties:
+    propertyNames:
+      enum: [ schema_version, id, program, donor, repository, created_at, updated_at, library_strategy, bundle_id, bundle_type, format, data_type ]
+    required: [ schema_version, id, program, donor, repository, created_at, updated_at, library_strategy, bundle_id, bundle_type, format, data_type ]
+    allOf:
+    - $ref: _definitions#/data_object
+    - properties:
+        schema_version:
+          $ref: '#/definitions/version'  # where to pick up the version
+        id:  # surrogate key
+          $ref: _definitions#/data_object/allOf/0/properties/id
+        program:  # copied from containing parent
+          $ref: "somatic_variant_call#/properties/program"
+        donor:  # copied from containing parent
+          $ref: "somatic_variant_call#/definitions/systemProperties/properties/donor"
+        library_strategy:  # copied from containing parent
+          $ref: "somatic_variant_call#/definitions/systemProperties/properties/library_strategy"
+        bundle_id:  # copied from containing parent
+          $ref: "somatic_variant_call#/definitions/systemProperties/properties/id"
+        bundle_type:
+          const: "somatic_variant_call"
+        format:
+          const: "TGZ"
+        date_type:
+          const: "Auxiliary"

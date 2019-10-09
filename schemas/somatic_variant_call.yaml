@@ -1,7 +1,7 @@
 $schema: "http://json-schema.org/draft-07/schema#"
 
-$id: "sanger_ssm_call"
-title: SSM calling by Sanger Workflow
+$id: "somatic_variant_call"
+title: Somatic variant calls
 type: object
 description: ""
 
@@ -16,7 +16,9 @@ definitions:
       primaryKey:
       - '#/definitions/systemProperties/properties/id'
       uniqueKey:
-      - [ '#/properties/inputs/properties/tumour/properties/dna_alignment_id' ]  # one tumour dna_alignment can only appear once in sanger_ssm_call, this prevents duplicated calling
+      - - '#/properties/inputs/properties/tumour/properties/dna_alignment_id'
+        #- '#/properties/analysis/properties/tool/properties/name'  # can only add this when $ref is resolved
+        #- '#/properties/analysis/properties/tool/properties/version'  # can only add this when $ref is resolved
       references:
       - foreignKey:
         - '#/properties/inputs/properties/tumour/properties/dna_alignment_id'
@@ -88,7 +90,7 @@ required:
 
 properties:
   type:
-    const: "sanger_ssm_call"
+    const: "somatic_variant_call"
   program:
     $ref: _definitions#/common/properties/program_short_name
   inputs:
@@ -154,7 +156,10 @@ properties:
       analysis_type:
         allOf:
         - $ref: '_definitions#/analysis/properties/analysis_type'
-        - const: 'Simple somatic mutation calling'
+        - enum:
+          - 'Simple somatic mutation calling'
+          - 'Copy number somatic mutation calling'
+          - 'Structural somatic mutation calling'
       reference_genome:
         $ref: '_definitions#/analysis/properties/reference_genome'
       tool:  # Tool refers to what's in GA4GH's Tool Registry Service
@@ -163,19 +168,29 @@ properties:
         allOf:
         - $ref: '_definitions#/analysis/properties/tool'
         - properties:
-            contained_apps:
+            name:
+              enum:
+              - icgc-argo/sanger-wxs-variant-calling
+              - icgc-argo/sanger-wgs-variant-calling
+              - icgc-argo/broad-mutect2-variant-calling
+            short_name:
+              enum:
+              - sanger-wxs
+              - sanger-wgs
+              - broad-mutect2
+            included_apps:
               type: array
               items:
-                type: string
-              const: [ CaVEMan ]
+                enum: [ CaVEMan, Pindel, ASCAT, BRASS, Mutect2 ]
       execution:
         $ref: '_definitions#/analysis/properties/execution'
   files:
     type: object
     additionalProperties: false
+    required: [vcf, vcf_index]
     properties:
       vcf:
-        $ref: "sanger_ssm_call.vcf.data_object"
+        $ref: "somatic_variant_call.vcf.data_object"
         definitions:
           relationDef:
             $ref: '_definitions#/_/properties/relationDef'
@@ -185,7 +200,7 @@ properties:
                 - '#/properties/files/properties/vcf/definitions/systemProperties/properties/object_id'
                 targetEntity: 'data_object'
                 targetKey:  # relationship by primaryKey
-                - 'sanger_ssm_call.vcf.data_object#/definitions/systemProperties/allOf/1/properties/id'
+                - 'somatic_variant_call.vcf.data_object#/definitions/systemProperties/allOf/1/properties/id'
 
           systemProperties:
             additionalProperties: false
@@ -194,10 +209,10 @@ properties:
               type:
                 const: data_object
               object_id:
-                $ref: sanger_ssm_call.vcf.data_object#/definitions/systemProperties/allOf/1/properties/id
+                $ref: somatic_variant_call.vcf.data_object#/definitions/systemProperties/allOf/1/properties/id
 
       vcf_index:
-        $ref: "sanger_ssm_call.vcf_index.data_object"
+        $ref: "somatic_variant_call.vcf_index.data_object"
         definitions:
           relationDef:
             $ref: '_definitions#/_/properties/relationDef'
@@ -207,7 +222,7 @@ properties:
                 - '#/properties/files/properties/vcf_index/definitions/systemProperties/properties/object_id'
                 targetEntity: 'data_object'
                 targetKey:  # relationship by primaryKey
-                - 'sanger_ssm_call.vcf_index.data_object#/definitions/systemProperties/allOf/1/properties/id'
+                - 'somatic_variant_call.vcf_index.data_object#/definitions/systemProperties/allOf/1/properties/id'
 
           systemProperties:
             additionalProperties: false
@@ -216,4 +231,26 @@ properties:
               type:
                 const: data_object
               object_id:
-                $ref: sanger_ssm_call.vcf_index.data_object#/definitions/systemProperties/allOf/1/properties/id
+                $ref: somatic_variant_call.vcf_index.data_object#/definitions/systemProperties/allOf/1/properties/id
+
+      tgz:
+        $ref: "somatic_variant_call.tgz.data_object"
+        definitions:
+          relationDef:
+            $ref: '_definitions#/_/properties/relationDef'
+            const:
+              references:
+              - foreignKey:
+                - '#/properties/files/properties/tgz/definitions/systemProperties/properties/object_id'
+                targetEntity: 'data_object'
+                targetKey:  # relationship by primaryKey
+                - 'somatic_variant_call.tgz.data_object#/definitions/systemProperties/allOf/1/properties/id'
+
+          systemProperties:
+            additionalProperties: false
+            required: [ type, object_id ]
+            properties:
+              type:
+                const: data_object
+              object_id:
+                $ref: somatic_variant_call.tgz.data_object#/definitions/systemProperties/allOf/1/properties/id

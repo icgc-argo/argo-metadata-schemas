@@ -16,16 +16,16 @@ definitions:
       primaryKey:
       - '#/definitions/systemProperties/properties/id'
       naturalKey:
-      - '#/properties/program'
-      - '#/properties/submitter_id'
+      - '#/properties/program_id'
+      - '#/properties/submitter_sequencing_experiment_id'
       references:
       - foreignKey:
-        - '#/properties/program'
-        - '#/properties/sample_submitter_id'
+        - '#/properties/program_id'
+        - '#/properties/submitter_sample_id'
         targetEntity: 'sample'
         targetKey:  # relationship by naturalKey
-        - 'sample#/properties/program'
-        - 'sample#/properties/submitter_id'
+        - 'sample#/properties/program_id'
+        - 'sample#/properties/submitter_sample_id'
       - foreignKey:
         - '#/definitions/systemProperties/properties/sample_id'
         targetEntity: 'sample'
@@ -45,14 +45,14 @@ definitions:
         $ref: sample#/definitions/systemProperties/properties/id
 
 propertyNames:
-  enum: [ type, program, submitter_id, sample_submitter_id, sequencing_center, sequencing_date,
+  enum: [ type, program_id, submitter_sequencing_experiment_id, submitter_sample_id, sequencing_center, sequencing_date,
           platform, platform_model, library_strategy, read_group_count, read_groups ]
 
 required:
 - type
-- program
-- submitter_id
-- sample_submitter_id
+- program_id
+- submitter_sequencing_experiment_id
+- submitter_sample_id
 - sequencing_center
 - sequencing_date
 - platform
@@ -64,11 +64,11 @@ required:
 properties:
   type:
     const: "sequencing_experiment"
-  program:
-    $ref: _definitions#/common/properties/program_short_name
-  submitter_id:  # submitter's sequencing experiment ID
+  program_id:
+    $ref: _definitions#/common/properties/program_id
+  submitter_sequencing_experiment_id:  # submitter's sequencing experiment ID
     $ref: _definitions#/common/properties/submitter_id
-  sample_submitter_id:  # sample used in a sequencing experiment
+  submitter_sample_id:  # sample used in a sequencing experiment
     $ref: _definitions#/common/properties/submitter_id
   sequencing_center:  # CN in BAM @GR header
     type: string

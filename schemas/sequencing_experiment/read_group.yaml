@@ -15,19 +15,19 @@ definitions:
       primaryKey:
       - '#/definitions/systemProperties/properties/id'
       naturalKey:
-      - '#/definitions/systemProperties/properties/program'
-      - '#/properties/submitter_id'
+      - '#/definitions/systemProperties/properties/program_id'
+      - '#/properties/submitter_read_group_id'
       uniqueKey:
-      - - '#/definitions/systemProperties/properties/program'
+      - - '#/definitions/systemProperties/properties/program_id'
         - '#/properties/platform_unit'  # platform unit has to be unique within a program
       references:
       - foreignKey:
-        - '#/definitions/systemProperties/properties/program'
-        - '#/definitions/systemProperties/properties/sample_submitter_id'
+        - '#/definitions/systemProperties/properties/program_id'
+        - '#/definitions/systemProperties/properties/submitter_sample_id'
         targetEntity: 'sample'
         targetKey:  # relationship by naturalKey
-        - 'sample#/properties/program'
-        - 'sample#/properties/submitter_id'
+        - 'sample#/properties/program_id'
+        - 'sample#/properties/submitter_sample_id'
       - foreignKey:
         - '#/definitions/systemProperties/properties/sample_id'
         targetEntity: 'sample'
@@ -40,8 +40,8 @@ definitions:
         - 'sequencing_experiment#/definitions/systemProperties/properties/id'
   systemProperties:  # properties will be populated by the system
     propertyNames:
-      enum: [ schema_version, id, program, sequencing_experiment_submitter_id, sequencing_experiment_id, sample_submitter_id, sample_id ]
-    required: [ schema_version, id, program, sequencing_experiment_submitter_id, sequencing_experiment_id, sample_submitter_id, sample_id ]
+      enum: [ schema_version, id, program_id, submitter_sequencing_experiment_id, sequencing_experiment_id, submitter_sample_id, sample_id ]
+    required: [ schema_version, id, program_id, submitter_sequencing_experiment_id, sequencing_experiment_id, submitter_sample_id, sample_id ]
     properties:
       schema_version:
         $ref: '#/definitions/version'  # where to pick up the version
@@ -49,29 +49,29 @@ definitions:
         allOf:
         - $ref: _definitions#/common/properties/id
         - pattern: "^RG"  # id must start with "RG", in addition to pattern defined at _definitions#/common/properties/id
-      program:
+      program_id:
         # this reuses the program definition in the containing parent, may also signal that it gets the same value
-        $ref: "sequencing_experiment#/properties/program"
-      sequencing_experiment_submitter_id:
+        $ref: "sequencing_experiment#/properties/program_id"
+      submitter_sequencing_experiment_id:
         # this field gets value from containing parent
-        $ref: "sequencing_experiment#/properties/submitter_id"
+        $ref: "sequencing_experiment#/properties/submitter_sequencing_experiment_id"
       sequencing_experiment_id:
         # this field gets value from containing parent
         $ref: "sequencing_experiment#/definitions/systemProperties/properties/id"
-      sample_submitter_id:
+      submitter_sample_id:
         # this field gets value from containing parent
-        $ref: "sequencing_experiment#/properties/sample_submitter_id"
+        $ref: "sequencing_experiment#/properties/submitter_sample_id"
       sample_id:
         # this field gets value from containing parent
         $ref: "sequencing_experiment#/definitions/systemProperties/properties/sample_id"
 
 propertyNames:
-  enum: [ type, submitter_id, platform_unit, is_paired_end, read_length_r1, read_length_r2,
+  enum: [ type, submitter_read_group_id, platform_unit, is_paired_end, read_length_r1, read_length_r2,
           insert_size, sample_barcode, library_name ]
 
 required:
 - type
-- submitter_id
+- submitter_read_group_id
 - platform_unit
 - is_paired_end
 - read_length_r1
@@ -82,7 +82,7 @@ required:
 properties:
   type:
     const: "read_group"
-  submitter_id:
+  submitter_read_group_id:
     type: string
     description: "Submitter's read group ID. ID in BAM @RG header"
   platform_unit:  # PU in BAM @RG header, for Illumina: {FLOWCELL_BARCODE}.{LANE}.{SAMPLE_BARCODE}

@@ -16,8 +16,8 @@ definitions:
       primaryKey:
       - '#/definitions/systemProperties/properties/id'
       naturalKey:
-      - '#/properties/program'
-      - '#/properties/submitter_id'
+      - '#/properties/program_id'
+      - '#/properties/submitter_donor_id'
   systemProperties:  # properties will be populated by the system
     propertyNames:
       enum: [ id, schema_version ]
@@ -31,22 +31,22 @@ definitions:
         - pattern: "^DO"  # id must start with "DO", in addition to pattern defined at _definitions#/common/properties/id
 
 propertyNames:  # this will reject any unknown properties, note that 'additionalProperties: false' does not work with allOf
-  enum: [ type, submitter_id, program, gender ]
+  enum: [ type, submitter_donor_id, program_id, gender ]
 
 required:
 - type
-- submitter_id
-- program
+- submitter_donor_id
+- program_id
 - gender
 
 properties:
   type:
     const: "donor"
-  submitter_id:
+  submitter_donor_id:
     $ref: _definitions#/common/properties/submitter_id
     description: "Submitter's donor ID"
-  program:
-    $ref: _definitions#/common/properties/program_short_name
+  program_id:
+    $ref: _definitions#/common/properties/program_id
   gender:
     enum: [ "female", "male", "other" ]
     description: "Donor biological sex"

@@ -16,16 +16,16 @@ definitions:
       primaryKey:
       - '#/definitions/systemProperties/properties/id'
       naturalKey:
-      - '#/properties/program'
-      - '#/properties/inputs/properties/read_group_submitter_id'
+      - '#/properties/program_id'
+      - '#/properties/inputs/properties/submitter_read_group_id'
       references:
       - foreignKey:
-        - '#/properties/program'
-        - '#/properties/inputs/properties/read_group_submitter_id'
+        - '#/properties/program_id'
+        - '#/properties/inputs/properties/submitter_read_group_id'
         targetEntity: 'read_group'
         targetKey:  # relationship by naturalKey
-        - 'read_group#/definitions/systemProperties/properties/program'
-        - 'read_group#/properties/submitter_id'
+        - 'read_group#/definitions/systemProperties/properties/program_id'
+        - 'read_group#/properties/submitter_read_group_id'
       - foreignKey:
         - '#/definitions/systemProperties/properties/read_group_id'
         targetEntity: 'read_group'
@@ -50,14 +50,14 @@ definitions:
             $ref: donor#/definitions/systemProperties/properties/id
           specimen:
             additionalProperties: false
-            required: [ specimen_id, specimen_type, normal_or_tumour_designation, sample ]
+            required: [ specimen_id, specimen_type, normal_tumour_designation, sample ]
             properties:
               specimen_id:
                 $ref: specimen#/definitions/systemProperties/properties/id
               specimen_type:
                 $ref: specimen#/properties/specimen_type
-              normal_or_tumour_designation:
-                $ref: specimen#/properties/normal_or_tumour_designation
+              normal_tumour_designation:
+                $ref: specimen#/properties/normal_tumour_designation
               sample:
                 additionalProperties: false
                 required: [ sample_id ]
@@ -70,24 +70,24 @@ definitions:
         $ref: sequencing_experiment#/properties/library_strategy
 
 propertyNames:
-  enum: [ type, program, inputs, analysis, files ]
+  enum: [ type, program_id, inputs, analysis, files ]
 
 required:
 - type
-- program
+- program_id
 - inputs
 - files
 
 properties:
   type:
     const: "lane_seq_submission"
-  program:
-    $ref: _definitions#/common/properties/program_short_name
+  program_id:
+    $ref: _definitions#/common/properties/program_id
   inputs:
     additionalProperties: false
-    required: [ read_group_submitter_id, files ]
+    required: [ submitter_read_group_id, files ]
     properties:
-      read_group_submitter_id:
+      submitter_read_group_id:
         $ref: _definitions#/common/properties/submitter_id
       files:
         additionalProperties: false

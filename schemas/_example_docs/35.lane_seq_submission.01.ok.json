@@ -1,8 +1,8 @@
 {
     "type": "lane_seq_submission",
-    "program": "PRAD-UK",
+    "program_id": "PRAD-UK",
     "inputs": {
-        "read_group_submitter_id": "1117561",
+        "submitter_read_group_id": "1117561",
         "files": {
             "bam": {
                 "name": "180126_icgc.bam",
@@ -24,7 +24,7 @@
             "_mocked_system_properties": {
                 "schema_version": 1,
                 "id": "0ee0d7f2-e96c-4e8c-be55-91267e74670b",
-                "program": "PRAD-UK",
+                "program_id": "PRAD-UK",
                 "repository": "Collab",
                 "created_at": "2019-07-05T08:15:30Z",
                 "updated_at": "2019-07-05T08:15:30Z",
@@ -33,7 +33,7 @@
                     "specimen": {
                         "specimen_id": "SP131542",
                         "specimen_type": "Normal - blood derived",
-                        "normal_or_tumour_designation": "Normal",
+                        "normal_tumour_designation": "Normal",
                         "sample": {
                             "sample_id": "SA567218"
                         }
@@ -58,7 +58,7 @@
                 "checksum": "ea12f7c24f37bdb40a3d80ce8756f8cb",
                 "checksum_type": "md5",
                 "id": "0ee0d7f2-e96c-4e8c-be55-91267e74670b",
-                "program": "PRAD-UK",
+                "program_id": "PRAD-UK",
                 "repository": "Collab",
                 "created_at": "2019-07-05T08:15:30Z",
                 "updated_at": "2019-07-05T08:15:30Z",
@@ -67,7 +67,7 @@
                     "specimen": {
                         "specimen_id": "SP131542",
                         "specimen_type": "Normal - blood derived",
-                        "normal_or_tumour_designation": "Normal",
+                        "normal_tumour_designation": "Normal",
                         "sample": {
                             "sample_id": "SA567218"
                         }
@@ -94,7 +94,7 @@
             "specimen": {
                 "specimen_id": "SP131542",
                 "specimen_type": "Normal - blood derived",
-                "normal_or_tumour_designation": "Normal",
+                "normal_tumour_designation": "Normal",
                 "sample": {
                     "sample_id": "SA567218"
                 }
@@ -111,9 +111,9 @@
     },
     "_final_doc": {
         "type": "lane_seq_submission",
-        "program": "PRAD-UK",
+        "program_id": "PRAD-UK",
         "inputs": {
-            "read_group_submitter_id": "1117561",
+            "submitter_read_group_id": "1117561",
             "files": {
                 "bam": {
                     "name": "180126_icgc.bam",
@@ -132,7 +132,7 @@
             "specimen": {
                 "specimen_id": "SP131542",
                 "specimen_type": "Normal - blood derived",
-                "normal_or_tumour_designation": "Normal",
+                "normal_tumour_designation": "Normal",
                 "sample": {
                     "sample_id": "SA567218"
                 }

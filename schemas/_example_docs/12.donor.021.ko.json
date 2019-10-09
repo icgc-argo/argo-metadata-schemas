@@ -1,34 +1,34 @@
 [
   {
-    "submitter_id": "A113-23",
-    "program": "PACA-CA",
+    "submitter_donor_id": "A113-23",
+    "program_id": "PACA-CA",
     "gender": "male",
     "vital_status": "alive"
   },
   {
     "type": "donor",
-    "submitter_id": "A113-23",
-    "program": "UNKNOWN-PG",
+    "submitter_donor_id": "A113-23",
+    "program_id": "UNKNOWN-PG",
     "gender": "male",
     "vital_status": "alive"
   },
   {
     "type": "donor",
-    "submitter_id": "A113-23",
-    "program": "PACA-CA",
+    "submitter_donor_id": "A113-23",
+    "program_id": "PACA-CA",
     "gender": "",
     "vital_status": "alive"
   },
   {
     "type": "donor",
     "id": "DO1323",
-    "program": "PACA-CA",
+    "program_id": "PACA-CA",
     "vital_status": "alive"
   },
   {
     "type": "donor",
-    "submitter_id": "A113-23",
-    "program": "PACA-CA",
+    "submitter_donor_id": "A113-23",
+    "program_id": "PACA-CA",
     "gender": "male",
     "vital_status": "alive",
     "unknown_extra_field": "dfa"

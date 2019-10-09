@@ -1,6 +1,6 @@
 {
     "type": "somatic_variant_call",
-    "program": "PRAD-UK",
+    "program_id": "PRAD-UK",
     "inputs": {
         "tumour": {
             "dna_alignment_id": "3abe7053-3234-4faa-a24c-39df11e5569e",
@@ -57,7 +57,7 @@
             "_mocked_system_properties": {
                 "schema_version": 1,
                 "id": "715ea0d0-4403-4fc6-a5b8-1464c89123ce",
-                "program": "PRAD-UK",
+                "program_id": "PRAD-UK",
                 "repository": "Collab",
                 "created_at": "2019-07-15T08:15:30+00:00",
                 "updated_at": "2019-07-15T08:15:30+00:00",
@@ -93,7 +93,7 @@
                 "checksum": "ad28c4a894bd4d979a2c67ab984544e6",
                 "checksum_type": "md5",
                 "id": "715ea0d0-4403-4fc6-a5b8-1464c89123ce",
-                "program": "PRAD-UK",
+                "program_id": "PRAD-UK",
                 "repository": "Collab",
                 "created_at": "2019-07-15T08:15:30+00:00",
                 "updated_at": "2019-07-15T08:15:30+00:00",
@@ -131,7 +131,7 @@
             "_mocked_system_properties": {
                 "schema_version": 1,
                 "id": "907e879b-e559-420c-a5a1-b0475d33b195",
-                "program": "PRAD-UK",
+                "program_id": "PRAD-UK",
                 "repository": "Collab",
                 "created_at": "2019-07-15T08:15:30+00:00",
                 "updated_at": "2019-07-15T08:15:30+00:00",
@@ -167,7 +167,7 @@
                 "checksum": "1dc46e90af51470997b3be164bca6a79",
                 "checksum_type": "md5",
                 "id": "907e879b-e559-420c-a5a1-b0475d33b195",
-                "program": "PRAD-UK",
+                "program_id": "PRAD-UK",
                 "repository": "Collab",
                 "created_at": "2019-07-15T08:15:30+00:00",
                 "updated_at": "2019-07-15T08:15:30+00:00",
@@ -231,7 +231,7 @@
     },
     "_final_doc": {
         "type": "somatic_variant_call",
-        "program": "PRAD-UK",
+        "program_id": "PRAD-UK",
         "inputs": {
             "tumour": {
                 "dna_alignment_id": "3abe7053-3234-4faa-a24c-39df11e5569e",

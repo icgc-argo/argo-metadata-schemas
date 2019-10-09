@@ -34,8 +34,8 @@ definitions:
 
   systemProperties:
     propertyNames:
-      enum: [ schema_version, id, program, donor, repository, created_at, updated_at, derived_from, library_strategy, bundle_id, bundle_type, format, data_type ]
-    required: [ schema_version, id, program, donor, repository, created_at, updated_at, derived_from, library_strategy, bundle_id, bundle_type, format, data_type ]
+      enum: [ schema_version, id, program_id, donor, repository, created_at, updated_at, derived_from, library_strategy, bundle_id, bundle_type, format, data_type ]
+    required: [ schema_version, id, program_id, donor, repository, created_at, updated_at, derived_from, library_strategy, bundle_id, bundle_type, format, data_type ]
     allOf:
     - $ref: _definitions#/data_object
     - properties:
@@ -43,8 +43,8 @@ definitions:
           $ref: '#/definitions/version'  # where to pick up the version
         id:  # surrogate key
           $ref: '_definitions#/data_object/allOf/0/properties/id'
-        program:  # copied from containing parent
-          $ref: "lane_seq_submission#/properties/program"
+        program_id:  # copied from containing parent
+          $ref: "lane_seq_submission#/properties/program_id"
         donor:  # copied from containing parent
           $ref: "lane_seq_submission#/definitions/systemProperties/properties/donor"
         derived_from:

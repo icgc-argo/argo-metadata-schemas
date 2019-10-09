@@ -43,11 +43,11 @@ definitions:
         $ref: lane_seq_submission#/definitions/systemProperties/properties/donor
 
 propertyNames:
-  enum: [ type, program, inputs, analysis, qc_metrics, files ]
+  enum: [ type, program_id, inputs, analysis, qc_metrics, files ]
 
 required:
 - type
-- program
+- program_id
 - inputs
 - analysis
 - qc_metrics
@@ -56,8 +56,8 @@ required:
 properties:
   type:
     const: "lane_seq_qc"
-  program:
-    $ref: _definitions#/common/properties/program_short_name
+  program_id:
+    $ref: _definitions#/common/properties/program_id
   inputs:
     additioinalProperties: false
     required: [ lane_seq_submission_id, files ]

@@ -1,6 +1,6 @@
 {
     "type": "dna_alignment_qc",
-    "program": "PRAD-UK",
+    "program_id": "PRAD-UK",
     "inputs": {
         "dna_alignment_id": "6bea0dd1-e9f5-4a00-a6f0-32cb98eea370",
         "files": {
@@ -47,14 +47,14 @@
         "quality_distribution": {
             "type": "dna_alignment_qc.quality_distribution.data_object",
             "name": "ccdc18ea765f4ef1809d8e281ad8dcbd.pdf.gz",
-            "local_path": "/my/file/path/ccdc18ea765f4ef1809d8e281ad8dcbd.pdf.gz",
+            "path": "/my/file/path/ccdc18ea765f4ef1809d8e281ad8dcbd.pdf.gz",
             "size": 34232,
             "checksum": "7e438941b6f34d149b443b51b6b0951c",
             "checksum_type": "md5",
             "_mocked_system_properties": {
                 "schema_version": 1,
                 "id": "196bf7b7-26b7-4c51-8094-86dc5cb653f5",
-                "program": "PRAD-UK",
+                "program_id": "PRAD-UK",
                 "repository": "Collab",
                 "created_at": "2019-07-15T08:15:30+00:00",
                 "updated_at": "2019-07-15T08:15:30+00:00",
@@ -63,7 +63,7 @@
                     "specimen": {
                         "specimen_id": "SP131542",
                         "specimen_type": "Normal - blood derived",
-                        "normal_or_tumour_designation": "Normal",
+                        "normal_tumour_designation": "Normal",
                         "sample": {
                             "sample_id": "SA567218"
                         }
@@ -79,12 +79,12 @@
                 "schema_version": 1,
                 "type": "dna_alignment_qc.quality_distribution.data_object",
                 "name": "ccdc18ea765f4ef1809d8e281ad8dcbd.pdf.gz",
-                "local_path": "/my/file/path/ccdc18ea765f4ef1809d8e281ad8dcbd.pdf.gz",
+                "path": "/my/file/path/ccdc18ea765f4ef1809d8e281ad8dcbd.pdf.gz",
                 "size": 34232,
                 "checksum": "7e438941b6f34d149b443b51b6b0951c",
                 "checksum_type": "md5",
                 "id": "196bf7b7-26b7-4c51-8094-86dc5cb653f5",
-                "program": "PRAD-UK",
+                "program_id": "PRAD-UK",
                 "repository": "Collab",
                 "created_at": "2019-07-15T08:15:30+00:00",
                 "updated_at": "2019-07-15T08:15:30+00:00",
@@ -93,7 +93,7 @@
                     "specimen": {
                         "specimen_id": "SP131542",
                         "specimen_type": "Normal - blood derived",
-                        "normal_or_tumour_designation": "Normal",
+                        "normal_tumour_designation": "Normal",
                         "sample": {
                             "sample_id": "SA567218"
                         }
@@ -109,14 +109,14 @@
         "bait_bias_detail_metrics": {
             "type": "dna_alignment_qc.bait_bias_detail_metrics.data_object",
             "name": "ccdc18ea765f4ef1809d8e281ad8dcbd.txt.gz",
-            "local_path": "/my/file/path/ccdc18ea765f4ef1809d8e281ad8dcbd.txt.gz",
+            "path": "/my/file/path/ccdc18ea765f4ef1809d8e281ad8dcbd.txt.gz",
             "size": 2322,
             "checksum": "8c353eb555af4b58ad5f818670a3ed80",
             "checksum_type": "md5",
             "_mocked_system_properties": {
                 "schema_version": 1,
                 "id": "b9003466-a41a-4228-8ce1-75989438541f",
-                "program": "PRAD-UK",
+                "program_id": "PRAD-UK",
                 "repository": "Collab",
                 "created_at": "2019-07-15T08:15:30+00:00",
                 "updated_at": "2019-07-15T08:15:30+00:00",
@@ -125,7 +125,7 @@
                     "specimen": {
                         "specimen_id": "SP131542",
                         "specimen_type": "Normal - blood derived",
-                        "normal_or_tumour_designation": "Normal",
+                        "normal_tumour_designation": "Normal",
                         "sample": {
                             "sample_id": "SA567218"
                         }
@@ -141,12 +141,12 @@
                 "schema_version": 1,
                 "type": "dna_alignment_qc.bait_bias_detail_metrics.data_object",
                 "name": "ccdc18ea765f4ef1809d8e281ad8dcbd.txt.gz",
-                "local_path": "/my/file/path/ccdc18ea765f4ef1809d8e281ad8dcbd.txt.gz",
+                "path": "/my/file/path/ccdc18ea765f4ef1809d8e281ad8dcbd.txt.gz",
                 "size": 2322,
                 "checksum": "8c353eb555af4b58ad5f818670a3ed80",
                 "checksum_type": "md5",
                 "id": "b9003466-a41a-4228-8ce1-75989438541f",
-                "program": "PRAD-UK",
+                "program_id": "PRAD-UK",
                 "repository": "Collab",
                 "created_at": "2019-07-15T08:15:30+00:00",
                 "updated_at": "2019-07-15T08:15:30+00:00",
@@ -155,7 +155,7 @@
                     "specimen": {
                         "specimen_id": "SP131542",
                         "specimen_type": "Normal - blood derived",
-                        "normal_or_tumour_designation": "Normal",
+                        "normal_tumour_designation": "Normal",
                         "sample": {
                             "sample_id": "SA567218"
                         }
@@ -178,7 +178,7 @@
             "specimen": {
                 "specimen_id": "SP131542",
                 "specimen_type": "Normal - blood derived",
-                "normal_or_tumour_designation": "Normal",
+                "normal_tumour_designation": "Normal",
                 "sample": {
                     "sample_id": "SA567218"
                 }
@@ -198,7 +198,7 @@
     },
     "_final_doc": {
         "type": "dna_alignment_qc",
-        "program": "PRAD-UK",
+        "program_id": "PRAD-UK",
         "inputs": {
             "dna_alignment_id": "6bea0dd1-e9f5-4a00-a6f0-32cb98eea370",
             "files": {
@@ -249,7 +249,7 @@
             "specimen": {
                 "specimen_id": "SP131542",
                 "specimen_type": "Normal - blood derived",
-                "normal_or_tumour_designation": "Normal",
+                "normal_tumour_designation": "Normal",
                 "sample": {
                     "sample_id": "SA567218"
                 }

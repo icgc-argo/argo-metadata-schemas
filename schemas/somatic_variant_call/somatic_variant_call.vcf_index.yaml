@@ -4,8 +4,8 @@ $id: "somatic_variant_call.vcf_index.data_object"
 type: object
 
 propertyNames:
-  enum: [ type, name, local_path, size, checksum, checksum_type ]
-required: [ type, name, local_path, size, checksum, checksum_type ]
+  enum: [ type, name, path, size, checksum, checksum_type ]
+required: [ type, name, path, size, checksum, checksum_type ]
 
 allOf:
 - $ref: _definitions#/submitted_file
@@ -39,8 +39,8 @@ definitions:
 
   systemProperties:
     propertyNames:
-      enum: [ schema_version, id, program, donor, repository, created_at, updated_at, library_strategy, bundle_id, bundle_type, format, data_type ]
-    required: [ schema_version, id, program, donor, repository, created_at, updated_at, library_strategy, bundle_id, bundle_type, format, data_type ]
+      enum: [ schema_version, id, program_id, donor, repository, created_at, updated_at, library_strategy, bundle_id, bundle_type, format, data_type ]
+    required: [ schema_version, id, program_id, donor, repository, created_at, updated_at, library_strategy, bundle_id, bundle_type, format, data_type ]
     allOf:
     - $ref: _definitions#/data_object
     - properties:
@@ -48,8 +48,8 @@ definitions:
           $ref: '#/definitions/version'  # where to pick up the version
         id:  # surrogate key
           $ref: _definitions#/data_object/allOf/0/properties/id
-        program:  # copied from containing parent
-          $ref: "somatic_variant_call#/properties/program"
+        program_id:  # copied from containing parent
+          $ref: "somatic_variant_call#/properties/program_id"
         donor:  # copied from containing parent
           $ref: "somatic_variant_call#/definitions/systemProperties/properties/donor"
         library_strategy:  # copied from containing parent

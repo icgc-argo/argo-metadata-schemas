@@ -16,17 +16,17 @@ definitions:
       primaryKey:
       - '#/definitions/systemProperties/properties/id'
       naturalKey:
-      - '#/properties/program'
-      - '#/properties/submitter_id'
+      - '#/properties/program_id'
+      - '#/properties/submitter_sample_id'
       uniqueKey: []
       references:
       - foreignKey:
-        - '#/properties/program'
-        - '#/properties/specimen_submitter_id'
+        - '#/properties/program_id'
+        - '#/properties/submitter_specimen_id'
         targetEntity: 'specimen'
         targetKey:  # relationship by naturalKey
-        - 'specimen#/properties/program'
-        - 'specimen#/properties/submitter_id'
+        - 'specimen#/properties/program_id'
+        - 'specimen#/properties/submitter_specimen_id'
       - foreignKey:
         - '#/definitions/systemProperties/properties/specimen_id'
         targetEntity: 'specimen'
@@ -47,24 +47,24 @@ definitions:
         $ref: 'specimen#/definitions/systemProperties/properties/id'
 
 propertyNames:  # this will reject any unknown properties, note that 'additionalProperties: false' does not work with allOf
-  enum: [ type, submitter_id, specimen_submitter_id, program, sample_type ]
+  enum: [ type, submitter_sample_id, submitter_specimen_id, program_id, sample_type ]
 
 required:
 - type
-- submitter_id
-- specimen_submitter_id
-- program
+- submitter_sample_id
+- submitter_specimen_id
+- program_id
 - sample_type
 
 properties:
   type:
     const: "sample"
-  program:
-    $ref: _definitions#/common/properties/program_short_name
-  submitter_id:
+  program_id:
+    $ref: _definitions#/common/properties/program_id
+  submitter_sample_id:
     $ref: _definitions#/common/properties/submitter_id
     description: "Submitter's sample ID"
-  specimen_submitter_id:
+  submitter_specimen_id:
     $ref: _definitions#/common/properties/submitter_id
   sample_type:
     type: string

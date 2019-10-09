@@ -1,7 +1,7 @@
 {
   "type": "donor",
-  "submitter_id": "0027_CRUK_PC_0027",
-  "program": "PRAD-UK",
+  "submitter_donor_id": "0027_CRUK_PC_0027",
+  "program_id": "PRAD-UK",
   "gender": "male",
   "_mocked_system_properties": {
     "id": "DO223959",
@@ -11,8 +11,8 @@
     "schema_version": 1,
     "id": "DO223959",
     "type": "donor",
-    "submitter_id": "0027_CRUK_PC_0027",
-    "program": "PRAD-UK",
+    "submitter_donor_id": "0027_CRUK_PC_0027",
+    "program_id": "PRAD-UK",
     "gender": "male"
   }
 }

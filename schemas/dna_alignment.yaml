@@ -43,14 +43,14 @@ definitions:
             $ref: donor#/definitions/systemProperties/properties/id
           specimen:
             additionalProperties: false
-            required: [ specimen_id, specimen_type, normal_or_tumour_designation, sample ]
+            required: [ specimen_id, specimen_type, normal_tumour_designation, sample ]
             properties:
               specimen_id:
                 $ref: specimen#/definitions/systemProperties/properties/id
               specimen_type:  # to be magically populated by the system through traversing back to the 'specimen'
                 $ref: specimen#/properties/specimen_type
-              normal_or_tumour_designation:  # to be magically populated by the system through traversing back to the 'specimen'
-                $ref: specimen#/properties/normal_or_tumour_designation
+              normal_tumour_designation:  # to be magically populated by the system through traversing back to the 'specimen'
+                $ref: specimen#/properties/normal_tumour_designation
               sample:
                 additionalProperties: false
                 required: [ sample_id ]
@@ -61,11 +61,11 @@ definitions:
         $ref: sequencing_experiment#/properties/library_strategy
 
 propertyNames:
-  enum: [ type, program, inputs, analysis, files ]
+  enum: [ type, program_id, inputs, analysis, files ]
 
 required:
 - type
-- program
+- program_id
 - inputs
 - analysis
 - files
@@ -73,8 +73,8 @@ required:
 properties:
   type:
     const: "dna_alignment"
-  program:
-    $ref: _definitions#/common/properties/program_short_name
+  program_id:
+    $ref: _definitions#/common/properties/program_id
   inputs:
     additioinalProperties: false
     required: [ lane_seq, reference_genome ]

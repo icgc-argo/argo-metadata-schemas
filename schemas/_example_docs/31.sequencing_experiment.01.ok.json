@@ -1,8 +1,8 @@
 {
     "type": "sequencing_experiment",
-    "program": "OV-AU",
-    "submitter_id": "EGAZ00001018761",
-    "sample_submitter_id": "AOCS-108-1-7",
+    "program_id": "OV-AU",
+    "submitter_sequencing_experiment_id": "EGAZ00001018761",
+    "submitter_sample_id": "AOCS-108-1-7",
     "sequencing_center": "QCMG",
     "platform": "Illumina",
     "platform_model": "HiSeq 2500",
@@ -13,7 +13,7 @@
     [
         {
             "type": "read_group",
-            "submitter_id": "20131019044843341",
+            "submitter_read_group_id": "20131019044843341",
             "platform_unit": "lane_7.nobc",
             "is_paired_end": false,
             "read_length_r1": 150,
@@ -24,16 +24,16 @@
             "_mocked_system_properties": {
                 "schema_version": 1,
                 "id": "RG2345",
-                "program": "OV-AU",
-                "sequencing_experiment_submitter_id": "EGAZ00001018761",
+                "program_id": "OV-AU",
+                "submitter_sequencing_experiment_id": "EGAZ00001018761",
                 "sequencing_experiment_id": "13f795b0-bc7e-42b2-93bd-e8d2875b47d0",
-                "sample_submitter_id": "AOCS-108-1-7",
+                "submitter_sample_id": "AOCS-108-1-7",
                 "sample_id": "SA505863"
             },
             "_final_doc": {
                 "schema_version": 1,
                 "type": "read_group",
-                "submitter_id": "20131019044843341",
+                "submitter_read_group_id": "20131019044843341",
                 "platform_unit": "lane_7.nobc",
                 "is_paired_end": false,
                 "read_length_r1": 150,
@@ -42,16 +42,16 @@
                 "sample_barcode": null,
                 "library_name": "LP6005606-DNA_F01",
                 "id": "RG2345",
-                "program": "OV-AU",
-                "sequencing_experiment_submitter_id": "EGAZ00001018761",
+                "program_id": "OV-AU",
+                "submitter_sequencing_experiment_id": "EGAZ00001018761",
                 "sequencing_experiment_id": "13f795b0-bc7e-42b2-93bd-e8d2875b47d0",
-                "sample_submitter_id": "AOCS-108-1-7",
+                "submitter_sample_id": "AOCS-108-1-7",
                 "sample_id": "SA505863"
             }
         },
         {
             "type": "read_group",
-            "submitter_id": "20131019042321400",
+            "submitter_read_group_id": "20131019042321400",
             "platform_unit": "lane_8.nobc",
             "is_paired_end": true,
             "read_length_r1": 150,
@@ -62,16 +62,16 @@
             "_mocked_system_properties": {
                 "schema_version": 1,
                 "id": "RG2346",
-                "program": "OV-AU",
-                "sequencing_experiment_submitter_id": "EGAZ00001018761",
+                "program_id": "OV-AU",
+                "submitter_sequencing_experiment_id": "EGAZ00001018761",
                 "sequencing_experiment_id": "13f795b0-bc7e-42b2-93bd-e8d2875b47d0",
-                "sample_submitter_id": "AOCS-108-1-7",
+                "submitter_sample_id": "AOCS-108-1-7",
                 "sample_id": "SA505863"
             },
             "_final_doc": {
                 "schema_version": 1,
                 "type": "read_group",
-                "submitter_id": "20131019042321400",
+                "submitter_read_group_id": "20131019042321400",
                 "platform_unit": "lane_8.nobc",
                 "is_paired_end": true,
                 "read_length_r1": 150,
@@ -80,10 +80,10 @@
                 "sample_barcode": null,
                 "library_name": "LP6005606-DNA_F01",
                 "id": "RG2346",
-                "program": "OV-AU",
-                "sequencing_experiment_submitter_id": "EGAZ00001018761",
+                "program_id": "OV-AU",
+                "submitter_sequencing_experiment_id": "EGAZ00001018761",
                 "sequencing_experiment_id": "13f795b0-bc7e-42b2-93bd-e8d2875b47d0",
-                "sample_submitter_id": "AOCS-108-1-7",
+                "submitter_sample_id": "AOCS-108-1-7",
                 "sample_id": "SA505863"
             }
         }
@@ -108,9 +108,9 @@
         "type": "sequencing_experiment",
         "id": "13f795b0-bc7e-42b2-93bd-e8d2875b47d0",
         "sample_id": "SA505863",
-        "program": "OV-AU",
-        "submitter_id": "EGAZ00001018761",
-        "sample_submitter_id": "AOCS-108-1-7",
+        "program_id": "OV-AU",
+        "submitter_sequencing_experiment_id": "EGAZ00001018761",
+        "submitter_sample_id": "AOCS-108-1-7",
         "sequencing_center": "QCMG",
         "platform": "Illumina",
         "platform_model": "HiSeq 2500",

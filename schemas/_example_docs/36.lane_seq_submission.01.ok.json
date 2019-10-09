@@ -1,20 +1,20 @@
 {
     "type": "lane_seq_submission",
-    "program": "OV-AU",
+    "program_id": "OV-AU",
     "inputs": {
-        "read_group_submitter_id": "20131019042321400",
+        "submitter_read_group_id": "20131019042321400",
         "files": {
             "fastq": [
                 {
                     "name": "180126_icgc_1.fq.gz",
-                    "local_path": "/my/bam/path/180126_icgc_1.fq.gz",
+                    "path": "/my/bam/path/180126_icgc_1.fq.gz",
                     "size": 132434232,
                     "checksum": "ea12f7c24f37bdb40a3d80ce8756f8cb",
                     "checksum_type": "md5"    
                 },
                 {
                     "name": "180126_icgc_2.fq.gz",
-                    "local_path": "/my/bam/path/180126_icgc_2.fq.gz",
+                    "path": "/my/bam/path/180126_icgc_2.fq.gz",
                     "size": 135632243,
                     "checksum": "68b329da9893e34099c7d8ad5cb9c940",
                     "checksum_type": "md5"    
@@ -43,14 +43,14 @@
         "bam_file": {
             "type": "lane_seq_submission.bam_file.data_object",
             "name": "180130_icgc.bam",
-            "local_path": "/my/bam/path/180130_icgc.bam",
+            "path": "/my/bam/path/180130_icgc.bam",
             "size": 93225223,
             "checksum": "4f36f8cb7bdb40a3ea12f7c2d80ce875",
             "checksum_type": "md5",
             "_mocked_system_properties": {
                 "schema_version": 1,
                 "id": "4032dea0-60ec-4094-8805-16723de70e3f",
-                "program": "OV-AU",
+                "program_id": "OV-AU",
                 "repository": "Collab",
                 "created_at": "2019-07-05T08:15:30+00:00",
                 "updated_at": "2019-07-05T08:15:30+00:00",
@@ -59,7 +59,7 @@
                     "specimen": {
                         "specimen_id": "SP131542",
                         "specimen_type": "Normal - blood derived",
-                        "normal_or_tumour_designation": "Normal",
+                        "normal_tumour_designation": "Normal",
                         "sample": {
                             "sample_id": "SA567218"
                         }
@@ -79,12 +79,12 @@
                 "schema_version": 1,
                 "type": "lane_seq_submission.bam_file.data_object",
                 "name": "180130_icgc.bam",
-                "local_path": "/my/bam/path/180130_icgc.bam",
+                "path": "/my/bam/path/180130_icgc.bam",
                 "size": 93225223,
                 "checksum": "4f36f8cb7bdb40a3ea12f7c2d80ce875",
                 "checksum_type": "md5",
                 "id": "4032dea0-60ec-4094-8805-16723de70e3f",
-                "program": "OV-AU",
+                "program_id": "OV-AU",
                 "repository": "Collab",
                 "created_at": "2019-07-05T08:15:30+00:00",
                 "updated_at": "2019-07-05T08:15:30+00:00",
@@ -93,7 +93,7 @@
                     "specimen": {
                         "specimen_id": "SP131542",
                         "specimen_type": "Normal - blood derived",
-                        "normal_or_tumour_designation": "Normal",
+                        "normal_tumour_designation": "Normal",
                         "sample": {
                             "sample_id": "SA567218"
                         }
@@ -120,7 +120,7 @@
             "specimen": {
                 "specimen_id": "SP131542",
                 "specimen_type": "Normal - blood derived",
-                "normal_or_tumour_designation": "Normal",
+                "normal_tumour_designation": "Normal",
                 "sample": {
                     "sample_id": "SA567218"
                 }
@@ -137,21 +137,21 @@
     },
     "_final_doc": {
         "type": "lane_seq_submission",
-        "program": "OV-AU",
+        "program_id": "OV-AU",
         "inputs": {
-            "read_group_submitter_id": "20131019042321400",
+            "submitter_read_group_id": "20131019042321400",
             "files": {
                 "fastq": [
                     {
                         "name": "180126_icgc_1.fq.gz",
-                        "local_path": "/my/bam/path/180126_icgc_1.fq.gz",
+                        "path": "/my/bam/path/180126_icgc_1.fq.gz",
                         "size": 132434232,
                         "checksum": "ea12f7c24f37bdb40a3d80ce8756f8cb",
                         "checksum_type": "md5"
                     },
                     {
                         "name": "180126_icgc_2.fq.gz",
-                        "local_path": "/my/bam/path/180126_icgc_2.fq.gz",
+                        "path": "/my/bam/path/180126_icgc_2.fq.gz",
                         "size": 135632243,
                         "checksum": "68b329da9893e34099c7d8ad5cb9c940",
                         "checksum_type": "md5"
@@ -184,7 +184,7 @@
             "specimen": {
                 "specimen_id": "SP131542",
                 "specimen_type": "Normal - blood derived",
-                "normal_or_tumour_designation": "Normal",
+                "normal_tumour_designation": "Normal",
                 "sample": {
                     "sample_id": "SA567218"
                 }

@@ -15,16 +15,16 @@ definitions:
       primaryKey:
       - '#/definitions/systemProperties/properties/id'
       naturalKey:
-      - '#/properties/program'
-      - '#/properties/submitter_id'
+      - '#/properties/program_id'
+      - '#/properties/submitter_specimen_id'
       references:
       - foreignKey:
-        - '#/properties/program'
-        - '#/properties/donor_submitter_id'
+        - '#/properties/program_id'
+        - '#/properties/submitter_donor_id'
         targetEntity: 'donor'
         targetKey:  # relationship by naturalKey
-        - 'donor#/properties/program'
-        - 'donor#/properties/submitter_id'
+        - 'donor#/properties/program_id'
+        - 'donor#/properties/submitter_donor_id'
       - foreignKey:
         - '#/definitions/systemProperties/properties/donor_id'
         targetEntity: 'donor'
@@ -48,27 +48,27 @@ definitions:
         default: '#/definitions/version/const'  # where to pick up the version
 
 propertyNames:  # this will reject any unknown properties, note that 'additionalProperties: false' does not work with allOf
-  enum: [ type, program, submitter_id, donor_submitter_id, normal_or_tumour_designation, specimen_type ]
+  enum: [ type, program_id, submitter_specimen_id, submitter_donor_id, normal_tumour_designation, specimen_type ]
 
 required:
 - type
-- submitter_id
-- donor_submitter_id
-- program
-- normal_or_tumour_designation
+- submitter_specimen_id
+- submitter_donor_id
+- program_id
+- normal_tumour_designation
 - specimen_type
 
 properties:
   type:
     const: "specimen"
-  program:
-    $ref: _definitions#/common/properties/program_short_name
-  submitter_id:
+  program_id:
+    $ref: _definitions#/common/properties/program_id
+  submitter_specimen_id:
     $ref: _definitions#/common/properties/submitter_id
     description: "Submitter's specimen ID"
-  donor_submitter_id:
+  submitter_donor_id:
     $ref: _definitions#/common/properties/submitter_id
-  normal_or_tumour_designation:
+  normal_tumour_designation:
     type: string
     enum:
     - Normal

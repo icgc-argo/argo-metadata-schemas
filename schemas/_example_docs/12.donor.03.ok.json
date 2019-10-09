@@ -1,32 +1,32 @@
 [
   {
     "type": "donor",
-    "submitter_id": "A1",
-    "program": "PACA-CA",
+    "submitter_donor_id": "A1",
+    "program_id": "PACA-CA",
     "gender": "male"
   },
   {
     "type": "donor",
-    "submitter_id": "A2",
-    "program": "PACA-CA",
+    "submitter_donor_id": "A2",
+    "program_id": "PACA-CA",
     "gender": "female"
   },
   {
     "type": "donor",
-    "submitter_id": "PSI_1032",
-    "program": "PBCA-DE",
+    "submitter_donor_id": "PSI_1032",
+    "program_id": "PBCA-DE",
     "gender": "male"
   },
   {
     "type": "donor",
-    "submitter_id": "PSI_1033",
-    "program": "PBCA-DE",
+    "submitter_donor_id": "PSI_1033",
+    "program_id": "PBCA-DE",
     "gender": "other"
   },
   {
     "type": "donor",
-    "submitter_id": "AOCS-108",
-    "program": "OV-AU",
+    "submitter_donor_id": "AOCS-108",
+    "program_id": "OV-AU",
     "gender": "female",
     "_mocked_system_properties": {
       "schema_version": 1,
@@ -34,8 +34,8 @@
     },
     "_final_doc": {
       "type": "donor",
-      "submitter_id": "AOCS-108",
-      "program": "OV-AU",
+      "submitter_donor_id": "AOCS-108",
+      "program_id": "OV-AU",
       "gender": "female",
       "schema_version": 1,
       "id": "DO46394"

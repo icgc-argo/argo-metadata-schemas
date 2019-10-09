@@ -80,10 +80,10 @@ definitions:
         $ref: sequencing_experiment#/properties/library_strategy
 
 propertyNames:
-  enum: [ type, program, inputs, analysis, files ]
+  enum: [ type, program_id, inputs, analysis, files ]
 required:
 - type
-- program
+- program_id
 - inputs
 - analysis
 - files
@@ -91,8 +91,8 @@ required:
 properties:
   type:
     const: "somatic_variant_call"
-  program:
-    $ref: _definitions#/common/properties/program_short_name
+  program_id:
+    $ref: _definitions#/common/properties/program_id
   inputs:
     additionalProperties: false
     required: [ tumour, normal ]

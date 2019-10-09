@@ -1,9 +1,9 @@
 [
   {
     "type": "sample",
-    "submitter_id": "0027_CRUK_PC_0027_Blood_DNA",
-    "specimen_submitter_id": "0027_CRUK_PC_0027_Blood",
-    "program": "PRAD-UK",
+    "submitter_sample_id": "0027_CRUK_PC_0027_Blood_DNA",
+    "submitter_specimen_id": "0027_CRUK_PC_0027_Blood",
+    "program_id": "PRAD-UK",
     "sample_type": "DNA",
     "_mocked_system_properties": {
       "id": "SA567218",
@@ -12,9 +12,9 @@
     },
     "_final_doc": {
       "type": "sample",
-      "submitter_id": "0027_CRUK_PC_0027_Blood_DNA",
-      "specimen_submitter_id": "0027_CRUK_PC_0027_Blood",
-      "program": "PRAD-UK",
+      "submitter_sample_id": "0027_CRUK_PC_0027_Blood_DNA",
+      "submitter_specimen_id": "0027_CRUK_PC_0027_Blood",
+      "program_id": "PRAD-UK",
       "sample_type": "DNA",
       "schema_version": 1,
       "id": "SA567218",
@@ -23,9 +23,9 @@
   },
   {
     "type": "sample",
-    "submitter_id": "0027_CRUK_PC_0027_T1_DNA",
-    "specimen_submitter_id": "0027_CRUK_PC_0027_T1",
-    "program": "PRAD-UK",
+    "submitter_sample_id": "0027_CRUK_PC_0027_T1_DNA",
+    "submitter_specimen_id": "0027_CRUK_PC_0027_T1",
+    "program_id": "PRAD-UK",
     "sample_type": "DNA",
     "_mocked_system_properties": {
       "schema_version": 1,
@@ -34,9 +34,9 @@
     },
     "_final_doc": {
       "type": "sample",
-      "submitter_id": "0027_CRUK_PC_0027_T1_DNA",
-      "specimen_submitter_id": "0027_CRUK_PC_0027_T1",
-      "program": "PRAD-UK",
+      "submitter_sample_id": "0027_CRUK_PC_0027_T1_DNA",
+      "submitter_specimen_id": "0027_CRUK_PC_0027_T1",
+      "program_id": "PRAD-UK",
       "sample_type": "DNA",
       "schema_version": 1,
       "id": "SA567216",
@@ -45,9 +45,9 @@
   },
   {
     "type": "sample",
-    "submitter_id": "AOCS-108-1-7",
-    "specimen_submitter_id": "AOCS-108-1",
-    "program": "OV-AU",
+    "submitter_sample_id": "AOCS-108-1-7",
+    "submitter_specimen_id": "AOCS-108-1",
+    "program_id": "OV-AU",
     "sample_type": "DNA",
     "_mocked_system_properties": {
       "schema_version": 1,
@@ -56,9 +56,9 @@
     },
     "_final_doc": {
       "type": "sample",
-      "submitter_id": "AOCS-108-1-7",
-      "specimen_submitter_id": "AOCS-108-1",
-      "program": "OV-AU",
+      "submitter_sample_id": "AOCS-108-1-7",
+      "submitter_specimen_id": "AOCS-108-1",
+      "program_id": "OV-AU",
       "sample_type": "DNA",
       "schema_version": 1,
       "id": "SA505863",

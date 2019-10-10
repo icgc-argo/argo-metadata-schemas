@@ -116,7 +116,6 @@
             "specimen": {
                 "specimen_id": "SP131542",
                 "tumour_normal_designation": "Normal",
-                "tumour_normal_designation": "Normal",
                 "sample": {
                     "sample_id": "SA567218"
                 }

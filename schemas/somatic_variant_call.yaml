@@ -50,12 +50,12 @@ definitions:
             $ref: donor#/definitions/systemProperties/properties/id
           specimen:
             additionalProperties: false
-            required: [ specimen_id, specimen_type, sample ]
+            required: [ specimen_id, tumour_normal_designation, sample ]
             properties:
               specimen_id:
                 $ref: specimen#/definitions/systemProperties/properties/id
-              specimen_type:  # to be magically populated by the system through traversing back to the 'specimen'
-                $ref: specimen#/properties/specimen_type
+              tumour_normal_designation:  # to be magically populated by the system through traversing back to the 'specimen'
+                $ref: specimen#/properties/tumour_normal_designation
               sample:
                 additionalProperties: false
                 required: [ sample_id ]
@@ -64,12 +64,12 @@ definitions:
                     $ref: sample#/definitions/systemProperties/properties/id
           matched_normal:  # identified via noral/dna_alignment_id
             additionalProperties: false
-            required: [ specimen_id, specimen_type, sample ]
+            required: [ specimen_id, tumour_normal_designation, sample ]
             properties:
               specimen_id:
                 $ref: specimen#/definitions/systemProperties/properties/id
-              specimen_type:  # to be magically populated by the system through traversing back to the 'specimen'
-                $ref: specimen#/properties/specimen_type
+              tumour_normal_designation:  # to be magically populated by the system through traversing back to the 'specimen'
+                $ref: specimen#/properties/tumour_normal_designation
               sample:
                 additionalProperties: false
                 required: [ sample_id ]

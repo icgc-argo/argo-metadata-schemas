@@ -58,8 +58,7 @@
                     "donor_id": "DO46394",
                     "specimen": {
                         "specimen_id": "SP101678",
-                        "specimen_type": "Primary tumour - solid tissue",
-                        "normal_tumour_designation": "Tumour",
+                        "tumour_normal_designation": "Primary tumour",
                         "sample": {
                             "sample_id": "SA505863"
                         }
@@ -92,8 +91,7 @@
                     "donor_id": "DO46394",
                     "specimen": {
                         "specimen_id": "SP101678",
-                        "specimen_type": "Primary tumour - solid tissue",
-                        "normal_tumour_designation": "Tumour",
+                        "tumour_normal_designation": "Primary tumour",
                         "sample": {
                             "sample_id": "SA505863"
                         }
@@ -119,8 +117,7 @@
             "donor_id": "DO46394",
             "specimen": {
                 "specimen_id": "SP101678",
-                "specimen_type": "Primary tumour - solid tissue",
-                "normal_tumour_designation": "Tumour",
+                "tumour_normal_designation": "Primary tumour",
                 "sample": {
                     "sample_id": "SA505863"
                 }
@@ -183,8 +180,7 @@
             "donor_id": "DO46394",
             "specimen": {
                 "specimen_id": "SP101678",
-                "specimen_type": "Primary tumour - solid tissue",
-                "normal_tumour_designation": "Tumour",
+                "tumour_normal_designation": "Primary tumour",
                 "sample": {
                     "sample_id": "SA505863"
                 }

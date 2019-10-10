@@ -4,8 +4,7 @@
     "submitter_specimen_id": "AOCS-108-1",
     "submitter_donor_id": "AOCS-108",
     "program_id": "OV-AU",
-    "normal_tumour_designation": "Tumour",
-    "specimen_type": "Primary tumour - solid tissue",
+    "tumour_normal_designation": "Primary tumour",
     "_mocked_system_properties": {
       "id": "SP101678",
       "donor_id": "DO46394",
@@ -16,8 +15,7 @@
       "submitter_specimen_id": "AOCS-108-1",
       "submitter_donor_id": "AOCS-108",
       "program_id": "OV-AU",
-      "normal_tumour_designation": "Tumour",
-      "specimen_type": "Primary tumour - solid tissue",
+      "tumour_normal_designation": "Primary tumour",
       "id": "SP101678",
       "donor_id": "DO46394",
       "schema_version": 1
@@ -28,8 +26,7 @@
     "submitter_specimen_id": "0027_CRUK_PC_0027_Blood",
     "submitter_donor_id": "0027_CRUK_PC_0027",
     "program_id": "PRAD-UK",
-    "normal_tumour_designation": "Normal",
-    "specimen_type": "Normal - blood derived",
+    "tumour_normal_designation": "Normal",
     "_mocked_system_properties": {
       "id": "SP131542",
       "schema_version": 1,
@@ -40,8 +37,7 @@
       "submitter_specimen_id": "0027_CRUK_PC_0027_Blood",
       "submitter_donor_id": "0027_CRUK_PC_0027",
       "program_id": "PRAD-UK",
-      "normal_tumour_designation": "Normal",
-      "specimen_type": "Normal - blood derived",
+      "tumour_normal_designation": "Normal",
       "id": "SP131542",
       "schema_version": 1,
       "donor_id": "DO223959"
@@ -52,8 +48,7 @@
     "submitter_specimen_id": "0027_CRUK_PC_0027_T1",
     "submitter_donor_id": "0027_CRUK_PC_0027",
     "program_id": "PRAD-UK",
-    "normal_tumour_designation": "Tumour",
-    "specimen_type": "Primary tumour - solid tissue",
+    "tumour_normal_designation": "Primary tumour",
     "_mocked_system_properties": {
       "id": "SP131541",
       "schema_version": 1,
@@ -64,8 +59,7 @@
       "submitter_specimen_id": "0027_CRUK_PC_0027_T1",
       "submitter_donor_id": "0027_CRUK_PC_0027",
       "program_id": "PRAD-UK",
-      "normal_tumour_designation": "Tumour",
-      "specimen_type": "Primary tumour - solid tissue",
+      "tumour_normal_designation": "Primary tumour",
       "id": "SP131541",
       "schema_version": 1,
       "donor_id": "DO223959"

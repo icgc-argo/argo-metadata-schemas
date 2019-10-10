@@ -50,14 +50,12 @@ definitions:
             $ref: donor#/definitions/systemProperties/properties/id
           specimen:
             additionalProperties: false
-            required: [ specimen_id, specimen_type, normal_tumour_designation, sample ]
+            required: [ specimen_id, tumour_normal_designation, sample ]
             properties:
               specimen_id:
                 $ref: specimen#/definitions/systemProperties/properties/id
-              specimen_type:
-                $ref: specimen#/properties/specimen_type
-              normal_tumour_designation:
-                $ref: specimen#/properties/normal_tumour_designation
+              tumour_normal_designation:
+                $ref: specimen#/properties/tumour_normal_designation
               sample:
                 additionalProperties: false
                 required: [ sample_id ]

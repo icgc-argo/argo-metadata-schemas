@@ -48,15 +48,14 @@ definitions:
         default: '#/definitions/version/const'  # where to pick up the version
 
 propertyNames:  # this will reject any unknown properties, note that 'additionalProperties: false' does not work with allOf
-  enum: [ type, program_id, submitter_specimen_id, submitter_donor_id, normal_tumour_designation, specimen_type ]
+  enum: [ type, program_id, submitter_specimen_id, submitter_donor_id, tumour_normal_designation ]
 
 required:
 - type
 - submitter_specimen_id
 - submitter_donor_id
 - program_id
-- normal_tumour_designation
-- specimen_type
+- tumour_normal_designation
 
 properties:
   type:
@@ -68,14 +67,21 @@ properties:
     description: "Submitter's specimen ID"
   submitter_donor_id:
     $ref: _definitions#/common/properties/submitter_id
-  normal_tumour_designation:
+  tumour_normal_designation:
     type: string
-    enum:
-    - Normal
-    - Tumour
-  specimen_type:
-    type: string
-    enum:
-    - Normal - blood derived
-    - Primary tumour - solid tissue
-    - Recurrent tumour - other
+    enum:  # https://github.com/icgc-argo/argo-dictionary/blob/bf7ccf7bcaf202d5be813084647a8376238e4503/schemas/sample_registration.json#L78-L92
+    - "Normal"
+    - "Normal - tissue adjacent to primary tumour"
+    - "Primary tumour"
+    - "Primary tumour - adjacent to normal"
+    - "Primary tumour - additional new primary"
+    - "Recurrent tumour"
+    - "Metastatic tumour"
+    - "Metastatic tumour - metastasis local to lymph node"
+    - "Metastatic tumour - metastasis to distant location"
+    - "Metastatic tumour - additional metastatic"
+    - "Xenograft - derived from primary tumour"
+    - "Xenograft - derived from tumour cell line"
+    - "Cell line - derived from xenograft tumour"
+    - "Cell line - derived from tumour"
+    - "Cell line - derived from normal"    

@@ -1,0 +1,167 @@
+{
+  "name": "sequencing_alignment",
+  "version": 2,
+  "schema": {
+    "type": "object",
+    "required": [
+      "workflow",
+      "experiment"
+    ],
+    "properties": {
+      "workflow": {
+        "propertyNames": {
+          "enum": [
+            "name",
+            "short_name",
+            "version",
+            "run_id",
+            "inputs"
+          ]
+        },
+        "required": [
+          "name",
+          "version",
+          "run_id",
+          "inputs"
+        ],
+        "allOf": [
+          {
+            "properties": {
+              "name": {
+                "type": "string",
+                "pattern": "^[a-zA-Z][a-zA-Z0-9_-]+"
+              },
+              "inputs": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                    },
+                    "analysis_type": {
+                      "type": "string",
+                      "pattern": "^[a-zA-Z][a-zA-Z0-9_]+"
+                    }
+                  }
+                },
+                "minItems": 1
+              },
+              "run_id": {
+                "type": "string"
+              },
+              "version": {
+                "type": "string"
+              },
+              "short_name": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          },
+          {
+            "properties": {
+              "name": {
+                "const": "dna-seq-alignment"
+              },
+              "inputs": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "analysis_type": {
+                      "enum": [
+                        "sequencing_experiment",
+                        "read_group_ubam"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "experiment": {
+        "propertyNames": {
+          "enum": [
+            "platform",
+            "platform_model",
+            "sequencing_date",
+            "library_strategy",
+            "sequencing_center",
+            "sequencing_experiment_id",
+            "submitter_sequencing_experiment_id"
+          ]
+        },
+        "required": [
+          "platform",
+          "library_strategy",
+          "sequencing_experiment_id",
+          "submitter_sequencing_experiment_id"
+        ],
+        "properties": {
+          "submitter_sequencing_experiment_id": {
+            "type": "string",
+            "pattern": "^[a-zA-Z0-9]{1}[a-zA-Z0-9-_.:']{0,98}[a-zA-Z0-9]{1}$"
+          },
+          "sequencing_experiment_id": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$"
+          },
+          "platform": {
+            "enum": [
+              "CAPILLARY",
+              "LS454",
+              "ILLUMINA",
+              "SOLID",
+              "HELICOS",
+              "IONTORRENT",
+              "ONT",
+              "PACBIO",
+              "Nanopore",
+              "BGI"
+            ]
+          },
+          "platform_model": {
+            "type": "string"
+          },
+          "sequencing_date": {
+            "type": "string",
+            "oneOf": [
+              {
+                "format": "date"
+              },
+              {
+                "format": "date-time"
+              }
+            ],
+            "example": [
+              "2019-06-16",
+              "2019-06-16T20:20:39+00:00"
+            ]
+          },
+          "library_strategy": {
+            "enum": [
+              "WGS",
+              "WXS",
+              "RNA-Seq",
+              "Bisulfite-Seq",
+              "ChIP-Seq"
+            ]
+          },
+          "sequencing_center": {
+            "type": "string"
+          },
+          "read_group_count": {
+            "type": "integer",
+            "minimum": 1
+          }
+        }
+      }
+    }
+  }
+}

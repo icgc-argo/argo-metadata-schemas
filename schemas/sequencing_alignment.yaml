@@ -1,0 +1,34 @@
+$schema: "http://json-schema.org/draft-07/schema#"
+
+$id: sequencing_alignment
+version: 2
+
+type: object
+required:
+- workflow
+- experiment
+properties:
+  workflow:
+    propertyNames:
+      enum: [ name, short_name, version, run_id, inputs ]
+    required: [ name, version, run_id, inputs ]
+    allOf:
+    - $ref: _defs#/workflow
+    - properties:
+        name:
+          const: dna-seq-alignment
+        inputs:
+          type: array
+          items:
+            type: object
+            properties:
+              analysis_type:
+                enum: [ sequencing_experiment, read_group_ubam ]
+
+  experiment:
+    propertyNames:
+      enum: [ platform, platform_model, sequencing_date, library_strategy, sequencing_center,
+              sequencing_experiment_id, submitter_sequencing_experiment_id ]
+    required: [ platform, library_strategy,
+                sequencing_experiment_id, submitter_sequencing_experiment_id ]
+    $ref: _defs#/experiment

@@ -33,9 +33,6 @@ experiment:
     submitter_sequencing_experiment_id:
       type: string
       pattern: "^[a-zA-Z0-9]{1}[a-zA-Z0-9-_.:']{0,98}[a-zA-Z0-9]{1}$"
-    sequencing_experiment_id:
-      type: string
-      pattern: "^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$"
     platform:
       enum:
       - CAPILLARY
@@ -49,9 +46,9 @@ experiment:
       - Nanopore
       - BGI
     platform_model:
-      type: string
+      type: [ "string", "null" ]
     sequencing_date:
-      type: string
+      type: [ "string", "null" ]
       oneOf:
       - format: "date"
       - format: "date-time"
@@ -64,12 +61,9 @@ experiment:
       - Bisulfite-Seq
       - ChIP-Seq
     sequencing_center:
-      type: string
-    read_group_count:
-      type: integer
-      minimum: 1
+      type: [ "string", "null" ]
 
-read_group:
+read_groups:
   type: object
   allOf:
   - properties:
@@ -88,7 +82,9 @@ read_group:
         - string
         - 'null'
       read_length_r1:
-        type: integer
+        type:
+        - integer
+        - "null"
         minimum: 20
       read_length_r2:
         type:
@@ -104,7 +100,6 @@ read_group:
         type:
         - string
         - "null"
-
   - if:
       properties:
         is_paired_end:
@@ -114,9 +109,15 @@ read_group:
         file_r2:
           type: string
         read_length_r2:
-          type: integer
+          type:
+          - integer
+          - "null"
+          minimum: 20
         insert_size:
-          type: integer
+          type:
+          - integer
+          - "null"
+          minimum: 0
     else:  # if not paired end, read_lenght_r2, file_r2 and insert_size must be null
       properties:
         file_r2:

@@ -1,48 +1,31 @@
-$schema: "http://json-schema.org/draft-07/schema#"
+name: sequencing_experiment
+schema:
+  type: object
+  required:
+  - experiment
+  - read_group_count
+  - read_groups
 
-$id: sequencing_experiment
-version: 11
+  properties:
 
-type: object
-required:
-- submitter_sequencing_experiment_id
-- experiment
-- read_group_count
-- read_groups
-- workflow
-properties:
-  submitter_sequencing_experiment_id:
-    $ref: _defs#/experiment/properties/submitter_sequencing_experiment_id
-
-  workflow:
-    propertyNames:
-      enum: [ name, short_name, version, run_id ]
-    required: [ name, version, run_id ]
-    allOf:
-    - $ref: _defs#/workflow
-    - properties:
-        name:
-          const: sequencing-data-submission
-        short_name:
-          const: seq-submission
-
-  experiment:
-    propertyNames:
-      enum: [ platform, platform_model, sequencing_date, library_strategy, sequencing_center ]
-    required: [ platform, library_strategy ]
-    $ref: _defs#/experiment
-
-  read_group_count:
-    $ref: _defs#/experiment/properties/read_group_count
-
-  read_groups:
-    type: array
-    items:
-      type: object
-      minItems: 1
+    experiment:
       propertyNames:
-        enum: [ library_name, platform_unit, is_paired_end, read_length_r1, file_r1, insert_size,
-                read_length_r2, file_r2, sample_barcode, submitter_read_group_id ]
-      required: [ library_name, platform_unit, is_paired_end, read_length_r1, file_r1, insert_size,
+        enum: [ submitter_sequencing_experiment_id, platform, platform_model, sequencing_date, library_strategy, sequencing_center ]
+      required: [ submitter_sequencing_experiment_id, platform, library_strategy ]
+      $ref: ./_defs.yaml#/experiment
+
+    read_group_count:
+      type: integer
+      minimum: 1
+
+    read_groups:
+      type: array
+      items:
+        type: object
+        minItems: 1
+        propertyNames:
+          enum: [ library_name, platform_unit, is_paired_end, read_length_r1, file_r1, insert_size,
                   read_length_r2, file_r2, sample_barcode, submitter_read_group_id ]
-      $ref: _defs#/read_group
+        required: [ library_name, platform_unit, is_paired_end, read_length_r1, file_r1, insert_size,
+                    read_length_r2, file_r2, sample_barcode, submitter_read_group_id ]
+        $ref: ./_defs.yaml#/read_groups

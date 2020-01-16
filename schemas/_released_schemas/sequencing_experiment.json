@@ -51,21 +51,25 @@
             ]
           },
           "sequencing_date": {
-            "type": [
-              "string",
-              "null"
-            ],
             "oneOf": [
               {
-                "format": "date"
+                "type": "string",
+                "oneOf": [
+                  {
+                    "format": "date"
+                  },
+                  {
+                    "format": "date-time"
+                  }
+                ],
+                "example": [
+                  "2019-06-16",
+                  "2019-06-16T20:20:39+00:00"
+                ]
               },
               {
-                "format": "date-time"
+                "type": "null"
               }
-            ],
-            "example": [
-              "2019-06-16",
-              "2019-06-16T20:20:39+00:00"
             ]
           },
           "library_strategy": {

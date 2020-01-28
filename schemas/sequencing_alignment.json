@@ -1,36 +1,33 @@
 {
-  "name": "sequencing_experiment",
-  "version": 11,
+  "name": "sequencing_alignment",
   "schema": {
     "type": "object",
     "required": [
-      "submitter_sequencing_experiment_id",
+      "workflow",
       "experiment",
       "read_group_count",
-      "read_groups",
-      "workflow"
+      "read_groups"
     ],
     "properties": {
-      "submitter_sequencing_experiment_id": {
-        "type": "string",
-        "pattern": "^[a-zA-Z0-9]{1}[a-zA-Z0-9-_.:']{0,98}[a-zA-Z0-9]{1}$"
-      },
       "workflow": {
         "propertyNames": {
           "enum": [
             "name",
             "short_name",
             "version",
-            "run_id"
+            "run_id",
+            "inputs"
           ]
         },
         "required": [
           "name",
           "version",
-          "run_id"
+          "run_id",
+          "inputs"
         ],
         "allOf": [
           {
+            "type": "object",
             "properties": {
               "name": {
                 "type": "string",
@@ -69,11 +66,19 @@
           },
           {
             "properties": {
-              "name": {
-                "const": "sequencing-data-submission"
-              },
-              "short_name": {
-                "const": "seq-submission"
+              "inputs": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "analysis_type": {
+                      "enum": [
+                        "sequencing_experiment",
+                        "read_group_ubam"
+                      ]
+                    }
+                  }
+                }
               }
             }
           }
@@ -86,21 +91,19 @@
             "platform_model",
             "sequencing_date",
             "library_strategy",
-            "sequencing_center"
+            "sequencing_center",
+            "submitter_sequencing_experiment_id"
           ]
         },
         "required": [
           "platform",
           "library_strategy"
         ],
+        "type": "object",
         "properties": {
           "submitter_sequencing_experiment_id": {
             "type": "string",
             "pattern": "^[a-zA-Z0-9]{1}[a-zA-Z0-9-_.:']{0,98}[a-zA-Z0-9]{1}$"
-          },
-          "sequencing_experiment_id": {
-            "type": "string",
-            "pattern": "^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$"
           },
           "platform": {
             "enum": [
@@ -117,21 +120,31 @@
             ]
           },
           "platform_model": {
-            "type": "string"
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "sequencing_date": {
-            "type": "string",
             "oneOf": [
               {
-                "format": "date"
+                "type": "string",
+                "oneOf": [
+                  {
+                    "format": "date"
+                  },
+                  {
+                    "format": "date-time"
+                  }
+                ],
+                "example": [
+                  "2019-06-16",
+                  "2019-06-16T20:20:39+00:00"
+                ]
               },
               {
-                "format": "date-time"
+                "type": "null"
               }
-            ],
-            "example": [
-              "2019-06-16",
-              "2019-06-16T20:20:39+00:00"
             ]
           },
           "library_strategy": {
@@ -144,11 +157,10 @@
             ]
           },
           "sequencing_center": {
-            "type": "string"
-          },
-          "read_group_count": {
-            "type": "integer",
-            "minimum": 1
+            "type": [
+              "string",
+              "null"
+            ]
           }
         }
       },
@@ -212,7 +224,10 @@
                   ]
                 },
                 "read_length_r1": {
-                  "type": "integer",
+                  "type": [
+                    "integer",
+                    "null"
+                  ],
                   "minimum": 20
                 },
                 "read_length_r2": {
@@ -251,10 +266,18 @@
                     "type": "string"
                   },
                   "read_length_r2": {
-                    "type": "integer"
+                    "type": [
+                      "integer",
+                      "null"
+                    ],
+                    "minimum": 20
                   },
                   "insert_size": {
-                    "type": "integer"
+                    "type": [
+                      "integer",
+                      "null"
+                    ],
+                    "minimum": 0
                   }
                 }
               },

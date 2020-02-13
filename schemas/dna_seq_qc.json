@@ -1,0 +1,166 @@
+{
+  "name": "dna_seq_qc",
+  "schema": {
+    "type": "object",
+    "required": [
+      "workflow",
+      "experiment"
+    ],
+    "properties": {
+      "workflow": {
+        "propertyNames": {
+          "enum": [
+            "name",
+            "short_name",
+            "version",
+            "run_id",
+            "inputs"
+          ]
+        },
+        "required": [
+          "name",
+          "version",
+          "run_id",
+          "inputs"
+        ],
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "pattern": "^[a-zA-Z][a-zA-Z0-9_-]+"
+              },
+              "inputs": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                    },
+                    "analysis_type": {
+                      "type": "string",
+                      "pattern": "^[a-zA-Z][a-zA-Z0-9_]+"
+                    }
+                  }
+                },
+                "minItems": 1
+              },
+              "run_id": {
+                "type": "string"
+              },
+              "version": {
+                "type": "string"
+              },
+              "short_name": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          },
+          {
+            "properties": {
+              "inputs": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "analysis_type": {
+                      "enum": [
+                        "sequencing_experiment"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "experiment": {
+        "propertyNames": {
+          "enum": [
+            "platform",
+            "platform_model",
+            "sequencing_date",
+            "library_strategy",
+            "sequencing_center",
+            "submitter_sequencing_experiment_id"
+          ]
+        },
+        "required": [
+          "platform",
+          "library_strategy"
+        ],
+        "type": "object",
+        "properties": {
+          "submitter_sequencing_experiment_id": {
+            "type": "string",
+            "pattern": "^[a-zA-Z0-9]{1}[a-zA-Z0-9-_.:']{0,98}[a-zA-Z0-9]{1}$"
+          },
+          "platform": {
+            "enum": [
+              "CAPILLARY",
+              "LS454",
+              "ILLUMINA",
+              "SOLID",
+              "HELICOS",
+              "IONTORRENT",
+              "ONT",
+              "PACBIO",
+              "Nanopore",
+              "BGI"
+            ]
+          },
+          "platform_model": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "sequencing_date": {
+            "oneOf": [
+              {
+                "type": "string",
+                "oneOf": [
+                  {
+                    "format": "date"
+                  },
+                  {
+                    "format": "date-time"
+                  }
+                ],
+                "example": [
+                  "2019-06-16",
+                  "2019-06-16T20:20:39+00:00"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "library_strategy": {
+            "enum": [
+              "WGS",
+              "WXS",
+              "RNA-Seq",
+              "Bisulfite-Seq",
+              "ChIP-Seq"
+            ]
+          },
+          "sequencing_center": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

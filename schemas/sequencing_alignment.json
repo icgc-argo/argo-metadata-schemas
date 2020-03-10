@@ -30,7 +30,7 @@
             "properties": {
               "name": {
                 "type": "string",
-                "pattern": "^[a-zA-Z][a-zA-Z0-9_-]+"
+                "pattern": "^[a-zA-Z][a-zA-Z0-9_\\-]+"
               },
               "inputs": {
                 "type": "array",
@@ -96,7 +96,7 @@
         "properties": {
           "submitter_sequencing_experiment_id": {
             "type": "string",
-            "pattern": "^[a-zA-Z0-9]{1}[a-zA-Z0-9-_.:']{0,98}[a-zA-Z0-9]{1}$"
+            "pattern": "^[a-zA-Z0-9]{1}[a-zA-Z0-9\\-_\\.:']{0,98}[a-zA-Z0-9]{1}$"
           },
           "platform": {
             "enum": [
@@ -197,7 +197,7 @@
               "properties": {
                 "submitter_read_group_id": {
                   "type": "string",
-                  "pattern": "^[a-zA-Z0-9_\:\.\-]+$"
+                  "pattern": "^[a-zA-Z0-9\\-_:\\.]+$"
                 },
                 "library_name": {
                   "type": "string"

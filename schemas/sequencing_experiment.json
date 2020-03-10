@@ -128,7 +128,8 @@
             {
               "properties": {
                 "submitter_read_group_id": {
-                  "type": "string"
+                  "type": "string",
+                  "pattern": "^[a-zA-Z0-9_\:\.\-]+$"
                 },
                 "library_name": {
                   "type": "string"

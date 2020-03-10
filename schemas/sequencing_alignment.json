@@ -13,7 +13,6 @@
         "propertyNames": {
           "enum": [
             "name",
-            "short_name",
             "version",
             "run_id",
             "inputs"
@@ -38,7 +37,7 @@
                 "items": {
                   "type": "object",
                   "properties": {
-                    "id": {
+                    "input_analysis_id": {
                       "type": "string",
                       "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
                     },
@@ -55,12 +54,6 @@
               },
               "version": {
                 "type": "string"
-              },
-              "short_name": {
-                "type": [
-                  "string",
-                  "null"
-                ]
               }
             }
           },
@@ -203,7 +196,8 @@
             {
               "properties": {
                 "submitter_read_group_id": {
-                  "type": "string"
+                  "type": "string",
+                  "pattern": "^[a-zA-Z0-9_\:\.\-]+$"
                 },
                 "library_name": {
                   "type": "string"

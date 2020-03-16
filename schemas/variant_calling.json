@@ -1,0 +1,73 @@
+{
+  "name": "variant_calling",
+  "schema": {
+    "type": "object",
+    "required": [
+      "workflow",
+      "experiment"
+    ],
+    "properties": {
+      "workflow": {
+        "propertyNames": {
+          "enum": [
+            "name",
+            "short_name",
+            "version",
+            "run_id",
+            "inputs"
+          ]
+        },
+        "required": [
+          "name",
+          "short_name",
+          "version",
+          "run_id",
+          "inputs"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_\\-]+"
+          },
+          "short_name": {
+            "type": "string",
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_\\-]+"
+          },
+          "inputs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "tumour_analysis_id": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                },
+                "normal_analysis_id": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                },
+                "analysis_type": {
+                  "type": "string",
+                  "const": "sequencing_alignment"
+                }
+              }
+            },
+            "minItems": 2,
+            "maxItems": 2
+          },
+          "run_id": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          }
+        }
+      },
+      "experiment": {
+        "type": "object",
+        "const": {}
+      }
+    }
+  }
+}

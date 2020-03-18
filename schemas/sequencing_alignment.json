@@ -177,6 +177,7 @@
               "read_length_r2",
               "file_r2",
               "sample_barcode",
+              "read_group_id_in_bam",
               "submitter_read_group_id"
             ]
           },
@@ -198,6 +199,13 @@
                 "submitter_read_group_id": {
                   "type": "string",
                   "pattern": "^[a-zA-Z0-9\\-_:\\.]+$"
+                },
+                "read_group_id_in_bam": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "pattern": "^[a-zA-Z0-9\\-_:\\.']+$"
                 },
                 "library_name": {
                   "type": "string"

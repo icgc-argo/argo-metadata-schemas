@@ -1,0 +1,189 @@
+{
+  "aliases": null,
+  "settings": {
+    "index.stuff": null
+  },
+  "mapping": {
+    "dynamic": false,
+    "date_detection": false,
+    "properties": {
+      "file_autocomplete": {
+        "fields": {
+          "analyzed": null,
+          "lowercase": null
+        },
+        "type": "keyword"
+      },
+      "study_id": {
+        "type": "keyword"
+      },
+      "object_id": {
+        "type": "keyword"
+      },
+      "file_type": {
+        "type": "keyword"
+      },
+      "data_type": {
+        "type": "keyword"
+      },
+      "file_acess": {
+        "type": "keyword"
+      },
+      "analysis": {
+        "properties": {
+          "analysis_id": {
+            "type": "keyword"
+          },
+          "analysis_type": {
+            "type": "keyword"
+          },
+          "analysis_version": {
+            "type": "integer"
+          },
+          "experiment": {
+            "type": "object",
+            "properties": {
+              "platform": {
+                "type": "keyword"
+              },
+              "platform_model": {
+                "type": "keyword"
+              },
+              "sequencing_date": {
+                "type": "keyword"
+              },
+              "library_name": {
+                "type": "keyword"
+              },
+              "library_strategy": {
+                "type": "keyword"
+              },
+              "sequencing_center": {
+                "type": "keyword"
+              }
+            }
+          }
+        }
+      },
+      "dynamic": {
+        "properties": {
+          "workflow_name": {
+            "type": "keyword"
+          },
+          "workflow_type": {
+            "type": "keyword"
+          },
+          "analysis_software": {
+            "type": "keyword"
+          }
+        }
+      },
+      "files": {
+        "properties": {
+          "id": {
+            "type": "keyword"
+          },
+          "size": {
+            "type": "integer"
+          },
+          "md5sum": {
+            "type": "keyword"
+          },
+          "name": {
+            "type": "keyword"
+          }
+        }
+      },
+      "index_file": {
+        "properties": {
+          "object_id": {
+            "=type": "keyword"
+          },
+          "format": {
+            "type": "keyword"
+          },
+          "md5_sum": {
+            "type": "keyword"
+          },
+          "name": {
+            "type": "keyword"
+          },
+          "size": {
+            "type": "integer"
+          }
+        }
+      },
+      "donor": {
+        "type": "nested",
+        "properties": {
+          "id": {
+            "type": "keyword"
+          },
+          "submitter_donor_id": {
+            "type": "keyword"
+          },
+          "gender": {
+            "type": "keyword"
+          },
+          "specimen": {
+            "type": "nested",
+            "properties": {
+              "id": {
+                "type": "keyword"
+              },
+              "submitter_specimen_id": {
+                "type": "keyword"
+              },
+              "tumour_normal_designation": {
+                "type": "keyword"
+              },
+              "specimen_tissue_source": {
+                "type": "keyword"
+              },
+              "specimen_type": {
+                "type": "keyword"
+              },
+              "samples": {
+                "type": "nested",
+                "properties": {
+                  "id": {
+                    "type": "keyword"
+                  },
+                  "submitted_id": {
+                    "type": "keyword"
+                  },
+                  "sample_type": {
+                    "type": "keyword"
+                  },
+                  "matched_normal_submitter_sample_id": {
+                    "type": "keyword"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "repositories": {
+        "type": "nested",
+        "properties": {
+          "code": {
+            "type": "keyword"
+          },
+          "name": {
+            "type": "keyword"
+          },
+          "organization": {
+            "type": "keyword"
+          },
+          "country": {
+            "type": "keyword"
+          },
+          "url": {
+            "type": "keyword"
+          }
+        }
+      }
+    }
+  }
+}

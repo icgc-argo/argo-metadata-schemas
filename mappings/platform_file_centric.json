@@ -1,7 +1,34 @@
 {
-  "aliases": null,
+  "aliases": {
+    "file_centric": null
+  },
   "settings": {
-    "index.stuff": null
+    "index.number_of_shards": 11,
+    "index.max_results_window": 300000,
+    "analysis": {
+      "analyzer": {
+        "autocomplete_analyzed": {
+          "filter": ["lowercase", "edge_ngram"],
+          "tokenizer": "standard"
+        },
+        "autocomplete_prefix": {
+          "filter": ["lowercase", "edge_ngram"],
+          "tokenizer": "keyword"
+        },
+        "lowercase_keyword": {
+          "filter": ["lowercase"],
+          "tokenizer": "keyword"
+        }
+      },
+      "filter": {
+        "edge_ngram": {
+          "max_gram": 20,
+          "min_gram": 20,
+          "side": "front",
+          "type": "edge_ngram"
+        }
+      }
+    }
   },
   "mapping": {
     "dynamic": false,
@@ -15,19 +42,22 @@
         "type": "keyword"
       },
       "program_id": {
-        "type": "keyword"
+        "type": "keyword",
+        "copy_to": ["file_autocomplete"]
       },
       "primary_site": {
         "type": "keyword"
       },
       "object_id": {
-        "type": "keyword"
+        "type": "keyword",
+        "copy_to": ["file_autocomplete"]
       },
       "file_type": {
         "type": "keyword"
       },
       "data_type": {
-        "type": "keyword"
+        "type": "keyword",
+        "copy_to": ["file_autocomplete"]
       },
       "file_access": {
         "type": "keyword"
@@ -35,7 +65,8 @@
       "analysis": {
         "properties": {
           "analysis_id": {
-            "type": "keyword"
+            "type": "keyword",
+            "copy_to": "file_autocomplete"
           },
           "analysis_type": {
             "type": "keyword"
@@ -81,7 +112,7 @@
           }
         }
       },
-      "files": {
+      "file": {
         "properties": {
           "id": {
             "type": "keyword"
@@ -100,7 +131,7 @@
       "index_file": {
         "properties": {
           "object_id": {
-            "=type": "keyword"
+            "type": "keyword"
           },
           "format": {
             "type": "keyword"
@@ -116,14 +147,16 @@
           }
         }
       },
-      "donor": {
+      "donors": {
         "type": "nested",
         "properties": {
           "id": {
-            "type": "keyword"
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
           },
           "submitter_donor_id": {
-            "type": "keyword"
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
           },
           "gender": {
             "type": "keyword"
@@ -162,7 +195,7 @@
               }
             }
           },
-          "follow_up": {
+          "follow_ups": {
             "type": "nested",
             "properties": {
               "id": {
@@ -176,7 +209,7 @@
               }
             }
           },
-          "treatment": {
+          "treatments": {
             "type": "nested",
             "properties": {
               "id": {
@@ -190,14 +223,16 @@
               }
             }
           },
-          "specimen": {
+          "specimens": {
             "type": "nested",
             "properties": {
               "id": {
-                "type": "keyword"
+                "type": "keyword",
+                "copy_to": ["file_autocomplete"]
               },
               "submitter_specimen_id": {
-                "type": "keyword"
+                "type": "keyword",
+                "copy_to": ["file_autocomplete"]
               },
               "tumour_normal_designation": {
                 "type": "keyword"
@@ -239,10 +274,12 @@
                 "type": "nested",
                 "properties": {
                   "id": {
-                    "type": "keyword"
+                    "type": "keyword",
+                    "copy_to": ["file_autocomplete"]
                   },
-                  "submitted_id": {
-                    "type": "keyword"
+                  "submitter_sample_id": {
+                    "type": "keyword",
+                    "copy_to": ["file_autocomplete"]
                   },
                   "sample_type": {
                     "type": "keyword"

@@ -30,7 +30,7 @@
       }
     }
   },
-  "mapping": {
+  "mappings": {
     "dynamic": false,
     "date_detection": false,
     "properties": {

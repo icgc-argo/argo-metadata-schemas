@@ -1,6 +1,6 @@
 {
   "aliases": {
-    "file_centric": null
+    "file_centric": {}
   },
   "settings": {
     "index.number_of_shards": 11,

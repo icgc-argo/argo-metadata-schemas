@@ -29,7 +29,7 @@
       "data_type": {
         "type": "keyword"
       },
-      "file_acess": {
+      "file_access": {
         "type": "keyword"
       },
       "analysis": {
@@ -68,16 +68,17 @@
           }
         }
       },
-      "dynamic": null,
-      "properties": {
-        "workflow_name": {
-          "type": "keyword"
-        },
-        "workflow_type": {
-          "type": "keyword"
-        },
-        "analysis_software": {
-          "type": "keyword"
+      "dynamic": {
+        "properties": {
+          "workflow_name": {
+            "type": "keyword"
+          },
+          "workflow_type": {
+            "type": "keyword"
+          },
+          "analysis_software": {
+            "type": "keyword"
+          }
         }
       },
       "files": {

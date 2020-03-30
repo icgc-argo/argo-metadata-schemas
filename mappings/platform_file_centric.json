@@ -100,7 +100,7 @@
           }
         }
       },
-      "dynamic": {
+      "workflow": {
         "properties": {
           "workflow_name": {
             "type": "keyword"

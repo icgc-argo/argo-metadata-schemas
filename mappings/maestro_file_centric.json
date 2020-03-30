@@ -96,7 +96,8 @@
                 "type": "date"
               },
               "library_name": {
-                "type": "keyword"
+                "type": "keyword",
+                "copy_to": "file_autocomplete"
               },
               "library_strategy": {
                 "type": "keyword"

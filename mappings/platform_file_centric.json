@@ -87,7 +87,8 @@
                 "type": "date"
               },
               "library_name": {
-                "type": "keyword"
+                "type": "keyword",
+                "copy_to": "file_autocomplete"
               },
               "library_strategy": {
                 "type": "keyword"
@@ -176,7 +177,7 @@
                 "type": "keyword"
               },
               "age_at_diagnosis": {
-                "type": "keyword"
+                "type": "integer"
               },
               "cancer_type_code": {
                 "type": "keyword"

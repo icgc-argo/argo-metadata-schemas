@@ -136,7 +136,7 @@
           "format": {
             "type": "keyword"
           },
-          "md5_sum": {
+          "md5sum": {
             "type": "keyword"
           },
           "name": {

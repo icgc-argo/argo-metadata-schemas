@@ -93,7 +93,7 @@
                 "type": "keyword"
               },
               "sequencing_date": {
-                "type": "keyword"
+                "type": "date"
               },
               "library_name": {
                 "type": "keyword"

@@ -7,7 +7,7 @@
     "index.max_results_window": 300000,
     "analysis": {
       "analyzer": {
-        "autocomplete_analyzed": {
+        "autocomplete_analyzer": {
           "filter": ["lowercase", "edge_ngram"],
           "tokenizer": "standard"
         },
@@ -37,16 +37,16 @@
       "file_autocomplete": {
         "fields": {
           "analyzed": {
-            "analyzer": "autocomplete_prefix",
+            "analyzer": "autocomplete_analyzer",
             "search_analyzer": "lowercase_keyword",
             "type": "text"
           },
           "lowercase": {
-            "analyzer": "autocomplete_prefix",
+            "analyzer": "lowercase_keyword",
             "type": "text"
           },
           "prefix": {
-            "analyzer": "autocomplete_prefix",
+            "analyzer": "autocomplete_analyzer",
             "search_analyzer": "lowercase_keyword",
             "type": "text"
           }
@@ -83,6 +83,19 @@
           "analysis_version": {
             "type": "integer"
           },
+          "workflow": {
+            "properties": {
+              "workflow_name": {
+                "type": "keyword"
+              },
+              "workflow_type": {
+                "type": "keyword"
+              },
+              "analysis_software": {
+                "type": "keyword"
+              }
+            }
+          },
           "experiment": {
             "type": "object",
             "properties": {
@@ -97,7 +110,7 @@
               },
               "library_name": {
                 "type": "keyword",
-                "copy_to": "file_autocomplete"
+                "copy_to": ["file_autocomplete"]
               },
               "library_strategy": {
                 "type": "keyword"
@@ -106,19 +119,6 @@
                 "type": "keyword"
               }
             }
-          }
-        }
-      },
-      "workflow": {
-        "properties": {
-          "workflow_name": {
-            "type": "keyword"
-          },
-          "workflow_type": {
-            "type": "keyword"
-          },
-          "analysis_software": {
-            "type": "keyword"
           }
         }
       },

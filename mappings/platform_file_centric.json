@@ -7,7 +7,7 @@
     "index.max_results_window": 300000,
     "analysis": {
       "analyzer": {
-        "autocomplete_analyzed": {
+        "autocomplete_analyzer": {
           "filter": ["lowercase", "edge_ngram"],
           "tokenizer": "standard"
         },
@@ -23,7 +23,7 @@
       "filter": {
         "edge_ngram": {
           "max_gram": 20,
-          "min_gram": 20,
+          "min_gram": 1,
           "side": "front",
           "type": "edge_ngram"
         }
@@ -36,10 +36,21 @@
     "properties": {
       "file_autocomplete": {
         "fields": {
-          "analyzed": null,
-          "lowercase": null
-        },
-        "type": "keyword"
+          "analyzed": {
+            "analyzer": "autocomplete_analyzer",
+            "search_analyzer": "lowercase_keyword",
+            "type": "text"
+          },
+          "lowercase": {
+            "analyzer": "lowercase_keyword",
+            "type": "text"
+          },
+          "prefix": {
+            "analyzer": "autocomplete_prefix",
+            "search_analyzer": "lowercase_keyword",
+            "type": "text"
+          }
+        }
       },
       "program_id": {
         "type": "keyword",
@@ -66,7 +77,7 @@
         "properties": {
           "analysis_id": {
             "type": "keyword",
-            "copy_to": "file_autocomplete"
+            "copy_to": ["file_autocomplete"]
           },
           "analysis_type": {
             "type": "keyword"

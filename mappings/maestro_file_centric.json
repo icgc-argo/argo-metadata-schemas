@@ -23,7 +23,7 @@
       "filter": {
         "edge_ngram": {
           "max_gram": 20,
-          "min_gram": 20,
+          "min_gram": 1,
           "side": "front",
           "type": "edge_ngram"
         }
@@ -46,7 +46,7 @@
             "type": "text"
           },
           "prefix": {
-            "analyzer": "autocomplete_analyzer",
+            "analyzer": "autocomplete_prefix",
             "search_analyzer": "lowercase_keyword",
             "type": "text"
           }

@@ -85,6 +85,16 @@
           "analysis_version": {
             "type": "integer"
           },
+          "workflow": {
+            "properties": {
+              "workflow_name": {
+                "type": "keyword"
+              },
+              "workflow_version": {
+                "type": "keyword"
+              }
+            }
+          },
           "experiment": {
             "type": "object",
             "properties": {

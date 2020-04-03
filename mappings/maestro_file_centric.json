@@ -102,20 +102,7 @@
               "platform": {
                 "type": "keyword"
               },
-              "platform_model": {
-                "type": "keyword"
-              },
-              "sequencing_date": {
-                "type": "date"
-              },
-              "library_name": {
-                "type": "keyword",
-                "copy_to": ["file_autocomplete"]
-              },
               "library_strategy": {
-                "type": "keyword"
-              },
-              "sequencing_center": {
                 "type": "keyword"
               }
             }

@@ -108,19 +108,6 @@
           }
         }
       },
-      "workflow": {
-        "properties": {
-          "workflow_name": {
-            "type": "keyword"
-          },
-          "workflow_type": {
-            "type": "keyword"
-          },
-          "analysis_software": {
-            "type": "keyword"
-          }
-        }
-      },
       "file": {
         "properties": {
           "id": {

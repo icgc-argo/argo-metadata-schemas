@@ -191,7 +191,8 @@
                     "type": "keyword"
                   },
                   "matched_normal_submitter_sample_id": {
-                    "type": "keyword"
+                    "type": "keyword",
+                    "copy_to": ["file_autocomplete"]
                   }
                 }
               }

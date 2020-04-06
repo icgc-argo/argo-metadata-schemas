@@ -57,7 +57,8 @@
         "copy_to": ["file_autocomplete"]
       },
       "primary_site": {
-        "type": "keyword"
+        "type": "keyword",
+        "copy_to": ["file_autocomplete"]
       },
       "object_id": {
         "type": "keyword",
@@ -120,7 +121,8 @@
             "type": "keyword"
           },
           "name": {
-            "type": "keyword"
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
           }
         }
       },
@@ -281,7 +283,8 @@
                     "type": "keyword"
                   },
                   "matched_normal_submitter_sample_id": {
-                    "type": "keyword"
+                    "type": "keyword",
+                    "copy_to": ["file_autocomplete"]
                   }
                 }
               }

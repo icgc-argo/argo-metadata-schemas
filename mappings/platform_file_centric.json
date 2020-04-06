@@ -170,9 +170,6 @@
           },
           "primary_diagnosis": {
             "properties": {
-              "id": {
-                "type": "keyword"
-              },
               "age_at_diagnosis": {
                 "type": "integer"
               },
@@ -199,6 +196,9 @@
               "id": {
                 "type": "keyword"
               },
+              "submitter_follow_up_id": {
+                "type": "keyword"
+              },
               "disease_status_at_followup": {
                 "type": "keyword"
               },
@@ -211,6 +211,9 @@
             "type": "nested",
             "properties": {
               "id": {
+                "type": "keyword"
+              },
+              "submitter_treatment_id": {
                 "type": "keyword"
               },
               "treatment_type": {

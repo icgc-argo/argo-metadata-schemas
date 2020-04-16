@@ -27,7 +27,7 @@
         "type": "object",
         "properties": {
           "submitter_sequencing_experiment_id": {
-            "type": "string",
+            "type": ["string", "null"],
             "pattern": "^[a-zA-Z0-9]{1}[a-zA-Z0-9\\-_\\.:']{0,98}[a-zA-Z0-9]{1}$"
           },
           "platform": {

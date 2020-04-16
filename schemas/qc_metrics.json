@@ -91,14 +91,14 @@
             "platform",
             "platform_model",
             "sequencing_date",
-            "library_strategy",
+            "experimental_strategy",
             "sequencing_center",
             "submitter_sequencing_experiment_id"
           ]
         },
         "required": [
           "platform",
-          "library_strategy"
+          "experimental_strategy"
         ],
         "type": "object",
         "properties": {
@@ -148,7 +148,7 @@
               }
             ]
           },
-          "library_strategy": {
+          "experimental_strategy": {
             "enum": [
               "WGS",
               "WXS",

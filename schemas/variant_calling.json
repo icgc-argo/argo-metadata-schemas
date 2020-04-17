@@ -4,35 +4,52 @@
     "type": "object",
     "required": [
       "workflow",
-      "experiment"
+      "experiment",
+      "variant_class",
+      "variant_type"
     ],
     "properties": {
       "workflow": {
         "propertyNames": {
           "enum": [
-            "name",
-            "short_name",
-            "version",
+            "workflow_name",
+            "workflow_short_name",
+            "workflow_version",
+            "analysis_tools",
+            "genome_build",
             "run_id",
             "inputs"
           ]
         },
         "required": [
-          "name",
-          "short_name",
-          "version",
+          "workflow_name",
+          "workflow_short_name",
+          "workflow_version",
+          "analysis_tools",
+          "genome_build",
           "run_id",
           "inputs"
         ],
         "type": "object",
         "properties": {
-          "name": {
+          "workflow_name": {
             "type": "string",
             "pattern": "^[a-zA-Z][a-zA-Z0-9_\\-]+"
           },
-          "short_name": {
+          "workflow_short_name": {
             "type": "string",
             "pattern": "^[a-zA-Z][a-zA-Z0-9_\\-]+"
+          },
+          "analysis_tools": {
+            "type": ["array", "null"],
+            "items": {
+              "type": "string",
+              "pattern": "^[a-zA-Z][a-zA-Z0-9_\\-]+"
+            }
+          },
+          "genome_build": {
+            "type": "string",
+            "enum": ["GRCh38_hla_decoy_ebv"]
           },
           "inputs": {
             "type": "array",
@@ -59,7 +76,7 @@
           "run_id": {
             "type": "string"
           },
-          "version": {
+          "workflow_version": {
             "type": "string"
           }
         }
@@ -68,14 +85,30 @@
         "type": "object",
         "propertyNames": {
           "enum": [
-            "library_strategy"
+            "platform",
+            "experimental_strategy"
           ]
         },
         "required": [
-          "library_strategy"
+          "platform",
+          "experimental_strategy"
         ],
         "properties": {
-          "library_strategy": {
+          "platform": {
+            "enum": [
+              "CAPILLARY",
+              "LS454",
+              "ILLUMINA",
+              "SOLID",
+              "HELICOS",
+              "IONTORRENT",
+              "ONT",
+              "PACBIO",
+              "Nanopore",
+              "BGI"
+            ]
+          },
+          "experimental_strategy": {
             "type": "string",
             "enum": [
               "WGS",
@@ -85,6 +118,28 @@
               "ChIP-Seq"
             ]
           }
+        }
+      },
+      "variant_class": {
+        "type": "array",
+        "items":{
+          "type": "string",
+          "enum": [
+            "germline",
+            "somatic"
+          ]
+        }
+      },
+      "variant_type": {
+        "type": "array",
+        "items":{
+          "type": "string",
+          "enum": [
+            "snv",
+            "indel",
+            "cnv",
+            "sv"
+          ]
         }
       }
     }

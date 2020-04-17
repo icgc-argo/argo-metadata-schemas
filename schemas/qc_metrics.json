@@ -11,6 +11,7 @@
         "propertyNames": {
           "enum": [
             "workflow_name",
+            "workflow_short_name",
             "workflow_version",
             "analysis_tools",
             "genome_build",
@@ -34,6 +35,10 @@
                 "type": "string",
                 "pattern": "^[a-zA-Z][a-zA-Z0-9_\\-]+"
               },
+              "workflow_short_name": {
+                "type": "string",
+                "pattern": "^[a-zA-Z][a-zA-Z0-9_\\-]+"
+              },
               "analysis_tools": {
                 "const": null
               },
@@ -47,6 +52,14 @@
                   "type": "object",
                   "properties": {
                     "input_analysis_id": {
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                    },
+                    "tumour_analysis_id": {
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                    },
+                    "normal_analysis_id": {
                       "type": "string",
                       "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
                     },
@@ -75,7 +88,8 @@
                   "properties": {
                     "analysis_type": {
                       "enum": [
-                        "sequencing_experiment"
+                        "sequencing_experiment",
+                        "sequencing_alignment"
                       ]
                     }
                   }

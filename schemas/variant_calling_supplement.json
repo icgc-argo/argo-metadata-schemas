@@ -39,11 +39,7 @@
             "pattern": "^[a-zA-Z][a-zA-Z0-9_\\-]+"
           },
           "analysis_tools": {
-            "type": ["array", "null"],
-            "items": {
-              "type": "string",
-              "pattern": "^[a-zA-Z][a-zA-Z0-9_\\-]+"
-            }
+            "const": null
           },
           "genome_build": {
             "type": "string",

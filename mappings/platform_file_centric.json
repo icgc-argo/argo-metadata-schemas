@@ -1,0 +1,320 @@
+{
+  "aliases": {
+    "file_centric": {}
+  },
+  "settings": {
+    "index.number_of_shards": 3,
+    "index.max_results_window": 300000,
+    "analysis": {
+      "analyzer": {
+        "autocomplete_analyzer": {
+          "filter": ["lowercase", "edge_ngram"],
+          "tokenizer": "standard"
+        },
+        "autocomplete_prefix": {
+          "filter": ["lowercase", "edge_ngram"],
+          "tokenizer": "keyword"
+        },
+        "lowercase_keyword": {
+          "filter": ["lowercase"],
+          "tokenizer": "keyword"
+        }
+      },
+      "filter": {
+        "edge_ngram": {
+          "max_gram": 20,
+          "min_gram": 2,
+          "side": "front",
+          "type": "edge_ngram"
+        }
+      }
+    }
+  },
+  "mappings": {
+    "dynamic": false,
+    "date_detection": false,
+    "properties": {
+      "file_autocomplete": {
+        "fields": {
+          "analyzed": {
+            "analyzer": "autocomplete_analyzer",
+            "search_analyzer": "lowercase_keyword",
+            "type": "text"
+          },
+          "lowercase": {
+            "analyzer": "lowercase_keyword",
+            "type": "text"
+          },
+          "prefix": {
+            "analyzer": "autocomplete_prefix",
+            "search_analyzer": "lowercase_keyword",
+            "type": "text"
+          }
+        }
+      },
+      "program_id": {
+        "type": "keyword",
+        "copy_to": ["file_autocomplete"]
+      },
+      "primary_site": {
+        "type": "keyword",
+        "copy_to": ["file_autocomplete"]
+      },
+      "object_id": {
+        "type": "keyword",
+        "copy_to": ["file_autocomplete"]
+      },
+      "file_type": {
+        "type": "keyword"
+      },
+      "data_type": {
+        "type": "keyword",
+        "copy_to": ["file_autocomplete"]
+      },
+      "file_access": {
+        "type": "keyword"
+      },
+      "analysis": {
+        "properties": {
+          "analysis_id": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "analysis_type": {
+            "type": "keyword"
+          },
+          "analysis_version": {
+            "type": "integer"
+          },
+          "workflow": {
+            "properties": {
+              "name": {
+                "type": "keyword"
+              },
+              "version": {
+                "type": "keyword"
+              }
+            }
+          },
+          "experiment": {
+            "type": "object",
+            "properties": {
+              "platform": {
+                "type": "keyword"
+              },
+              "library_strategy": {
+                "type": "keyword"
+              }
+            }
+          }
+        }
+      },
+      "file": {
+        "properties": {
+          "id": {
+            "type": "keyword"
+          },
+          "size": {
+            "type": "integer"
+          },
+          "md5sum": {
+            "type": "keyword"
+          },
+          "name": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          }
+        }
+      },
+      "index_file": {
+        "properties": {
+          "object_id": {
+            "type": "keyword"
+          },
+          "format": {
+            "type": "keyword"
+          },
+          "md5sum": {
+            "type": "keyword"
+          },
+          "name": {
+            "type": "keyword"
+          },
+          "size": {
+            "type": "integer"
+          }
+        }
+      },
+      "donors": {
+        "type": "nested",
+        "properties": {
+          "id": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "submitter_donor_id": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "gender": {
+            "type": "keyword"
+          },
+          "vital_status": {
+            "type": "keyword"
+          },
+          "survival_time": {
+            "type": "integer"
+          },
+          "prior_malignancy": {
+            "type": "keyword"
+          },
+          "primary_diagnosis": {
+            "properties": {
+              "age_at_diagnosis": {
+                "type": "integer"
+              },
+              "cancer_type_code": {
+                "type": "keyword"
+              },
+              "clinical_tumour_staging_system": {
+                "type": "keyword"
+              },
+              "clinical_t_category": {
+                "type": "keyword"
+              },
+              "clinical_n_category": {
+                "type": "keyword"
+              },
+              "clinical_m_category": {
+                "type": "keyword"
+              }
+            }
+          },
+          "follow_ups": {
+            "type": "nested",
+            "properties": {
+              "id": {
+                "type": "keyword"
+              },
+              "submitter_follow_up_id": {
+                "type": "keyword"
+              },
+              "disease_status_at_followup": {
+                "type": "keyword"
+              },
+              "relapse_type": {
+                "type": "keyword"
+              }
+            }
+          },
+          "treatments": {
+            "type": "nested",
+            "properties": {
+              "id": {
+                "type": "keyword"
+              },
+              "submitter_treatment_id": {
+                "type": "keyword"
+              },
+              "treatment_type": {
+                "type": "keyword"
+              },
+              "response_to_therapy": {
+                "type": "keyword"
+              }
+            }
+          },
+          "specimens": {
+            "type": "nested",
+            "properties": {
+              "id": {
+                "type": "keyword",
+                "copy_to": ["file_autocomplete"]
+              },
+              "submitter_specimen_id": {
+                "type": "keyword",
+                "copy_to": ["file_autocomplete"]
+              },
+              "tumour_normal_designation": {
+                "type": "keyword"
+              },
+              "specimen_tissue_source": {
+                "type": "keyword"
+              },
+              "specimen_type": {
+                "type": "keyword"
+              },
+              "pathological_tumour_staging_system": {
+                "type": "keyword"
+              },
+              "pathological_t_category": {
+                "type": "keyword"
+              },
+              "pathological_n_category": {
+                "type": "keyword"
+              },
+              "pathological_m_category": {
+                "type": "keyword"
+              },
+              "pathological_stage_group": {
+                "type": "keyword"
+              },
+              "specimen_anatomic_location": {
+                "type": "keyword"
+              },
+              "tumour_histological_type": {
+                "type": "keyword"
+              },
+              "tumour_grading_system": {
+                "type": "keyword"
+              },
+              "tumour_grade": {
+                "type": "keyword"
+              },
+              "samples": {
+                "type": "nested",
+                "properties": {
+                  "id": {
+                    "type": "keyword",
+                    "copy_to": ["file_autocomplete"]
+                  },
+                  "submitter_sample_id": {
+                    "type": "keyword",
+                    "copy_to": ["file_autocomplete"]
+                  },
+                  "sample_type": {
+                    "type": "keyword"
+                  },
+                  "matched_normal_submitter_sample_id": {
+                    "type": "keyword",
+                    "copy_to": ["file_autocomplete"]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "repositories": {
+        "type": "nested",
+        "properties": {
+          "code": {
+            "type": "keyword"
+          },
+          "name": {
+            "type": "keyword"
+          },
+          "organization": {
+            "type": "keyword"
+          },
+          "country": {
+            "type": "keyword"
+          },
+          "url": {
+            "type": "keyword"
+          }
+        }
+      }
+    }
+  }
+}

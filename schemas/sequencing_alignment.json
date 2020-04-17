@@ -12,15 +12,19 @@
       "workflow": {
         "propertyNames": {
           "enum": [
-            "name",
-            "version",
+            "workflow_name",
+            "workflow_version",
+            "analysis_tools",
+            "genome_build",
             "run_id",
             "inputs"
           ]
         },
         "required": [
-          "name",
-          "version",
+          "workflow_name",
+          "workflow_version",
+          "analysis_tools",
+          "genome_build",
           "run_id",
           "inputs"
         ],
@@ -28,9 +32,20 @@
           {
             "type": "object",
             "properties": {
-              "name": {
+              "workflow_name": {
                 "type": "string",
                 "pattern": "^[a-zA-Z][a-zA-Z0-9_\\-]+"
+              },
+              "analysis_tools": {
+                "type": ["array", "null"],
+                "items": {
+                  "type": "string",
+                  "pattern": "^[a-zA-Z][a-zA-Z0-9_\\-]+"
+                }
+              },
+              "genome_build": {
+                "type": "string",
+                "enum": ["GRCh38_hla_decoy_ebv"]
               },
               "inputs": {
                 "type": "array",
@@ -52,7 +67,7 @@
               "run_id": {
                 "type": "string"
               },
-              "version": {
+              "workflow_version": {
                 "type": "string"
               }
             }
@@ -83,19 +98,19 @@
             "platform",
             "platform_model",
             "sequencing_date",
-            "library_strategy",
+            "experimental_strategy",
             "sequencing_center",
             "submitter_sequencing_experiment_id"
           ]
         },
         "required": [
           "platform",
-          "library_strategy"
+          "experimental_strategy"
         ],
         "type": "object",
         "properties": {
           "submitter_sequencing_experiment_id": {
-            "type": "string",
+            "type": ["string", "null"],
             "pattern": "^[a-zA-Z0-9]{1}[a-zA-Z0-9\\-_\\.:']{0,98}[a-zA-Z0-9]{1}$"
           },
           "platform": {
@@ -140,7 +155,7 @@
               }
             ]
           },
-          "library_strategy": {
+          "experimental_strategy": {
             "enum": [
               "WGS",
               "WXS",
@@ -177,6 +192,7 @@
               "read_length_r2",
               "file_r2",
               "sample_barcode",
+              "read_group_id_in_bam",
               "submitter_read_group_id"
             ]
           },
@@ -198,6 +214,13 @@
                 "submitter_read_group_id": {
                   "type": "string",
                   "pattern": "^[a-zA-Z0-9\\-_:\\.]+$"
+                },
+                "read_group_id_in_bam": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "pattern": "^[a-zA-Z0-9\\-_:\\.']+$"
                 },
                 "library_name": {
                   "type": "string"

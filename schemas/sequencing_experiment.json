@@ -15,19 +15,19 @@
             "platform",
             "platform_model",
             "sequencing_date",
-            "library_strategy",
+            "experimental_strategy",
             "sequencing_center"
           ]
         },
         "required": [
           "submitter_sequencing_experiment_id",
           "platform",
-          "library_strategy"
+          "experimental_strategy"
         ],
         "type": "object",
         "properties": {
           "submitter_sequencing_experiment_id": {
-            "type": "string",
+            "type": ["string", "null"],
             "pattern": "^[a-zA-Z0-9]{1}[a-zA-Z0-9\\-_\\.:']{0,98}[a-zA-Z0-9]{1}$"
           },
           "platform": {
@@ -72,7 +72,7 @@
               }
             ]
           },
-          "library_strategy": {
+          "experimental_strategy": {
             "enum": [
               "WGS",
               "WXS",
@@ -109,6 +109,7 @@
               "read_length_r2",
               "file_r2",
               "sample_barcode",
+              "read_group_id_in_bam",
               "submitter_read_group_id"
             ]
           },
@@ -130,6 +131,13 @@
                 "submitter_read_group_id": {
                   "type": "string",
                   "pattern": "^[a-zA-Z0-9\\-_:\\.]+$"
+                },
+                "read_group_id_in_bam": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "pattern": "^[a-zA-Z0-9\\-_:\\.']+$"
                 },
                 "library_name": {
                   "type": "string"

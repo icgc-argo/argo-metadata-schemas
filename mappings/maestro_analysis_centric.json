@@ -95,7 +95,7 @@
         "type": "nested",
         "properties": {
           "id": {
-            "type": "keyword"
+            "type": "keyword",
             "copy_to": ["analysis_autocomplete"]
           },
           "size": {
@@ -105,8 +105,7 @@
             "type": "keyword"
           },
           "name": {
-            "type": "keyword",
-
+            "type": "keyword"
           },
           "object_id": {
             "type": "keyword",

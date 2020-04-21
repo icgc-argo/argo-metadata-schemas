@@ -96,16 +96,17 @@
         "properties": {
           "id": {
             "type": "keyword"
+            "copy_to": ["analysis_autocomplete"]
           },
-          "file_size": {
+          "size": {
             "type": "integer"
           },
-          "file_md5sum": {
+          "md5sum": {
             "type": "keyword"
           },
-          "file_name": {
+          "name": {
             "type": "keyword",
-            "copy_to": ["analysis_autocomplete"]
+
           },
           "object_id": {
             "type": "keyword",

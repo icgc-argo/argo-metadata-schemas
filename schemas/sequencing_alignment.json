@@ -34,13 +34,13 @@
             "properties": {
               "workflow_name": {
                 "type": "string",
-                "pattern": "^[a-zA-Z][a-zA-Z0-9_\\-]+"
+                "pattern": "^[a-zA-Z][a-zA-Z0-9_\\-]+$"
               },
               "analysis_tools": {
                 "type": ["array", "null"],
                 "items": {
                   "type": "string",
-                  "pattern": "^[a-zA-Z][a-zA-Z0-9_\\-]+"
+                  "pattern": "^[a-zA-Z][a-zA-Z0-9_\\-]+$"
                 }
               },
               "genome_build": {
@@ -58,7 +58,7 @@
                     },
                     "analysis_type": {
                       "type": "string",
-                      "pattern": "^[a-zA-Z][a-zA-Z0-9_]+"
+                      "pattern": "^[a-zA-Z][a-zA-Z0-9_]+$"
                     }
                   }
                 },

@@ -33,11 +33,11 @@
             "properties": {
               "workflow_name": {
                 "type": "string",
-                "pattern": "^[a-zA-Z][a-zA-Z0-9_\\-]+"
+                "pattern": "^[a-zA-Z][a-zA-Z0-9_\\-]+$"
               },
               "workflow_short_name": {
                 "type": "string",
-                "pattern": "^[a-zA-Z][a-zA-Z0-9_\\-]+"
+                "pattern": "^[a-zA-Z][a-zA-Z0-9_\\-]+$"
               },
               "analysis_tools": {
                 "const": null
@@ -65,7 +65,7 @@
                     },
                     "analysis_type": {
                       "type": "string",
-                      "pattern": "^[a-zA-Z][a-zA-Z0-9_]+"
+                      "pattern": "^[a-zA-Z][a-zA-Z0-9_]+$"
                     }
                   }
                 },

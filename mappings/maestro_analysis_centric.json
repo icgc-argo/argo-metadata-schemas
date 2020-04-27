@@ -99,7 +99,7 @@
             "copy_to": ["analysis_autocomplete"]
           },
           "size": {
-            "type": "integer"
+            "type": "long"
           },
           "md5sum": {
             "type": "keyword"

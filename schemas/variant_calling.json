@@ -1,0 +1,147 @@
+{
+  "name": "variant_calling",
+  "schema": {
+    "type": "object",
+    "required": [
+      "workflow",
+      "experiment",
+      "variant_class",
+      "variant_type"
+    ],
+    "properties": {
+      "workflow": {
+        "propertyNames": {
+          "enum": [
+            "workflow_name",
+            "workflow_short_name",
+            "workflow_version",
+            "analysis_tools",
+            "genome_build",
+            "run_id",
+            "inputs"
+          ]
+        },
+        "required": [
+          "workflow_name",
+          "workflow_short_name",
+          "workflow_version",
+          "analysis_tools",
+          "genome_build",
+          "run_id",
+          "inputs"
+        ],
+        "type": "object",
+        "properties": {
+          "workflow_name": {
+            "type": "string",
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_\\-]+$"
+          },
+          "workflow_short_name": {
+            "type": "string",
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_\\-]+$"
+          },
+          "analysis_tools": {
+            "type": ["array", "null"],
+            "items": {
+              "type": "string",
+              "pattern": "^[a-zA-Z][a-zA-Z0-9_\\-]+$"
+            }
+          },
+          "genome_build": {
+            "type": "string",
+            "enum": ["GRCh38_hla_decoy_ebv"]
+          },
+          "inputs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "tumour_analysis_id": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                },
+                "normal_analysis_id": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                },
+                "analysis_type": {
+                  "type": "string",
+                  "const": "sequencing_alignment"
+                }
+              }
+            },
+            "minItems": 2,
+            "maxItems": 2
+          },
+          "run_id": {
+            "type": "string"
+          },
+          "workflow_version": {
+            "type": "string"
+          }
+        }
+      },
+      "experiment": {
+        "type": "object",
+        "propertyNames": {
+          "enum": [
+            "platform",
+            "experimental_strategy"
+          ]
+        },
+        "required": [
+          "platform",
+          "experimental_strategy"
+        ],
+        "properties": {
+          "platform": {
+            "enum": [
+              "CAPILLARY",
+              "LS454",
+              "ILLUMINA",
+              "SOLID",
+              "HELICOS",
+              "IONTORRENT",
+              "ONT",
+              "PACBIO",
+              "Nanopore",
+              "BGI"
+            ]
+          },
+          "experimental_strategy": {
+            "type": "string",
+            "enum": [
+              "WGS",
+              "WXS",
+              "RNA-Seq",
+              "Bisulfite-Seq",
+              "ChIP-Seq"
+            ]
+          }
+        }
+      },
+      "variant_class": {
+        "type": "array",
+        "items":{
+          "type": "string",
+          "enum": [
+            "germline",
+            "somatic"
+          ]
+        }
+      },
+      "variant_type": {
+        "type": "array",
+        "items":{
+          "type": "string",
+          "enum": [
+            "snv",
+            "indel",
+            "cnv",
+            "sv"
+          ]
+        }
+      }
+    }
+  }
+}

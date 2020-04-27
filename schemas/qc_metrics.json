@@ -10,15 +10,20 @@
       "workflow": {
         "propertyNames": {
           "enum": [
-            "name",
-            "version",
+            "workflow_name",
+            "workflow_short_name",
+            "workflow_version",
+            "analysis_tools",
+            "genome_build",
             "run_id",
             "inputs"
           ]
         },
         "required": [
-          "name",
-          "version",
+          "workflow_name",
+          "workflow_version",
+          "analysis_tools",
+          "genome_build",
           "run_id",
           "inputs"
         ],
@@ -26,9 +31,20 @@
           {
             "type": "object",
             "properties": {
-              "name": {
+              "workflow_name": {
                 "type": "string",
-                "pattern": "^[a-zA-Z][a-zA-Z0-9_\\-]+"
+                "pattern": "^[a-zA-Z][a-zA-Z0-9_\\-]+$"
+              },
+              "workflow_short_name": {
+                "type": "string",
+                "pattern": "^[a-zA-Z][a-zA-Z0-9_\\-]+$"
+              },
+              "analysis_tools": {
+                "const": null
+              },
+              "genome_build": {
+                "type": "string",
+                "enum": ["GRCh38_hla_decoy_ebv"]
               },
               "inputs": {
                 "type": "array",
@@ -39,9 +55,17 @@
                       "type": "string",
                       "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
                     },
+                    "tumour_analysis_id": {
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                    },
+                    "normal_analysis_id": {
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                    },
                     "analysis_type": {
                       "type": "string",
-                      "pattern": "^[a-zA-Z][a-zA-Z0-9_]+"
+                      "pattern": "^[a-zA-Z][a-zA-Z0-9_]+$"
                     }
                   }
                 },
@@ -50,7 +74,7 @@
               "run_id": {
                 "type": "string"
               },
-              "version": {
+              "workflow_version": {
                 "type": "string"
               }
             }
@@ -64,7 +88,8 @@
                   "properties": {
                     "analysis_type": {
                       "enum": [
-                        "sequencing_experiment"
+                        "sequencing_experiment",
+                        "sequencing_alignment"
                       ]
                     }
                   }
@@ -80,19 +105,19 @@
             "platform",
             "platform_model",
             "sequencing_date",
-            "library_strategy",
+            "experimental_strategy",
             "sequencing_center",
             "submitter_sequencing_experiment_id"
           ]
         },
         "required": [
           "platform",
-          "library_strategy"
+          "experimental_strategy"
         ],
         "type": "object",
         "properties": {
           "submitter_sequencing_experiment_id": {
-            "type": "string",
+            "type": ["string", "null"],
             "pattern": "^[a-zA-Z0-9]{1}[a-zA-Z0-9\\-_\\.:']{0,98}[a-zA-Z0-9]{1}$"
           },
           "platform": {
@@ -137,7 +162,7 @@
               }
             ]
           },
-          "library_strategy": {
+          "experimental_strategy": {
             "enum": [
               "WGS",
               "WXS",

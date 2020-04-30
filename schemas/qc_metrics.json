@@ -176,19 +176,6 @@
               "string",
               "null"
             ]
-          },
-          "variant_class": {
-            "type": "array",
-            "items":{
-              "type": [
-                "string",
-                "null"
-              ],
-              "enum": [
-                "Germline",
-                "Somatic"
-              ]
-            }
           }
         }
       }

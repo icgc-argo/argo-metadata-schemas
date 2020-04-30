@@ -4,7 +4,8 @@
     "type": "object",
     "required": [
       "workflow",
-      "experiment"
+      "experiment",
+      "variant_class"
     ],
     "properties": {
       "workflow": {
@@ -111,6 +112,16 @@
               "Bisulfite-Seq",
               "ChIP-Seq"
             ]
+          },
+          "variant_class": {
+            "type": "array",
+            "items":{
+              "type": "string",
+              "enum": [
+                "Germline",
+                "Somatic"
+              ]
+            }
           }
         }
       }

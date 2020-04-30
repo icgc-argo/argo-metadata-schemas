@@ -5,8 +5,7 @@
     "required": [
       "workflow",
       "experiment",
-      "variant_class",
-      "variant_type"
+      "variant_class"
     ],
     "properties": {
       "workflow": {
@@ -125,20 +124,8 @@
         "items":{
           "type": "string",
           "enum": [
-            "germline",
-            "somatic"
-          ]
-        }
-      },
-      "variant_type": {
-        "type": "array",
-        "items":{
-          "type": "string",
-          "enum": [
-            "snv",
-            "indel",
-            "cnv",
-            "sv"
+            "Germline",
+            "Somatic"
           ]
         }
       }

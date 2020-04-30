@@ -114,14 +114,11 @@
             ]
           },
           "variant_class": {
-            "type": "array",
-            "items":{
-              "type": "string",
-              "enum": [
-                "Germline",
-                "Somatic"
-              ]
-            }
+            "type": "string",
+            "enum": [
+              "Germline",
+              "Somatic"
+            ]
           }
         }
       }

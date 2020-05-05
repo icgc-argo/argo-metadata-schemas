@@ -68,10 +68,10 @@
       },
       "workflow": {
         "properties": {
-          "name": {
+          "workflow_name": {
             "type": "keyword"
           },
-          "version": {
+          "workflow_version": {
             "type": "keyword"
           }
         }

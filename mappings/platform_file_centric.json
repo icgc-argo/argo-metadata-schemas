@@ -4,7 +4,7 @@
   },
   "settings": {
     "index.number_of_shards": 3,
-    "index.max_results_window": 300000,
+    "index.max_result_window": 300000,
     "analysis": {
       "analyzer": {
         "autocomplete_analyzer": {

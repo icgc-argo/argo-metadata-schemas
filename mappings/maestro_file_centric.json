@@ -108,7 +108,7 @@
       },
       "file": {
         "properties": {
-          "id": {
+          "file_id": {
             "type": "keyword"
           },
           "size": {
@@ -145,7 +145,7 @@
       "donors": {
         "type": "nested",
         "properties": {
-          "id": {
+          "donor_id": {
             "type": "keyword",
             "copy_to": ["file_autocomplete"]
           },
@@ -159,7 +159,7 @@
           "specimens": {
             "type": "nested",
             "properties": {
-              "id": {
+              "specimen_id": {
                 "type": "keyword",
                 "copy_to": ["file_autocomplete"]
               },
@@ -179,7 +179,7 @@
               "samples": {
                 "type": "nested",
                 "properties": {
-                  "id": {
+                  "sample_id": {
                     "type": "keyword",
                     "copy_to": ["file_autocomplete"]
                   },

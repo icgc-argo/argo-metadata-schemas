@@ -4,7 +4,8 @@
     "type": "object",
     "required": [
       "workflow",
-      "experiment"
+      "experiment",
+      "variant_class"
     ],
     "properties": {
       "workflow": {
@@ -13,7 +14,6 @@
             "workflow_name",
             "workflow_short_name",
             "workflow_version",
-            "analysis_tools",
             "genome_build",
             "run_id",
             "inputs"
@@ -23,7 +23,6 @@
           "workflow_name",
           "workflow_short_name",
           "workflow_version",
-          "analysis_tools",
           "genome_build",
           "run_id",
           "inputs"
@@ -32,14 +31,11 @@
         "properties": {
           "workflow_name": {
             "type": "string",
-            "pattern": "^[a-zA-Z][a-zA-Z0-9_\\-]+$"
+            "pattern": "^[a-zA-Z][a-zA-Z0-9 _\\-]+[a-zA-Z0-9]+$"
           },
           "workflow_short_name": {
             "type": "string",
-            "pattern": "^[a-zA-Z][a-zA-Z0-9_\\-]+$"
-          },
-          "analysis_tools": {
-            "const": null
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_\\-]+[a-zA-Z0-9]+$"
           },
           "genome_build": {
             "type": "string",
@@ -110,6 +106,13 @@
               "RNA-Seq",
               "Bisulfite-Seq",
               "ChIP-Seq"
+            ]
+          },
+          "variant_class": {
+            "type": "string",
+            "enum": [
+              "Germline",
+              "Somatic"
             ]
           }
         }

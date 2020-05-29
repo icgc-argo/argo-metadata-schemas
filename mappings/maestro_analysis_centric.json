@@ -94,10 +94,6 @@
       "files": {
         "type": "nested",
         "properties": {
-          "file_id": {
-            "type": "keyword",
-            "copy_to": ["analysis_autocomplete"]
-          },
           "size": {
             "type": "long"
           },

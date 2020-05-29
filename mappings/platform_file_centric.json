@@ -123,25 +123,25 @@
           "name": {
             "type": "keyword",
             "copy_to": ["file_autocomplete"]
-          }
-        }
-      },
-      "index_file": {
-        "properties": {
-          "object_id": {
-            "type": "keyword"
           },
-          "format": {
-            "type": "keyword"
-          },
-          "md5sum": {
-            "type": "keyword"
-          },
-          "name": {
-            "type": "keyword"
-          },
-          "size": {
-            "type": "long"
+          "index_file": {
+            "properties": {
+              "object_id": {
+                "type": "keyword"
+              },
+              "format": {
+                "type": "keyword"
+              },
+              "md5sum": {
+                "type": "keyword"
+              },
+              "name": {
+                "type": "keyword"
+              },
+              "size": {
+                "type": "long"
+              }
+            }
           }
         }
       },

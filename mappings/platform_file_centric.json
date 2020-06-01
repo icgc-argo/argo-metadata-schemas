@@ -111,9 +111,6 @@
       },
       "file": {
         "properties": {
-          "file_id": {
-            "type": "keyword"
-          },
           "size": {
             "type": "long"
           },

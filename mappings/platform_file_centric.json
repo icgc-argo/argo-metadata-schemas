@@ -126,7 +126,7 @@
               "object_id": {
                 "type": "keyword"
               },
-              "format": {
+              "file_type": {
                 "type": "keyword"
               },
               "md5sum": {

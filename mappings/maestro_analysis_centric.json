@@ -90,10 +90,7 @@
       "study_id": {
         "type": "keyword",
         "copy_to": ["analysis_autocomplete"]
-      },
-      "variant_class": {
-        "type": "keyword"
-      },
+      }
       "files": {
         "type": "nested",
         "properties": {

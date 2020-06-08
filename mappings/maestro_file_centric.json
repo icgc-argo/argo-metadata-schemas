@@ -216,6 +216,9 @@
             "type": "keyword"
           }
         }
+      },
+      "variant_class": {
+        "type": "keyword"
       }
     }
   }

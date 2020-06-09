@@ -99,7 +99,7 @@
               "platform": {
                 "type": "keyword"
               },
-              "library_strategy": {
+              "experimental_strategy": {
                 "type": "keyword"
               }
             }
@@ -216,6 +216,9 @@
             "type": "keyword"
           }
         }
+      },
+      "variant_class": {
+        "type": "keyword"
       }
     }
   }

@@ -82,7 +82,7 @@
           "platform": {
             "type": "keyword"
           },
-          "library_strategy": {
+          "experimental_strategy": {
             "type": "keyword"
           }
         }

@@ -68,6 +68,14 @@
         "type": "keyword",
         "copy_to": ["file_autocomplete"]
       },
+      "data_category": {
+        "type": "keyword",
+        "copy_to": ["file_autocomplete"]
+      },
+      "analysis_tools": {
+        "type": "keyword",
+        "copy_to": ["file_autocomplete"]
+      },
       "file_access": {
         "type": "keyword"
       },

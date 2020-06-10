@@ -73,6 +73,9 @@
           },
           "workflow_version": {
             "type": "keyword"
+          },
+          "run_id": {
+            "type": "keyword"
           }
         }
       },

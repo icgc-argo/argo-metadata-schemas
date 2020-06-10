@@ -119,7 +119,15 @@
           "data_type": {
             "type": "keyword",
             "copy_to": ["analysis_autocomplete"]
-          }
+          },
+          "data_category": {
+            "type": "keyword",
+            "copy_to": ["analysis_autocomplete"]
+          },
+          "analysis_tools": {
+            "type": "keyword",
+            "copy_to": ["analysis_autocomplete"]
+          },
         }
       },
       "donors": {

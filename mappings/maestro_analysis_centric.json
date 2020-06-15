@@ -127,7 +127,7 @@
           "analysis_tools": {
             "type": "keyword",
             "copy_to": ["analysis_autocomplete"]
-          },
+          }
         }
       },
       "donors": {

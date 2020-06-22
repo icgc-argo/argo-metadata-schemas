@@ -1,0 +1,56 @@
+{
+  "studyId": "DASH-CA",
+  "analysisType": {
+    "name": "sequencing_experiment"
+  },
+  "samples": [
+    {
+      "submitterSampleId": "dashsa-1",
+      "matchedNormalSubmitterSampleId": null,
+      "sampleType": "Amplified DNA",
+      "specimen": {
+        "submitterSpecimenId": "dashsp-1",
+        "specimenType": "Normal",
+        "tumourNormalDesignation": "Normal",
+        "specimenTissueSource": "Blood derived"
+      },
+      "donor": {
+        "submitterDonorId": "DASH-1",
+        "gender": "Male"
+      }
+    }
+  ],
+  "files": [
+    {
+      "dataType": "Submitted Reads",
+      "fileName": "dash-1-normal.bam",
+      "fileSize": 24,
+      "fileType": "BAM",
+      "fileMd5sum": "4d6e35e3290ccce08c8c7517dc29d624",
+      "fileAccess": "controlled"
+    }
+  ],
+  "read_group_count": 1,
+  "read_groups": [
+    {
+      "file_r1": "dash-1-normal.bam",
+      "file_r2": null,
+      "insert_size": null,
+      "is_paired_end": false,
+      "library_name": "Library-Testing",
+      "platform_unit": "Library-Testing",
+      "read_length_r1": null,
+      "read_length_r2": null,
+      "sample_barcode": null,
+      "submitter_read_group_id": "dash-1-rg-1"
+    }
+  ],
+  "experiment": {
+    "submitter_sequencing_experiment_id": "DASH-SE-1",
+    "experimental_strategy": "WGS",
+    "sequencing_center": "",
+    "platform": "ILLUMINA",
+    "platform_model": null,
+    "sequencing_date": null
+  }
+}

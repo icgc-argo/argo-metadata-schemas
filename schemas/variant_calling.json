@@ -69,7 +69,8 @@
             "type": "string"
           },
           "session_id": {
-            "type": "string"
+            "type": "string",
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
           },
           "workflow_version": {
             "type": "string"

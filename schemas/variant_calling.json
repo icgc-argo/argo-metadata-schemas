@@ -16,6 +16,7 @@
             "workflow_version",
             "genome_build",
             "run_id",
+            "session_id",
             "inputs"
           ]
         },
@@ -25,6 +26,7 @@
           "workflow_version",
           "genome_build",
           "run_id",
+          "session_id",
           "inputs"
         ],
         "type": "object",
@@ -64,6 +66,9 @@
             "maxItems": 2
           },
           "run_id": {
+            "type": "string"
+          },
+          "session_id": {
             "type": "string"
           },
           "workflow_version": {

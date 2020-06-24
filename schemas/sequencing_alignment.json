@@ -16,6 +16,7 @@
             "workflow_version",
             "genome_build",
             "run_id",
+            "session_id",
             "inputs"
           ]
         },
@@ -24,6 +25,7 @@
           "workflow_version",
           "genome_build",
           "run_id",
+          "session_id",
           "inputs"
         ],
         "allOf": [
@@ -56,6 +58,9 @@
                 "minItems": 1
               },
               "run_id": {
+                "type": "string"
+              },
+              "session_id": {
                 "type": "string"
               },
               "workflow_version": {

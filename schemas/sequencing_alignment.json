@@ -16,6 +16,7 @@
             "workflow_version",
             "genome_build",
             "run_id",
+            "session_id",
             "inputs"
           ]
         },
@@ -24,6 +25,7 @@
           "workflow_version",
           "genome_build",
           "run_id",
+          "session_id",
           "inputs"
         ],
         "allOf": [
@@ -57,6 +59,10 @@
               },
               "run_id": {
                 "type": "string"
+              },
+              "session_id": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
               },
               "workflow_version": {
                 "type": "string"

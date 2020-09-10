@@ -66,6 +66,9 @@
       "analysis_state": {
         "type": "keyword"
       },
+      "publish_date": {
+        "type": "date"
+      },
       "workflow": {
         "properties": {
           "workflow_name": {
@@ -105,9 +108,6 @@
             "type": "keyword"
           },
           "program_access_date": {
-            "type": "date"
-          },
-          "publish_date": {
             "type": "date"
           },
           "size": {

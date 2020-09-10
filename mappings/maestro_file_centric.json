@@ -74,9 +74,6 @@
       "program_access_date": {
         "type": "date"
       },
-      "publish_date": {
-        "type": "date"
-      },
       "data_type": {
         "type": "keyword",
         "copy_to": ["file_autocomplete"]
@@ -103,6 +100,9 @@
           },
           "analysis_version": {
             "type": "integer"
+          },
+          "publish_date": {
+            "type": "date"
           },
           "workflow": {
             "properties": {

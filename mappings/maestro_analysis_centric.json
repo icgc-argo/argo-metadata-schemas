@@ -97,6 +97,19 @@
       "files": {
         "type": "nested",
         "properties": {
+          "file_id": {
+            "type": "keyword",
+            "copy_to": ["analysis_autocomplete"]
+          },
+          "release_stage": {
+            "type": "keyword"
+          },
+          "program_access_date": {
+            "type": "date"
+          },
+          "publish_date": {
+            "type": "date"
+          },
           "size": {
             "type": "long"
           },

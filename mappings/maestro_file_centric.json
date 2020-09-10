@@ -53,6 +53,10 @@
         },
         "type": "keyword"
       },
+      "file_id": {
+        "type": "keyword",
+        "copy_to": ["file_autocomplete"]
+      },
       "study_id": {
         "type": "keyword",
         "copy_to": ["file_autocomplete"]
@@ -63,6 +67,15 @@
       },
       "file_type": {
         "type": "keyword"
+      },
+      "release_stage": {
+        "type": "keyword"
+      },
+      "program_access_date": {
+        "type": "date"
+      },
+      "publish_date": {
+        "type": "date"
       },
       "data_type": {
         "type": "keyword",

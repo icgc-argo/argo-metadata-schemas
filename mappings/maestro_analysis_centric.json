@@ -66,6 +66,9 @@
       "analysis_state": {
         "type": "keyword"
       },
+      "publish_date": {
+        "type": "date"
+      },
       "workflow": {
         "properties": {
           "workflow_name": {
@@ -97,6 +100,16 @@
       "files": {
         "type": "nested",
         "properties": {
+          "file_id": {
+            "type": "keyword",
+            "copy_to": ["analysis_autocomplete"]
+          },
+          "release_stage": {
+            "type": "keyword"
+          },
+          "program_access_date": {
+            "type": "date"
+          },
           "size": {
             "type": "long"
           },

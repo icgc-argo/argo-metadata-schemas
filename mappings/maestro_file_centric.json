@@ -1,7 +1,4 @@
 {
-  "aliases": {
-    "file_centric": {}
-  },
   "settings": {
     "index.number_of_shards": 3,
     "index.max_result_window": 300000,
@@ -31,6 +28,9 @@
     }
   },
   "mappings": {
+    "_meta": { 
+      "version": "0.1"
+    },
     "dynamic": false,
     "date_detection": false,
     "properties": {

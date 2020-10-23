@@ -111,7 +111,8 @@
               "WXS",
               "RNA-Seq",
               "Bisulfite-Seq",
-              "ChIP-Seq"
+              "ChIP-Seq",
+              "Targeted-Seq"
             ]
           },
           "variant_class": {

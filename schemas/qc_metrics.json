@@ -169,7 +169,8 @@
               "WXS",
               "RNA-Seq",
               "Bisulfite-Seq",
-              "ChIP-Seq"
+              "ChIP-Seq",
+              "Targeted-Seq"
             ]
           },
           "sequencing_center": {

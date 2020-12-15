@@ -75,16 +75,13 @@
         "type": "date"
       },
       "data_type": {
-        "type": "keyword",
-        "copy_to": ["file_autocomplete"]
+        "type": "keyword"
       },
       "data_category": {
-        "type": "keyword",
-        "copy_to": ["file_autocomplete"]
+        "type": "keyword"
       },
       "analysis_tools": {
-        "type": "keyword",
-        "copy_to": ["file_autocomplete"]
+        "type": "keyword"
       },
       "file_access": {
         "type": "keyword"
@@ -237,8 +234,7 @@
             "type": "keyword"
           },
           "name": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "index_file": {
             "properties": {
@@ -272,29 +268,21 @@
             "type": "keyword",
             "copy_to": ["file_autocomplete"]
           },
-
           "submitter_specimen_id": {
             "type": "keyword",
             "copy_to": ["file_autocomplete"]
           },
-
           "gender": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
-
           "specimen_tissue_source": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "submitter_sample_id": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
-
           "sample_type": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           }
         }
       },
@@ -314,64 +302,49 @@
             "copy_to": ["file_autocomplete"]
           },
           "vital_status": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "cause_of_death": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "survival_time": {
-            "type": "integer",
-            "copy_to": ["file_autocomplete"]
+            "type": "integer"
           },
           "primary_site": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "prior_maligancy": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "cancer_type_prior_maligancy": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "age_at_prior_maligancy": {
-            "type": "integer",
-            "copy_to": ["file_autocomplete"]
+            "type": "integer"
           },
           "laterality_of_prior_maligancy": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "height": {
-            "type": "integer",
-            "copy_to": ["file_autocomplete"]
+            "type": "integer"
           },
           "weight": {
-            "type": "integer",
-            "copy_to": ["file_autocomplete"]
+            "type": "integer"
           },
           "bmi": {
-            "type": "integer",
-            "copy_to": ["file_autocomplete"]
+            "type": "integer"
           },
           "menopause_status": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "age_at_menarche": {
-            "type": "integer",
-            "copy_to": ["file_autocomplete"]
+            "type": "integer"
           },
           "number_of_pregancies": {
-            "type": "integer",
-            "copy_to": ["file_autocomplete"]
+            "type": "integer"
           },
           "number_of_children": {
-            "type": "integer",
-            "copy_to": ["file_autocomplete"]
+            "type": "integer"
           },
 
           "gender": {
@@ -437,80 +410,61 @@
             "copy_to": ["file_autocomplete"]
           },
           "submitter_primary_diagnosis": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "pathological_tumour_staging_system": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "pathological_t_category": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "pathological_n_category": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "pathological_m_category": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "pathological_stage_group": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "specimen_acquisition_interval": {
-            "type": "integer",
-            "copy_to": ["file_autocomplete"]
+            "type": "integer"
           },
           "tumour_histological_type": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "specimen_anatomic_location": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "specimen_processing": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "specimen_storage": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "reference_pathology_confirmed": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "tumour_grading_system": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "tumour_grade": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "percent_tumour_cells": {
-            "type": "long",
-            "copy_to": ["file_autocomplete"]
+            "type": "long"
           },
           "percent_proliferating_cells": {
-            "type": "long",
-            "copy_to": ["file_autocomplete"]
+            "type": "long"
           },
           "percent_inflammatory_tissue": {
-            "type": "long",
-            "copy_to": ["file_autocomplete"]
+            "type": "long"
           },
           "percent_stromal_cells": {
-            "type": "long",
-            "copy_to": ["file_autocomplete"]
+            "type": "long"
           },
           "percent_necrosis": {
-            "type": "long",
-            "copy_to": ["file_autocomplete"]
+            "type": "long"
           }
         }
       },
@@ -530,56 +484,43 @@
             "copy_to": ["file_autocomplete"]
           },
           "age_at_diagnosis": {
-            "type": "integer",
-            "copy_to": ["file_autocomplete"]
+            "type": "integer"
           },
           "cancer_type_code": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "cancer_type_additional_information": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "basis_of_diagnosis": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "number_lymph_nodes_positive": {
-            "type": "integer",
-            "copy_to": ["file_autocomplete"]
+            "type": "integer"
           },
           "number_lymph_nodes_examined": {
-            "type": "integer",
-            "copy_to": ["file_autocomplete"]
+            "type": "integer"
           },
           "clinical_tumour_staging_system": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "clinical_stage_group": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "clinical_t_category": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "clinical_n_category": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "clinical_m_category": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "presenting_symptoms": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "performance_status": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           }
         }
       },
@@ -588,8 +529,7 @@
         "type": "nested",
         "properties": {
           "program_id": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "submitter_donor_id": {
             "type": "keyword",
@@ -604,72 +544,55 @@
             "copy_to": ["file_autocomplete"]
           },
           "treatment_type": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "age_at_consent_for_treatment": {
-            "type": "integer",
-            "copy_to": ["file_autocomplete"]
+            "type": "integer"
           },
           "is_primary_treatment": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "line_of_treatment": {
-            "type": "integer",
-            "copy_to": ["file_autocomplete"]
+            "type": "integer"
           },
           "treatment_start_interval": {
-            "type": "integer",
-            "copy_to": ["file_autocomplete"]
+            "type": "integer"
           },
           "treatment_duration": {
-            "type": "integer",
-            "copy_to": ["file_autocomplete"]
+            "type": "integer"
           },
           "days_per_cycle": {
-            "type": "integer",
-            "copy_to": ["file_autocomplete"]
+            "type": "integer"
           },
           "number_of_cycles": {
-            "type": "integer",
-            "copy_to": ["file_autocomplete"]
+            "type": "integer"
           },
           "treatment_intent": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "treatment_setting": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "response_to_treatment": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "outcome_of_treatment": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "toxicity_type": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "hemotological_toxicity": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "adverse_events": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "clinical_trials_database": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "clinical_trial_number": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           }
         }
       },
@@ -689,20 +612,16 @@
             "copy_to": ["file_autocomplete"]
           },
           "drug_rxnormcui": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "drug_name": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "chemotherapy_dosage_units": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "cumulative_drug_dosage": {
-            "type": "long",
-            "copy_to": ["file_autocomplete"]
+            "type": "long"
           }
         }
       },
@@ -722,20 +641,16 @@
             "copy_to": ["file_autocomplete"]
           },
           "drug_rxnormcui": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "drug_name": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "hormone_drug_dosage_units": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "cumulative_drug_dosage": {
-            "type": "long",
-            "copy_to": ["file_autocomplete"]
+            "type": "long"
           }
         }
       },
@@ -743,36 +658,28 @@
         "type": "nested",
         "properties": {
           "program_id": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "submitter_donor_id": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "submitter_treatment_id": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "radiation_therapy_modality": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "radiation_therapy_type": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "radiation_therapy_fractions": {
-            "type": "integer",
-            "copy_to": ["file_autocomplete"]
+            "type": "integer"
           },
           "radiation_therapy_dosage": {
-            "type": "integer",
-            "copy_to": ["file_autocomplete"]
+            "type": "integer"
           },
           "anatomical_site_irradiated": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           }
         }
       },
@@ -780,92 +687,70 @@
         "type": "nested",
         "properties": {
           "program_id": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "submitter_donor_id": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "submitter_follow_up_id": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "interval_of_followup": {
-            "type": "integer",
-            "copy_to": ["file_autocomplete"]
+            "type": "integer"
           },
           "disease_status_at_followup": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "submitter_primary_diagnosis_id": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "submitter_treatment_id": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "weight_at_followup": {
-            "type": "integer",
-            "copy_to": ["file_autocomplete"]
+            "type": "integer"
           },
           "relapse_type": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "relapse_interval": {
-            "type": "integer",
-            "copy_to": ["file_autocomplete"]
+            "type": "integer"
           },
           "method_of_progression_status": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "anatomic_site_progression_or_recurrences": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "recurrence_tumour_staging_system": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "recurrence_t_category": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "recurrence_n_category": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "recurrence_m_category": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "recurrence_stage_group": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "posttherapy_tumour_staging_system": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "posttherapy_t_category": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "posttherapy_n_category": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "posttherapy_m_category": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           },
           "posttherapy_stage_group": {
-            "type": "keyword",
-            "copy_to": ["file_autocomplete"]
+            "type": "keyword"
           }
         }
       },

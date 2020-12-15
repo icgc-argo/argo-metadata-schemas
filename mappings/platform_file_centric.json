@@ -261,6 +261,43 @@
           }
         }
       },
+      "sample_registration": {
+        "type": "nested",
+        "properties": {
+          "program_id": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "submitter_donor_id": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+
+          "submitter_specimen_id": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+
+          "gender": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+
+          "specimen_tissue_source": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "submitter_sample_id": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+
+          "sample_type": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          }
+        }
+      },
       "donors": {
         "type": "nested",
         "properties": {
@@ -381,6 +418,454 @@
                 }
               }
             }
+          }
+        }
+      },
+      "specimen": {
+        "type": "nested",
+        "properties": {
+          "program_id": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "submitter_donor_id": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "submitter_specimen_id": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "submitter_primary_diagnosis": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "pathological_tumour_staging_system": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "pathological_t_category": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "pathological_n_category": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "pathological_m_category": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "pathological_stage_group": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "specimen_acquisition_interval": {
+            "type": "integer",
+            "copy_to": ["file_autocomplete"]
+          },
+          "tumour_histological_type": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "specimen_anatomic_location": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "specimen_processing": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "specimen_storage": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "reference_pathology_confirmed": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "tumour_grading_system": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "tumour_grade": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "percent_tumour_cells": {
+            "type": "long",
+            "copy_to": ["file_autocomplete"]
+          },
+          "percent_proliferating_cells": {
+            "type": "long",
+            "copy_to": ["file_autocomplete"]
+          },
+          "percent_inflammatory_tissue": {
+            "type": "long",
+            "copy_to": ["file_autocomplete"]
+          },
+          "percent_stromal_cells": {
+            "type": "long",
+            "copy_to": ["file_autocomplete"]
+          },
+          "percent_necrosis": {
+            "type": "long",
+            "copy_to": ["file_autocomplete"]
+          }
+        }
+      },
+      "primary_diagnosis": {
+        "type": "nested",
+        "properties": {
+          "program_id": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "submitter_donor_id": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "submitter_primary_diagnosis_id": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "age_at_diagnosis": {
+            "type": "integer",
+            "copy_to": ["file_autocomplete"]
+          },
+          "cancer_type_code": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "cancer_type_additional_information": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "basis_of_diagnosis": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "number_lymph_nodes_positive": {
+            "type": "integer",
+            "copy_to": ["file_autocomplete"]
+          },
+          "number_lymph_nodes_examined": {
+            "type": "integer",
+            "copy_to": ["file_autocomplete"]
+          },
+          "clinical_tumour_staging_system": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "clinical_stage_group": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "clinical_t_category": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "clinical_n_category": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "clinical_m_category": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "presenting_symptoms": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "performance_status": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          }
+        }
+      },
+
+      "treatment": {
+        "type": "nested",
+        "properties": {
+          "program_id": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "submitter_donor_id": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "submitter_treatment_id": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "submitter_primary_diagnosis_id": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "treatment_type": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "age_at_consent_for_treatment": {
+            "type": "integer",
+            "copy_to": ["file_autocomplete"]
+          },
+          "is_primary_treatment": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "line_of_treatment": {
+            "type": "integer",
+            "copy_to": ["file_autocomplete"]
+          },
+          "treatment_start_interval": {
+            "type": "integer",
+            "copy_to": ["file_autocomplete"]
+          },
+          "treatment_duration": {
+            "type": "integer",
+            "copy_to": ["file_autocomplete"]
+          },
+          "days_per_cycle": {
+            "type": "integer",
+            "copy_to": ["file_autocomplete"]
+          },
+          "number_of_cycles": {
+            "type": "integer",
+            "copy_to": ["file_autocomplete"]
+          },
+          "treatment_intent": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "treatment_setting": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "response_to_treatment": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "outcome_of_treatment": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "toxicity_type": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "hemotological_toxicity": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "adverse_events": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "clinical_trials_database": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "clinical_trial_number": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          }
+        }
+      },
+      "chemotherapy": {
+        "type": "nested",
+        "properties": {
+          "program_id": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "submitter_donor_id": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "submitter_treatment_id": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "drug_rxnormcui": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "drug_name": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "chemotherapy_dosage_units": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "cumulative_drug_dosage": {
+            "type": "long",
+            "copy_to": ["file_autocomplete"]
+          }
+        }
+      },
+      "hormone_therapy": {
+        "type": "nested",
+        "properties": {
+          "program_id": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "submitter_donor_id": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "submitter_treatment_id": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "drug_rxnormcui": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "drug_name": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "hormone_drug_dosage_units": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "cumulative_drug_dosage": {
+            "type": "long",
+            "copy_to": ["file_autocomplete"]
+          }
+        }
+      },
+      "radiation": {
+        "type": "nested",
+        "properties": {
+          "program_id": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "submitter_donor_id": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "submitter_treatment_id": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "radiation_therapy_modality": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "radiation_therapy_type": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "radiation_therapy_fractions": {
+            "type": "integer",
+            "copy_to": ["file_autocomplete"]
+          },
+          "radiation_therapy_dosage": {
+            "type": "integer",
+            "copy_to": ["file_autocomplete"]
+          },
+          "anatomical_site_irradiated": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          }
+        }
+      },
+      "follow_up": {
+        "type": "nested",
+        "properties": {
+          "program_id": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "submitter_donor_id": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "submitter_follow_up_id": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "interval_of_followup": {
+            "type": "integer",
+            "copy_to": ["file_autocomplete"]
+          },
+          "disease_status_at_followup": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "submitter_primary_diagnosis_id": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "submitter_treatment_id": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "weight_at_followup": {
+            "type": "integer",
+            "copy_to": ["file_autocomplete"]
+          },
+          "relapse_type": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "relapse_interval": {
+            "type": "integer",
+            "copy_to": ["file_autocomplete"]
+          },
+          "method_of_progression_status": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "anatomic_site_progression_or_recurrences": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "recurrence_tumour_staging_system": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "recurrence_t_category": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "recurrence_n_category": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "recurrence_m_category": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "recurrence_stage_group": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "posttherapy_tumour_staging_system": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "posttherapy_t_category": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "posttherapy_n_category": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "posttherapy_m_category": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "posttherapy_stage_group": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
           }
         }
       },

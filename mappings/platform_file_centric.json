@@ -1,7 +1,4 @@
 {
-  "aliases": {
-    "file_centric": {}
-  },
   "settings": {
     "index.number_of_shards": 3,
     "index.max_result_window": 300000,
@@ -31,6 +28,9 @@
     }
   },
   "mappings": {
+    "_meta": {
+      "version": "0.1"
+    },
     "dynamic": false,
     "date_detection": false,
     "properties": {
@@ -50,13 +50,14 @@
             "search_analyzer": "lowercase_keyword",
             "type": "text"
           }
-        }
+        },
+        "type": "keyword"
       },
-      "program_id": {
+      "file_id": {
         "type": "keyword",
         "copy_to": ["file_autocomplete"]
       },
-      "primary_site": {
+      "study_id": {
         "type": "keyword",
         "copy_to": ["file_autocomplete"]
       },
@@ -67,7 +68,21 @@
       "file_type": {
         "type": "keyword"
       },
+      "release_stage": {
+        "type": "keyword"
+      },
+      "program_access_date": {
+        "type": "date"
+      },
       "data_type": {
+        "type": "keyword",
+        "copy_to": ["file_autocomplete"]
+      },
+      "data_category": {
+        "type": "keyword",
+        "copy_to": ["file_autocomplete"]
+      },
+      "analysis_tools": {
         "type": "keyword",
         "copy_to": ["file_autocomplete"]
       },
@@ -80,11 +95,91 @@
             "type": "keyword",
             "copy_to": ["file_autocomplete"]
           },
+          "study_id": {
+            "type": "keyword"
+          },
+          "analysis_state": {
+            "type": "keyword"
+          },
+          "createdAt": {
+            "type": "date"
+          },
+          "updatedAt": {
+            "type": "date"
+          },
+          "firstPublishedAt": {
+            "type": "date"
+          },
+          "publishedAt": {
+            "type": "date"
+          },
+          "analysisStateHistory": {
+            "type": "object",
+
+            "properties": {
+              "initialState": {
+                "type": "keyword"
+              },
+              "updatedState": {
+                "type": "keyword"
+              },
+              "updatedAt": {
+                "type": "date"
+              }
+            }
+          },
+          "samples": {
+            "type": "object",
+            "properties": {
+              "sampleId": { "type": "keyword" },
+              "specimenId": { "type": "keyword" },
+              "submitterSampleId": { "type": "keyword" },
+              "matchedNormalSubmitterSampleId": { "type": "keyword" },
+              "sampleType": { "type": "keyword" },
+              "specimen": {
+                "type": "object",
+                "properties": {
+                  "specimenId": { "type": "keyword" },
+                  "donorId": { "type": "keyword" },
+                  "submitterSpecimenId": { "type": "keyword" },
+                  "tumourNormalDesignation": { "type": "keyword" },
+                  "specimenTissueSource": { "type": "keyword" },
+                  "specimenType": { "type": "keyword" }
+                }
+              },
+              "donor": {
+                "type": "object",
+                "properties": {
+                  "donorId": { "type": "keyword" },
+                  "studyId": { "type": "keyword" },
+                  "gender": { "type": "keyword" },
+                  "submitterDonorId": { "type": "keyword" }
+                }
+              }
+            }
+          },
+          "files": {
+            "type": "object",
+            "properties": {
+              "objectId": { "type": "keyword" },
+              "studyId": { "type": "keyword" },
+              "analysisId": { "type": "keyword" },
+              "fileName": { "type": "keyword" },
+              "fileSize": { "type": "long" },
+              "fileType": { "type": "keyword" },
+              "fileMd5sum": { "type": "keyword" },
+              "fileAccess": { "type": "keyword" },
+              "dataType": { "type": "keyword" }
+            }
+          },
           "analysis_type": {
             "type": "keyword"
           },
           "analysis_version": {
             "type": "integer"
+          },
+          "publish_date": {
+            "type": "date"
           },
           "workflow": {
             "properties": {
@@ -96,16 +191,40 @@
               }
             }
           },
+          "variant_class": {
+            "type": "keyword"
+          },
           "experiment": {
             "type": "object",
             "properties": {
               "platform": {
                 "type": "keyword"
               },
-              "library_strategy": {
+              "experimental_strategy": {
                 "type": "keyword"
-              }
+              },
+              "platform_model": { "type": "keyword" },
+              "sequencing_date": { "type": "date" },
+              "library_strategy": { "type": "keyword" },
+              "sequencing_center": { "type": "keyword" },
+              "submitter_sequencing_experiment_id": { "type": "keyword" }
             }
+          }
+        },
+        "read_groups": {
+          "type": "object",
+          "properties": {
+            "file_r1": { "type": "keyword" },
+            "file_r2": { "type": "keyword" },
+            "insert_size": { "type": "long" },
+            "library_name": { "type": "keyword" },
+            "is_paired_end": { "type": "boolean" },
+            "platform_unit": { "type": "keyword" },
+            "read_length_r1": { "type": "long" },
+            "read_length_r2": { "type": "long" },
+            "sample_barcode": { "type": "keyword" },
+            "read_group_id_in_bam": { "type": "keyword" },
+            "submitter_read_group_id": { "type": "keyword" }
           }
         }
       },
@@ -153,73 +272,73 @@
             "type": "keyword",
             "copy_to": ["file_autocomplete"]
           },
-          "gender": {
-            "type": "keyword"
+          "program_id": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
           },
           "vital_status": {
-            "type": "keyword"
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "cause_of_death": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
           },
           "survival_time": {
-            "type": "integer"
+            "type": "integer",
+            "copy_to": ["file_autocomplete"]
           },
-          "prior_malignancy": {
+          "primary_site": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "prior_maligancy": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "cancer_type_prior_maligancy": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "age_at_prior_maligancy": {
+            "type": "integer",
+            "copy_to": ["file_autocomplete"]
+          },
+          "laterality_of_prior_maligancy": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "height": {
+            "type": "integer",
+            "copy_to": ["file_autocomplete"]
+          },
+          "weight": {
+            "type": "integer",
+            "copy_to": ["file_autocomplete"]
+          },
+          "bmi": {
+            "type": "integer",
+            "copy_to": ["file_autocomplete"]
+          },
+          "menopause_status": {
+            "type": "keyword",
+            "copy_to": ["file_autocomplete"]
+          },
+          "age_at_menarche": {
+            "type": "integer",
+            "copy_to": ["file_autocomplete"]
+          },
+          "number_of_pregancies": {
+            "type": "integer",
+            "copy_to": ["file_autocomplete"]
+          },
+          "number_of_children": {
+            "type": "integer",
+            "copy_to": ["file_autocomplete"]
+          },
+
+          "gender": {
             "type": "keyword"
-          },
-          "primary_diagnosis": {
-            "properties": {
-              "age_at_diagnosis": {
-                "type": "integer"
-              },
-              "cancer_type_code": {
-                "type": "keyword"
-              },
-              "clinical_tumour_staging_system": {
-                "type": "keyword"
-              },
-              "clinical_t_category": {
-                "type": "keyword"
-              },
-              "clinical_n_category": {
-                "type": "keyword"
-              },
-              "clinical_m_category": {
-                "type": "keyword"
-              }
-            }
-          },
-          "follow_ups": {
-            "type": "nested",
-            "properties": {
-              "follow_up_id": {
-                "type": "keyword"
-              },
-              "submitter_follow_up_id": {
-                "type": "keyword"
-              },
-              "disease_status_at_followup": {
-                "type": "keyword"
-              },
-              "relapse_type": {
-                "type": "keyword"
-              }
-            }
-          },
-          "treatments": {
-            "type": "nested",
-            "properties": {
-              "treatment_id": {
-                "type": "keyword"
-              },
-              "submitter_treatment_id": {
-                "type": "keyword"
-              },
-              "treatment_type": {
-                "type": "keyword"
-              },
-              "response_to_therapy": {
-                "type": "keyword"
-              }
-            }
           },
           "specimens": {
             "type": "nested",
@@ -239,33 +358,6 @@
                 "type": "keyword"
               },
               "specimen_type": {
-                "type": "keyword"
-              },
-              "pathological_tumour_staging_system": {
-                "type": "keyword"
-              },
-              "pathological_t_category": {
-                "type": "keyword"
-              },
-              "pathological_n_category": {
-                "type": "keyword"
-              },
-              "pathological_m_category": {
-                "type": "keyword"
-              },
-              "pathological_stage_group": {
-                "type": "keyword"
-              },
-              "specimen_anatomic_location": {
-                "type": "keyword"
-              },
-              "tumour_histological_type": {
-                "type": "keyword"
-              },
-              "tumour_grading_system": {
-                "type": "keyword"
-              },
-              "tumour_grade": {
                 "type": "keyword"
               },
               "samples": {

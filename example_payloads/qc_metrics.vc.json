@@ -1,0 +1,137 @@
+{
+  "studyId": "TEST-PR",
+  "analysisType": {
+    "name": "qc_metrics",
+    "version": 7
+  },
+  "samples": [
+    {
+      "submitterSampleId": "COLO-829",
+      "matchedNormalSubmitterSampleId": "COLO-829-BL",
+      "sampleType": "Total DNA",
+      "specimen": {
+        "submitterSpecimenId": "COLO-829",
+        "tumourNormalDesignation": "Tumour",
+        "specimenTissueSource": "Blood derived",
+        "specimenType": "Cell line - derived from tumour"
+      },
+      "donor": {
+        "gender": "Female",
+        "submitterDonorId": "COLO-829"
+      }
+    }
+  ],
+  "files": [
+    {
+      "info": {
+        "avg_depth": 36.75,
+        "contamination": 0.00058,
+        "reads_used": 1296256,
+        "sample_id": "SA610228",
+        "snps_used": 35275
+      },
+      "fileName": "TEST-PR.DO250183.SA610228.wgs.20200417.sanger-wgs.somatic.contamination_metrics.tgz",
+      "fileSize": 2406400,
+      "fileType": "TGZ",
+      "fileMd5sum": "a10a692845b41f08b3ec5541f3a66d53",
+      "fileAccess": "controlled",
+      "dataType": "contamination_metrics"
+    },
+    {
+      "info": {
+        "avg_depth": 44.42,
+        "contamination": 0.00146,
+        "reads_used": 1566835,
+        "sample_id": "SA610229",
+        "snps_used": 35275
+      },
+      "fileName": "TEST-PR.DO250183.SA610229.wgs.20200417.sanger-wgs.somatic.contamination_metrics.tgz",
+      "fileSize": 2795520,
+      "fileType": "TGZ",
+      "fileMd5sum": "59ee6722a58438c69b22d957d5dfe6b5",
+      "fileAccess": "controlled",
+      "dataType": "contamination_metrics"
+    },
+    {
+      "fileName": "TEST-PR.DO250183.SA610228.wgs.20200417.sanger-wgs.somatic.bas_metrics.tgz",
+      "fileSize": 10240,
+      "fileType": "TGZ",
+      "fileMd5sum": "50258b1161e79ba844ee9ec2aa13e7b2",
+      "fileAccess": "controlled",
+      "dataType": "bas_metrics"
+    },
+    {
+      "fileName": "TEST-PR.DO250183.SA610229.wgs.20200417.sanger-wgs.somatic.bas_metrics.tgz",
+      "fileSize": 10240,
+      "fileType": "TGZ",
+      "fileMd5sum": "f154d21ddc9bb786915a681c37351638",
+      "fileAccess": "controlled",
+      "dataType": "bas_metrics"
+    },
+    {
+      "info": {
+        "GenderChr": "chrY",
+        "GenderChrFound": "chrY",
+        "NormalContamination": 0,
+        "Ploidy": 1.96797310718924,
+        "goodnessOfFit": 93.2139289607228,
+        "psi": 2,
+        "rho": 1
+      },
+      "fileName": "TEST-PR.DO250183.SA610229.wgs.20200417.sanger-wgs.somatic.ascat_metrics.tgz",
+      "fileSize": 10240,
+      "fileType": "TGZ",
+      "fileMd5sum": "9e54aa058fd989aafda8ce7b2b3d9b56",
+      "fileAccess": "controlled",
+      "dataType": "ascat_metrics"
+    },
+    {
+      "info": {
+        "compared_against": "SA610228",
+        "total_loci_gender": 4,
+        "total_loci_genotype": 92,
+        "tumours": [
+          {
+            "gender": {
+              "frac_match_gender": 1,
+              "gender": "XX"
+            },
+            "genotype": {
+              "frac_informative_genotype": 0.282608695652174,
+              "frac_matched_genotype": 0.769230769230769
+            },
+            "sample_id": "SA610229"
+          }
+        ]
+      },
+      "fileName": "TEST-PR.DO250183.SA610229.wgs.20200417.sanger-wgs.somatic.genotyped_gender_metrics.tgz",
+      "fileSize": 20480,
+      "fileType": "TGZ",
+      "fileMd5sum": "7975b421d2e1ef585809e276dde713eb",
+      "fileAccess": "controlled",
+      "dataType": "genotyped_gender_metrics"
+    }
+  ],
+  "experiment": {
+    "experimental_strategy": "WGS",
+    "platform": "ILLUMINA"
+  },
+  "workflow": {
+    "analysis_tools": null,
+    "genome_build": "GRCh38_hla_decoy_ebv",
+    "inputs": [
+      {
+        "analysis_type": "sequencing_alignment",
+        "tumour_analysis_id": "ad7e2df1-03ea-4dae-be2d-f103ea7dae3a"
+      },
+      {
+        "analysis_type": "sequencing_alignment",
+        "normal_analysis_id": "ce2a49b2-2bda-4ded-aa49-b22bdaadedb3"
+      }
+    ],
+    "run_id": "cheeky_liskov",
+    "workflow_name": "sanger-wgs-variant-calling",
+    "workflow_short_name": "sanger-wgs",
+    "workflow_version": "0.1.0-dev"
+  }
+}

@@ -1,8 +1,7 @@
 {
   "studyId": "TEST-PR",
   "analysisType": {
-    "name": "qc_metrics",
-    "version": 7
+    "name": "qc_metrics"
   },
   "samples": [
     {

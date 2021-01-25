@@ -1,8 +1,7 @@
 {
   "studyId": "TEST-PR",
   "analysisType": {
-    "name": "sequencing_alignment",
-    "version": 9
+    "name": "sequencing_alignment"
   },
   "samples": [
     {

@@ -1,8 +1,7 @@
 {
   "studyId": "TEST-PR",
   "analysisType": {
-    "name": "variant_calling",
-    "version": 9
+    "name": "variant_calling"
   },
   "samples": [
     {

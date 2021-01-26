@@ -1,0 +1,76 @@
+{
+  "studyId": "TEST-PR",
+  "analysisType": {
+    "name": "variant_calling"
+  },
+  "samples": [
+    {
+      "submitterSampleId": "COLO-829",
+      "matchedNormalSubmitterSampleId": "COLO-829-BL",
+      "sampleType": "Total DNA",
+      "specimen": {
+        "submitterSpecimenId": "COLO-829",
+        "tumourNormalDesignation": "Tumour",
+        "specimenTissueSource": "Blood derived",
+        "specimenType": "Cell line - derived from tumour"
+      },
+      "donor": {
+        "gender": "Female",
+        "submitterDonorId": "COLO-829"
+      }
+    }
+  ],
+  "files": [
+    {
+      "info": {
+        "analysis_tools": [
+          "ASCAT"
+        ],
+        "data_category": "Copy Number Variation"
+      },
+      "fileName": "TEST-PR.DO250183.SA610229.wgs.20200918.sanger-wgs.somatic.cnv.vcf.gz",
+      "fileSize": 31877,
+      "fileType": "VCF",
+      "fileMd5sum": "4eae0fa7d6bc48ecc49ca553290fb6b7",
+      "fileAccess": "controlled",
+      "dataType": "Raw CNV Calls"
+    },
+    {
+      "info": {
+        "analysis_tools": [
+          "ASCAT"
+        ],
+        "data_category": "Copy Number Variation"
+      },
+      "fileName": "TEST-PR.DO250183.SA610229.wgs.20200918.sanger-wgs.somatic.cnv.vcf.gz.tbi",
+      "fileSize": 5306,
+      "fileType": "TBI",
+      "fileMd5sum": "9083f0fea1463e77d22035df10813ca3",
+      "fileAccess": "controlled",
+      "dataType": "VCF Index"
+    }
+  ],
+  "experiment": {
+    "experimental_strategy": "WGS",
+    "platform": "ILLUMINA"
+  },
+  "variant_class": "Somatic",
+  "workflow": {
+    "genome_build": "GRCh38_hla_decoy_ebv",
+    "inputs": [
+      {
+        "analysis_type": "sequencing_alignment",
+        "tumour_analysis_id": "ad7e2df1-03ea-4dae-be2d-f103ea7dae3a"
+      },
+      {
+        "analysis_type": "sequencing_alignment",
+        "normal_analysis_id": "ce2a49b2-2bda-4ded-aa49-b22bdaadedb3"
+      }
+    ],
+    "run_id": "wes-cd92109c046547e786832fcf31c3ef46",
+    "session_id": "223e7187-bf07-4f28-b319-fbc8bef27700",
+    "workflow_name": "Sanger WGS Variant Calling",
+    "workflow_short_name": "sanger-wgs",
+    "workflow_version": "2.1.0-9-1.2-dev"
+  }
+}

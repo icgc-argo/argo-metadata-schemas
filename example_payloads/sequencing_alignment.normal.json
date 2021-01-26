@@ -1,0 +1,117 @@
+{
+  "studyId": "TEST-PR",
+  "analysisType": {
+    "name": "sequencing_alignment"
+  },
+  "samples": [
+    {
+      "submitterSampleId": "HCC1143_BAM_INPUT",
+      "sampleType": "Total DNA",
+      "specimen": {
+        "submitterSpecimenId": "HCC1143_BAM_INPUT",
+        "tumourNormalDesignation": "Normal",
+        "specimenTissueSource": "Blood derived",
+        "specimenType": "Normal"
+      },
+      "donor": {
+        "gender": "Female",
+        "submitterDonorId": "HCC1143"
+      }
+    }
+  ],
+  "files": [
+    {
+      "info": {
+        "analysis_tools": [
+          "BWA-MEM",
+          "biobambam2:bammarkduplicates2"
+        ],
+        "data_category": "Sequencing Reads"
+      },
+      "fileName": "TEST-PR.DO250122.SA610149.wgs.20201223.aln.cram",
+      "fileSize": 107424,
+      "fileType": "CRAM",
+      "fileMd5sum": "9b554332c849b84fb495926e7287cbe6",
+      "fileAccess": "controlled",
+      "dataType": "Aligned Reads"
+    },
+    {
+      "info": {
+        "analysis_tools": [
+          "BWA-MEM",
+          "biobambam2:bammarkduplicates2"
+        ],
+        "data_category": "Sequencing Reads"
+      },
+      "fileName": "TEST-PR.DO250122.SA610149.wgs.20201223.aln.cram.crai",
+      "fileSize": 67,
+      "fileType": "CRAI",
+      "fileMd5sum": "b9ab216243aebef778cf583dd08714ec",
+      "fileAccess": "controlled",
+      "dataType": "Aligned Reads Index"
+    }
+  ],
+  "experiment": {
+    "experimental_strategy": "WGS",
+    "platform": "ILLUMINA",
+    "platform_model": "HiSeq 2000",
+    "sequencing_center": "EXT",
+    "sequencing_date": "2014-12-12",
+    "submitter_sequencing_experiment_id": "TEST_EXP"
+  },
+  "read_group_count": 3,
+  "read_groups": [
+    {
+      "file_r1": "test_rg_3.v2.bam",
+      "file_r2": "test_rg_3.v2.bam",
+      "insert_size": 298,
+      "is_paired_end": true,
+      "library_name": "Pond-147580",
+      "platform_unit": "74_8a",
+      "read_group_id_in_bam": "C0HVY.2",
+      "read_length_r1": 150,
+      "read_length_r2": 150,
+      "sample_barcode": null,
+      "submitter_read_group_id": "D0RE2_1a_1"
+    },
+    {
+      "file_r1": "test_rg_3.v2.bam",
+      "file_r2": "test_rg_3.v2.bam",
+      "insert_size": 298,
+      "is_paired_end": true,
+      "library_name": "Pond-147580",
+      "platform_unit": "74_8b",
+      "read_group_id_in_bam": "D0RE2_1'",
+      "read_length_r1": 150,
+      "read_length_r2": 150,
+      "sample_barcode": null,
+      "submitter_read_group_id": "D0RE2:1a"
+    },
+    {
+      "file_r1": "test_rg_3.v2.bam",
+      "file_r2": "test_rg_3.v2.bam",
+      "insert_size": 298,
+      "is_paired_end": true,
+      "library_name": "Pond-147580",
+      "platform_unit": "74_8c",
+      "read_group_id_in_bam": "D0RH0:2''",
+      "read_length_r1": 150,
+      "read_length_r2": 150,
+      "sample_barcode": null,
+      "submitter_read_group_id": "D0RE2_1a"
+    }
+  ],
+  "workflow": {
+    "genome_build": "GRCh38_hla_decoy_ebv",
+    "inputs": [
+      {
+        "analysis_type": "sequencing_experiment",
+        "input_analysis_id": "36e122af-f988-43d0-a122-aff98833d0f3"
+      }
+    ],
+    "run_id": "wes-2b070d44b30c4a3f9a42d97c045d1bc7",
+    "session_id": "847b951e-c108-4768-8a73-a85593c363f5",
+    "workflow_name": "DNA Seq Alignment",
+    "workflow_version": "1.5.1"
+  }
+}

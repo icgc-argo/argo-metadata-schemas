@@ -1,0 +1,187 @@
+{
+  "studyId": "TEST-PR",
+  "analysisType": {
+    "name": "qc_metrics"
+  },
+  "samples": [
+    {
+      "submitterSampleId": "COLO-829",
+      "matchedNormalSubmitterSampleId": "COLO-829-BL",
+      "sampleType": "Total DNA",
+      "specimen": {
+        "submitterSpecimenId": "COLO-829",
+        "tumourNormalDesignation": "Tumour",
+        "specimenTissueSource": "Blood derived",
+        "specimenType": "Cell line - derived from tumour"
+      },
+      "donor": {
+        "gender": "Female",
+        "submitterDonorId": "COLO-829"
+      }
+    }
+  ],
+  "files": [
+    {
+      "info": {
+        "analysis_tools": [
+          "GATK-CalculateContamination"
+        ],
+        "data_category": "Quality Control Metrics",
+        "description": "Cross sample contamination estimated by GATK CalculateContamination tool",
+        "files_in_tgz": [
+          "07c96a3efa4dfaf1fc196c659b7aceb7.tumour.segmentation_metrics",
+          "07c96a3efa4dfaf1fc196c659b7aceb7.tumour.contamination_metrics",
+          "tumour_contamination.extra_info.json"
+        ],
+        "metrics": {
+          "contamination": 1,
+          "error": 0.16322950515917098,
+          "sample_id": "SA610229"
+        }
+      },
+      "fileName": "TEST-PR.DO250183.SA610229.wgs.20200922.gatk-mutect2.somatic.contamination_metrics.tgz",
+      "fileSize": 503,
+      "fileType": "TGZ",
+      "fileMd5sum": "4f819db494a91c8707be96741bdb0bf1",
+      "fileAccess": "controlled",
+      "dataType": "Cross Sample Contamination"
+    },
+    {
+      "info": {
+        "analysis_tools": [
+          "GATK-CalculateContamination"
+        ],
+        "data_category": "Quality Control Metrics",
+        "description": "Cross sample contamination estimated by GATK CalculateContamination tool",
+        "files_in_tgz": [
+          "bd9952ad38d06c9e34deb1f916c88dde.normal.contamination_metrics",
+          "bd9952ad38d06c9e34deb1f916c88dde.normal.segmentation_metrics",
+          "normal_contamination.extra_info.json"
+        ],
+        "metrics": {
+          "contamination": 0,
+          "error": 0,
+          "sample_id": "SA610228"
+        }
+      },
+      "fileName": "TEST-PR.DO250183.SA610228.wgs.20200922.gatk-mutect2.somatic.contamination_metrics.tgz",
+      "fileSize": 491,
+      "fileType": "TGZ",
+      "fileMd5sum": "7963c94575d4472837588e7f46e81aed",
+      "fileAccess": "controlled",
+      "dataType": "Cross Sample Contamination"
+    },
+    {
+      "info": {
+        "analysis_tools": [
+          "GATK-FilterMutectCalls"
+        ],
+        "data_category": "Quality Control Metrics",
+        "description": "Information on the probability threshold chosen to optimize the F score and the number of false positives and false negatives from each filter to be expected from this choice.",
+        "files_in_tgz": [
+          "filter-mutect-calls.filtering-stats",
+          "filtering_stats.extra_info.json"
+        ],
+        "metrics": {
+          "fdr": 0.035,
+          "filtering_stats": {
+            "contamination": {
+              "FDR": 0.03,
+              "FN": 289.65,
+              "FNR": 0.01,
+              "FP": 1064.73
+            },
+            "germline": {
+              "FDR": 0,
+              "FN": 0,
+              "FNR": 0,
+              "FP": 0
+            },
+            "haplotype": {
+              "FDR": 0,
+              "FN": 116.43,
+              "FNR": 0,
+              "FP": 42.11
+            },
+            "normal_artifact": {
+              "FDR": 0,
+              "FN": 0,
+              "FNR": 0,
+              "FP": 0.04
+            },
+            "orientation": {
+              "FDR": 0,
+              "FN": 0,
+              "FNR": 0,
+              "FP": 0
+            },
+            "strand_bias": {
+              "FDR": 0,
+              "FN": 0,
+              "FNR": 0,
+              "FP": 0.01
+            },
+            "weak_evidence": {
+              "FDR": 0,
+              "FN": 0.02,
+              "FNR": 0,
+              "FP": 0.61
+            }
+          },
+          "sensitivity": 0.987,
+          "threshold": 0.512
+        }
+      },
+      "fileName": "TEST-PR.DO250183.SA610229.wgs.20200922.gatk-mutect2.somatic.mutect_filtering_metrics.tgz",
+      "fileSize": 1006,
+      "fileType": "TGZ",
+      "fileMd5sum": "250db13684b1feb922fc3a91800266cf",
+      "fileAccess": "controlled",
+      "dataType": "Mutect2 Filtering Stats"
+    },
+    {
+      "info": {
+        "analysis_tools": [
+          "GATK-Mutect2"
+        ],
+        "data_category": "Quality Control Metrics",
+        "description": "Number of sites that are considered callable for Mutect stats with read depth equals or is higher than callable-depth which we set to default 10",
+        "files_in_tgz": [
+          "merged-mutect-stats.stats",
+          "callable_stats.extra_info.json"
+        ],
+        "metrics": {
+          "callable": 36256695
+        }
+      },
+      "fileName": "TEST-PR.DO250183.SA610229.wgs.20200922.gatk-mutect2.somatic.mutect_callable_metrics.tgz",
+      "fileSize": 376,
+      "fileType": "TGZ",
+      "fileMd5sum": "e1f3bcf6c243d79d76439c5ad0e1bb4f",
+      "fileAccess": "controlled",
+      "dataType": "Mutect2 Callabe Stats"
+    }
+  ],
+  "experiment": {
+    "experimental_strategy": "WGS",
+    "platform": "ILLUMINA"
+  },
+  "workflow": {
+    "genome_build": "GRCh38_hla_decoy_ebv",
+    "inputs": [
+      {
+        "analysis_type": "sequencing_alignment",
+        "tumour_analysis_id": "94c862ca-8055-4794-8862-ca8055479490"
+      },
+      {
+        "analysis_type": "sequencing_alignment",
+        "normal_analysis_id": "916b95a5-42d7-46a8-ab95-a542d7a6a81e"
+      }
+    ],
+    "run_id": "cheesy_fourier",
+    "session_id": "66956ede-ec51-4758-8f0b-316fa9812fb6",
+    "workflow_name": "GATK Mutect2 Variant Calling",
+    "workflow_short_name": "gatk-mutect2",
+    "workflow_version": "4.1.8.0-1.0"
+  }
+}

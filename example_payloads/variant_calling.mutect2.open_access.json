@@ -1,0 +1,74 @@
+{
+  "studyId": "TEST-PR",
+  "analysisType": {
+    "name": "variant_filtering"
+  },
+  "samples": [
+    {
+      "submitterSampleId": "COLO-829",
+      "matchedNormalSubmitterSampleId": "COLO-829-BL",
+      "sampleType": "Total DNA",
+      "specimen": {
+        "submitterSpecimenId": "COLO-829",
+        "tumourNormalDesignation": "Tumour",
+        "specimenTissueSource": "Blood derived",
+        "specimenType": "Cell line - derived from tumour"
+      },
+      "donor": {
+        "gender": "Female",
+        "submitterDonorId": "COLO-829"
+      }
+    }
+  ],
+  "files": [
+    {
+      "info": {
+        "analysis_tools": [
+          "GATK-Mutect2",
+          "bcftools"
+        ],
+        "data_category": "Simple Nucleotide Variation"
+      },
+      "fileName": "TEST-PR.DO250183.SA610229.wgs.20200922.gatk-mutect2.somatic.snv.filtered.vcf.gz",
+      "fileSize": 2896208,
+      "fileType": "VCF",
+      "fileMd5sum": "45e1c12bfdfbcf93297d739321f6ef31",
+      "fileAccess": "open",
+      "dataType": "Raw SNV Calls"
+    },
+    {
+      "info": {
+        "analysis_tools": [
+          "GATK-Mutect2",
+          "bcftools"
+        ],
+        "data_category": "Simple Nucleotide Variation"
+      },
+      "fileName": "TEST-PR.DO250183.SA610229.wgs.20200922.gatk-mutect2.somatic-open.snv.filtered.vcf.gz.tbi",
+      "fileSize": 23243,
+      "fileType": "TBI",
+      "fileMd5sum": "45e54b4c1b0ab6c9f907c23d66f58a64",
+      "fileAccess": "open",
+      "dataType": "VCF Index"
+    }
+  ],
+  "experiment": {
+    "experimental_strategy": "WGS",
+    "platform": "ILLUMINA"
+  },
+  "variant_class": "Somatic",
+  "workflow": {
+    "genome_build": "GRCh38_hla_decoy_ebv",
+    "inputs": [
+      {
+        "analysis_type": "variant_calling",
+        "input_analysis_id": "94c862ca-8055-4794-8862-ca8055479490"
+      }
+    ],
+    "run_id": "cheesy_fourier",
+    "session_id": "66956ede-ec51-4758-8f0b-316fa9812fb6",
+    "workflow_name": "Open Access Variant Filtering",
+    "workflow_short_name": "variant-filtering",
+    "workflow_version": "0.1.0"
+  }
+}

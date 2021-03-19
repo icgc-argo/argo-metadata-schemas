@@ -1,0 +1,72 @@
+{
+  "studyId": "TEST-PR",
+  "analysisType": {
+    "name": "rna_sequencing_experiment"
+  },
+  "samples": [
+    {
+      "submitterSampleId": "COLO-829-BL",
+      "matchedNormalSubmitterSampleId": null,
+      "sampleType": "Total DNA",
+      "specimen": {
+        "submitterSpecimenId": "COLO-829-BL",
+        "tumourNormalDesignation": "Normal",
+        "specimenTissueSource": "Blood derived",
+        "specimenType": "Normal"
+      },
+      "donor": {
+        "gender": "Female",
+        "submitterDonorId": "COLO-829"
+      }
+    }
+  ],
+  "files": [
+    {
+      "fileName": "30X_background.read1.fq.gz",
+      "fileSize": 1258643421,
+      "fileType": "FASTQ",
+      "fileMd5sum": "0f18932734eebe161166eea34c0c54c0",
+      "fileAccess": "controlled",
+      "dataType": "Submitted Reads",
+      "info": {
+        "data_category": "Sequencing Reads"
+      }
+    },
+    {
+      "fileName": "30X_background.read2.fq.gz",
+      "fileSize": 1258675364,
+      "fileType": "FASTQ",
+      "fileMd5sum": "5c439d45298a23f2f6402e2f3e3d3a9c",
+      "fileAccess": "controlled",
+      "dataType": "Submitted Reads",
+      "info": {
+        "data_category": "Sequencing Reads"
+      }
+    }
+  ],
+  "experiment": {
+    "experimental_strategy": "RNA-Seq",
+    "platform": "ILLUMINA",
+    "platform_model": "HiSeq 2000",
+    "sequencing_center": "EXT",
+    "sequencing_date": "2014-12-12",
+    "submitter_sequencing_experiment_id": "TEST_EXP",
+    "RIN": 9.0,
+    "DV200": 0.7
+  },
+  "read_group_count": 1,
+  "read_groups": [
+    {
+      "file_r1": "30X_background.read1.fq.gz",
+      "file_r2": "30X_background.read2.fq.gz",
+      "insert_size": 298,
+      "is_paired_end": true,
+      "library_name": "531",
+      "platform_unit": "30X",
+      "read_length_r1": 100,
+      "read_length_r2": 100,
+      "sample_barcode": null,
+      "submitter_read_group_id": "30X"
+    }
+  ]
+}

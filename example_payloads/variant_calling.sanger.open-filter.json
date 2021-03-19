@@ -1,0 +1,74 @@
+{
+    "studyId": "TEST-PR",
+    "analysisType": {
+      "name": "variant_processing"
+    },
+    "samples": [
+      {
+        "submitterSampleId": "COLO-829",
+        "matchedNormalSubmitterSampleId": "COLO-829-BL",
+        "sampleType": "Total DNA",
+        "specimen": {
+          "submitterSpecimenId": "COLO-829",
+          "tumourNormalDesignation": "Tumour",
+          "specimenTissueSource": "Blood derived",
+          "specimenType": "Cell line - derived from tumour"
+        },
+        "donor": {
+          "gender": "Female",
+          "submitterDonorId": "COLO-829"
+        }
+      }
+    ],
+    "files": [
+      {
+        "info": {
+          "analysis_tools": [
+            "CaVEMan",
+            "bcftools"
+          ],
+          "data_category": "Simple Nucleotide Variation"
+        },
+        "fileName": "TEST-PR.DO250183.SA610229.wgs.20200921.sanger-wgs.somatic.snv.open-filter.vcf.gz",
+        "fileSize": 24043,
+        "fileType": "VCF",
+        "fileMd5sum": "3380cc04b93ad599eefbc46370388109",
+        "fileAccess": "open",
+        "dataType": "Raw SNV Calls"
+      },
+      {
+        "info": {
+          "analysis_tools": [
+            "CaVEMan",
+            "bcftools"
+          ],
+          "data_category": "Simple Nucleotide Variation"
+        },
+        "fileName": "TEST-PR.DO250183.SA610229.wgs.20200921.sanger-wgs.somatic.snv.open-filter.vcf.gz.tbi",
+        "fileSize": 242,
+        "fileType": "TBI",
+        "fileMd5sum": "0ec314b46931c868d9cb203ecd09c5fe",
+        "fileAccess": "open",
+        "dataType": "VCF Index"
+      }
+    ],
+    "experiment": {
+      "experimental_strategy": "WGS",
+      "platform": "ILLUMINA"
+    },
+    "variant_class": "Somatic",
+    "workflow": {
+      "genome_build": "GRCh38_hla_decoy_ebv",
+      "inputs": [
+        {
+          "analysis_type": "variant_calling",
+          "input_analysis_id": "ce2a49b2-2bda-4ded-aa49-b22bdaadedb3"
+        }
+      ],
+      "run_id": "wes-331cd527841e444091aaabf405335c8b",
+      "session_id": "98ea6f7d-b8ae-4eee-95b1-003576ca355c",
+      "workflow_name": "Open Access Variant Filtering",
+      "workflow_short_name": "open-filter",
+      "workflow_version": "0.1.0"
+    }
+}

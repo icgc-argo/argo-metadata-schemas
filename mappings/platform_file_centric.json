@@ -311,6 +311,39 @@
             "type": "keyword"
           }
         }
+      },
+      "clinical": {
+        "properties": {
+          "donor": {
+            "properties": {
+
+            }
+          },
+          "follow_ups": {
+            "type": "nested",
+            "properties": {
+
+            }
+          },
+          "primary_diagnosis": {
+            "type": "nested",
+            "properties": {
+
+            }
+          },
+          "specimens": {
+            "type": "nested",
+            "properties": {
+
+            }
+          },
+          "treatments": {
+            "type": "nested",
+            "properties": {
+
+            }
+          }
+        }
       }
     }
   }

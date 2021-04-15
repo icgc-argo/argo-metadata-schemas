@@ -25,7 +25,6 @@
           "workflow_version",
           "genome_build",
           "run_id",
-          "session_id",
           "inputs"
         ],
         "allOf": [

@@ -7,6 +7,7 @@
     {
       "submitterSampleId": "HCC1143_BAM_INPUT",
       "sampleType": "Total DNA",
+      "matchedNormalSubmitterSampleId": null,
       "specimen": {
         "submitterSpecimenId": "HCC1143_BAM_INPUT",
         "tumourNormalDesignation": "Normal",

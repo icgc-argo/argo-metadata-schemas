@@ -26,7 +26,6 @@
           "workflow_version",
           "genome_build",
           "run_id",
-          "session_id",
           "inputs"
         ],
         "type": "object",
@@ -72,7 +71,7 @@
             "type": "string",
             "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
           },
-          "version": {
+          "workflow_version": {
             "type": "string"
           }
         }
@@ -114,15 +113,15 @@
               "ChIP-Seq",
               "Targeted-Seq"
             ]
-          },
-          "variant_class": {
-            "type": "string",
-            "enum": [
-              "Germline",
-              "Somatic"
-            ]
           }
         }
+      },
+      "variant_class": {
+        "type": "string",
+        "enum": [
+          "Germline",
+          "Somatic"
+        ]
       }
     }
   }

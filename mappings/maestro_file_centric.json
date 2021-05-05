@@ -36,6 +36,9 @@
     }
   },
   "mappings": {
+    "_meta": { 
+      "version": "0.2"
+    },
     "dynamic": "false",
     "date_detection": false,
     "properties": {

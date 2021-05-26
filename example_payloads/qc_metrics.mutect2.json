@@ -1,20 +1,24 @@
 {
+  "analysisId": "bcd90fe1-94f0-46bb-990f-e194f0a6bb6e",
   "studyId": "TEST-PR",
-  "analysisType": {
-    "name": "qc_metrics"
-  },
   "samples": [
     {
+      "sampleId": "SA610229",
+      "specimenId": "SP210202",
       "submitterSampleId": "COLO-829",
       "matchedNormalSubmitterSampleId": "COLO-829-BL",
       "sampleType": "Total DNA",
       "specimen": {
+        "specimenId": "SP210202",
+        "donorId": "DO250183",
         "submitterSpecimenId": "COLO-829",
         "tumourNormalDesignation": "Tumour",
         "specimenTissueSource": "Blood derived",
         "specimenType": "Cell line - derived from tumour"
       },
       "donor": {
+        "donorId": "DO250183",
+        "studyId": "TEST-PR",
         "gender": "Female",
         "submitterDonorId": "COLO-829"
       }
@@ -24,164 +28,197 @@
     {
       "info": {
         "analysis_tools": [
-          "GATK-CalculateContamination"
+          "GATK:CalculateContamination"
         ],
         "data_category": "Quality Control Metrics",
+        "data_subtypes": [
+          "Cross Sample Contamination"
+        ],
         "description": "Cross sample contamination estimated by GATK CalculateContamination tool",
         "files_in_tgz": [
-          "07c96a3efa4dfaf1fc196c659b7aceb7.tumour.segmentation_metrics",
-          "07c96a3efa4dfaf1fc196c659b7aceb7.tumour.contamination_metrics",
-          "tumour_contamination.extra_info.json"
-        ],
-        "metrics": {
-          "contamination": 1,
-          "error": 0.16322950515917098,
-          "sample_id": "SA610229"
-        }
-      },
-      "fileName": "TEST-PR.DO250183.SA610229.wgs.20200922.gatk-mutect2.somatic.contamination_metrics.tgz",
-      "fileSize": 503,
-      "fileType": "TGZ",
-      "fileMd5sum": "4f819db494a91c8707be96741bdb0bf1",
-      "fileAccess": "controlled",
-      "dataType": "Cross Sample Contamination"
-    },
-    {
-      "info": {
-        "analysis_tools": [
-          "GATK-CalculateContamination"
-        ],
-        "data_category": "Quality Control Metrics",
-        "description": "Cross sample contamination estimated by GATK CalculateContamination tool",
-        "files_in_tgz": [
-          "bd9952ad38d06c9e34deb1f916c88dde.normal.contamination_metrics",
-          "bd9952ad38d06c9e34deb1f916c88dde.normal.segmentation_metrics",
+          "457589f8a447493bcee1a6c2ceda4479.normal.contamination_metrics",
+          "457589f8a447493bcee1a6c2ceda4479.normal.segmentation_metrics",
           "normal_contamination.extra_info.json"
         ],
         "metrics": {
-          "contamination": 0,
-          "error": 0,
+          "contamination": 0.0006137419558949717,
+          "error": 4.2816349532184186e-05,
           "sample_id": "SA610228"
         }
       },
-      "fileName": "TEST-PR.DO250183.SA610228.wgs.20200922.gatk-mutect2.somatic.contamination_metrics.tgz",
-      "fileSize": 491,
+      "objectId": "3a132074-34a7-5e6f-80f9-5eb2a98858d4",
+      "studyId": "TEST-PR",
+      "analysisId": "bcd90fe1-94f0-46bb-990f-e194f0a6bb6e",
+      "fileName": "TEST-PR.DO250183.SA610228.wgs.20210504.gatk-mutect2.somatic.contamination_metrics.tgz",
+      "fileSize": 1097,
       "fileType": "TGZ",
-      "fileMd5sum": "7963c94575d4472837588e7f46e81aed",
+      "fileMd5sum": "d85e4915ac7e1ee0614e9e451b550655",
       "fileAccess": "controlled",
-      "dataType": "Cross Sample Contamination"
+      "dataType": "Sample QC"
     },
     {
       "info": {
         "analysis_tools": [
-          "GATK-FilterMutectCalls"
+          "GATK:CalculateContamination"
         ],
         "data_category": "Quality Control Metrics",
+        "data_subtypes": [
+          "Cross Sample Contamination"
+        ],
+        "description": "Cross sample contamination estimated by GATK CalculateContamination tool",
+        "files_in_tgz": [
+          "909a4a8f6637138d60e4184ffffd5aaa.tumour.contamination_metrics",
+          "909a4a8f6637138d60e4184ffffd5aaa.tumour.segmentation_metrics",
+          "tumour_contamination.extra_info.json"
+        ],
+        "metrics": {
+          "contamination": 0.0017856831723463995,
+          "error": 6.70213236557462e-05,
+          "sample_id": "SA610229"
+        }
+      },
+      "objectId": "645a4fdc-e22b-5574-92e9-9441bf3e195f",
+      "studyId": "TEST-PR",
+      "analysisId": "bcd90fe1-94f0-46bb-990f-e194f0a6bb6e",
+      "fileName": "TEST-PR.DO250183.SA610229.wgs.20210504.gatk-mutect2.somatic.contamination_metrics.tgz",
+      "fileSize": 1186,
+      "fileType": "TGZ",
+      "fileMd5sum": "6caf70f704de9a797b41c8a383310734",
+      "fileAccess": "controlled",
+      "dataType": "Sample QC"
+    },
+    {
+      "info": {
+        "analysis_tools": [
+          "GATK:FilterMutectCalls"
+        ],
+        "data_category": "Quality Control Metrics",
+        "data_subtypes": [
+          "Variant Filtering Stats"
+        ],
         "description": "Information on the probability threshold chosen to optimize the F score and the number of false positives and false negatives from each filter to be expected from this choice.",
         "files_in_tgz": [
           "filter-mutect-calls.filtering-stats",
           "filtering_stats.extra_info.json"
         ],
         "metrics": {
-          "fdr": 0.035,
+          "fdr": 0.017,
           "filtering_stats": {
             "contamination": {
-              "FDR": 0.03,
-              "FN": 289.65,
-              "FNR": 0.01,
-              "FP": 1064.73
+              "FDR": 0,
+              "FN": 1.31,
+              "FNR": 0,
+              "FP": 0.92
             },
             "germline": {
               "FDR": 0,
-              "FN": 0,
+              "FN": 8.59,
               "FNR": 0,
-              "FP": 0
+              "FP": 10.56
             },
             "haplotype": {
               "FDR": 0,
-              "FN": 116.43,
+              "FN": 6.4,
               "FNR": 0,
-              "FP": 42.11
+              "FP": 1.38
             },
             "normal_artifact": {
               "FDR": 0,
-              "FN": 0,
+              "FN": 9.97,
               "FNR": 0,
-              "FP": 0.04
+              "FP": 11.55
             },
             "orientation": {
               "FDR": 0,
-              "FN": 0,
+              "FN": 34.62,
+              "FNR": 0.01,
+              "FP": 14.58
+            },
+            "slippage": {
+              "FDR": 0,
+              "FN": 0.82,
               "FNR": 0,
-              "FP": 0
+              "FP": 1
             },
             "strand_bias": {
-              "FDR": 0,
-              "FN": 0,
-              "FNR": 0,
-              "FP": 0.01
+              "FDR": 0.01,
+              "FN": 64.62,
+              "FNR": 0.01,
+              "FP": 29.05
             },
             "weak_evidence": {
               "FDR": 0,
-              "FN": 0.02,
-              "FNR": 0,
-              "FP": 0.61
+              "FN": 90.31,
+              "FNR": 0.02,
+              "FP": 20.68
             }
           },
-          "sensitivity": 0.987,
+          "sensitivity": 0.966,
           "threshold": 0.512
         }
       },
-      "fileName": "TEST-PR.DO250183.SA610229.wgs.20200922.gatk-mutect2.somatic.mutect_filtering_metrics.tgz",
-      "fileSize": 1006,
+      "objectId": "22fc4bd4-e5df-5b4a-8f0e-b726ea6bdccf",
+      "studyId": "TEST-PR",
+      "analysisId": "bcd90fe1-94f0-46bb-990f-e194f0a6bb6e",
+      "fileName": "TEST-PR.DO250183.SA610229.wgs.20210504.gatk-mutect2.somatic.mutect_filtering_metrics.tgz",
+      "fileSize": 1124,
       "fileType": "TGZ",
-      "fileMd5sum": "250db13684b1feb922fc3a91800266cf",
+      "fileMd5sum": "a39da203830b413355b04cc86d47462a",
       "fileAccess": "controlled",
-      "dataType": "Mutect2 Filtering Stats"
+      "dataType": "Analysis QC"
     },
     {
       "info": {
         "analysis_tools": [
-          "GATK-Mutect2"
+          "GATK:Mutect2"
         ],
         "data_category": "Quality Control Metrics",
+        "data_subtypes": [
+          "Variant Callable Stats"
+        ],
         "description": "Number of sites that are considered callable for Mutect stats with read depth equals or is higher than callable-depth which we set to default 10",
         "files_in_tgz": [
           "merged-mutect-stats.stats",
           "callable_stats.extra_info.json"
         ],
         "metrics": {
-          "callable": 36256695
+          "callable": 398741729
         }
       },
-      "fileName": "TEST-PR.DO250183.SA610229.wgs.20200922.gatk-mutect2.somatic.mutect_callable_metrics.tgz",
-      "fileSize": 376,
+      "objectId": "38d0eede-ab41-5c00-8fb1-eb991af37737",
+      "studyId": "TEST-PR",
+      "analysisId": "bcd90fe1-94f0-46bb-990f-e194f0a6bb6e",
+      "fileName": "TEST-PR.DO250183.SA610229.wgs.20210504.gatk-mutect2.somatic.mutect_callable_metrics.tgz",
+      "fileSize": 368,
       "fileType": "TGZ",
-      "fileMd5sum": "e1f3bcf6c243d79d76439c5ad0e1bb4f",
+      "fileMd5sum": "4c104c6477ac3d63717d9c99edd88597",
       "fileAccess": "controlled",
-      "dataType": "Mutect2 Callabe Stats"
+      "dataType": "Analysis QC"
     }
   ],
-  "experiment": {
-    "experimental_strategy": "WGS",
-    "platform": "ILLUMINA"
+  "analysisType": {
+    "name": "qc_metrics"
   },
   "workflow": {
-    "genome_build": "GRCh38_hla_decoy_ebv",
     "inputs": [
       {
         "analysis_type": "sequencing_alignment",
-        "tumour_analysis_id": "94c862ca-8055-4794-8862-ca8055479490"
+        "tumour_analysis_id": "23cfc3c6-115d-4563-8fc3-c6115d9563d2"
       },
       {
         "analysis_type": "sequencing_alignment",
-        "normal_analysis_id": "916b95a5-42d7-46a8-ab95-a542d7a6a81e"
+        "normal_analysis_id": "ce2a49b2-2bda-4ded-aa49-b22bdaadedb3"
       }
     ],
-    "run_id": "cheesy_fourier",
-    "session_id": "66956ede-ec51-4758-8f0b-316fa9812fb6",
+    "run_id": "wes-1c1d123a1ae840b18074d7b5f62afa40",
+    "session_id": "9cf5a190-fecb-4b10-aa45-1d3776488cef",
+    "genome_build": "GRCh38_hla_decoy_ebv",
     "workflow_name": "GATK Mutect2 Variant Calling",
-    "workflow_short_name": "gatk-mutect2",
-    "workflow_version": "4.1.8.0-1.0"
+    "workflow_version": "4.1.8.0-6.0",
+    "workflow_short_name": "gatk-mutect2"
+  },
+  "experiment": {
+    "platform": "ILLUMINA",
+    "experimental_strategy": "WGS"
   }
 }

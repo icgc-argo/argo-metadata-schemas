@@ -25,7 +25,7 @@
         "info": {
           "analysis_tools": [
             "CaVEMan",
-            "bcftools"
+            "Bcftools:view"
           ],
           "data_category": "Simple Nucleotide Variation"
         },
@@ -40,7 +40,7 @@
         "info": {
           "analysis_tools": [
             "CaVEMan",
-            "bcftools"
+            "Bcftools:view"
           ],
           "data_category": "Simple Nucleotide Variation"
         },

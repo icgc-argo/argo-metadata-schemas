@@ -3,22 +3,16 @@
   "studyId": "TEST-PR",
   "samples": [
     {
-      "sampleId": "SA610229",
-      "specimenId": "SP210202",
       "submitterSampleId": "COLO-829",
       "matchedNormalSubmitterSampleId": "COLO-829-BL",
       "sampleType": "Total DNA",
       "specimen": {
-        "specimenId": "SP210202",
-        "donorId": "DO250183",
         "submitterSpecimenId": "COLO-829",
         "tumourNormalDesignation": "Tumour",
         "specimenTissueSource": "Blood derived",
         "specimenType": "Cell line - derived from tumour"
       },
       "donor": {
-        "donorId": "DO250183",
-        "studyId": "TEST-PR",
         "gender": "Female",
         "submitterDonorId": "COLO-829"
       }
@@ -46,9 +40,6 @@
           "SA610229.tumour.png"
         ]
       },
-      "objectId": "891ff1be-dbe7-5f65-a991-ece99c8e4ece",
-      "studyId": "TEST-PR",
-      "analysisId": "a97ed172-533f-4700-bed1-72533f37008a",
       "fileName": "TEST-PR.DO250183.SA610229.wgs.20210504.sanger-wgs.somatic.ascat-supplement.tgz",
       "fileSize": 22298250,
       "fileType": "TGZ",
@@ -70,9 +61,6 @@
           "SA610229_vs_SA610228.annot.vcf.gz.tbi"
         ]
       },
-      "objectId": "eeed85e8-a0e5-5a93-9eaf-73be483bcd21",
-      "studyId": "TEST-PR",
-      "analysisId": "a97ed172-533f-4700-bed1-72533f37008a",
       "fileName": "TEST-PR.DO250183.SA610229.wgs.20210504.sanger-wgs.somatic.brass-supplement.tgz",
       "fileSize": 26158,
       "fileType": "TGZ",
@@ -102,9 +90,6 @@
           "splitList"
         ]
       },
-      "objectId": "a5d86296-a10b-5cf6-8c04-e4a0dc0866c6",
-      "studyId": "TEST-PR",
-      "analysisId": "a97ed172-533f-4700-bed1-72533f37008a",
       "fileName": "TEST-PR.DO250183.SA610229.wgs.20210504.sanger-wgs.somatic.caveman-supplement.tgz",
       "fileSize": 1576764,
       "fileType": "TGZ",
@@ -132,9 +117,6 @@
           "SA610229_vs_SA610228_wt.cram.md5"
         ]
       },
-      "objectId": "0bbdc0ec-27d6-5d50-883e-78d13fe915bb",
-      "studyId": "TEST-PR",
-      "analysisId": "a97ed172-533f-4700-bed1-72533f37008a",
       "fileName": "TEST-PR.DO250183.SA610229.wgs.20210504.sanger-wgs.somatic.pindel-supplement.tgz",
       "fileSize": 237448,
       "fileType": "TGZ",
@@ -167,9 +149,6 @@
           "WGS_SA610229_vs_SA610228.time.geno"
         ]
       },
-      "objectId": "c4685784-2c50-50a2-9db5-e125ad51d61f",
-      "studyId": "TEST-PR",
-      "analysisId": "a97ed172-533f-4700-bed1-72533f37008a",
       "fileName": "TEST-PR.DO250183.SA610229.wgs.20210504.sanger-wgs.somatic.timings-supplement.tgz",
       "fileSize": 90640,
       "fileType": "TGZ",

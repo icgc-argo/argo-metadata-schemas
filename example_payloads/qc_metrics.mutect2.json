@@ -3,22 +3,16 @@
   "studyId": "TEST-PR",
   "samples": [
     {
-      "sampleId": "SA610229",
-      "specimenId": "SP210202",
       "submitterSampleId": "COLO-829",
       "matchedNormalSubmitterSampleId": "COLO-829-BL",
       "sampleType": "Total DNA",
       "specimen": {
-        "specimenId": "SP210202",
-        "donorId": "DO250183",
         "submitterSpecimenId": "COLO-829",
         "tumourNormalDesignation": "Tumour",
         "specimenTissueSource": "Blood derived",
         "specimenType": "Cell line - derived from tumour"
       },
       "donor": {
-        "donorId": "DO250183",
-        "studyId": "TEST-PR",
         "gender": "Female",
         "submitterDonorId": "COLO-829"
       }
@@ -46,9 +40,6 @@
           "sample_id": "SA610228"
         }
       },
-      "objectId": "3a132074-34a7-5e6f-80f9-5eb2a98858d4",
-      "studyId": "TEST-PR",
-      "analysisId": "bcd90fe1-94f0-46bb-990f-e194f0a6bb6e",
       "fileName": "TEST-PR.DO250183.SA610228.wgs.20210504.gatk-mutect2.somatic.contamination_metrics.tgz",
       "fileSize": 1097,
       "fileType": "TGZ",
@@ -77,9 +68,6 @@
           "sample_id": "SA610229"
         }
       },
-      "objectId": "645a4fdc-e22b-5574-92e9-9441bf3e195f",
-      "studyId": "TEST-PR",
-      "analysisId": "bcd90fe1-94f0-46bb-990f-e194f0a6bb6e",
       "fileName": "TEST-PR.DO250183.SA610229.wgs.20210504.gatk-mutect2.somatic.contamination_metrics.tgz",
       "fileSize": 1186,
       "fileType": "TGZ",
@@ -157,9 +145,6 @@
           "threshold": 0.512
         }
       },
-      "objectId": "22fc4bd4-e5df-5b4a-8f0e-b726ea6bdccf",
-      "studyId": "TEST-PR",
-      "analysisId": "bcd90fe1-94f0-46bb-990f-e194f0a6bb6e",
       "fileName": "TEST-PR.DO250183.SA610229.wgs.20210504.gatk-mutect2.somatic.mutect_filtering_metrics.tgz",
       "fileSize": 1124,
       "fileType": "TGZ",
@@ -185,9 +170,6 @@
           "callable": 398741729
         }
       },
-      "objectId": "38d0eede-ab41-5c00-8fb1-eb991af37737",
-      "studyId": "TEST-PR",
-      "analysisId": "bcd90fe1-94f0-46bb-990f-e194f0a6bb6e",
       "fileName": "TEST-PR.DO250183.SA610229.wgs.20210504.gatk-mutect2.somatic.mutect_callable_metrics.tgz",
       "fileSize": 368,
       "fileType": "TGZ",

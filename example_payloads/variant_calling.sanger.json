@@ -1,8 +1,6 @@
 {
+  "analysisId": "fddb136b-3074-41cd-9b13-6b307461cdd7",
   "studyId": "TEST-PR",
-  "analysisType": {
-    "name": "variant_calling"
-  },
   "samples": [
     {
       "submitterSampleId": "COLO-829",
@@ -24,53 +22,60 @@
     {
       "info": {
         "analysis_tools": [
-          "ASCAT"
+          "Pindel"
         ],
-        "data_category": "Copy Number Variation"
+        "data_category": "Simple Nucleotide Variation"
       },
-      "fileName": "TEST-PR.DO250183.SA610229.wgs.20200918.sanger-wgs.somatic.cnv.vcf.gz",
-      "fileSize": 31877,
+      "fileName": "TEST-PR.DO250183.SA610229.wxs.20210504.sanger-wxs.somatic.indel.vcf.gz",
+      "fileSize": 33477,
       "fileType": "VCF",
-      "fileMd5sum": "4eae0fa7d6bc48ecc49ca553290fb6b7",
+      "fileMd5sum": "0c7656df9d21b006c442f8e7da4e68b5",
       "fileAccess": "controlled",
-      "dataType": "Raw CNV Calls"
+      "dataType": "Raw InDel Calls"
     },
     {
       "info": {
         "analysis_tools": [
-          "ASCAT"
+          "Pindel"
         ],
-        "data_category": "Copy Number Variation"
+        "data_category": "Simple Nucleotide Variation"
       },
-      "fileName": "TEST-PR.DO250183.SA610229.wgs.20200918.sanger-wgs.somatic.cnv.vcf.gz.tbi",
-      "fileSize": 5306,
+      "fileName": "TEST-PR.DO250183.SA610229.wxs.20210504.sanger-wxs.somatic.indel.vcf.gz.tbi",
+      "fileSize": 295,
       "fileType": "TBI",
-      "fileMd5sum": "9083f0fea1463e77d22035df10813ca3",
+      "fileMd5sum": "09e1d454e32ab410dce7192482275c92",
       "fileAccess": "controlled",
       "dataType": "VCF Index"
     }
   ],
-  "experiment": {
-    "experimental_strategy": "WGS",
-    "platform": "ILLUMINA"
+  "analysisType": {
+    "name": "variant_calling",
+    "version": 13
   },
-  "variant_class": "Somatic",
+  "info": {
+    "origin": "ICGC-25K"
+  },
   "workflow": {
-    "genome_build": "GRCh38_hla_decoy_ebv",
     "inputs": [
       {
         "analysis_type": "sequencing_alignment",
-        "tumour_analysis_id": "ad7e2df1-03ea-4dae-be2d-f103ea7dae3a"
+        "tumour_analysis_id": "03905962-f1e1-41e8-9059-62f1e1c1e8fc"
       },
       {
         "analysis_type": "sequencing_alignment",
-        "normal_analysis_id": "ce2a49b2-2bda-4ded-aa49-b22bdaadedb3"
+        "normal_analysis_id": "9940db0f-c100-496a-80db-0fc100d96ac1"
       }
     ],
-    "run_id": "wes-cd92109c046547e786832fcf31c3ef46",
-    "session_id": "223e7187-bf07-4f28-b319-fbc8bef27700",
-    "workflow_name": "Sanger WGS Variant Calling",
-    "workflow_short_name": "sanger-wgs",
-    "workflow_version": "2.1.0-9-1.2-dev"
-  }
+    "run_id": "wes-199cae83d52a4830b845a112d0962292",
+    "session_id": "40366474-b373-44b6-89f0-8b240ee1a99f",
+    "genome_build": "GRCh38_hla_decoy_ebv",
+    "workflow_name": "Sanger WXS Variant Calling",
+    "workflow_version": "3.1.6-3.6.0",
+    "workflow_short_name": "sanger-wxs"
+  },
+  "experiment": {
+    "platform": "ILLUMINA",
+    "experimental_strategy": "WXS"
+  },
+  "variant_class": "Somatic"
 }

@@ -25,7 +25,7 @@
         "info": {
           "analysis_tools": [
             "CaVEMan",
-            "bcftools"
+            "Bcftools:view"
           ],
           "data_category": "Simple Nucleotide Variation"
         },
@@ -40,7 +40,7 @@
         "info": {
           "analysis_tools": [
             "CaVEMan",
-            "bcftools"
+            "Bcftools:view"
           ],
           "data_category": "Simple Nucleotide Variation"
         },
@@ -57,6 +57,9 @@
       "platform": "ILLUMINA"
     },
     "variant_class": "Somatic",
+    "info": {
+        "origin": "ICGC-25K"
+    },
     "workflow": {
       "genome_build": "GRCh38_hla_decoy_ebv",
       "inputs": [

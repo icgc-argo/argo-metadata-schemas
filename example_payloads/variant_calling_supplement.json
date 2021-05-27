@@ -1,0 +1,186 @@
+{
+  "analysisId": "a97ed172-533f-4700-bed1-72533f37008a",
+  "studyId": "TEST-PR",
+  "samples": [
+    {
+      "submitterSampleId": "COLO-829",
+      "matchedNormalSubmitterSampleId": "COLO-829-BL",
+      "sampleType": "Total DNA",
+      "specimen": {
+        "submitterSpecimenId": "COLO-829",
+        "tumourNormalDesignation": "Tumour",
+        "specimenTissueSource": "Blood derived",
+        "specimenType": "Cell line - derived from tumour"
+      },
+      "donor": {
+        "gender": "Female",
+        "submitterDonorId": "COLO-829"
+      }
+    }
+  ],
+  "files": [
+    {
+      "info": {
+        "analysis_tools": [
+          "ASCAT"
+        ],
+        "data_category": "Copy Number Variation",
+        "description": "Files provided by ASCAT tool, bw files removed",
+        "files_in_tgz": [
+          "SA610229.ASCATprofile.png",
+          "SA610229.ASPCF.png",
+          "SA610229.copynumber.caveman.csv",
+          "SA610229.copynumber.caveman.vcf.gz",
+          "SA610229.copynumber.caveman.vcf.gz.tbi",
+          "SA610229.copynumber.txt.gz",
+          "SA610229.germline.png",
+          "SA610229.rawprofile.png",
+          "SA610229.samplestatistics.txt",
+          "SA610229.sunrise.png",
+          "SA610229.tumour.png"
+        ]
+      },
+      "fileName": "TEST-PR.DO250183.SA610229.wgs.20210504.sanger-wgs.somatic.ascat-supplement.tgz",
+      "fileSize": 22298250,
+      "fileType": "TGZ",
+      "fileMd5sum": "e759fd3f883106bf9fca415db87a5880",
+      "fileAccess": "controlled",
+      "dataType": "CNV Supplement"
+    },
+    {
+      "info": {
+        "analysis_tools": [
+          "BRASS"
+        ],
+        "data_category": "Structural Variation",
+        "description": "Files provided by BRASS tool, bw files and intermediates.tar.gz removed",
+        "files_in_tgz": [
+          "SA610229_vs_SA610228.annot.bedpe.gz",
+          "SA610229_vs_SA610228.annot.bedpe.gz.tbi",
+          "SA610229_vs_SA610228.annot.vcf.gz",
+          "SA610229_vs_SA610228.annot.vcf.gz.tbi"
+        ]
+      },
+      "fileName": "TEST-PR.DO250183.SA610229.wgs.20210504.sanger-wgs.somatic.brass-supplement.tgz",
+      "fileSize": 26158,
+      "fileType": "TGZ",
+      "fileMd5sum": "348f807be7d578859e25f3fd344e44ea",
+      "fileAccess": "controlled",
+      "dataType": "SV Supplement"
+    },
+    {
+      "info": {
+        "analysis_tools": [
+          "CaVEMan"
+        ],
+        "data_category": "Simple Nucleotide Variation",
+        "description": "Files provided by CaVEMan tool",
+        "files_in_tgz": [
+          "SA610229_vs_SA610228.flagged.muts.vcf.gz",
+          "SA610229_vs_SA610228.flagged.muts.vcf.gz.tbi",
+          "SA610229_vs_SA610228.muts.ids.vcf.gz",
+          "SA610229_vs_SA610228.muts.ids.vcf.gz.tbi",
+          "SA610229_vs_SA610228.no_analysis.bed",
+          "SA610229_vs_SA610228.snps.ids.vcf.gz",
+          "SA610229_vs_SA610228.snps.ids.vcf.gz.tbi",
+          "alg_bean",
+          "caveman.cfg.ini",
+          "cov_arr",
+          "prob_arr",
+          "splitList"
+        ]
+      },
+      "fileName": "TEST-PR.DO250183.SA610229.wgs.20210504.sanger-wgs.somatic.caveman-supplement.tgz",
+      "fileSize": 1576764,
+      "fileType": "TGZ",
+      "fileMd5sum": "1d4b74905278539898496a54c41c4734",
+      "fileAccess": "controlled",
+      "dataType": "SNV Supplement"
+    },
+    {
+      "info": {
+        "analysis_tools": [
+          "Pindel"
+        ],
+        "data_category": "Simple Nucleotide Variation",
+        "description": "Files provided by Pindel tool",
+        "files_in_tgz": [
+          "SA610229_vs_SA610228.flagged.vcf.gz",
+          "SA610229_vs_SA610228.flagged.vcf.gz.tbi",
+          "SA610229_vs_SA610228.germline.bed.gz",
+          "SA610229_vs_SA610228.germline.bed.gz.tbi",
+          "SA610229_vs_SA610228_mt.cram",
+          "SA610229_vs_SA610228_mt.cram.crai",
+          "SA610229_vs_SA610228_mt.cram.md5",
+          "SA610229_vs_SA610228_wt.cram",
+          "SA610229_vs_SA610228_wt.cram.crai",
+          "SA610229_vs_SA610228_wt.cram.md5"
+        ]
+      },
+      "fileName": "TEST-PR.DO250183.SA610229.wgs.20210504.sanger-wgs.somatic.pindel-supplement.tgz",
+      "fileSize": 237448,
+      "fileType": "TGZ",
+      "fileMd5sum": "6d4d2b7fd87ce0f9f02eb349d0b4e60e",
+      "fileAccess": "controlled",
+      "dataType": "InDel Supplement"
+    },
+    {
+      "info": {
+        "data_category": "Quality Control Metrics",
+        "data_subtypes": [
+          "Runtime Stats"
+        ],
+        "description": "Files contain timing information for different processing steps",
+        "files_in_tgz": [
+          "WGS_SA610228.time.verify_WT",
+          "WGS_SA610229.time.verify_MT",
+          "WGS_SA610229_vs_SA610228.time.BRASS",
+          "WGS_SA610229_vs_SA610228.time.BRASS_cover",
+          "WGS_SA610229_vs_SA610228.time.BRASS_input",
+          "WGS_SA610229_vs_SA610228.time.CaVEMan",
+          "WGS_SA610229_vs_SA610228.time.CaVEMan_annot",
+          "WGS_SA610229_vs_SA610228.time.CaVEMan_flag",
+          "WGS_SA610229_vs_SA610228.time.CaVEMan_setup",
+          "WGS_SA610229_vs_SA610228.time.CaVEMan_split",
+          "WGS_SA610229_vs_SA610228.time.ascat",
+          "WGS_SA610229_vs_SA610228.time.cache_POP",
+          "WGS_SA610229_vs_SA610228.time.cgpPindel",
+          "WGS_SA610229_vs_SA610228.time.cgpPindel_annot",
+          "WGS_SA610229_vs_SA610228.time.geno"
+        ]
+      },
+      "fileName": "TEST-PR.DO250183.SA610229.wgs.20210504.sanger-wgs.somatic.timings-supplement.tgz",
+      "fileSize": 90640,
+      "fileType": "TGZ",
+      "fileMd5sum": "5fe3d91ee77d6ccd4d6bbcb5809c26c6",
+      "fileAccess": "controlled",
+      "dataType": "Analysis QC"
+    }
+  ],
+  "analysisType": {
+    "name": "variant_calling_supplement"
+  },
+  "workflow": {
+    "inputs": [
+      {
+        "analysis_type": "sequencing_alignment",
+        "tumour_analysis_id": "ad7e2df1-03ea-4dae-be2d-f103ea7dae3a"
+      },
+      {
+        "analysis_type": "sequencing_alignment",
+        "normal_analysis_id": "ce2a49b2-2bda-4ded-aa49-b22bdaadedb3"
+      }
+    ],
+    "run_id": "wes-7c5283b341b24047bbfe6661fdba3038",
+    "session_id": "93b36d39-d9e6-4e52-818c-67a34462af6a",
+    "genome_build": "GRCh38_hla_decoy_ebv",
+    "workflow_name": "Sanger WGS Variant Calling",
+    "workflow_version": "2.1.0-9.6.0",
+    "workflow_short_name": "sanger-wgs"
+  },
+  "experiment": {
+    "platform": "ILLUMINA",
+    "experimental_strategy": "WGS"
+  },
+  "variant_class": "Somatic"
+}

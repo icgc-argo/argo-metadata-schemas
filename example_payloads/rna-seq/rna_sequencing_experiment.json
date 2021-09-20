@@ -1,0 +1,81 @@
+{
+  "studyId": "TEST-PR",
+  "analysisType": {
+    "name": "rna_sequencing_experiment"
+  },
+  "samples": [
+    {
+      "submitterSampleId": "COLO-829",
+      "matchedNormalSubmitterSampleId": "COLO-829-BL",
+      "sampleType": "Total RNA",
+      "specimen": {
+        "submitterSpecimenId": "COLO-829",
+        "tumourNormalDesignation": "Tumour",
+        "specimenTissueSource": "Blood derived",
+        "specimenType": "Cell line - derived from tumour"
+      },
+      "donor": {
+        "gender": "Female",
+        "submitterDonorId": "COLO-829"
+      }
+    }
+  ],
+  "files": [
+    {
+      "fileName": "30X_background.read1.fq.gz",
+      "fileSize": 1258643421,
+      "fileType": "FASTQ",
+      "fileMd5sum": "0f18932734eebe161166eea34c0c54c0",
+      "fileAccess": "controlled",
+      "dataType": "Submitted Reads",
+      "info": {
+        "data_category": "Sequencing Reads"
+      }
+    },
+    {
+      "fileName": "30X_background.read2.fq.gz",
+      "fileSize": 1258675364,
+      "fileType": "FASTQ",
+      "fileMd5sum": "5c439d45298a23f2f6402e2f3e3d3a9c",
+      "fileAccess": "controlled",
+      "dataType": "Submitted Reads",
+      "info": {
+        "data_category": "Sequencing Reads"
+      }
+    }
+  ],
+  "experiment": {
+    "experimental_strategy": "RNA-Seq",
+    "library_isolation_protocol": "miRNeasy kit - QIAGEN",
+    "library_preparation_kit": "TruSeq",
+    "library_strand": "Unstranded",
+    "rin": 9.0,
+    "dv200": 0.7,
+    "spike_ins_included": true,
+    "spike_ins_fasta": "",
+    "spike_ins_concentration": "",
+    "platform": "ILLUMINA",
+    "platform_model": "HiSeq 2000",
+    "sequencing_center": "OICR",
+    "sequencing_date": "2014-12-12",
+    "submitter_sequencing_experiment_id": "TEST_EXP"
+  },
+  "read_group_count": 1,
+  "read_groups": [
+    {
+      "file_r1": "30X_background.read1.fq.gz",
+      "file_r2": "30X_background.read2.fq.gz",
+      "insert_size": 298,
+      "is_paired_end": true,
+      "library_name": "531",
+      "platform_unit": "30X",
+      "read_length_r1": 100,
+      "read_length_r2": 100,
+      "sample_barcode": null,
+      "submitter_read_group_id": "30X"
+    }
+  ],
+  "info": {
+    "origin": "ICGC-25K"
+  }
+}

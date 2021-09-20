@@ -16,7 +16,8 @@
             "platform_model",
             "sequencing_date",
             "experimental_strategy",
-            "sequencing_center"
+            "sequencing_center",
+            "target_capture_kit"
           ]
         },
         "required": [
@@ -87,6 +88,14 @@
               "string",
               "null"
             ]
+          },
+          "target_capture_kit": {
+            "enum": [
+              "xGen Exome Research Panel V1 (IDT)", 
+              "SeqCap EZ MedExome (Roche)", 
+              "SureSelect Human All Exon V6 (Agilent)", 
+              "Human Core Exome Kit + RefSeq V1 (Twist)"
+            ]  
           }
         }
       },

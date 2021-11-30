@@ -1,7 +1,7 @@
 {
   "studyId": "TEST-PR",
   "analysisType": {
-    "name": "rna_sequencing_experiment"
+    "name": "sequencing_experiment"
   },
   "samples": [
     {

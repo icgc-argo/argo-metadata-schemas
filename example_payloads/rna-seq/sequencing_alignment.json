@@ -1,7 +1,7 @@
 {
   "studyId": "TEST-PR",
   "analysisType": {
-    "name": "rna_sequencing_alignment"
+    "name": "sequencing_alignment"
   },
   "samples": [
     {
@@ -54,54 +54,6 @@
       "fileMd5sum": "ff17b973de50b790141d6cd0c700da61",
       "fileAccess": "controlled",
       "dataType": "Aligned Reads Index"
-    },
-    {
-      "info": {
-        "analysis_tools": [
-          "STAR"
-        ],
-        "data_category": "Sequencing Reads",
-        "data_subtypes": [
-          "Transcriptome Alignment"
-        ]
-      },
-      "fileName": "TEST-PR.DO250183.SA610229.rna-seq.star-transcriptome.20200922.aln.bam",
-      "fileSize": 49561,
-      "fileType": "CRAI",
-      "fileMd5sum": "ff17b973de50b790141d6cd0c700da61",
-      "fileAccess": "controlled",
-      "dataType": "Aligned Reads"
-    },
-    {
-      "info": {
-        "analysis_tools": [
-          "STAR"
-        ],
-        "data_category": "Sequencing Reads",
-        "data_subtypes": [
-          "Transcriptome Alignment"
-        ]
-      },
-      "fileName": "TEST-PR.DO250183.SA610229.rna-seq.star-transcriptome.20200922.aln.bam.bai",
-      "fileSize": 49561,
-      "fileType": "CRAI",
-      "fileMd5sum": "ff17b973de50b790141d6cd0c700da61",
-      "fileAccess": "controlled",
-      "dataType": "Aligned Reads Index"
-    },
-    {
-      "info": {
-        "analysis_tools": [
-          "STAR"
-        ],
-        "data_category": "Transcriptome Profiling"
-      },
-      "fileName": "TEST-PR.DO250183.SA610229.rna-seq.star-splice-junctions.20200922.txt",
-      "fileSize": 49561,
-      "fileType": "txt",
-      "fileMd5sum": "ff17b973de50b790141d6cd0c700da61",
-      "fileAccess": "controlled",
-      "dataType": "Splice Junction Quantification"
     }
   ],
   "experiment": {
@@ -140,7 +92,7 @@
     "genome_annotation": "GENCODE v38",
     "inputs": [
       {
-        "analysis_type": "rna_sequencing_experiment",
+        "analysis_type": "sequencing_experiment",
         "input_analysis_id": "0048d713-2088-4c54-88d7-1320885c5477"
       }
     ],

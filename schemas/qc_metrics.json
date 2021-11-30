@@ -138,7 +138,7 @@
             "target_capture_kit",
             "library_isolation_protocol",
             "library_preparation_kit",
-            "library_strand",
+            "library_stranded",
             "rin",
             "dv200",
             "spike_ins_included",
@@ -252,7 +252,7 @@
               null
             ] 
           },
-          "library_strand": {
+          "library_stranded": {
             "enum": [
               "Unstranded",
               "First_Stranded",

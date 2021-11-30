@@ -1,5 +1,5 @@
 {
-  "name": "qc_metrics",
+  "name": "supplement",
   "schema": {
     "type": "object",
     "required": [
@@ -14,7 +14,6 @@
             "workflow_short_name",
             "workflow_version",
             "genome_build",
-            "genome_annotation",
             "run_id",
             "session_id",
             "inputs"
@@ -22,11 +21,13 @@
         },
         "required": [
           "workflow_name",
+          "workflow_short_name",
           "workflow_version",
           "genome_build",
           "run_id",
           "inputs"
         ],
+        "type": "object",
         "allOf": [
           {
             "type": "object",
@@ -34,10 +35,6 @@
               "workflow_name": {
                 "type": "string",
                 "pattern": "^[a-zA-Z][a-zA-Z0-9 _\\-]+[a-zA-Z0-9]+$"
-              },
-              "workflow_short_name": {
-                "type": "string",
-                "pattern": "^[a-zA-Z][a-zA-Z0-9_\\-]+[a-zA-Z0-9]+$"
               },
               "genome_build": {
                 "type": "string",
@@ -127,6 +124,7 @@
         ]
       },
       "experiment": {
+        "type": "object",
         "propertyNames": {
           "enum": [
             "platform",
@@ -150,7 +148,6 @@
           "platform",
           "experimental_strategy"
         ],
-        "type": "object",
         "properties": {
           "submitter_sequencing_experiment_id": {
             "type": ["string", "null"],
@@ -307,6 +304,13 @@
             ]  
           }
         }
+      },
+      "variant_class": {
+        "type": "string",
+        "enum": [
+          "Germline",
+          "Somatic"
+        ]
       }
     }
   }

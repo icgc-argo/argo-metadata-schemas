@@ -1,5 +1,5 @@
 {
-  "name": "qc_metrics",
+  "name": "splice_junctions",
   "schema": {
     "type": "object",
     "required": [
@@ -11,7 +11,6 @@
         "propertyNames": {
           "enum": [
             "workflow_name",
-            "workflow_short_name",
             "workflow_version",
             "genome_build",
             "genome_annotation",
@@ -35,10 +34,6 @@
                 "type": "string",
                 "pattern": "^[a-zA-Z][a-zA-Z0-9 _\\-]+[a-zA-Z0-9]+$"
               },
-              "workflow_short_name": {
-                "type": "string",
-                "pattern": "^[a-zA-Z][a-zA-Z0-9_\\-]+[a-zA-Z0-9]+$"
-              },
               "genome_build": {
                 "type": "string",
                 "enum": ["GRCh38_hla_decoy_ebv"]
@@ -55,14 +50,6 @@
                   "type": "object",
                   "properties": {
                     "input_analysis_id": {
-                      "type": "string",
-                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
-                    },
-                    "tumour_analysis_id": {
-                      "type": "string",
-                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
-                    },
-                    "normal_analysis_id": {
                       "type": "string",
                       "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
                     },
@@ -95,8 +82,7 @@
                   "properties": {
                     "analysis_type": {
                       "enum": [
-                        "sequencing_experiment",
-                        "sequencing_alignment"
+                        "sequencing_experiment"
                       ]
                     }
                   }

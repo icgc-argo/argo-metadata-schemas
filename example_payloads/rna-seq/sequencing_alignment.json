@@ -1,0 +1,107 @@
+{
+  "studyId": "TEST-QA",
+  "analysisType": {
+    "name": "sequencing_alignment"
+  },
+  "samples": [
+    {
+      "submitterSampleId": "COLO-829",
+      "matchedNormalSubmitterSampleId": "COLO-829-BL",
+      "sampleType": "Total RNA",
+      "specimen": {
+        "submitterSpecimenId": "COLO-829",
+        "tumourNormalDesignation": "Tumour",
+        "specimenTissueSource": "Blood derived",
+        "specimenType": "Cell line - derived from tumour"
+      },
+      "donor": {
+        "gender": "Female",
+        "submitterDonorId": "COLO-829"
+      }
+    }
+  ],
+  "files": [
+    {
+      "info": {
+        "analysis_tools": [
+          "STAR"
+        ],
+        "data_category": "Sequencing Reads",
+        "data_subtypes": [
+          "Genome Alignment"
+        ]
+      },
+      "fileName": "TEST-PR.DO250183.SA610229.rna-seq.star-genome.20200922.aln.cram",
+      "fileSize": 1435777431,
+      "fileType": "CRAM",
+      "fileMd5sum": "b1395cdda3649be087c41b6a4a8bba76",
+      "fileAccess": "controlled",
+      "dataType": "Aligned Reads"
+    },
+    {
+      "info": {
+        "analysis_tools": [
+          "STAR"
+        ],
+        "data_category": "Sequencing Reads",
+        "data_subtypes": [
+          "Genome Alignment"
+        ]
+      },
+      "fileName": "TEST-PR.DO250183.SA610229.rna-seq.star-genome.20200922.aln.bam.bai",
+      "fileSize": 49561,
+      "fileType": "CRAI",
+      "fileMd5sum": "ff17b973de50b790141d6cd0c700da61",
+      "fileAccess": "controlled",
+      "dataType": "Aligned Reads Index"
+    }
+  ],
+  "experiment": {
+    "experimental_strategy": "RNA-Seq",
+    "library_isolation_protocol": "miRNeasy kit - QIAGEN",
+    "library_preparation_kit": "TruSeq",
+    "library_strandedness": "UNSTRANDED",
+    "rin": 9.0,
+    "dv200": 0.7,
+    "spike_ins_included": true,
+    "spike_ins_fasta": "",
+    "spike_ins_concentration": "",
+    "platform": "ILLUMINA",
+    "platform_model": "HiSeq 2000",
+    "sequencing_center": "OICR",
+    "sequencing_date": "2014-12-12",
+    "submitter_sequencing_experiment_id": "TEST_EXP"
+  },
+  "read_group_count": 1,
+  "read_groups": [
+    {
+      "file_r1": "30X_background.read1.fq.gz",
+      "file_r2": "30X_background.read2.fq.gz",
+      "insert_size": 298,
+      "is_paired_end": true,
+      "library_name": "531",
+      "platform_unit": "30X",
+      "read_length_r1": 100,
+      "read_length_r2": 100,
+      "sample_barcode": null,
+      "submitter_read_group_id": "30X"
+    }
+  ],
+  "workflow": {
+    "genome_build": "GRCh38_hla_decoy_ebv",
+    "genome_annotation": "GENCODE v38",
+    "inputs": [
+      {
+        "analysis_type": "sequencing_experiment",
+        "input_analysis_id": "0048d713-2088-4c54-88d7-1320885c5477"
+      }
+    ],
+    "run_id": "wes-014892c5cbda4b3697b005277aac8817",
+    "session_id": "5340c370-527f-4052-861e-df4ef28eb9b4",
+    "workflow_name": "RNA Seq Alignment",
+    "workflow_version": "1.1.0"
+  },
+  "info": {
+    "origin": "ICGC-25K"
+  }
+}

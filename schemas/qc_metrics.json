@@ -14,6 +14,7 @@
             "workflow_short_name",
             "workflow_version",
             "genome_build",
+            "genome_annotation",
             "run_id",
             "session_id",
             "inputs"
@@ -42,10 +43,16 @@
                 "type": "string",
                 "enum": ["GRCh38_hla_decoy_ebv"]
               },
+              "genome_annotation": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
               "inputs": {
                 "type": "array",
                 "items": {
-                  "type": "object",
+                  "type": "object",              
                   "properties": {
                     "input_analysis_id": {
                       "type": "string",
@@ -80,19 +87,21 @@
             }
           },
           {
-            "properties": {
-              "inputs": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "analysis_type": {
-                      "enum": [
-                        "sequencing_experiment",
-                        "sequencing_alignment"
-                      ]
-                    }
-                  }
+            "if": {
+              "properties": {
+                "workflow_name": {
+                  "enum": [
+                    "RNA Seq Alignment"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "genome_annotation": {
+                  "enum": [
+                    "GENCODE v38"
+                  ]
                 }
               }
             }
@@ -107,7 +116,16 @@
             "sequencing_date",
             "experimental_strategy",
             "sequencing_center",
-            "submitter_sequencing_experiment_id"
+            "submitter_sequencing_experiment_id",
+            "target_capture_kit",
+            "library_isolation_protocol",
+            "library_preparation_kit",
+            "library_stranded",
+            "rin",
+            "dv200",
+            "spike_ins_included",
+            "spike_ins_fasta",
+            "spike_ins_concentration"
           ]
         },
         "required": [
@@ -115,70 +133,186 @@
           "experimental_strategy"
         ],
         "type": "object",
-        "properties": {
-          "submitter_sequencing_experiment_id": {
-            "type": ["string", "null"],
-            "pattern": "^[a-zA-Z0-9]{1}[a-zA-Z0-9\\-_\\.:']{0,98}[a-zA-Z0-9]{1}$"
-          },
-          "platform": {
-            "enum": [
-              "CAPILLARY",
-              "LS454",
-              "ILLUMINA",
-              "SOLID",
-              "HELICOS",
-              "IONTORRENT",
-              "ONT",
-              "PACBIO",
-              "Nanopore",
-              "BGI"
-            ]
-          },
-          "platform_model": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "sequencing_date": {
-            "oneOf": [
-              {
-                "type": "string",
-                "oneOf": [
-                  {
-                    "format": "date"
-                  },
-                  {
-                    "format": "date-time"
-                  }
-                ],
-                "example": [
-                  "2019-06-16",
-                  "2019-06-16T20:20:39+00:00"
+        "allof": [
+          {
+            "properties": {
+              "submitter_sequencing_experiment_id": {
+                "type": ["string", "null"],
+                "pattern": "^[a-zA-Z0-9]{1}[a-zA-Z0-9\\-_\\.:']{0,98}[a-zA-Z0-9]{1}$"
+              },
+              "platform": {
+                "enum": [
+                  "CAPILLARY",
+                  "LS454",
+                  "ILLUMINA",
+                  "SOLID",
+                  "HELICOS",
+                  "IONTORRENT",
+                  "ONT",
+                  "PACBIO",
+                  "Nanopore",
+                  "BGI"
                 ]
               },
-              {
-                "type": "null"
+              "platform_model": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "sequencing_date": {
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "oneOf": [
+                      {
+                        "format": "date"
+                      },
+                      {
+                        "format": "date-time"
+                      }
+                    ],
+                    "example": [
+                      "2019-06-16",
+                      "2019-06-16T20:20:39+00:00"
+                    ]
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "experimental_strategy": {
+                "enum": [
+                  "WGS",
+                  "WXS",
+                  "RNA-Seq",
+                  "Bisulfite-Seq",
+                  "ChIP-Seq",
+                  "Targeted-Seq"
+                ]
+              },
+              "sequencing_center": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "target_capture_kit": {
+                "enum": [
+                  "xGen Exome Research Panel V1 (IDT)", 
+                  "SeqCap EZ MedExome (Roche)", 
+                  "SureSelect Human All Exon V6 (Agilent)", 
+                  "Human Core Exome Kit + RefSeq V1 (Twist)",
+                  null
+                ]  
+              },
+              "library_isolation_protocol": {
+                "enum": [
+                  "TRIzol Reagent (Thermo Fisher)",
+                  "RNeasy kits (QIAGEN)",
+                  "RNase free DNase I (Thermo Fisher)",
+                  "Pico Pure RNA isolation kit (Thermo Fisher)",
+                  "mirVANA microRNA isolation kit (Thermo Fisher)",
+                  "Absolutely Total RNA, miRNA & mRNA Purification Kits (Stratagene, Agilent technologies)",
+                  "SV total RNA isolation kit (Promega)",
+                  "RNAqueous Kit (Thermo Fisher)",
+                  "AllPrep DNA/RNA Micro Kit (QIAGEN)",
+                  "GenElute Mammalian Total RNA Miniprep kit (MilliporeSigma)",
+                  "Spectrum Plant Total RNA kit (MilliporeSigma)",
+                  "peqGOLD Total RNA kits (PeqLab Biotechnologie)",
+                  "RNAlater (Thermo Fisher)",
+                  null
+                ]
+              },
+              "library_preparation_kit": {
+                "enum": [
+                  "Ovation SoLo kit (NuGEN)",
+                  "SMARTer Stranded Total RNA-Seq Kit (Takara)",
+                  "TruSeq RNA sample preparation v2 (Illumina)",
+                  "SMART-Seq v4 Ultra Low Input RNA Kit (Takara)",
+                  "Nextera XT DNA Library Preparation Kit (Illumina)",
+                  "NEXTflex kit (Bioo Scientific)",
+                  null
+                ] 
+              },
+              "library_strandedness": {
+                "enum": [
+                  "UNSTRANDED",
+                  "FIRST_READ_SENSE_STRAND",
+                  "FIRST_READ_ANTISENSE_STRAND",
+                  null
+                ]
+              },
+              "rin": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 10
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "dv200": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^(100|\\d{1,2}(\\.\\d+)?)%$",
+                    "minLength": 2,
+                    "description": "The percentage of RNA fragments that are >200 nucleotides in size.",
+                    "examples": [
+                      "95%"
+                    ]
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "spike_ins_included": {
+                "type": [
+                  "boolean",
+                  "null"
+                ]  
+              },
+              "spike_ins_fasta": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "spike_ins_concentration": {
+                "type": [
+                  "string",
+                  "null"
+                ]  
               }
-            ]
+            }
           },
-          "experimental_strategy": {
-            "enum": [
-              "WGS",
-              "WXS",
-              "RNA-Seq",
-              "Bisulfite-Seq",
-              "ChIP-Seq",
-              "Targeted-Seq"
-            ]
-          },
-          "sequencing_center": {
-            "type": [
-              "string",
-              "null"
-            ]
+          {
+            "if": {
+              "properties": {
+                "experimental_strategy": {
+                  "const": "RNA-Seq"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "library_strandedness": {
+                  "enum": [
+                    "UNSTRANDED",
+                    "FIRST_READ_SENSE_STRAND",
+                    "FIRST_READ_ANTISENSE_STRAND"
+                  ]
+                }
+              }
+            }
           }
-        }
+        ]
       }
     }
   }

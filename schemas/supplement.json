@@ -1,13 +1,113 @@
 {
-  "name": "sequencing_experiment",
+  "name": "supplement",
   "schema": {
     "type": "object",
     "required": [
-      "experiment",
-      "read_group_count",
-      "read_groups"
+      "workflow",
+      "experiment"
     ],
     "properties": {
+      "workflow": {
+        "propertyNames": {
+          "enum": [
+            "workflow_name",
+            "workflow_short_name",
+            "workflow_version",
+            "genome_build",
+            "genome_annotation",
+            "run_id",
+            "session_id",
+            "inputs"
+          ]
+        },
+        "required": [
+          "workflow_name",
+          "workflow_version",
+          "genome_build",
+          "run_id",
+          "inputs"
+        ],
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "workflow_name": {
+                "type": "string",
+                "pattern": "^[a-zA-Z][a-zA-Z0-9 _\\-]+[a-zA-Z0-9]+$"
+              },
+              "workflow_short_name": {
+                "type": "string",
+                "pattern": "^[a-zA-Z][a-zA-Z0-9_\\-]+[a-zA-Z0-9]+$"
+              },
+              "genome_build": {
+                "type": "string",
+                "enum": ["GRCh38_hla_decoy_ebv"]
+              },
+              "genome_annotation": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "inputs": {
+                "type": "array",
+                "items": {
+                  "type": "object",              
+                  "properties": {
+                    "input_analysis_id": {
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                    },
+                    "tumour_analysis_id": {
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                    },
+                    "normal_analysis_id": {
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                    },
+                    "analysis_type": {
+                      "type": "string",
+                      "pattern": "^[a-zA-Z][a-zA-Z0-9_]+$"
+                    }
+                  }
+                },
+                "minItems": 1
+              },
+              "run_id": {
+                "type": "string"
+              },
+              "session_id": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+              },
+              "workflow_version": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "workflow_name": {
+                  "enum": [
+                    "RNA Seq Alignment"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "genome_annotation": {
+                  "enum": [
+                    "GENCODE v38"
+                  ]
+                }
+              }
+            }
+          }
+        ]
+      },
       "experiment": {
         "propertyNames": {
           "enum": [
@@ -214,148 +314,12 @@
           }
         ]
       },
-      "read_group_count": {
-        "type": "integer",
-        "minimum": 1
-      },
-      "read_groups": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "propertyNames": {
-            "enum": [
-              "library_name",
-              "platform_unit",
-              "is_paired_end",
-              "read_length_r1",
-              "file_r1",
-              "insert_size",
-              "read_length_r2",
-              "file_r2",
-              "sample_barcode",
-              "read_group_id_in_bam",
-              "submitter_read_group_id"
-            ]
-          },
-          "required": [
-            "library_name",
-            "platform_unit",
-            "is_paired_end",
-            "read_length_r1",
-            "file_r1",
-            "insert_size",
-            "read_length_r2",
-            "file_r2",
-            "sample_barcode",
-            "submitter_read_group_id"
-          ],
-          "allOf": [
-            {
-              "properties": {
-                "submitter_read_group_id": {
-                  "type": "string",
-                  "pattern": "^[a-zA-Z0-9\\-_:\\.]+$"
-                },
-                "read_group_id_in_bam": {
-                  "type": [
-                    "string",
-                    "null"
-                  ],
-                  "pattern": "^[a-zA-Z0-9\\-_:\\.']+$"
-                },
-                "library_name": {
-                  "type": "string"
-                },
-                "platform_unit": {
-                  "type": "string"
-                },
-                "is_paired_end": {
-                  "type": "boolean"
-                },
-                "file_r1": {
-                  "type": "string"
-                },
-                "file_r2": {
-                  "type": [
-                    "string",
-                    "null"
-                  ]
-                },
-                "read_length_r1": {
-                  "type": [
-                    "integer",
-                    "null"
-                  ],
-                  "minimum": 20
-                },
-                "read_length_r2": {
-                  "type": [
-                    "integer",
-                    "null"
-                  ],
-                  "minimum": 20
-                },
-                "insert_size": {
-                  "type": [
-                    "integer",
-                    "null"
-                  ],
-                  "minimum": 0
-                },
-                "sample_barcode": {
-                  "type": [
-                    "string",
-                    "null"
-                  ]
-                }
-              }
-            },
-            {
-              "if": {
-                "properties": {
-                  "is_paired_end": {
-                    "const": true
-                  }
-                }
-              },
-              "then": {
-                "properties": {
-                  "file_r2": {
-                    "type": "string"
-                  },
-                  "read_length_r2": {
-                    "type": [
-                      "integer",
-                      "null"
-                    ],
-                    "minimum": 20
-                  },
-                  "insert_size": {
-                    "type": [
-                      "integer",
-                      "null"
-                    ],
-                    "minimum": 0
-                  }
-                }
-              },
-              "else": {
-                "properties": {
-                  "file_r2": {
-                    "const": null
-                  },
-                  "read_length_r2": {
-                    "const": null
-                  },
-                  "insert_size": {
-                    "const": null
-                  }
-                }
-              }
-            }
-          ]
-        },
-        "minItems": 1
+      "variant_class": {
+        "type": "string",
+        "enum": [
+          "Germline",
+          "Somatic"
+        ]
       }
     }
   }

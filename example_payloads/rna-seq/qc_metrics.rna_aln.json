@@ -1,0 +1,138 @@
+{
+  "analysisType": {
+    "name": "qc_metrics"
+  },
+  "studyId": "TEST-QA",
+  "workflow": {
+    "workflow_name": "RNA Seq Alignment",
+    "workflow_version": "0.1.0",
+    "genome_build": "GRCh38_hla_decoy_ebv",
+    "genome_annotation": "GENCODE v38",
+    "run_id": "scruffy_mcnulty",
+    "session_id": "08569a55-9c84-4df3-8a9e-f74d4659594b",
+    "inputs": [
+      {
+        "analysis_type": "sequencing_experiment",
+        "input_analysis_id": null
+      }
+    ]
+  },
+  "files": [
+    {
+      "fileSize": 1429,
+      "fileMd5sum": "941c8ac43e0a8632d2912be10bf22385",
+      "fileAccess": "controlled",
+      "info": {
+        "data_category": "Quality Control Metrics",
+        "data_subtypes": [
+          "Alignment Metrics"
+        ],
+        "analysis_tools": [
+          "Picard:CollectRnaSeqMetrics"
+        ],
+        "files_in_tgz": [
+          "rna_metrics.txt"
+        ],
+        "metrics": {
+          "pf_bases": 149000,
+          "pf_aligned_bases": 148933,
+          "ribosomal_bases": 200,
+          "coding_bases": 231,
+          "utr_bases": 0,
+          "intronic_bases": 437,
+          "intergenic_bases": 148065,
+          "ignored_reads": 0,
+          "correct_strand_reads": 2,
+          "incorrect_strand_reads": 2,
+          "num_r1_transcript_strand_reads": 1,
+          "num_r2_transcript_strand_reads": 1,
+          "num_unexplained_reads": 0,
+          "pct_r1_transcript_strand_reads": 0.5,
+          "pct_r2_transcript_strand_reads": 0.5,
+          "pct_ribosomal_bases": 0.001343,
+          "pct_coding_bases": 0.001551,
+          "pct_utr_bases": 0.0,
+          "pct_intronic_bases": 0.002934,
+          "pct_intergenic_bases": 0.994172,
+          "pct_mrna_bases": 0.001551,
+          "pct_usable_bases": 0.00155,
+          "pct_correct_strand_reads": 0.5,
+          "median_cv_coverage": 0.0,
+          "median_5prime_bias": 0.0,
+          "median_3prime_bias": 0.0,
+          "median_5prime_to_3prime_bias": 0.0
+        },
+        "description": "RNA alignment metrics for a SAM or BAM file."
+      },
+      "fileName": "TEST-PRO.DO001.SA001.rna-seq.20211125.star.collectrnaseqmetrics.tgz",
+      "dataType": "Aligned Reads QC"
+    },
+    {
+      "fileSize": 981,
+      "fileMd5sum": "06cac360e86e36fe5c5d742eb1386918",
+      "fileAccess": "controlled",
+      "info": {
+        "data_category": "Quality Control Metrics",
+        "data_subtypes": [
+          "Duplicates Metrics"
+        ],
+        "analysis_tools": [
+          "biobambam2:bammarkduplicates2"
+        ],
+        "files_in_tgz": [
+          "genome.merged.star.duplicates_metrics.txt"
+        ],
+        "metrics": {
+          "libraries": [
+            {
+              "LIBRARY": "sim01",
+              "UNPAIRED_READS_EXAMINED": 0,
+              "READ_PAIRS_EXAMINED": 745,
+              "UNMAPPED_READS": 0,
+              "UNPAIRED_READ_DUPLICATES": 0,
+              "READ_PAIR_DUPLICATES": 31,
+              "READ_PAIR_OPTICAL_DUPLICATES": 0,
+              "PERCENT_DUPLICATION": 0.0416107,
+              "ESTIMATED_LIBRARY_SIZE": 8701
+            }
+          ]
+        }
+      },
+      "fileName": "TEST-PRO.DO001.SA001.rna-seq.20211125.star.duplicates_metrics.tgz",
+      "dataType": "Aligned Reads QC"
+    }
+  ],
+  "samples": [
+    {
+      "submitterSampleId": "donor1_sample1_id",
+      "matchedNormalSubmitterSampleId": "sample1_normal",
+      "sampleType": "RNA",
+      "specimen": {
+        "submitterSpecimenId": "donor1_sample1",
+        "tumourNormalDesignation": "tumor",
+        "specimenTissueSource": "simulated",
+        "specimenType": "simulated"
+      },
+      "donor": {
+        "submitterDonorId": "donor1",
+        "gender": "male"
+      }
+    }
+  ],
+  "experiment": {
+    "submitter_sequencing_experiment_id": "TEST_EXP",
+    "sequencing_center": "SIM",
+    "platform": "ILLUMINA",
+    "platform_model": "Polyester",
+    "experimental_strategy": "RNA-Seq",
+    "sequencing_date": "2021-04-21",
+    "library_isolation_protocol": "",
+    "library_prepation_kit": "",
+    "library_strandedness": "FIRST_READ_SENSE_STRAND",
+    "rin": 9,
+    "dv200": "90%",
+    "spike_ins_included": "",
+    "spike_ins_fasta": "",
+    "spike_ins_concentration": ""
+  }
+}

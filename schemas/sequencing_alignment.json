@@ -122,7 +122,7 @@
             "target_capture_kit",
             "library_isolation_protocol",
             "library_preparation_kit",
-            "library_stranded",
+            "library_strandedness",
             "rin",
             "dv200",
             "spike_ins_included",

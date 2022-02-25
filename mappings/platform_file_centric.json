@@ -666,6 +666,19 @@
           "total_reads": {
             "type": "long"
           }
+        },
+        "meta": {
+          "properties": {
+            "study_id": {
+              "type": "keyword"
+            },
+            "release_state": {
+              "type": "keyword"
+            },
+            "embargo_stage": {
+              "type": "keyword"
+            }
+          }
         }
       }
     }

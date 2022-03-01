@@ -628,7 +628,6 @@
         ]
       },
       "metrics": {
-        "type": "nested",
         "properties": {
           "average_insert_size": {
             "type": "float"

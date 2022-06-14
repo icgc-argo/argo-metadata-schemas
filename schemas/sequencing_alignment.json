@@ -43,7 +43,10 @@
               },
               "genome_build": {
                 "type": "string",
-                "enum": ["GRCh38_hla_decoy_ebv"]
+                "enum": [
+                  "GRCh38_hla_decoy_ebv",
+                  "GRCh38_Verily_v1"
+                ]
               },
               "genome_annotation": {
                 "type": [
@@ -101,9 +104,8 @@
             "then": {
               "properties": {
                 "genome_annotation": {
-                  "enum": [
-                    "GENCODE v38"
-                  ]
+                  "type": "string",
+                  "pattern": "^GENCODE v[0-9]{2,4}$"
                 }
               }
             }

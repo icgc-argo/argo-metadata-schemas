@@ -40,7 +40,10 @@
           },
           "genome_build": {
             "type": "string",
-            "enum": ["GRCh38_hla_decoy_ebv"]
+            "enum": [
+              "GRCh38_hla_decoy_ebv",
+              "GRCh38_Verily_v1"
+            ]
           },
           "inputs": {
             "type": "array",

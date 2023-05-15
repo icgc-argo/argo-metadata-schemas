@@ -135,7 +135,7 @@
           "experimental_strategy"
         ],
         "type": "object",
-        "allof": [
+        "allOf": [
           {
             "properties": {
               "submitter_sequencing_experiment_id": {
@@ -166,7 +166,7 @@
                 "oneOf": [
                   {
                     "type": "string",
-                    "oneOf": [
+                    "anyOf": [
                       {
                         "format": "date"
                       },

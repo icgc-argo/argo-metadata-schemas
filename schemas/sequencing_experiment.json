@@ -64,7 +64,7 @@
                 "oneOf": [
                   {
                     "type": "string",
-                    "oneOf": [
+                    "anyOf": [
                       {
                         "format": "date"
                       },

@@ -209,7 +209,10 @@
                     "FIRST_READ_ANTISENSE_STRAND"
                   ]
                 }
-              }
+              },
+              "required": [
+                "library_strandedness"
+              ]
             }
           }
         ]

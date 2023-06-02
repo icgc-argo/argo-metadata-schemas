@@ -34,8 +34,11 @@
     }
   ],
   "experiment": {
-    "experimental_strategy": "WGS",
-    "platform": "ILLUMINA"
+    "experimental_strategy": "WXS",
+    "platform": "ILLUMINA",
+    "target_capture_kit": "test-1",
+    "primary_target_regions": "test-1-primary.bed",
+    "capture_target_regions": "test-1-capture.bed"
   },
   "read_group_count": 3,
   "read_groups": [

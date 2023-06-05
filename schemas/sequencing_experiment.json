@@ -11,13 +11,19 @@
       "experiment": {
         "propertyNames": {
           "enum": [
-            "platform",
-            "platform_model",
-            "sequencing_date",
-            "experimental_strategy",
-            "sequencing_center",
             "submitter_sequencing_experiment_id",
+            "platform",
+            "experimental_strategy",
+            "sequencing_date",
+            "platform_model",
+            "sequencing_center",
             "target_capture_kit",
+            "primary_target_regions",
+            "capture_target_regions",
+            "number_of_genes",
+            "gene_padding",
+            "coverage",
+            "library_selection",
             "library_isolation_protocol",
             "library_preparation_kit",
             "library_strandedness",
@@ -54,10 +60,14 @@
                   "BGI"
                 ]
               },
-              "platform_model": {
-                "type": [
-                  "string",
-                  "null"
+              "experimental_strategy": {
+                "enum": [
+                  "WGS",
+                  "WXS",
+                  "RNA-Seq",
+                  "Bisulfite-Seq",
+                  "ChIP-Seq",
+                  "Targeted-Seq"
                 ]
               },
               "sequencing_date": {
@@ -82,14 +92,10 @@
                   }
                 ]
               },
-              "experimental_strategy": {
-                "enum": [
-                  "WGS",
-                  "WXS",
-                  "RNA-Seq",
-                  "Bisulfite-Seq",
-                  "ChIP-Seq",
-                  "Targeted-Seq"
+              "platform_model": {
+                "type": [
+                  "string",
+                  "null"
                 ]
               },
               "sequencing_center": {
@@ -99,42 +105,82 @@
                 ]
               },
               "target_capture_kit": {
-                "enum": [
-                  "xGen Exome Research Panel V1 (IDT)", 
-                  "SeqCap EZ MedExome (Roche)", 
-                  "SureSelect Human All Exon V6 (Agilent)", 
-                  "Human Core Exome Kit + RefSeq V1 (Twist)",
-                  null
-                ]  
+                "type": [
+                  "string",
+                  "null"
+                ] 
               },
-              "library_isolation_protocol": {
+              "primary_target_regions": {
+                "type": [
+                  "string",
+                  "null"
+                ] 
+              },
+              "capture_target_regions": {
+                "type": [
+                  "string",
+                  "null"
+                ] 
+              },
+              "number_of_genes": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": 1
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "gene_padding": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "coverage": {
+                "anyOf": [
+                  {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "Hotspot Regions",
+                        "Coding Exons",
+                        "Introns",
+                        "Promoters"
+                      ]
+                    }
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "library_selection": {
                 "enum": [
-                  "TRIzol Reagent (Thermo Fisher)",
-                  "RNeasy kits (QIAGEN)",
-                  "RNase free DNase I (Thermo Fisher)",
-                  "Pico Pure RNA isolation kit (Thermo Fisher)",
-                  "mirVANA microRNA isolation kit (Thermo Fisher)",
-                  "Absolutely Total RNA, miRNA & mRNA Purification Kits (Stratagene, Agilent technologies)",
-                  "SV total RNA isolation kit (Promega)",
-                  "RNAqueous Kit (Thermo Fisher)",
-                  "AllPrep DNA/RNA Micro Kit (QIAGEN)",
-                  "GenElute Mammalian Total RNA Miniprep kit (MilliporeSigma)",
-                  "Spectrum Plant Total RNA kit (MilliporeSigma)",
-                  "peqGOLD Total RNA kits (PeqLab Biotechnologie)",
-                  "RNAlater (Thermo Fisher)",
+                  "Affinity Enrichment",
+                  "Hybrid Selection",
+                  "miRNA Size Fractionation",
+                  "PCR-based Enrichment",
+                  "Poly-T Enrichment",
+                  "Random",
+                  "rRNA Depletion",
+                  "Molecular Inversion Probes",
                   null
                 ]
               },
               "library_preparation_kit": {
-                "enum": [
-                  "Ovation SoLo kit (NuGEN)",
-                  "SMARTer Stranded Total RNA-Seq Kit (Takara)",
-                  "TruSeq RNA sample preparation v2 (Illumina)",
-                  "SMART-Seq v4 Ultra Low Input RNA Kit (Takara)",
-                  "Nextera XT DNA Library Preparation Kit (Illumina)",
-                  "NEXTflex kit (Bioo Scientific)",
-                  null
-                ] 
+                "type": [
+                  "string",
+                  "null"
+                ]
               },
               "library_strandedness": {
                 "enum": [
@@ -171,24 +217,6 @@
                     "type": "null"
                   }
                 ]
-              },
-              "spike_ins_included": {
-                "type": [
-                  "boolean",
-                  "null"
-                ]  
-              },
-              "spike_ins_fasta": {
-                "type": [
-                  "string",
-                  "null"
-                ]
-              },
-              "spike_ins_concentration": {
-                "type": [
-                  "string",
-                  "null"
-                ]  
               }
             }
           },
@@ -214,6 +242,36 @@
                 "library_strandedness"
               ]
             }
+          },
+          {
+            "if": {
+              "properties": {
+                "experimental_strategy": {
+                  "enum": [
+                    "WXS",
+                    "Targeted-Seq"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "target_capture_kit": {
+                  "type": "string"
+                },
+                "primary_target_regions": {
+                  "type": "string"
+                },
+                "capture_target_regions": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "target_capture_kit",
+                "primary_target_regions",
+                "capture_target_regions"
+              ]
+            }
           }
         ]
       },
@@ -227,30 +285,25 @@
           "type": "object",
           "propertyNames": {
             "enum": [
-              "library_name",
+              "submitter_read_group_id",
+              "read_group_id_in_bam",
               "platform_unit",
               "is_paired_end",
-              "read_length_r1",
               "file_r1",
-              "insert_size",
-              "read_length_r2",
               "file_r2",
-              "sample_barcode",
-              "read_group_id_in_bam",
-              "submitter_read_group_id"
+              "library_name",
+              "read_length_r1",
+              "read_length_r2",
+              "insert_size",   
+              "sample_barcode"  
             ]
           },
           "required": [
-            "library_name",
+            "submitter_read_group_id",
             "platform_unit",
             "is_paired_end",
-            "read_length_r1",
             "file_r1",
-            "insert_size",
-            "read_length_r2",
-            "file_r2",
-            "sample_barcode",
-            "submitter_read_group_id"
+            "library_name"
           ],
           "allOf": [
             {

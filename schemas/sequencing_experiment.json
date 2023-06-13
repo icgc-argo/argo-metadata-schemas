@@ -39,187 +39,185 @@
           "experimental_strategy"
         ],
         "type": "object",
-        "allOf": [
-          {
-            "properties": {
-              "submitter_sequencing_experiment_id": {
-                "type": ["string", "null"],
-                "pattern": "^[a-zA-Z0-9]{1}[a-zA-Z0-9\\-_\\.:']{0,98}[a-zA-Z0-9]{1}$"
-              },
-              "platform": {
-                "enum": [
-                  "CAPILLARY",
-                  "LS454",
-                  "ILLUMINA",
-                  "SOLID",
-                  "HELICOS",
-                  "IONTORRENT",
-                  "ONT",
-                  "PACBIO",
-                  "Nanopore",
-                  "BGI"
-                ]
-              },
-              "experimental_strategy": {
-                "enum": [
-                  "WGS",
-                  "WXS",
-                  "RNA-Seq",
-                  "Bisulfite-Seq",
-                  "ChIP-Seq",
-                  "Targeted-Seq"
-                ]
-              },
-              "sequencing_date": {
-                "oneOf": [
-                  {
-                    "type": "string",
-                    "anyOf": [
-                      {
-                        "format": "date"
-                      },
-                      {
-                        "format": "date-time"
-                      }
-                    ],
-                    "example": [
-                      "2019-06-16",
-                      "2019-06-16T20:20:39+00:00"
-                    ]
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
-              },
-              "platform_model": {
-                "type": [
-                  "string",
-                  "null"
-                ]
-              },
-              "sequencing_center": {
-                "type": [
-                  "string",
-                  "null"
-                ]
-              },
-              "target_capture_kit": {
-                "type": [
-                  "string",
-                  "null"
-                ] 
-              },
-              "primary_target_regions": {
-                "type": [
-                  "string",
-                  "null"
-                ] 
-              },
-              "capture_target_regions": {
-                "type": [
-                  "string",
-                  "null"
-                ] 
-              },
-              "number_of_genes": {
-                "anyOf": [
-                  {
-                    "type": "number",
-                    "minimum": 1
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
-              },
-              "gene_padding": {
-                "anyOf": [
-                  {
-                    "type": "number",
-                    "minimum": 0
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
-              },
-              "coverage": {
-                "anyOf": [
-                  {
-                    "type": "array",
-                    "items": {
-                      "type": "string",
-                      "enum": [
-                        "Hotspot Regions",
-                        "Coding Exons",
-                        "Introns",
-                        "Promoters"
-                      ]
-                    }
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
-              },
-              "library_selection": {
-                "enum": [
-                  "Affinity Enrichment",
-                  "Hybrid Selection",
-                  "miRNA Size Fractionation",
-                  "PCR-based Enrichment",
-                  "Poly-T Enrichment",
-                  "Random",
-                  "rRNA Depletion",
-                  "Molecular Inversion Probes",
-                  null
-                ]
-              },
-              "library_preparation_kit": {
-                "type": [
-                  "string",
-                  "null"
-                ]
-              },
-              "library_strandedness": {
-                "enum": [
-                  "UNSTRANDED",
-                  "FIRST_READ_SENSE_STRAND",
-                  "FIRST_READ_ANTISENSE_STRAND",
-                  null
-                ]
-              },
-              "rin": {
-                "anyOf": [
-                  {
-                    "type": "number",
-                    "minimum": 1,
-                    "maximum": 10
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
-              },
-              "dv200": {
-                "anyOf": [
-                  {
-                    "type": "string",
-                    "pattern": "^(100|\\d{1,2}(\\.\\d+)?)%$",
-                    "minLength": 2,
-                    "description": "The percentage of RNA fragments that are >200 nucleotides in size.",
-                    "examples": [
-                      "95%"
-                    ]
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
-              }
-            }
+        "properties": {
+          "submitter_sequencing_experiment_id": {
+            "type": ["string", "null"],
+            "pattern": "^[a-zA-Z0-9]{1}[a-zA-Z0-9\\-_\\.:']{0,98}[a-zA-Z0-9]{1}$"
           },
+          "platform": {
+            "enum": [
+              "CAPILLARY",
+              "LS454",
+              "ILLUMINA",
+              "SOLID",
+              "HELICOS",
+              "IONTORRENT",
+              "ONT",
+              "PACBIO",
+              "Nanopore",
+              "BGI"
+            ]
+          },
+          "experimental_strategy": {
+            "enum": [
+              "WGS",
+              "WXS",
+              "RNA-Seq",
+              "Bisulfite-Seq",
+              "ChIP-Seq",
+              "Targeted-Seq"
+            ]
+          },
+          "sequencing_date": {
+            "oneOf": [
+              {
+                "type": "string",
+                "anyOf": [
+                  {
+                    "format": "date"
+                  },
+                  {
+                    "format": "date-time"
+                  }
+                ],
+                "example": [
+                  "2019-06-16",
+                  "2019-06-16T20:20:39+00:00"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "platform_model": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "sequencing_center": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "target_capture_kit": {
+            "type": [
+              "string",
+              "null"
+            ] 
+          },
+          "primary_target_regions": {
+            "type": [
+              "string",
+              "null"
+            ] 
+          },
+          "capture_target_regions": {
+            "type": [
+              "string",
+              "null"
+            ] 
+          },
+          "number_of_genes": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "gene_padding": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 0
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "coverage": {
+            "anyOf": [
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "Hotspot Regions",
+                    "Coding Exons",
+                    "Introns",
+                    "Promoters"
+                  ]
+                }
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "library_selection": {
+            "enum": [
+              "Affinity Enrichment",
+              "Hybrid Selection",
+              "miRNA Size Fractionation",
+              "PCR-based Enrichment",
+              "Poly-T Enrichment",
+              "Random",
+              "rRNA Depletion",
+              "Molecular Inversion Probes",
+              null
+            ]
+          },
+          "library_preparation_kit": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "library_strandedness": {
+            "enum": [
+              "UNSTRANDED",
+              "FIRST_READ_SENSE_STRAND",
+              "FIRST_READ_ANTISENSE_STRAND",
+              null
+            ]
+          },
+          "rin": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 1,
+                "maximum": 10
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "dv200": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^(100|\\d{1,2}(\\.\\d+)?)%$",
+                "minLength": 2,
+                "description": "The percentage of RNA fragments that are >200 nucleotides in size.",
+                "examples": [
+                  "95%"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "allOf": [
           {
             "if": {
               "properties": {
@@ -413,6 +411,70 @@
         },
         "minItems": 1
       }
+    },
+    "if": {
+      "properties": {
+        "specimen": {
+          "properties": {
+            "tumourNormalDesignation": {
+              "const": "Tumour"
+            }
+          }
+        }
+      }
+    },
+    "then": {
+      "if": {
+        "properties": {
+          "experiment": {
+            "properties": {
+              "experimental_strategy": {
+                "enum":[
+                  "WGS",
+                  "WXS"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "matchedNormalSubmitterSampleId": {
+              "$ref": "#/definitions/common/submitterId"
+          }
+        },
+        "required": [
+          "matchedNormalSubmitterSampleId"
+        ]
+      },
+      "else": {
+        "properties": {
+          "matchedNormalSubmitterSampleId": {
+            "oneOf": [
+              {
+                "const": null
+              },
+              {
+                "$ref": "#/definitions/common/submitterId"
+              }
+            ]
+          }
+        },
+        "required": [
+          "matchedNormalSubmitterSampleId"
+        ]
+      }
+    },
+    "else": {
+      "properties": {
+        "matchedNormalSubmitterSampleId": {
+          "const": null
+        }
+      },
+      "required": [
+        "matchedNormalSubmitterSampleId"
+      ]
     }
   }
 }

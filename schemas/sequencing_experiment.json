@@ -414,10 +414,14 @@
     },
     "if": {
       "properties": {
-        "specimen": {
+        "samples": {
           "properties": {
-            "tumourNormalDesignation": {
-              "const": "Tumour"
+            "specimen": {
+              "properties": {
+                "tumourNormalDesignation": {
+                  "const": "Tumour"
+                }
+              }
             }
           }
         }
@@ -440,41 +444,54 @@
       },
       "then": {
         "properties": {
-          "matchedNormalSubmitterSampleId": {
-              "$ref": "#/definitions/common/submitterId"
+          "samples": {
+            "properties": {
+              "matchedNormalSubmitterSampleId": {
+                  "$ref": "#/definitions/common/submitterId"
+              }
+            },
+            "required": [
+              "matchedNormalSubmitterSampleId"
+            ]
           }
-        },
-        "required": [
-          "matchedNormalSubmitterSampleId"
-        ]
+        }
       },
       "else": {
         "properties": {
-          "matchedNormalSubmitterSampleId": {
-            "oneOf": [
-              {
-                "const": null
-              },
-              {
-                "$ref": "#/definitions/common/submitterId"
+          "samples": {
+            "properties": {
+              "matchedNormalSubmitterSampleId": {
+                "oneOf": [
+                  {
+                    "const": null
+                  },
+                  {
+                    "$ref": "#/definitions/common/submitterId"
+                  }
+                ]
               }
+            },
+            "required": [
+              "matchedNormalSubmitterSampleId"
             ]
           }
-        },
-        "required": [
-          "matchedNormalSubmitterSampleId"
-        ]
+        }
+
       }
     },
     "else": {
       "properties": {
-        "matchedNormalSubmitterSampleId": {
-          "const": null
+        "samples": {
+          "properties": {
+            "matchedNormalSubmitterSampleId": {
+              "const": null
+            }
+          },
+          "required": [
+            "matchedNormalSubmitterSampleId"
+          ]
         }
-      },
-      "required": [
-        "matchedNormalSubmitterSampleId"
-      ]
+      }
     }
   }
 }

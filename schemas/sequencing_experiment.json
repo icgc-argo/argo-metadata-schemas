@@ -9,6 +9,7 @@
     ],
     "properties": {
       "experiment": {
+        "type": "object",
         "propertyNames": {
           "enum": [
             "submitter_sequencing_experiment_id",
@@ -34,192 +35,189 @@
             "spike_ins_concentration"
           ]
         },
+        "properties": {
+          "submitter_sequencing_experiment_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9\\-\\._]{1,98}$"
+          },
+          "platform": {
+            "enum": [
+              "CAPILLARY",
+              "LS454",
+              "ILLUMINA",
+              "SOLID",
+              "HELICOS",
+              "IONTORRENT",
+              "ONT",
+              "PACBIO",
+              "Nanopore",
+              "BGI"
+            ]
+          },
+          "experimental_strategy": {
+            "enum": [
+              "WGS",
+              "WXS",
+              "RNA-Seq",
+              "Bisulfite-Seq",
+              "ChIP-Seq",
+              "Targeted-Seq"
+            ]
+          },
+          "sequencing_date": {
+            "oneOf": [
+              {
+                "type": "string",
+                "anyOf": [
+                  {
+                    "format": "date"
+                  },
+                  {
+                    "format": "date-time"
+                  }
+                ],
+                "example": [
+                  "2019-06-16",
+                  "2019-06-16T20:20:39+00:00"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "platform_model": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "sequencing_center": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "target_capture_kit": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "primary_target_regions": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "capture_target_regions": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "number_of_genes": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "gene_padding": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 0
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "coverage": {
+            "anyOf": [
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "Hotspot Regions",
+                    "Coding Exons",
+                    "Introns",
+                    "Promoters"
+                  ]
+                }
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "library_selection": {
+            "enum": [
+              "Affinity Enrichment",
+              "Hybrid Selection",
+              "miRNA Size Fractionation",
+              "PCR-based Enrichment",
+              "Poly-T Enrichment",
+              "Random",
+              "rRNA Depletion",
+              "Molecular Inversion Probes",
+              null
+            ]
+          },
+          "library_preparation_kit": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "library_strandedness": {
+            "enum": [
+              "UNSTRANDED",
+              "FIRST_READ_SENSE_STRAND",
+              "FIRST_READ_ANTISENSE_STRAND",
+              null
+            ]
+          },
+          "rin": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 1,
+                "maximum": 10
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "dv200": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^(100|\\d{1,2}(\\.\\d+)?)%$",
+                "minLength": 2,
+                "description": "The percentage of RNA fragments that are >200 nucleotides in size.",
+                "examples": [
+                  "95%"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
         "required": [
           "platform",
           "experimental_strategy"
         ],
-        "type": "object",
         "allOf": [
-          {
-            "properties": {
-              "submitter_sequencing_experiment_id": {
-                "type": ["string", "null"],
-                "pattern": "^[a-zA-Z0-9]{1}[a-zA-Z0-9\\-_\\.:']{0,98}[a-zA-Z0-9]{1}$"
-              },
-              "platform": {
-                "enum": [
-                  "CAPILLARY",
-                  "LS454",
-                  "ILLUMINA",
-                  "SOLID",
-                  "HELICOS",
-                  "IONTORRENT",
-                  "ONT",
-                  "PACBIO",
-                  "Nanopore",
-                  "BGI"
-                ]
-              },
-              "experimental_strategy": {
-                "enum": [
-                  "WGS",
-                  "WXS",
-                  "RNA-Seq",
-                  "Bisulfite-Seq",
-                  "ChIP-Seq",
-                  "Targeted-Seq"
-                ]
-              },
-              "sequencing_date": {
-                "oneOf": [
-                  {
-                    "type": "string",
-                    "anyOf": [
-                      {
-                        "format": "date"
-                      },
-                      {
-                        "format": "date-time"
-                      }
-                    ],
-                    "example": [
-                      "2019-06-16",
-                      "2019-06-16T20:20:39+00:00"
-                    ]
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
-              },
-              "platform_model": {
-                "type": [
-                  "string",
-                  "null"
-                ]
-              },
-              "sequencing_center": {
-                "type": [
-                  "string",
-                  "null"
-                ]
-              },
-              "target_capture_kit": {
-                "type": [
-                  "string",
-                  "null"
-                ] 
-              },
-              "primary_target_regions": {
-                "type": [
-                  "string",
-                  "null"
-                ] 
-              },
-              "capture_target_regions": {
-                "type": [
-                  "string",
-                  "null"
-                ] 
-              },
-              "number_of_genes": {
-                "anyOf": [
-                  {
-                    "type": "number",
-                    "minimum": 1
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
-              },
-              "gene_padding": {
-                "anyOf": [
-                  {
-                    "type": "number",
-                    "minimum": 0
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
-              },
-              "coverage": {
-                "anyOf": [
-                  {
-                    "type": "array",
-                    "items": {
-                      "type": "string",
-                      "enum": [
-                        "Hotspot Regions",
-                        "Coding Exons",
-                        "Introns",
-                        "Promoters"
-                      ]
-                    }
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
-              },
-              "library_selection": {
-                "enum": [
-                  "Affinity Enrichment",
-                  "Hybrid Selection",
-                  "miRNA Size Fractionation",
-                  "PCR-based Enrichment",
-                  "Poly-T Enrichment",
-                  "Random",
-                  "rRNA Depletion",
-                  "Molecular Inversion Probes",
-                  null
-                ]
-              },
-              "library_preparation_kit": {
-                "type": [
-                  "string",
-                  "null"
-                ]
-              },
-              "library_strandedness": {
-                "enum": [
-                  "UNSTRANDED",
-                  "FIRST_READ_SENSE_STRAND",
-                  "FIRST_READ_ANTISENSE_STRAND",
-                  null
-                ]
-              },
-              "rin": {
-                "anyOf": [
-                  {
-                    "type": "number",
-                    "minimum": 1,
-                    "maximum": 10
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
-              },
-              "dv200": {
-                "anyOf": [
-                  {
-                    "type": "string",
-                    "pattern": "^(100|\\d{1,2}(\\.\\d+)?)%$",
-                    "minLength": 2,
-                    "description": "The percentage of RNA fragments that are >200 nucleotides in size.",
-                    "examples": [
-                      "95%"
-                    ]
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
-              }
-            }
-          },
           {
             "if": {
               "properties": {
@@ -257,13 +255,16 @@
             "then": {
               "properties": {
                 "target_capture_kit": {
-                  "type": "string"
+                  "type": "string",
+                  "pattern": "^[a-zA-Z0-9]{1}[a-zA-Z0-9\\-_\\.:']{0,98}[a-zA-Z0-9]{1}$"
                 },
                 "primary_target_regions": {
-                  "type": "string"
+                  "type": "string",
+                  "pattern": "^[a-zA-Z0-9]{1}[a-zA-Z0-9\\-_\\.:']{0,98}[a-zA-Z0-9]{1}$"
                 },
                 "capture_target_regions": {
-                  "type": "string"
+                  "type": "string",
+                  "pattern": "^[a-zA-Z0-9]{1}[a-zA-Z0-9\\-_\\.:']{0,98}[a-zA-Z0-9]{1}$"
                 }
               },
               "required": [
@@ -298,6 +299,67 @@
               "sample_barcode"  
             ]
           },
+          "properties": {
+            "submitter_read_group_id": {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9\\-_:\\.]{1,98}$"
+            },
+            "read_group_id_in_bam": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^[a-zA-Z0-9\\-_:\\.']{1,98}$"
+            },
+            "library_name": {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9]{1}[a-zA-Z0-9\\-_\\.:']{0,98}[a-zA-Z0-9]{1}$"
+            },
+            "platform_unit": {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9]{1}[a-zA-Z0-9\\-_\\.:']{0,98}[a-zA-Z0-9]{1}$"
+            },
+            "is_paired_end": {
+              "type": "boolean"
+            },
+            "file_r1": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_\\.\\-\\[\\]\\(\\)]+$"
+            },
+            "file_r2": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "read_length_r1": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 20
+            },
+            "read_length_r2": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 20
+            },
+            "insert_size": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "sample_barcode": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
           "required": [
             "submitter_read_group_id",
             "platform_unit",
@@ -306,66 +368,6 @@
             "library_name"
           ],
           "allOf": [
-            {
-              "properties": {
-                "submitter_read_group_id": {
-                  "type": "string",
-                  "pattern": "^[a-zA-Z0-9\\-_:\\.]+$"
-                },
-                "read_group_id_in_bam": {
-                  "type": [
-                    "string",
-                    "null"
-                  ],
-                  "pattern": "^[a-zA-Z0-9\\-_:\\.']+$"
-                },
-                "library_name": {
-                  "type": "string"
-                },
-                "platform_unit": {
-                  "type": "string"
-                },
-                "is_paired_end": {
-                  "type": "boolean"
-                },
-                "file_r1": {
-                  "type": "string"
-                },
-                "file_r2": {
-                  "type": [
-                    "string",
-                    "null"
-                  ]
-                },
-                "read_length_r1": {
-                  "type": [
-                    "integer",
-                    "null"
-                  ],
-                  "minimum": 20
-                },
-                "read_length_r2": {
-                  "type": [
-                    "integer",
-                    "null"
-                  ],
-                  "minimum": 20
-                },
-                "insert_size": {
-                  "type": [
-                    "integer",
-                    "null"
-                  ],
-                  "minimum": 0
-                },
-                "sample_barcode": {
-                  "type": [
-                    "string",
-                    "null"
-                  ]
-                }
-              }
-            },
             {
               "if": {
                 "properties": {
@@ -377,7 +379,8 @@
               "then": {
                 "properties": {
                   "file_r2": {
-                    "type": "string"
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9_\\.\\-\\[\\]\\(\\)]+$"
                   },
                   "read_length_r2": {
                     "type": [
@@ -393,7 +396,10 @@
                     ],
                     "minimum": 0
                   }
-                }
+                },
+                "required": [
+                  "file_r2"
+                ]
               },
               "else": {
                 "properties": {

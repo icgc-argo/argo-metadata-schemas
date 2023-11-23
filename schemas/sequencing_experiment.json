@@ -295,8 +295,8 @@
               "library_name",
               "read_length_r1",
               "read_length_r2",
-              "insert_size",   
-              "sample_barcode"  
+              "insert_size",
+              "sample_barcode"
             ]
           },
           "properties": {
@@ -312,12 +312,10 @@
               "pattern": "^[a-zA-Z0-9\\-_:\\.']{1,98}$"
             },
             "library_name": {
-              "type": "string",
-              "pattern": "^[a-zA-Z0-9]{1}[a-zA-Z0-9\\-_\\.:']{0,98}[a-zA-Z0-9]{1}$"
+              "type": "string"
             },
             "platform_unit": {
-              "type": "string",
-              "pattern": "^[a-zA-Z0-9]{1}[a-zA-Z0-9\\-_\\.:']{0,98}[a-zA-Z0-9]{1}$"
+              "type": "string"
             },
             "is_paired_end": {
               "type": "boolean"
@@ -330,7 +328,8 @@
               "type": [
                 "string",
                 "null"
-              ]
+              ],
+              "pattern": "^[A-Za-z0-9_\\.\\-\\[\\]\\(\\)]+$"
             },
             "read_length_r1": {
               "type": [

@@ -3,125 +3,29 @@
   "schema": {
     "type": "object",
     "required": [
-      "workflow",
       "experiment",
       "read_group_count",
-      "read_groups"
+      "read_groups",
+      "workflow"
     ],
     "properties": {
-      "workflow": {
-        "propertyNames": {
-          "enum": [
-            "workflow_name",
-            "workflow_short_name",
-            "workflow_version",
-            "genome_build",
-            "genome_annotation",
-            "run_id",
-            "session_id",
-            "inputs"
-          ]
-        },
-        "required": [
-          "workflow_name",
-          "workflow_version",
-          "genome_build",
-          "run_id",
-          "inputs"
-        ],
-        "allOf": [
-          {
-            "type": "object",
-            "properties": {
-              "workflow_name": {
-                "type": "string",
-                "pattern": "^[a-zA-Z][a-zA-Z0-9 _\\-]+[a-zA-Z0-9]+$"
-              },
-              "workflow_short_name": {
-                "type": "string",
-                "pattern": "^[a-zA-Z][a-zA-Z0-9_\\-]+[a-zA-Z0-9]+$"
-              },
-              "genome_build": {
-                "type": "string",
-                "enum": [
-                  "GRCh38_hla_decoy_ebv",
-                  "GRCh38_Verily_v1"
-                ]
-              },
-              "genome_annotation": {
-                "type": [
-                  "string",
-                  "null"
-                ]
-              },
-              "inputs": {
-                "type": "array",
-                "items": {
-                  "type": "object",              
-                  "properties": {
-                    "input_analysis_id": {
-                      "type": "string",
-                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
-                    },
-                    "tumour_analysis_id": {
-                      "type": "string",
-                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
-                    },
-                    "normal_analysis_id": {
-                      "type": "string",
-                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
-                    },
-                    "analysis_type": {
-                      "type": "string",
-                      "pattern": "^[a-zA-Z][a-zA-Z0-9_]+$"
-                    }
-                  }
-                },
-                "minItems": 1
-              },
-              "run_id": {
-                "type": "string"
-              },
-              "session_id": {
-                "type": "string",
-                "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
-              },
-              "workflow_version": {
-                "type": "string"
-              }
-            }
-          },
-          {
-            "if": {
-              "properties": {
-                "workflow_name": {
-                  "enum": [
-                    "RNA Seq Alignment"
-                  ]
-                }
-              }
-            },
-            "then": {
-              "properties": {
-                "genome_annotation": {
-                  "type": "string",
-                  "pattern": "^GENCODE v[0-9]{2,4}$"
-                }
-              }
-            }
-          }
-        ]
-      },
       "experiment": {
+        "type": "object",
         "propertyNames": {
           "enum": [
-            "platform",
-            "platform_model",
-            "sequencing_date",
-            "experimental_strategy",
-            "sequencing_center",
             "submitter_sequencing_experiment_id",
+            "platform",
+            "experimental_strategy",
+            "sequencing_date",
+            "platform_model",
+            "sequencing_center",
             "target_capture_kit",
+            "primary_target_regions",
+            "capture_target_regions",
+            "number_of_genes",
+            "gene_padding",
+            "coverage",
+            "library_selection",
             "library_isolation_protocol",
             "library_preparation_kit",
             "library_strandedness",
@@ -132,170 +36,189 @@
             "spike_ins_concentration"
           ]
         },
+        "properties": {
+          "submitter_sequencing_experiment_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9\\-\\._]{1,98}$"
+          },
+          "platform": {
+            "enum": [
+              "CAPILLARY",
+              "LS454",
+              "ILLUMINA",
+              "SOLID",
+              "HELICOS",
+              "IONTORRENT",
+              "ONT",
+              "PACBIO",
+              "Nanopore",
+              "BGI"
+            ]
+          },
+          "experimental_strategy": {
+            "enum": [
+              "WGS",
+              "WXS",
+              "RNA-Seq",
+              "Bisulfite-Seq",
+              "ChIP-Seq",
+              "Targeted-Seq"
+            ]
+          },
+          "sequencing_date": {
+            "oneOf": [
+              {
+                "type": "string",
+                "anyOf": [
+                  {
+                    "format": "date"
+                  },
+                  {
+                    "format": "date-time"
+                  }
+                ],
+                "example": [
+                  "2019-06-16",
+                  "2019-06-16T20:20:39+00:00"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "platform_model": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "sequencing_center": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "target_capture_kit": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "primary_target_regions": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "capture_target_regions": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "number_of_genes": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "gene_padding": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 0
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "coverage": {
+            "anyOf": [
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "Hotspot Regions",
+                    "Coding Exons",
+                    "Introns",
+                    "Promoters"
+                  ]
+                }
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "library_selection": {
+            "enum": [
+              "Affinity Enrichment",
+              "Hybrid Selection",
+              "miRNA Size Fractionation",
+              "PCR-based Enrichment",
+              "Poly-T Enrichment",
+              "Random",
+              "rRNA Depletion",
+              "Molecular Inversion Probes",
+              null
+            ]
+          },
+          "library_preparation_kit": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "library_strandedness": {
+            "enum": [
+              "UNSTRANDED",
+              "FIRST_READ_SENSE_STRAND",
+              "FIRST_READ_ANTISENSE_STRAND",
+              null
+            ]
+          },
+          "rin": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 1,
+                "maximum": 10
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "dv200": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^(100|\\d{1,2}(\\.\\d+)?)%$",
+                "minLength": 2,
+                "description": "The percentage of RNA fragments that are >200 nucleotides in size.",
+                "examples": [
+                  "95%"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
         "required": [
           "platform",
           "experimental_strategy"
         ],
-        "type": "object",
         "allOf": [
-          {
-            "properties": {
-              "submitter_sequencing_experiment_id": {
-                "type": ["string", "null"],
-                "pattern": "^[a-zA-Z0-9]{1}[a-zA-Z0-9\\-_\\.:']{0,98}[a-zA-Z0-9]{1}$"
-              },
-              "platform": {
-                "enum": [
-                  "CAPILLARY",
-                  "LS454",
-                  "ILLUMINA",
-                  "SOLID",
-                  "HELICOS",
-                  "IONTORRENT",
-                  "ONT",
-                  "PACBIO",
-                  "Nanopore",
-                  "BGI"
-                ]
-              },
-              "platform_model": {
-                "type": [
-                  "string",
-                  "null"
-                ]
-              },
-              "sequencing_date": {
-                "oneOf": [
-                  {
-                    "type": "string",
-                    "anyOf": [
-                      {
-                        "format": "date"
-                      },
-                      {
-                        "format": "date-time"
-                      }
-                    ],
-                    "example": [
-                      "2019-06-16",
-                      "2019-06-16T20:20:39+00:00"
-                    ]
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
-              },
-              "experimental_strategy": {
-                "enum": [
-                  "WGS",
-                  "WXS",
-                  "RNA-Seq",
-                  "Bisulfite-Seq",
-                  "ChIP-Seq",
-                  "Targeted-Seq"
-                ]
-              },
-              "sequencing_center": {
-                "type": [
-                  "string",
-                  "null"
-                ]
-              },
-              "target_capture_kit": {
-                "enum": [
-                  "xGen Exome Research Panel V1 (IDT)", 
-                  "SeqCap EZ MedExome (Roche)", 
-                  "SureSelect Human All Exon V6 (Agilent)", 
-                  "Human Core Exome Kit + RefSeq V1 (Twist)",
-                  null
-                ]  
-              },
-              "library_isolation_protocol": {
-                "enum": [
-                  "TRIzol Reagent (Thermo Fisher)",
-                  "RNeasy kits (QIAGEN)",
-                  "RNase free DNase I (Thermo Fisher)",
-                  "Pico Pure RNA isolation kit (Thermo Fisher)",
-                  "mirVANA microRNA isolation kit (Thermo Fisher)",
-                  "Absolutely Total RNA, miRNA & mRNA Purification Kits (Stratagene, Agilent technologies)",
-                  "SV total RNA isolation kit (Promega)",
-                  "RNAqueous Kit (Thermo Fisher)",
-                  "AllPrep DNA/RNA Micro Kit (QIAGEN)",
-                  "GenElute Mammalian Total RNA Miniprep kit (MilliporeSigma)",
-                  "Spectrum Plant Total RNA kit (MilliporeSigma)",
-                  "peqGOLD Total RNA kits (PeqLab Biotechnologie)",
-                  "RNAlater (Thermo Fisher)",
-                  null
-                ]
-              },
-              "library_preparation_kit": {
-                "enum": [
-                  "Ovation SoLo kit (NuGEN)",
-                  "SMARTer Stranded Total RNA-Seq Kit (Takara)",
-                  "TruSeq RNA sample preparation v2 (Illumina)",
-                  "SMART-Seq v4 Ultra Low Input RNA Kit (Takara)",
-                  "Nextera XT DNA Library Preparation Kit (Illumina)",
-                  "NEXTflex kit (Bioo Scientific)",
-                  null
-                ] 
-              },
-              "library_strandedness": {
-                "enum": [
-                  "UNSTRANDED",
-                  "FIRST_READ_SENSE_STRAND",
-                  "FIRST_READ_ANTISENSE_STRAND",
-                  null
-                ]
-              },
-              "rin": {
-                "anyOf": [
-                  {
-                    "type": "number",
-                    "minimum": 1,
-                    "maximum": 10
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
-              },
-              "dv200": {
-                "anyOf": [
-                  {
-                    "type": "string",
-                    "pattern": "^(100|\\d{1,2}(\\.\\d+)?)%$",
-                    "minLength": 2,
-                    "description": "The percentage of RNA fragments that are >200 nucleotides in size.",
-                    "examples": [
-                      "95%"
-                    ]
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
-              },
-              "spike_ins_included": {
-                "type": [
-                  "boolean",
-                  "null"
-                ]  
-              },
-              "spike_ins_fasta": {
-                "type": [
-                  "string",
-                  "null"
-                ]
-              },
-              "spike_ins_concentration": {
-                "type": [
-                  "string",
-                  "null"
-                ]  
-              }
-            }
-          },
           {
             "if": {
               "properties": {
@@ -318,6 +241,39 @@
                 "library_strandedness"
               ]
             }
+          },
+          {
+            "if": {
+              "properties": {
+                "experimental_strategy": {
+                  "enum": [
+                    "WXS",
+                    "Targeted-Seq"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "target_capture_kit": {
+                  "type": "string",
+                  "pattern": "^[a-zA-Z0-9]{1}[a-zA-Z0-9\\-_\\.:']{0,98}[a-zA-Z0-9]{1}$"
+                },
+                "primary_target_regions": {
+                  "type": "string",
+                  "pattern": "^[a-zA-Z0-9]{1}[a-zA-Z0-9\\-_\\.:']{0,98}[a-zA-Z0-9]{1}$"
+                },
+                "capture_target_regions": {
+                  "type": "string",
+                  "pattern": "^[a-zA-Z0-9]{1}[a-zA-Z0-9\\-_\\.:']{0,98}[a-zA-Z0-9]{1}$"
+                }
+              },
+              "required": [
+                "target_capture_kit",
+                "primary_target_regions",
+                "capture_target_regions"
+              ]
+            }
           }
         ]
       },
@@ -331,92 +287,87 @@
           "type": "object",
           "propertyNames": {
             "enum": [
-              "library_name",
+              "submitter_read_group_id",
+              "read_group_id_in_bam",
               "platform_unit",
               "is_paired_end",
-              "read_length_r1",
               "file_r1",
-              "insert_size",
-              "read_length_r2",
               "file_r2",
-              "sample_barcode",
-              "read_group_id_in_bam",
-              "submitter_read_group_id"
+              "library_name",
+              "read_length_r1",
+              "read_length_r2",
+              "insert_size",
+              "sample_barcode"
             ]
           },
+          "properties": {
+            "submitter_read_group_id": {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9\\-_:\\.]{1,98}$"
+            },
+            "read_group_id_in_bam": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^[a-zA-Z0-9\\-_:\\.']{1,98}$"
+            },
+            "library_name": {
+              "type": "string"
+            },
+            "platform_unit": {
+              "type": "string"
+            },
+            "is_paired_end": {
+              "type": "boolean"
+            },
+            "file_r1": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_\\.\\-\\[\\]\\(\\)]+$"
+            },
+            "file_r2": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^[A-Za-z0-9_\\.\\-\\[\\]\\(\\)]+$"
+            },
+            "read_length_r1": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 20
+            },
+            "read_length_r2": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 20
+            },
+            "insert_size": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "sample_barcode": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
           "required": [
-            "library_name",
+            "submitter_read_group_id",
             "platform_unit",
             "is_paired_end",
-            "read_length_r1",
             "file_r1",
-            "insert_size",
-            "read_length_r2",
-            "file_r2",
-            "sample_barcode",
-            "submitter_read_group_id"
+            "library_name"
           ],
           "allOf": [
-            {
-              "properties": {
-                "submitter_read_group_id": {
-                  "type": "string",
-                  "pattern": "^[a-zA-Z0-9\\-_:\\.]+$"
-                },
-                "read_group_id_in_bam": {
-                  "type": [
-                    "string",
-                    "null"
-                  ],
-                  "pattern": "^[a-zA-Z0-9\\-_:\\.']+$"
-                },
-                "library_name": {
-                  "type": "string"
-                },
-                "platform_unit": {
-                  "type": "string"
-                },
-                "is_paired_end": {
-                  "type": "boolean"
-                },
-                "file_r1": {
-                  "type": "string"
-                },
-                "file_r2": {
-                  "type": [
-                    "string",
-                    "null"
-                  ]
-                },
-                "read_length_r1": {
-                  "type": [
-                    "integer",
-                    "null"
-                  ],
-                  "minimum": 20
-                },
-                "read_length_r2": {
-                  "type": [
-                    "integer",
-                    "null"
-                  ],
-                  "minimum": 20
-                },
-                "insert_size": {
-                  "type": [
-                    "integer",
-                    "null"
-                  ],
-                  "minimum": 0
-                },
-                "sample_barcode": {
-                  "type": [
-                    "string",
-                    "null"
-                  ]
-                }
-              }
-            },
             {
               "if": {
                 "properties": {
@@ -428,7 +379,8 @@
               "then": {
                 "properties": {
                   "file_r2": {
-                    "type": "string"
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9_\\.\\-\\[\\]\\(\\)]+$"
                   },
                   "read_length_r2": {
                     "type": [
@@ -444,7 +396,10 @@
                     ],
                     "minimum": 0
                   }
-                }
+                },
+                "required": [
+                  "file_r2"
+                ]
               },
               "else": {
                 "properties": {
@@ -463,6 +418,118 @@
           ]
         },
         "minItems": 1
+      },
+      "workflow": {
+        "type": "object",
+        "propertyNames": {
+          "enum": [
+            "workflow_name",
+            "workflow_short_name",
+            "workflow_version",
+            "genome_build",
+            "genome_annotation",
+            "run_id",
+            "session_id",
+            "inputs",
+            "pipeline_info",
+            "metrics"
+          ]
+        },
+        "required": [
+          "workflow_name",
+          "workflow_version",
+          "genome_build"
+        ],
+        "properties": {
+          "workflow_name": {
+            "type": "string",
+            "pattern": "^[a-zA-Z][a-zA-Z0-9 _\\-]+[a-zA-Z0-9]+$"
+          },
+          "workflow_short_name": {
+            "type": "string",
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_\\-]+[a-zA-Z0-9]+$"
+          },
+          "workflow_version": {
+            "type": "string"
+          },
+          "genome_build": {
+            "type": "string",
+            "enum": [
+              "GRCh38_hla_decoy_ebv",
+              "GRCh38_Verily_v1",
+              "GRCh38",
+              "GRCh37"
+            ]
+          },
+          "genome_annotation": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "inputs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "input_analysis_id": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                },
+                "tumour_analysis_id": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                },
+                "normal_analysis_id": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                },
+                "analysis_type": {
+                  "type": "string",
+                  "pattern": "^[a-zA-Z][a-zA-Z0-9_]+$"
+                }
+              }
+            },
+            "minItems": 1
+          },
+          "run_id": {
+            "type": "string"
+          },
+          "session_id": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+          },
+          "pipeline_info": {
+            "type": "object"
+          },
+          "metrics": {
+            "type": "object"
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "workflow_name": {
+                  "enum": [
+                    "RNA Seq Alignment"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "genome_annotation": {
+                  "type": "string",
+                  "pattern": "^GENCODE v[0-9]{2,4}$"
+                }
+              },
+              "required": [
+                "genome_annotation"
+              ]
+            }
+          }
+        ]
       }
     }
   }

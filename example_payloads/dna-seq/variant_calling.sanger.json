@@ -1,5 +1,4 @@
 {
-  "analysisId": "fddb136b-3074-41cd-9b13-6b307461cdd7",
   "studyId": "TEST-PR",
   "samples": [
     {
@@ -75,7 +74,10 @@
   },
   "experiment": {
     "platform": "ILLUMINA",
-    "experimental_strategy": "WXS"
+    "experimental_strategy": "WXS",
+    "target_capture_kit": "test-1",
+    "primary_target_regions": "test-1-primary.bed",
+    "capture_target_regions": "test-1-capture.bed"
   },
   "variant_class": "Somatic"
 }

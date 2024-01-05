@@ -1,5 +1,4 @@
 {
-  "analysisId": "5a7860fe-9d97-4f83-b860-fe9d977f8382",
   "studyId": "TEST-PR",
   "samples": [
     {
@@ -84,6 +83,9 @@
   },
   "experiment": {
     "platform": "ILLUMINA",
-    "experimental_strategy": "WXS"
+    "experimental_strategy": "WXS",
+    "target_capture_kit": "test-1",
+    "primary_target_regions": "test-1-primary.bed",
+    "capture_target_regions": "test-1-capture.bed"
   }
 }

@@ -293,8 +293,7 @@
         },
         "required": [
           "workflow_name",
-          "workflow_version",
-          "genome_build"
+          "workflow_version"
         ],
         "properties": {
           "workflow_name": {
@@ -367,9 +366,8 @@
             "if": {
               "properties": {
                 "workflow_name": {
-                  "enum": [
-                    "RNA Seq Alignment"
-                  ]
+                  "type": "string",
+                  "pattern": "^.*RNA-Seq.*$"
                 }
               }
             },
@@ -382,6 +380,40 @@
               },
               "required": [
                 "genome_annotation"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "workflow_name": {
+                  "enum": [
+                    "Pre Alignment QC"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "genome_build": {
+                  "type": "string"
+                }
+              }
+            },
+            "else": {
+              "properties": {
+                "genome_build": {
+                  "type": "string",
+                  "enum": [
+                    "GRCh38_hla_decoy_ebv",
+                    "GRCh38_Verily_v1",
+                    "GRCh38",
+                    "GRCh37"
+                  ]
+                }
+              },
+              "required": [
+                "genome_build"
               ]
             }
           }

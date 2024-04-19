@@ -13,7 +13,7 @@
     "inputs": [
       {
         "analysis_type": "sequencing_experiment",
-        "input_analysis_id": null
+        "input_analysis_id": "0048d713-2088-4c54-88d7-1320885c5477"
       }
     ]
   },
@@ -127,7 +127,7 @@
     "experimental_strategy": "RNA-Seq",
     "sequencing_date": "2021-04-21",
     "library_isolation_protocol": "",
-    "library_prepation_kit": "",
+    "library_preparation_kit": "",
     "library_strandedness": "FIRST_READ_SENSE_STRAND",
     "rin": 9,
     "dv200": "90%",

@@ -62,7 +62,7 @@
     "library_preparation_kit": "TruSeq",
     "library_strandedness": "UNSTRANDED",
     "rin": 9.0,
-    "dv200": 0.7,
+    "dv200": "70%",
     "spike_ins_included": true,
     "spike_ins_fasta": "",
     "spike_ins_concentration": "",

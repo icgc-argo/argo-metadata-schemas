@@ -148,7 +148,10 @@
                     "Hotspot Regions",
                     "Coding Exons",
                     "Introns",
-                    "Promoters"
+                    "Promoters",
+                    "3 Prime UTR",
+                    "5 Prime UTR",
+                    "ncRNA"
                   ]
                 }
               },
@@ -269,8 +272,7 @@
               },
               "required": [
                 "target_capture_kit",
-                "primary_target_regions",
-                "capture_target_regions"
+                "primary_target_regions"
               ]
             }
           }
@@ -424,7 +426,8 @@
         "type": "string",
         "enum": [
           "Germline",
-          "Somatic"
+          "Somatic",
+          "Germline+Somatic+Unknown"
         ]
       },
       "variant_calling_strategy": {

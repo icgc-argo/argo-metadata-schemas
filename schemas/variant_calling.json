@@ -427,7 +427,11 @@
         "enum": [
           "Germline",
           "Somatic",
-          "Germline+Somatic+Unknown"
+          "Germline+Somatic",
+          "Germline+Somatic+Unclassified",
+          "Germline+Unclassified",
+          "Somatic+Unclassified",
+          "Unclassified"
         ]
       },
       "variant_calling_strategy": {

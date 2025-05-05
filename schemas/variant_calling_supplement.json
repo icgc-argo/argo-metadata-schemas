@@ -17,7 +17,8 @@
             "genome_build",
             "run_id",
             "session_id",
-            "inputs"
+            "inputs",
+            "pipeline_info"
           ]
         },
         "required": [
@@ -25,8 +26,7 @@
           "workflow_short_name",
           "workflow_version",
           "genome_build",
-          "run_id",
-          "inputs"
+          "run_id"
         ],
         "type": "object",
         "properties": {
@@ -42,7 +42,9 @@
             "type": "string",
             "enum": [
               "GRCh38_hla_decoy_ebv",
-              "GRCh38_Verily_v1"
+              "GRCh38_Verily_v1",
+              "GRCh38",
+              "GRCh37"
             ]
           },
           "inputs": {
@@ -70,6 +72,9 @@
           "run_id": {
             "type": "string"
           },
+          "pipeline_info": {
+            "type": "object"
+          },
           "session_id": {
             "type": "string",
             "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
@@ -84,7 +89,12 @@
         "propertyNames": {
           "enum": [
             "platform",
-            "experimental_strategy"
+            "experimental_strategy",
+            "submitter_sequencing_experiment_id",
+            "target_capture_kit",
+            "primary_target_regions",
+            "capture_target_regions",
+            "coverage"
           ]
         },
         "required": [
@@ -92,6 +102,50 @@
           "experimental_strategy"
         ],
         "properties": {
+          "submitter_sequencing_experiment_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9\\-\\._]{1,98}$"
+          },
+          "target_capture_kit": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "primary_target_regions": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "capture_target_regions": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "coverage": {
+            "anyOf": [
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "Hotspot Regions",
+                    "Coding Exons",
+                    "Introns",
+                    "Promoters",
+                    "3 Prime UTR",
+                    "5 Prime UTR",
+                    "ncRNA"
+                  ]
+                }
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "platform": {
             "enum": [
               "CAPILLARY",
@@ -123,7 +177,12 @@
         "type": "string",
         "enum": [
           "Germline",
-          "Somatic"
+          "Somatic",
+          "Germline+Somatic",
+          "Germline+Somatic+Unclassified",
+          "Germline+Unclassified",
+          "Somatic+Unclassified",
+          "Unclassified"
         ]
       }
     }

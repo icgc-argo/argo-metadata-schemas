@@ -80,9 +80,13 @@
             "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
           },
           "workflow_version": {
-            "type": [
-              "string",
-              "null"
+            "anyOf":[
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
             ]
           }
         }
@@ -110,9 +114,14 @@
             "pattern": "^[A-Za-z0-9\\-\\._]{1,98}$"
           },
           "target_capture_kit": {
-            "type": [
-              "string",
-              "null"
+            "anyOf":[
+              {
+                "type": "string",
+                "pattern": "^[a-zA-Z0-9]{1}[a-zA-Z0-9\\-_\\.:']{0,98}[a-zA-Z0-9]{1}$"
+              },
+              {
+                "type": "null"
+              }
             ]
           },
           "primary_target_regions": {
@@ -122,9 +131,14 @@
             ]
           },
           "capture_target_regions": {
-            "type": [
-              "string",
-              "null"
+            "anyOf":[
+              {
+                "type": "string",
+                "pattern": "^[a-zA-Z0-9]{1}[a-zA-Z0-9\\-_\\.:']{0,98}[a-zA-Z0-9]{1}$"
+              },
+              {
+                "type": "null"
+              }
             ]
           },
           "coverage": {
@@ -174,7 +188,32 @@
               "Targeted-Seq"
             ]
           }
-        }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "experimental_strategy": {
+                  "enum": [
+                    "WXS",
+                    "Targeted-Seq"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "primary_target_regions": {
+                  "type": "string",
+                  "pattern": "^[a-zA-Z0-9]{1}[a-zA-Z0-9\\-_\\.:']{0,98}[a-zA-Z0-9]{1}$"
+                }
+              },
+              "required": [
+                "primary_target_regions"
+              ]
+            }
+          }
+        ]
       },
       "variant_class": {
         "type": "string",

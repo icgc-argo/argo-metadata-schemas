@@ -99,9 +99,14 @@
             ]
           },
           "target_capture_kit": {
-            "type": [
-              "string",
-              "null"
+            "anyOf":[
+              {
+                "type": "string",
+                "pattern": "^[a-zA-Z0-9]{1}[a-zA-Z0-9\\-_\\.:']{0,98}[a-zA-Z0-9]{1}$"
+              },
+              {
+                "type": "null"
+              }
             ]
           },
           "primary_target_regions": {
@@ -111,9 +116,14 @@
             ]
           },
           "capture_target_regions": {
-            "type": [
-              "string",
-              "null"
+            "anyOf":[
+              {
+                "type": "string",
+                "pattern": "^[a-zA-Z0-9]{1}[a-zA-Z0-9\\-_\\.:']{0,98}[a-zA-Z0-9]{1}$"
+              },
+              {
+                "type": "null"
+              }
             ]
           },
           "number_of_genes": {
@@ -257,21 +267,12 @@
             },
             "then": {
               "properties": {
-                "target_capture_kit": {
-                  "type": "string",
-                  "pattern": "^[a-zA-Z0-9]{1}[a-zA-Z0-9\\-_\\.:']{0,98}[a-zA-Z0-9]{1}$"
-                },
                 "primary_target_regions": {
-                  "type": "string",
-                  "pattern": "^[a-zA-Z0-9]{1}[a-zA-Z0-9\\-_\\.:']{0,98}[a-zA-Z0-9]{1}$"
-                },
-                "capture_target_regions": {
                   "type": "string",
                   "pattern": "^[a-zA-Z0-9]{1}[a-zA-Z0-9\\-_\\.:']{0,98}[a-zA-Z0-9]{1}$"
                 }
               },
               "required": [
-                "target_capture_kit",
                 "primary_target_regions"
               ]
             }
@@ -308,9 +309,13 @@
             "pattern": "^[a-zA-Z][a-zA-Z0-9_\\-]+[a-zA-Z0-9]+$"
           },
           "workflow_version": {
-            "type": [
-              "string",
-              "null"
+            "anyOf":[
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
             ]
           },
           "genome_build": {

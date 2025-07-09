@@ -117,7 +117,7 @@
             "anyOf":[
               {
                 "type": "string",
-                "pattern": "^[a-zA-Z0-9]{1}[a-zA-Z0-9\\-_\\.:']{0,98}[a-zA-Z0-9]{1}$"
+                "pattern": "^[a-zA-Z0-9]{1}[a-zA-Z0-9\\-_\\.:'\/]{0,98}[a-zA-Z0-9]{1}$"
               },
               {
                 "type": "null"
@@ -134,7 +134,7 @@
             "anyOf":[
               {
                 "type": "string",
-                "pattern": "^[a-zA-Z0-9]{1}[a-zA-Z0-9\\-_\\.:']{0,98}[a-zA-Z0-9]{1}$"
+                "pattern": "^[a-zA-Z0-9]{1}[a-zA-Z0-9\\-_\\.:'\/]{0,98}[a-zA-Z0-9]{1}$"
               },
               {
                 "type": "null"
@@ -205,7 +205,7 @@
               "properties": {
                 "primary_target_regions": {
                   "type": "string",
-                  "pattern": "^[a-zA-Z0-9]{1}[a-zA-Z0-9\\-_\\.:']{0,98}[a-zA-Z0-9]{1}$"
+                  "pattern": "^[a-zA-Z0-9]{1}[a-zA-Z0-9\\-_\\.:'\/]{0,98}[a-zA-Z0-9]{1}$"
                 }
               },
               "required": [
